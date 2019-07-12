@@ -10,40 +10,27 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/VoiceRecognitionUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="46" column="34" lean-forward="true" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/TokenHolder.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/WordCutUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1711">
-              <caret line="121" column="47" lean-forward="true" selection-start-line="121" selection-start-column="47" selection-end-line="121" selection-end-column="47" />
-              <folding>
-                <element signature="e#1242#1243#0" expanded="true" />
-                <element signature="e#1270#1271#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/DemoException.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+            <state relative-caret-position="1083">
+              <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,33 +39,123 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/VoiceEncodeUtil.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TokenHolder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="23" column="50" lean-forward="true" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+            <state relative-caret-position="2033">
+              <caret line="115" column="9" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/Base64Util.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/JSONParseUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+            <state relative-caret-position="857">
+              <caret line="176" column="104" selection-start-line="176" selection-start-column="104" selection-end-line="176" selection-end-column="104" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TimeUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1007">
+              <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="31" column="65" lean-forward="true" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/VoiceEncodeUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="23" column="49" lean-forward="true" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/VoiceRecognitionUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Msql.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="912">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1535#1536#0" expanded="true" />
+                <element signature="e#1564#1565#0" expanded="true" />
+                <element signature="e#1608#1609#0" expanded="true" />
+                <element signature="e#1644#1645#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <dirStrings>
+      <dir>E:\研究生\intellij code\personalfinancial\src\main\java\com\icbc\personalfinancial\util</dir>
+    </dirStrings>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/Base64Util.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/VoiceEncodeUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/VoiceRecognitionUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/WordCutUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/TokenHolder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/baidu_api/WordCutUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/VoiceEncodeUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/WordCutUtil.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Msql.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TimeUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/JSONParseUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java" />
       </list>
     </option>
   </component>
@@ -105,9 +182,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="width" value="1034" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="width" value="1035" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
@@ -115,8 +192,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -166,7 +243,26 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="voiceprocess" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
@@ -186,10 +282,12 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562575627284" />
-    <property name="last_opened_file_path" value="E:/shixi/一些资料/speech-demo-master/speech-demo-master/rest-api-asr/java" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562891992955" />
+    <property name="last_opened_file_path" value="E:/shixi/mhtml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -208,7 +306,54 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.PersonalfinancialApplication">
+    <configuration name="TimeUtil" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="personalfinancial" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.icbc.personalfinancial.util.voiceprocess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial.util.voiceprocess" />
+      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.util.voiceprocess.TimeUtil" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeUtil.getYearMonth" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="personalfinancial" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.icbc.personalfinancial.util.voiceprocess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial.util.voiceprocess" />
+      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.util.voiceprocess.TimeUtil" />
+      <option name="METHOD_NAME" value="getYearMonth" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeUtil.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="personalfinancial" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.icbc.personalfinancial.util.voiceprocess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial.util.voiceprocess" />
+      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.util.voiceprocess.TimeUtil" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PersonalfinancialApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="personalfinancial" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.icbc.personalfinancial.PersonalfinancialApplication" />
@@ -216,6 +361,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TimeUtil.test" />
+        <item itemvalue="JUnit.TimeUtil" />
+        <item itemvalue="JUnit.TimeUtil.getYearMonth" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -227,75 +379,95 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562569585741</updated>
-      <workItem from="1562569589307" duration="4004000" />
+      <workItem from="1562569589307" duration="5125000" />
+      <workItem from="1562632401057" duration="5157000" />
+      <workItem from="1562641473757" duration="22323000" />
+      <workItem from="1562719156028" duration="18547000" />
+      <workItem from="1562891511860" duration="529000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="TimeUtil_getYearMonth - 2019.07.09 at 16h 00m 56s.xml">
+      <configuration name="TimeUtil.getYearMonth" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil_getYearMonth - 2019.07.09 at 16h 01m 16s.xml">
+      <configuration name="TimeUtil.getYearMonth" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil_getYearMonth - 2019.07.09 at 16h 01m 28s.xml">
+      <configuration name="TimeUtil.getYearMonth" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil_getYearMonth - 2019.07.09 at 16h 07m 43s.xml">
+      <configuration name="TimeUtil.getYearMonth" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil - 2019.07.09 at 17h 07m 09s.xml">
+      <configuration name="TimeUtil" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil - 2019.07.10 at 10h 13m 52s.xml">
+      <configuration name="TimeUtil" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil - 2019.07.10 at 10h 14m 15s.xml">
+      <configuration name="TimeUtil" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil - 2019.07.10 at 10h 17m 21s.xml">
+      <configuration name="TimeUtil" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil - 2019.07.10 at 13h 44m 26s.xml">
+      <configuration name="TimeUtil" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeUtil_test - 2019.07.10 at 14h 40m 06s.xml">
+      <configuration name="TimeUtil.test" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4004000" />
+    <option name="totallyTimeSpent" value="51681000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Web" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25938338" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Spring" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.32914925" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7642957" visible="true" weight="0.23257373" />
+      <window_info id="Structure" order="1" sideWeight="0.23570432" side_tool="true" visible="true" weight="0.23257373" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32078102" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33333334" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39888424" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Maven" visible="true" weight="0.1769437" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32914925" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.1769437" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/DemoException.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/ConnUtil.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/Base64Util.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/net/URL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -303,38 +475,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/baidu_api/s.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/ConnUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+        <state relative-caret-position="133">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/Base64Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/DemoException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/WordCutUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/VoiceEncodeUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TokenHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="23" column="50" lean-forward="true" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+        <state relative-caret-position="2033">
+          <caret line="115" column="9" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/TokenHolder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TimeUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1711">
-          <caret line="121" column="47" lean-forward="true" selection-start-line="121" selection-start-column="47" selection-end-line="121" selection-end-column="47" />
+        <state relative-caret-position="342">
+          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
           <folding>
-            <element signature="e#1242#1243#0" expanded="true" />
-            <element signature="e#1270#1271#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/VoiceRecognitionUtil.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="46" column="34" lean-forward="true" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+        <state relative-caret-position="1007">
+          <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Msql.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1535#1536#0" expanded="true" />
+            <element signature="e#1564#1565#0" expanded="true" />
+            <element signature="e#1608#1609#0" expanded="true" />
+            <element signature="e#1644#1645#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/JSONParseUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="857">
+          <caret line="176" column="104" selection-start-line="176" selection-start-column="104" selection-end-line="176" selection-end-column="104" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/VoiceEncodeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="23" column="49" lean-forward="true" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/VoiceRecognitionUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="31" column="65" lean-forward="true" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
