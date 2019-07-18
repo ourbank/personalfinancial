@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dbcb809-4bfa-48fd-bba4-27a12b7ba6db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/CardDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/personalfinancial.iml" beforeDir="false" afterPath="$PROJECT_DIR$/personalfinancial.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/controller/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/JSONParseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/JSONParseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TimeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/controller/TestController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="687">
-              <caret line="44" column="37" lean-forward="true" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+            <state relative-caret-position="250">
+              <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#676#706#0" expanded="true" />
@@ -54,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/controller/TestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+            <state relative-caret-position="263">
+              <caret line="72" column="58" lean-forward="true" selection-start-line="72" selection-start-column="58" selection-end-line="72" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,10 +58,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="317" column="60" selection-start-line="317" selection-start-column="60" selection-end-line="317" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="113">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1232">
+              <caret line="82" selection-start-line="82" selection-end-line="82" />
             </state>
           </provider>
         </entry>
@@ -105,7 +117,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Dao/CardDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Service/CardService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/CardDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/vo/CardData.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
@@ -114,8 +125,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/JSONParseUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TimeUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/controller/TestController.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/controller/TestController.java" />
       </list>
     </option>
   </component>
@@ -142,7 +155,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="421" />
     <option name="y" value="111" />
     <option name="width" value="1365" />
@@ -197,6 +210,14 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -211,7 +232,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563439458332" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563450974139" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -228,6 +249,7 @@
       <recent name="com.icbc.personalfinancial.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\shixi\personalfinancial\src\main\resources\static" />
       <recent name="E:\研究生\intellij code\personalfinancial\src\main\java\com\icbc\personalfinancial" />
     </key>
   </component>
@@ -323,7 +345,7 @@
       <workItem from="1562891511860" duration="529000" />
       <workItem from="1563170499125" duration="22000" />
       <workItem from="1563173825639" duration="246000" />
-      <workItem from="1563413008987" duration="19380000" />
+      <workItem from="1563413008987" duration="26642000" />
     </task>
     <servers />
   </component>
@@ -360,14 +382,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71329000" />
+    <option name="totallyTimeSpent" value="78591000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7643678" visible="true" weight="0.2124665" />
-      <window_info id="Structure" order="1" sideWeight="0.23563218" side_tool="true" visible="true" weight="0.2124665" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7644628" visible="true" weight="0.2124665" />
+      <window_info id="Structure" order="1" sideWeight="0.23553719" side_tool="true" visible="true" weight="0.2124665" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -376,7 +398,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27094972" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32402235" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39888424" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -442,13 +464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="61" column="21" lean-forward="true" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -568,10 +583,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1232">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="687">
-          <caret line="44" column="37" lean-forward="true" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+        <state relative-caret-position="250">
+          <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#676#706#0" expanded="true" />
@@ -579,17 +608,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="304">
+          <caret line="317" column="60" selection-start-line="317" selection-start-column="60" selection-end-line="317" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/controller/TestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+        <state relative-caret-position="263">
+          <caret line="72" column="58" lean-forward="true" selection-start-line="72" selection-start-column="58" selection-end-line="72" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

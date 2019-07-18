@@ -14,6 +14,7 @@ public class PersonalfinancialApplication {
         SpringApplication.run(PersonalfinancialApplication.class, args);
     }
 
+    // 使用cookie不符合tomcat规范解决方法
     @Bean
     public WebServerFactoryCustomizer<TomcatServletWebServerFactory> cookieProcessorCustomizer() {
         return (factory) -> factory.addContextCustomizers(

@@ -62,13 +62,14 @@ public class TestController {
 
 
     // 同前端交互,查询数据
-    @RequestMapping(value = "/getdata",method = RequestMethod.POST)
+    @RequestMapping(value = "/getdata")
     @ResponseBody
     String testGzData(Model model, HttpServletResponse response, @RequestParam("bankname") String bankName){
-        Cookie cookie = new Cookie("carddatacookies",cardService.getDaysNumByBankName(bankName));
-        cookie.setPath("/");
-        cookie.setMaxAge(3600);
-        response.addCookie(cookie);
+        //Cookie cookie = new Cookie("carddatacookies",cardService.getDaysNumByBankName(bankName));
+        //cookie.setPath("/");
+        //cookie.setMaxAge(3600);
+        //response.addCookie(cookie);
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return cardService.getDaysNumByBankName(bankName);
     }
 }
