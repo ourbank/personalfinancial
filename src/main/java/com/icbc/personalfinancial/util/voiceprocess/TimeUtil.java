@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class TimeUtil {
@@ -45,6 +46,13 @@ public class TimeUtil {
         return strtodate;
     }
 
+    public static String dateToFormatStr(Date date,String format){
+        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        String dateString = formatter.format(date);
+        // System.out.println(dateString);
+        return dateString;
+    }
+
     public static String dateToYearStr(Date date){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
         String dateString = formatter.format(date);
@@ -81,6 +89,11 @@ public class TimeUtil {
         return year+"01-01";
     }
 
+    public static int getDayOfMonth(int year,int month){
+        Calendar c = Calendar.getInstance();
+        c.set(year, month, 0); //输入类型为int类型
+        return c.get(Calendar.DAY_OF_MONTH);
+    }
     @Test
     public void test(){
         System.out.println( strToDateLong("2018年8月7号"));

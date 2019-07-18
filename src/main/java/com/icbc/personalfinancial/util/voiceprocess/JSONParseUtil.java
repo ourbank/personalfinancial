@@ -267,4 +267,51 @@ public class JSONParseUtil {
     }
 
 
+    /**
+     * 获取一个全0的Map数据体，年月日嵌套
+     * {
+     *     data:[{ time:'2019年'
+     *             data:[{
+     *                      time:'1月'
+     *                      data:[0,0,0,0...] 31天的数据
+     *                  },
+     *                  {},{}..12个月
+     *                  ]
+     *            },
+     *            {},{}
+     *           ]
+     *     bussiness: '开卡'
+     *     bankname: '广州分行'
+     * }
+     * @param startYear
+     * @param endYear
+     * @param bankName
+     * @param card
+     * @return
+     */
+    public static Map getDefaultMap(int startYear, int endYear, String bankName, String buss) {
+        Map outMap = new HashMap();
+        outMap.put("bankname",bankName);
+        outMap.put("bussiness",buss);
+        List<Map> years = new ArrayList<>();
+        for(int i = startYear;i <= endYear;i++){
+            Map yearmap = new HashMap(); //生成每一年的map
+            yearmap.put("time",i+"年");
+            List<Map> months = new ArrayList<>();
+            for(int j = 1; j <= 12 ; j++){
+                Map monthmap = new HashMap();
+                monthmap.put("time",j+"月");
+                List<Integer> days = new ArrayList<>();
+                for (int k = 1; k <= TimeUtil.getDayOfMonth(i,j);k++){
+                    days.add(0);
+                }
+                monthmap.put("data",days);
+                months.add(monthmap);
+            }
+            yearmap.put("data",months);
+            years.add(yearmap);
+        }
+        outMap.put("data",years);
+        return outMap;
+    }
 }
