@@ -167,7 +167,7 @@ CREATE TABLE `manager` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for User
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -181,7 +181,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of user
+-- Records of User
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '张三', '445281199999', '普宁', '18814444');
 INSERT INTO `user` VALUES ('2', '李四', '564651365165', '汕尾', '89415163');

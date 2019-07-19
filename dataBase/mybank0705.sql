@@ -134,7 +134,7 @@ CREATE TABLE `loan` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for User
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -148,5 +148,5 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of user
+-- Records of User
 -- ----------------------------
