@@ -5,19 +5,34 @@ import com.icbc.personalfinancial.util.voiceprocess.JSONParseUtil;
 import com.icbc.personalfinancial.util.voiceprocess.VoiceEncodeUtil;
 import com.icbc.personalfinancial.util.voiceprocess.VoiceRecognitionUtil;
 import com.icbc.personalfinancial.util.voiceprocess.WordCutUtil;
+import com.icbc.personalfinancial.vo.RequestMessage;
+import com.icbc.personalfinancial.vo.ResponseMessage;
 import com.sun.deploy.net.HttpResponse;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class TestController {
+
+    private final SimpMessagingTemplate messagingTemplate;
+
+    @Autowired
+    public TestController(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
 
     @Autowired
     CardService cardService;
@@ -60,19 +75,38 @@ public class TestController {
         return result;
     }
 
+    @MessageMapping("/welcome")
+    @SendTo("/topic/say")
+    public ResponseMessage say(RequestMessage message) {
+        System.out.println(message.getName());
+        return new ResponseMessage("welcome," + message.getName() + " !");
+    }
+
+    /**
+     * 定时推送消息
+     */
+    @Scheduled(fixedRate = 1000)
+    public void callback() {
+        // 发现消息
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        messagingTemplate.convertAndSend("/topic/callback", "定时推送消息时间: " + df.format(new Date()));
+    }
 
     // 同前端交互,查询数据
-    @RequestMapping(value = "/getdata",produces = "application/json;charset=UTF-8")
+    //,produces = "application/json;charset=UTF-8"
+    @RequestMapping(value = "/getdata")
     @ResponseBody
     //@CrossOrigin
-    String testGzData(Model model, HttpServletResponse response, @RequestBody String jsonParam){
+    //@RequestBody String jsonParam
+    String testGzData(Model model, HttpServletResponse response, @RequestParam(value = "bankname") String bankName){
         //Cookie cookie = new Cookie("carddatacookies",cardService.getDaysNumByBankName(bankName));
         //cookie.setPath("/");
         //cookie.setMaxAge(3600);
         //response.addCookie(cookie);
         //response.setHeader("Access-Control-Allow-Origin", "*");
-        JSONObject jb = new JSONObject(jsonParam);
-        String bankName = (String) jb.get("bankname");
+        //JSONObject jb = new JSONObject(jsonParam);
+        //String bankName = (String) jb.get("bankname");
+        //System.out.println(cardService.getDaysNumByBankName(bankName));
         return cardService.getDaysNumByBankName(bankName);
     }
 }

@@ -15,11 +15,11 @@ public class PersonalfinancialApplication {
     }
 
     // 使用cookie不符合tomcat规范解决方法
-    @Bean
-    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> cookieProcessorCustomizer() {
-        return (factory) -> factory.addContextCustomizers(
-                (context) -> context.setCookieProcessor(new LegacyCookieProcessor()));
-    }
+//    @Bean
+//    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> cookieProcessorCustomizer() {
+//        return (factory) -> factory.addContextCustomizers(
+//                (context) -> context.setCookieProcessor(new LegacyCookieProcessor()));
+//    }
 
 
 }

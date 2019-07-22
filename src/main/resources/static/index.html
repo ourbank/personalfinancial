@@ -272,18 +272,18 @@
     </div>
 
     <div class="pop-up">
-		<span class="close-pop"></span>
+        <span class="close-pop"></span>
         <h2 class="title">地图详情</h2>
-		<div class="map-center">
-			<div id="gdMap_big"></div>
-		</div>
+        <div class="map-center">
+            <div id="gdMap_big"></div>
+        </div>
     </div>
 
     <div class="pop-up">
     </div>
-	
+
     <div class="pop-up">
-        
+
     </div>
 </div>
 </body>
@@ -309,20 +309,19 @@
                 $('#lea_a').html(arr[2]);
             }
         })
-		
-		// 默认加载ajax请求
-		$.ajax({
+
+        // 默认加载ajax请求
+        $.ajax({
             type: 'post',
-            contentType: "application/json",
-			dataType:'json',
-            url: 'http://localhost:80/getdata',
-            data: JSON.stringify({bankname:'广州分行'}),
-            //data:{bankname:'广州分行'},
-            success: function(res){
-				console.log(res);
-			}
+            //contentType: "application/json",
+            dataType: 'json',
+            url: 'http://localhost/proxy/getdata',
+            //data: JSON.stringify({bankname:'广州分行'}),
+            data: {bankname: '广州分行'},
+            success: function (res) {
+                console.log(res);
+            }
         });
-		
     });
 
 
