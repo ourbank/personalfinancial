@@ -2,23 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dbcb809-4bfa-48fd-bba4-27a12b7ba6db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/CardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Cities.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/CardMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bank.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Loan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Manger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Insert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RedisUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/BillMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/history.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/BillService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataBase/mybank0705.sql" beforeDir="false" afterPath="$PROJECT_DIR$/dataBase/mybank0705.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataBase/mybank0715.sql" beforeDir="false" afterPath="$PROJECT_DIR$/dataBase/mybank0715.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/personalfinancial.iml" beforeDir="false" afterPath="$PROJECT_DIR$/personalfinancial.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/CardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Manger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Manger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/icbc/personalfinancial/PersonalfinancialApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/icbc/personalfinancial/PersonalfinancialApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -49,10 +54,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+            <state relative-caret-position="4480">
+              <caret line="167" column="23" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,11 +65,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/icbc/personalfinancial/PersonalfinancialApplicationTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4769">
-              <caret line="258" column="46" selection-start-line="258" selection-start-column="46" selection-end-line="258" selection-end-column="46" />
+            <state relative-caret-position="2">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/BillService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/BillMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/CardMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1881">
-              <caret line="107" column="46" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="61" />
+            <state relative-caret-position="392">
+              <caret line="22" selection-start-line="22" selection-end-line="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,19 +108,14 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="47" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="560">
+              <caret line="38" selection-start-line="38" selection-end-line="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1229#1230#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Card.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            <state relative-caret-position="448">
+              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -115,43 +133,30 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Loan.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Insert.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+            <state relative-caret-position="274">
+              <caret line="596" column="137" selection-start-line="596" selection-start-column="137" selection-end-line="596" selection-end-column="137" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#insertUser#0;class#Insert#0" />
+                <element signature="method#insertOneCard#0;class#Insert#0" />
+                <element signature="method#inserCardRan#0;class#Insert#0" />
+                <element signature="method#insertCardDetail#0;class#Insert#0" />
+                <element signature="method#insertCardByDateAndBankLev#0;class#Insert#0" />
+                <element signature="method#judgecard#0;class#Insert#0" />
+                <element signature="method#judgemetal#0;class#Insert#0" />
+                <element signature="method#handleCirculationDate#0;class#Insert#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/User.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bill.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Manger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/CardController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="169" column="50" lean-forward="true" selection-start-line="169" selection-start-column="50" selection-end-line="169" selection-end-column="50" />
+            <state relative-caret-position="308">
+              <caret line="14" column="27" selection-start-line="13" selection-start-column="3" selection-end-line="14" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,6 +174,9 @@
     </option>
   </component>
   <component name="FindInProjectRecents">
+    <findStrings>
+      <find>RedisCacheManager</find>
+    </findStrings>
     <replaceStrings>
       <replace />
     </replaceStrings>
@@ -196,20 +204,30 @@
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/JSONParseUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/user.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Loan.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Cities.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/BankNumberUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/CardMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Account.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bank.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Manger.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Cities.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/BankNumberUtil.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Card.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RedisAnnotationConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/CardMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RedisUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RedisConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Loan.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Card.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/history.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/CardController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/BillMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/BillService.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/icbc/personalfinancial/PersonalfinancialApplicationTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Insert.java" />
       </list>
     </option>
   </component>
@@ -255,7 +273,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -341,10 +358,37 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -356,15 +400,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562891992955" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\gitrepo\personalfinancial\src\main\java\com\icbc\personalfinancial\common\createtestdata" />
       <recent name="E:\work\gitrepo\personalfinancial\src\main\java\com\icbc\personalfinancial\entity" />
       <recent name="E:\研究生\intellij code\personalfinancial\src\main\java\com\icbc\personalfinancial" />
     </key>
@@ -381,7 +426,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.PersonalfinancialApplication">
+  <component name="RunManager" selected="JUnit.PersonalfinancialApplicationTests.insert">
+    <configuration name="Insert" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.common.createtestdata.Insert" />
+      <module name="personalfinancial" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.icbc.personalfinancial.common.createtestdata.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RandomValue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.common.createtestdata.RandomValue" />
       <module name="personalfinancial" />
@@ -395,48 +453,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TimeUtil" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PersonalfinancialApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="personalfinancial" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.icbc.personalfinancial.util.voiceprocess.*" />
+          <option name="PATTERN" value="com.icbc.personalfinancial.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial.util.voiceprocess" />
-      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.util.voiceprocess.TimeUtil" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TimeUtil.getYearMonth" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="personalfinancial" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.icbc.personalfinancial.util.voiceprocess.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial.util.voiceprocess" />
-      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.util.voiceprocess.TimeUtil" />
-      <option name="METHOD_NAME" value="getYearMonth" />
+      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial" />
+      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.PersonalfinancialApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TimeUtil.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PersonalfinancialApplicationTests.insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="personalfinancial" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.icbc.personalfinancial.util.voiceprocess.*" />
+          <option name="PATTERN" value="com.icbc.personalfinancial.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial.util.voiceprocess" />
-      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.util.voiceprocess.TimeUtil" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial" />
+      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.PersonalfinancialApplicationTests" />
+      <option name="METHOD_NAME" value="insert" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonalfinancialApplicationTests.updateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="personalfinancial" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.icbc.personalfinancial.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.icbc.personalfinancial" />
+      <option name="MAIN_CLASS_NAME" value="com.icbc.personalfinancial.PersonalfinancialApplicationTests" />
+      <option name="METHOD_NAME" value="updateUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -451,10 +510,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PersonalfinancialApplicationTests.insert" />
+        <item itemvalue="JUnit.PersonalfinancialApplicationTests.updateUser" />
+        <item itemvalue="Application.Insert" />
+        <item itemvalue="JUnit.PersonalfinancialApplicationTests.contextLoads" />
         <item itemvalue="Application.RandomValue" />
-        <item itemvalue="JUnit.TimeUtil.test" />
-        <item itemvalue="JUnit.TimeUtil" />
-        <item itemvalue="JUnit.TimeUtil.getYearMonth" />
       </list>
     </recent_temporary>
   </component>
@@ -482,49 +542,65 @@
       <workItem from="1563324365756" duration="19677000" />
       <workItem from="1563409539177" duration="28927000" />
       <workItem from="1563496272394" duration="615000" />
+      <workItem from="1563763013837" duration="7922000" />
+      <workItem from="1563841542288" duration="6992000" />
+      <workItem from="1563855513588" duration="2441000" />
+      <workItem from="1563927808655" duration="10804000" />
+      <workItem from="1564015137601" duration="23300000" />
+      <workItem from="1564360528442" duration="23589000" />
+      <workItem from="1564446199263" duration="21059000" />
+      <workItem from="1564484820842" duration="656000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TimeUtil_getYearMonth - 2019.07.09 at 16h 00m 56s.xml">
-      <configuration name="TimeUtil.getYearMonth" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 13h 55m 04s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil_getYearMonth - 2019.07.09 at 16h 01m 16s.xml">
-      <configuration name="TimeUtil.getYearMonth" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 14h 17m 13s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil_getYearMonth - 2019.07.09 at 16h 01m 28s.xml">
-      <configuration name="TimeUtil.getYearMonth" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 15h 17m 08s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil_getYearMonth - 2019.07.09 at 16h 07m 43s.xml">
-      <configuration name="TimeUtil.getYearMonth" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 15h 46m 12s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil - 2019.07.09 at 17h 07m 09s.xml">
-      <configuration name="TimeUtil" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 16h 57m 38s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil - 2019.07.10 at 10h 13m 52s.xml">
-      <configuration name="TimeUtil" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 17h 01m 04s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil - 2019.07.10 at 10h 14m 15s.xml">
-      <configuration name="TimeUtil" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 17h 03m 37s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil - 2019.07.10 at 10h 17m 21s.xml">
-      <configuration name="TimeUtil" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 17h 03m 55s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil - 2019.07.10 at 13h 44m 26s.xml">
-      <configuration name="TimeUtil" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 17h 04m 29s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeUtil_test - 2019.07.10 at 14h 40m 06s.xml">
-      <configuration name="TimeUtil.test" configurationId="JUnit" />
+    <history-entry file="PersonalfinancialApplicationTests_insert - 2019.07.30 at 17h 10m 52s.xml">
+      <configuration name="PersonalfinancialApplicationTests.insert" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122773000" />
+    <option name="totallyTimeSpent" value="219536000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7569832" visible="true" weight="0.2627346" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7569832" visible="true" weight="0.15013404" />
       <window_info id="Structure" order="1" sideWeight="0.24267782" side_tool="true" weight="0.24262735" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -534,15 +610,50 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" weight="0.44692737" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3980447" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.95810056" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40502793" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32960895" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32960895" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.44692737" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3282123" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32960895" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.32960895" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.23927614" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7569832" visible="true" weight="0.2808311" />
+      <window_info id="Structure" order="1" sideWeight="0.24267782" side_tool="true" weight="0.24262735" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49865952" visible="true" weight="0.33938548" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40502793" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.67877096" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" weight="0.44692737" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3282123" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
@@ -557,7 +668,7 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -567,161 +678,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/net/URL.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/baidu_api/s.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TokenHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2033">
-          <caret line="115" column="9" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Msql.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="931">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1535#1536#0" expanded="true" />
-            <element signature="e#1564#1565#0" expanded="true" />
-            <element signature="e#1608#1609#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="19" selection-start-line="19" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/BankNumberUtil.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/Math.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="772" column="64" selection-start-line="772" selection-start-column="43" selection-end-line="772" selection-end-column="64" />
-          <folding>
-            <element signature="e#32010#32011#0" expanded="true" />
-            <element signature="e#32095#32096#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Cities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/apply/WeChat/聊天记录/WeChat Files/wxid_28yqy8mn9s4a22/FileStorage/File/2019-07/CookieUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1824">
-          <caret line="96" column="33" lean-forward="true" selection-start-line="96" selection-start-column="33" selection-end-line="96" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/JSONParseUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3344">
-          <caret line="176" column="104" selection-start-line="176" selection-start-column="104" selection-end-line="176" selection-end-column="104" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/Base64Util.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2229">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/ConnUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-398">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/DemoException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/TimeUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-759">
-          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/WordCutUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1159">
-          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/VoiceRecognitionUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-873">
-          <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/util/voiceprocess/VoiceEncodeUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2850">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/Date.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="130" column="13" selection-start-line="130" selection-start-column="13" selection-end-line="130" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.8.RELEASE/spring-context-5.1.8.RELEASE.jar!/org/springframework/format/annotation/DateTimeFormat.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -736,64 +692,246 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/druid/1.1.10/druid-1.1.10.jar!/com/alibaba/druid/proxy/DruidDriver.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+        <state relative-caret-position="1368">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-redis/2.1.9.RELEASE/spring-data-redis-2.1.9.RELEASE.jar!/org/springframework/data/redis/cache/RedisCacheManager.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4769">
-          <caret line="258" column="46" selection-start-line="258" selection-start-column="46" selection-end-line="258" selection-end-column="46" />
+        <state relative-caret-position="228">
+          <caret line="28" column="109" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RedisAnnotationConfig.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/Math.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="1335" selection-start-line="1335" selection-end-line="1335" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#32010#32011#0" expanded="true" />
+            <element signature="e#32095#32096#0" expanded="true" />
+            <element signature="e#52271#52272#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/CardMapper.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1881">
-          <caret line="107" column="46" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="61" />
+        <state relative-caret-position="125">
+          <caret line="1610" selection-start-line="1610" selection-end-line="1610" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#55800#55801#0" expanded="true" />
+            <element signature="e#55844#55845#0" expanded="true" />
+            <element signature="e#62916#62917#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/jre/lib/rt.jar!/sun/misc/Launcher.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="47" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
+        <state relative-caret-position="116">
+          <caret line="194" selection-start-line="194" selection-end-line="194" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="333" selection-start-line="333" selection-end-line="333" />
+          <folding>
+            <element signature="e#11597#11598#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/ClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="508" selection-start-line="508" selection-end-line="508" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.3/jedis-2.9.3.jar!/redis/clients/util/Pool.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.3/jedis-2.9.3.jar!/redis/clients/jedis/JedisPool.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="167" column="21" lean-forward="true" selection-start-line="167" selection-start-column="21" selection-end-line="167" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.8.RELEASE/spring-beans-5.1.8.RELEASE.jar!/org/springframework/beans/factory/support/SimpleInstantiationStrategy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.8.RELEASE/spring-beans-5.1.8.RELEASE.jar!/org/springframework/beans/factory/support/ConstructorResolver.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="350" selection-start-line="350" selection-end-line="350" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.8.RELEASE/spring-beans-5.1.8.RELEASE.jar!/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="327" selection-start-line="327" selection-end-line="327" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.8.RELEASE/spring-beans-5.1.8.RELEASE.jar!/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="158" selection-start-line="158" selection-end-line="158" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.8.RELEASE/spring-beans-5.1.8.RELEASE.jar!/org/springframework/beans/factory/support/AbstractBeanFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.1.8.RELEASE/spring-beans-5.1.8.RELEASE.jar!/org/springframework/beans/factory/support/DefaultListableBeanFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="609" column="16" selection-start-line="609" selection-start-column="16" selection-end-line="609" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.8.RELEASE/spring-context-5.1.8.RELEASE.jar!/org/springframework/context/annotation/ConfigurationClassEnhancer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.8.RELEASE/spring-core-5.1.8.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="96">
+          <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Card.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        <state relative-caret-position="266">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RedisConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#402#424#1" expanded="true" />
+            <element signature="e#506#528#1" expanded="true" />
+            <element signature="e#564#590#1" expanded="true" />
+            <element signature="e#626#652#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Cities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RedisUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="62" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Loan.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="38" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Msql.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1535#1536#0" expanded="true" />
+            <element signature="e#1564#1565#0" expanded="true" />
+            <element signature="e#1608#1609#0" expanded="true" />
+            <element signature="e#1644#1645#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/PersonalfinancialApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="19" selection-start-line="19" selection-end-line="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -802,15 +940,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        <state relative-caret-position="285">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/history.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.35/mysql-connector-java-5.1.35.jar!/com/mysql/jdbc/PreparedStatement.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="880" selection-start-line="880" selection-end-line="880" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/AbstractStringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17024">
+          <caret line="932" selection-start-line="932" selection-end-line="932" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/StringBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8265">
+          <caret line="479" column="21" selection-start-line="479" selection-start-column="21" selection-end-line="479" selection-end-column="21" />
+          <folding>
+            <element signature="e#13957#13958#0" expanded="true" />
+            <element signature="e#14007#14008#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Loan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Manger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        <state relative-caret-position="114">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -819,11 +1005,111 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/Controller/CardController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="169" column="50" lean-forward="true" selection-start-line="169" selection-start-column="50" selection-end-line="169" selection-end-column="50" />
+        <state relative-caret-position="57">
+          <caret line="3" column="68" selection-start-line="3" selection-start-column="68" selection-end-line="3" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/math/BigDecimal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="807" column="35" lean-forward="true" selection-start-line="807" selection-start-column="35" selection-end-line="807" selection-end-column="35" />
+          <folding>
+            <element signature="e#34258#34259#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/RandomValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4480">
+          <caret line="167" column="23" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/BillService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/BillMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/dao/CardMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="22" selection-start-line="22" selection-end-line="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/service/CardService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="38" selection-start-line="38" selection-end-line="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/entity/Bill.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="27" selection-start-line="13" selection-start-column="3" selection-end-line="14" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/icbc/personalfinancial/common/createtestdata/Insert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="596" column="137" selection-start-line="596" selection-start-column="137" selection-end-line="596" selection-end-column="137" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#insertUser#0;class#Insert#0" />
+            <element signature="method#insertOneCard#0;class#Insert#0" />
+            <element signature="method#inserCardRan#0;class#Insert#0" />
+            <element signature="method#insertCardDetail#0;class#Insert#0" />
+            <element signature="method#insertCardByDateAndBankLev#0;class#Insert#0" />
+            <element signature="method#judgecard#0;class#Insert#0" />
+            <element signature="method#judgemetal#0;class#Insert#0" />
+            <element signature="method#handleCirculationDate#0;class#Insert#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/icbc/personalfinancial/PersonalfinancialApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>

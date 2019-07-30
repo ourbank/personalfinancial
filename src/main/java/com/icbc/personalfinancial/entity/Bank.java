@@ -3,8 +3,10 @@ package com.icbc.personalfinancial.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Bank {
+public class Bank implements Serializable {
 
     private  Integer id;
     private  String bankName;

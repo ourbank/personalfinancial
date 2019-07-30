@@ -3,10 +3,11 @@ package com.icbc.personalfinancial.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.SplittableRandom;
 
 @Data
-public class Manger {
+public class Manger implements Serializable {
 
     private Integer id;
     private String account;

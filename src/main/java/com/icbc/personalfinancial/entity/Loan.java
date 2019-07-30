@@ -3,16 +3,18 @@ package com.icbc.personalfinancial.entity;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
-public class Loan {
+public class Loan implements Serializable {
 
     private  Integer id;
     private  Integer accountId;
-    private  Double loanMoney;
+    private  BigDecimal loanMoney;
     private  Integer longType;
-    private  Timestamp createTime;
-    private  Double serviceCharge;
+    private  Date createTime;
+    private  BigDecimal serviceCharge;
     private  Integer bankId;
 }
