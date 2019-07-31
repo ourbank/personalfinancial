@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface CardDao {
-
+    //ss
     @Select("select count(*) as cardNum,bankname as bankName,DATE_FORMAT(createtime,'%Y-%m-%d') as time from card inner join bank on card.bankId = bank.id " +
             "group by time,bankName having bankName = #{bankname}")
     List<CardData> getCountByBankName(@Param("bankname") String bankName);

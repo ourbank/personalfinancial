@@ -7,8 +7,6 @@ import com.icbc.personalfinancial.util.voiceprocess.VoiceRecognitionUtil;
 import com.icbc.personalfinancial.util.voiceprocess.WordCutUtil;
 import com.icbc.personalfinancial.vo.RequestMessage;
 import com.icbc.personalfinancial.vo.ResponseMessage;
-import com.sun.deploy.net.HttpResponse;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -41,21 +39,28 @@ public class TestController {
 
     @RequestMapping(value = "/sendData/{data}")
     @ResponseBody
-    String testReceice(Model model, @PathVariable(value = "data") String data){
+    String testReceice(Model model, @PathVariable(value = "data") String data) {
         System.out.println("开始");
         System.out.println(data);
         return "SUCCESS-LIMK";
-}
+    }
+
+    @RequestMapping(value = "/to")
+    //@ResponseBody
+    String heiheihei() {
+        return "login.html";
+    }
 
     /**
      * 测试接收音频并解码
+     *
      * @param model
      * @param testfile
      * @return
      */
-    @RequestMapping(value = "/sendVoice",method = RequestMethod.POST)
+    @RequestMapping(value = "/sendVoice", method = RequestMethod.POST)
     @ResponseBody
-    String testReceice(Model model,@RequestParam("testfile") MultipartFile testfile){
+    String testReceice(Model model, @RequestParam("testfile") MultipartFile testfile) {
         VoiceRecognitionUtil.init();
         String result = VoiceEncodeUtil.getJsonOfVoice(testfile);
         return result;
@@ -63,12 +68,13 @@ public class TestController {
 
     /**
      * 测试分词功能
+     *
      * @param model
      * @return
      */
     @RequestMapping(value = "/cutWord/{str}")
     @ResponseBody
-    String testCutWord(Model model,@PathVariable(value = "str") String str){
+    String testCutWord(Model model, @PathVariable(value = "str") String str) {
         //String str = "查询昨天广州分行的开卡数";
         WordCutUtil.init();
         String voiceStr = WordCutUtil.cutWord(str);
@@ -96,13 +102,14 @@ public class TestController {
         messagingTemplate.convertAndSend("/topic/callback", "定时推送消息时间: " + df.format(new Date()));
     }
 
+
     // 同前端交互,查询数据
     //,produces = "application/json;charset=UTF-8"
     @RequestMapping(value = "/getdata")
     @ResponseBody
     @CrossOrigin
     //@RequestBody String jsonParam
-    String testGzData(Model model, HttpServletResponse response, @RequestParam(value = "bankname") String bankName){
+    String testGzData(Model model, HttpServletResponse response, @RequestParam(value = "bankname") String bankName) {
         //Cookie cookie = new Cookie("carddatacookies",cardService.getDaysNumByBankName(bankName));
         //cookie.setPath("/");
         //cookie.setMaxAge(3600);
@@ -111,6 +118,11 @@ public class TestController {
         //JSONObject jb = new JSONObject(jsonParam);
         //String bankName = (String) jb.get("bankname");
         //System.out.println(cardService.getDaysNumByBankName(bankName));
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return cardService.getDaysNumByBankName(bankName);
     }
 }
