@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.index.mapper.InquiryOperation">
+
+   <select id="getCardMount" parameterType="java.lang.String" resultMap="card">
+       select (select count(*) as cardNum),bankName,DATE_FORMAT(createtime,'%Y-%m-%d' ) as time from card inner join bank on card.bankId=bank.id group by time , bankname having bankName=#{bankName};
+   </select>
+
+    <resultMap id="card" type="com.icbc.index.model.CardData"/>
+</mapper>

@@ -1,0 +1,350 @@
+<!doctype html>
+<head>
+
+  <link href='http://cdn.repository.webfont.com/webfonts/nomal/132066/47031/5d3c5ec0f629d8120cfd1c73.css' rel='stylesheet' type='text/css' />
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>ICBC PLATFORM LOGIN</title>
+  <meta name="keywords" content="css3, html5, js, background video, fullscreen video">
+  <meta name="description" content="Super easy to implement HTML5 fullscreen background video library in JavaScript.">
+  <link href='http://cdn.repository.webfont.com/webfonts/nomal/132066/28678/5d3c5fb3f629d8120cfd1c74.css' rel='stylesheet' type='text/css' />
+  <link href='http://cdn.repository.webfont.com/webfonts/nomal/132066/45817/5d3c7394f629d8120cfd1c7e.css' rel='stylesheet' type='text/css' />
+  <link href='http://cdn.repository.webfont.com/webfonts/nomal/132066/46758/5d3c7796f629d8120cfd1c83.css' rel='stylesheet' type='text/css' />
+  <link href='http://cdn.repository.webfont.com/webfonts/nomal/132066/44812/5d3c7a5df629d8120cfd1c84.css' rel='stylesheet' type='text/css' />
+<link href='http://cdn.repository.webfont.com/webfonts/nomal/132066/28621/5d3c82a3f629d8120cfd1c88.css' rel='stylesheet' type='text/css' /> 
+ <link href='http://cdn.repository.webfont.com/webfonts/nomal/132066/28627/5d3c840af629d8120cfd1c89.css' rel='stylesheet' type='text/css' />
+ <style>
+    * {
+      margin: 0; padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #container {
+      overflow: hidden;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
+
+    #background_video {
+      position: absolute;
+
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+
+      object-fit: cover;
+      height: 100%; width: 100%;
+    }
+
+    #video_cover {
+      position: absolute;
+
+      width: 100%; height: 100%;
+
+      background: url('video_cover.jpeg') no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    #video_controls {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    #play img {
+      width: 100px;
+    }
+    #pause img {
+      width: 90px;
+    }
+    #pause {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      #video_controls {
+        display: none;
+      }
+    }
+
+    /* Demo page specific styles */
+
+    body {
+      text-align: center;
+      font-family: 'proxima-nova', Helvetica;
+    }
+
+    #container {
+      height: 100%;
+    }
+
+    #overlay {
+      position: absolute;
+      top: 0; right: 0; left: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+ <!-- #top_content {
+		 position: absolute;
+		 top: 5%; left: 15%; right: 0;
+		 float: right;
+		 
+	}-->
+	
+	#main_content {
+      z-index: 2;
+      <!-- position: relative;-->
+      display: inline-block;
+	  position: absolute;
+      /* Vertical center */
+      top: 50%; left:8%; 
+     transform: translateY(-50%);
+    }
+
+    #main_content h1 {
+	text-align:left;
+	 
+	  color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+      font-weight: 600;
+      font-family: 'proxima-nova-condensed', Helvetica;
+      font-size: 35px;<!--35 -->
+    }
+	
+
+
+    #main_content .sub_head {
+		
+	  font-family:'COCOGOOSE';
+	  font-family:'Bitsumishi';
+      color: rgba(255,255,255,0.9);
+      font-size: 100px;
+	  
+    }
+
+    #main_content .info {
+	text-align:left;
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+	#top_content {
+		position: absolute;
+		top: 5%; left: 0; right: 0;
+		 	 
+	}
+	
+	#top_content .menu_css{
+		position: absolute; 
+		right:10%;
+		float: right;
+	}
+	
+	.menu_css a{
+		font-family:'HelveticaNeue';
+		font-size: 14px;
+       <!-- color: #FFFFFF;-->
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      display: inline-block;
+      margin-right: 15px;
+	  color: rgba(255,255,255,0.5);font-size: 12px;
+	  
+	}
+	
+	#top_content .topleft_css {
+		position: absolute; 
+		left:8%;
+		float: left;
+	}
+	
+	
+	.topleft_css a{
+	 font-size: 14px;
+      color: rgba(255,255,255,0.50);
+      letter-spacing: 1px;
+      text-decoration: none;
+		font-family:'ChannelSlanted2';;
+		font-size: 20px;	
+		
+	}
+	
+	.form_css{
+	text-align:left;
+	color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      margin-top: 10px;
+	  font-family:'HelveticaNeue';
+	}
+	
+	
+    
+
+    #links {
+      margin-top: 50px;
+    }
+
+	.input_css{
+		font-family:"KaiTi";
+		font-size:20px;
+		background:rgba(0, 0, 0, 0);
+		color:white;
+		border-color: white;
+		height: 50px;
+		width:228px;
+		padding-left: 42px;
+		line-height: 50px;
+		border: 2px solid rgba(255,255,255,0.20);
+		width:100px;
+		
+		border-top-style:hidden;
+		border-right-style:hidden;
+		border-left-style:hidden;
+		 
+	
+	}
+	
+	#submit_css{
+	  border: 2px solid rgba(255,255,255,0.20);
+      border-radius: 6px; 
+	  background:rgba(0, 0, 0, 0);
+      font-size: 14px;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      display: inline-block;
+      <!--margin-right: 50px; -->
+	 
+	  float:right;
+	   margin-right:50px;
+	  margin-top:15px;
+	
+	}
+	
+    #links a {
+		
+      border: 2px solid rgba(255,255,255,0.20);
+      border-radius: 6px; 
+	 
+      font-size: 14px;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      display: inline-block;
+      margin-right: 15px;
+	   
+    }
+	<!-- 导入的字体 -->
+	
+
+
+	
+    #footer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+    }
+    #footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      margin: 10px;
+      font-size: 12px;
+    }
+    #footer a:first-child {
+      float: left;
+    }
+    #footer a:last-child {
+      float: right;
+    }
+  </style>
+
+  <script src="https://use.typekit.net/nlq1kdt.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</head>
+<body>
+	
+  <div id="container">
+     <video id="background_video" loop muted></video>
+    <div id="video_cover"></div>
+    <div id="overlay"></div>
+
+    <div id="video_controls">
+      <span id="play">
+        <img src="play.png">
+      </span>
+      <span id="pause">
+        <img src="pause.png">
+      </span>
+    </div>
+<!------------------------Index Top Best Photos Categories License About Contact----------------------------------------------------------------->
+	
+	<section id="top_content">
+	<div id="topleft" class="topleft_css">
+		<a href="" style="font-family:'AbductionII';">ICBC</a>
+	</div>
+	
+	<div id="menu" class="menu_css">
+		<a href="">Index</a>
+        <a href="">Top</a>
+        <a href="">Best Photos</a>
+		<a href="">Categories</a>
+        <a href="">License</a>
+        <a href="">About</a>
+      </div>
+	</section>
+	
+    <section id="main_content">
+		
+      <div id="head">
+        <h1 style="font-family:'Jackey_HandWrite';text-transform: none;">Welcome to</h1>
+        <p class="sub_head">CLOUD.ICBC</p>
+        <p style="font-family:'HelveticaNeue';" class="info">(Enter your serial number, and you will enter the smart data platform.)</p>
+      </div>
+
+      <!--<div id="links">
+		<a href="">Go</a>
+        <a href="https://github.com/rishabhp/bideo.js">View on Github</a>
+        <a href="http://codetheory.in/html5-fullscreen-background-video/">How it works</a>
+      </div> -->
+	  
+	  <form action="/loginWeb" class="form_css" method="post">
+		serial number<input maxlength="6" type="text" class="input_css" name="token" placeholder="123456" style="outline:none" onfocus="this.placeholder=''"/>
+		<input id="submit_css" type="submit" value="GO"/>
+	</form>
+	
+	
+    </section>
+	
+
+  </div>
+
+  <div id="footer">
+    <a href="http://twitter.com/_rishabhp">Follow on Twitter</a>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="_rishabhp">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    <a href="https://www.youtube.com/watch?v=w7JrHIHi8t0" target="_blank">
+      Video by shortenit
+    </a>
+  </div>
+
+  <script src="js/bideo.js"></script>
+  <script src="js/login_main.js"></script>
+
+  <script>
+    if (window.location.host.indexOf('github.io') !== -1 && window.location.protocol !== "https:") {
+      window.location.protocol = "https";
+    }
+  </script>
+</body>
+</html>

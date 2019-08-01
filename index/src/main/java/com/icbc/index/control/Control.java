@@ -32,9 +32,9 @@ import java.util.Date;
 import java.util.List;
 
 /*
-* 控制器，前后台以json数据格式交互
-* @author mychen
-*/
+ * 控制器，前后台以json数据格式交互
+ * @author mychen
+ */
 
 @Controller
 @EnableScheduling
@@ -52,8 +52,8 @@ public class Control {
     @Autowired
     UserService userService;
 
-   @Autowired
-   CardService cardService;
+    @Autowired
+    CardService cardService;
 
     @Autowired
     PythonService pythonService;
@@ -69,22 +69,23 @@ public class Control {
 
     //登录请求
     @RequestMapping(value = "/loginwx", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody String loginwx(@RequestBody User user, HttpServletRequest request) {
+    public @ResponseBody
+    String loginwx(@RequestBody User user, HttpServletRequest request) {
 
         boolean temp = userService.findUser(user.getAccount(), user.getPasswd());
         JSONObject result = new JSONObject();
         if (true) {
             String code = Util.getToken(user.getAccount(), user.getPasswd());
-            String token= Util.encode(user.getPasswd(),user,request);
+            String token = Util.encode(user.getPasswd(), user, request);
             result.put("result", temp);
             result.put("token", token);
-            result.put("code",code);
-            redisService.setObj(code,user);
+            result.put("code", code);
+            redisService.setObj(code, user);
             return result.toJSONString();
         } else {
             result.put("result", false);
-            result.put("token",null);
-            result.put("code",null);
+            result.put("token", null);
+            result.put("code", null);
             return result.toJSONString();
         }
 
@@ -93,11 +94,11 @@ public class Control {
 
     @RequestMapping(value = "/loginweb", method = RequestMethod.POST)
 
-    public String loginWeb (String code){
+    public String loginWeb(String code) {
 
-        User user =(User) redisService.getObj(code);
+        User user = (User) redisService.getObj(code);
 
-        if (user==null){
+        if (user == null) {
 
             return "direct:login.html";
         }
@@ -124,14 +125,15 @@ public class Control {
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public @ResponseBody String test() {
+    public @ResponseBody
+    String test() {
 
 //        String raw="查询广州分行今天开卡数";
 //        //String result =pythonService.getRawCutWord();
 //        pythonService.bulidSQL(raw);
 //        return ;
 
-       return hello.test();
+        return hello.test();
 
     }
 
@@ -178,14 +180,11 @@ public class Control {
 
     }
 
-
-
-
-
-        @RequestMapping(value = "/t")
-        public @ResponseBody List<CardData> t () {
-            return pythonService.getCardMount();
-        }
+    @RequestMapping(value = "/t")
+    public @ResponseBody
+    List<CardData> t() {
+        return pythonService.getCardMount();
+    }
 
 
         /*    @RequestMapping(value = "/receivevoice",method = RequestMethod.POST)
