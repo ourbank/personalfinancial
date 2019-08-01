@@ -53,6 +53,7 @@ public class CardService {
              .get("data")).set(day - 1,s.getCardNum());
         }
         String out = JSONObject.valueToString(outMap);
+        System.out.println(out);
         return out;
     }
 }

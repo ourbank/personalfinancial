@@ -94,7 +94,7 @@ public class TestController {
     /**
      * 定时推送消息
      */
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 100000)
     public void callback() {
         // 发现消息
         //System.out.println("call back");
@@ -124,5 +124,6 @@ public class TestController {
 //            e.printStackTrace();
 //        }
         return cardService.getDaysNumByBankName(bankName);
+
     }
 }
