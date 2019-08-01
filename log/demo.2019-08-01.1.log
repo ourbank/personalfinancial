@@ -1,0 +1,10 @@
+2019-08-01 16:21:45,080 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 10.465 seconds (JVM running for 12.725)
+2019-08-01 16:21:56,148 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: select b.num as cardNum, a.bankName as bankName,b.time as time from bank a inner join (select bankid,count(id) as num,DATE_FORMAT(createTime,'%Y-%m-%d') as time from card force index (createtime_index) where createTime BETWEEN '2009-01-01 00:00:00' and '2019-01-01 00:00:00' and bankid = (select id from bank where bankname= ?) group by time ) as b on a.id = b.bankId 
+2019-08-01 16:21:56,166 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 肇庆分行(String)
+2019-08-01 16:22:17,171 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 3471
+2019-08-01 16:29:26,170 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-01 16:29:37,180 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 13.721 seconds (JVM running for 15.838)
+2019-08-01 18:11:56,196 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-01 18:12:32,284 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-01 20:18:18,853 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-01 20:20:09,013 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
