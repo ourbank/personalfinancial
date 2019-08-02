@@ -1,0 +1,4 @@
+2019-08-01 20:20:19,927 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 13.93 seconds (JVM running for 15.718)
+2019-08-01 20:26:36,596 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: select b.num as cardNum, a.bankName as bankName,b.time as time from bank a inner join (select bankid,count(id) as num,DATE_FORMAT(createTime,'%Y-%m-%d') as time from card force index (createtime_index) where createTime BETWEEN '2009-01-01 00:00:00' and '2019-01-01 00:00:00' and bankid = (select id from bank where bankname= ?) group by time ) as b on a.id = b.bankId 
+2019-08-01 20:26:36,617 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 肇庆分行(String)
+2019-08-01 20:26:47,444 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 3471
