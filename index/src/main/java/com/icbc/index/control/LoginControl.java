@@ -33,8 +33,7 @@ public class LoginControl {
 
     //登录请求
     @RequestMapping(value = "/loginwx", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody
-    String loginwx(@RequestBody Manager manager) {
+    public @ResponseBody String loginwx(@RequestBody Manager manager) {
         boolean temp = managerService.isLegal(manager);
         JSONObject result = new JSONObject();
         if (temp) {
@@ -64,16 +63,18 @@ public class LoginControl {
 
     public String loginWeb(@RequestParam(name = "code") String code) {
 
-        Manager user = (Manager) redisService.getObj(code);
+        //return "index.html";
 
+        Manager user = (Manager) redisService.getObj(code);
+        System.out.println(user+"88888");
         if (user == null) {
 
-            return "direct:login.html";
+            return "redirect:login.html";
         }
 
         redisService.del(code);
 
-        return "index.html";
+        return "redirect:index.html";
     }
 
     @RequestMapping(value = "/tologinweb")
