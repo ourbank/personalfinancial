@@ -1,0 +1,2 @@
+2019-08-05 14:47:39,999 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 14:47:47,140 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 10.878 seconds (JVM running for 13.033)

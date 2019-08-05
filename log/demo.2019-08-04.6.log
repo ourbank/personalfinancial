@@ -1,0 +1,5 @@
+2019-08-04 18:39:52,493 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: select b.num as cardNum, a.bankName as bankName,b.time as time from bank a inner join (select bankid,count(id) as num,DATE_FORMAT(createTime,'%Y-%m-%d') as time from card force index (createtime_index) where createTime BETWEEN '2009-01-01 00:00:00' and '2019-01-01 00:00:00' and bankid = (select id from bank where bankname= ?) group by time ) as b on a.id = b.bankId 
+2019-08-04 18:39:52,495 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 广州分行(String)
+2019-08-04 18:39:58,319 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 3471
+2019-08-04 18:40:10,749 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND bankname = ? 
+2019-08-04 18:40:10,750 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 深圳市(String)
