@@ -29,7 +29,7 @@ public class ProcessController {
     @Autowired
     CardService cardService;
 
-    @RequestMapping(value = "/receivevoice", method = RequestMethod.POST)
+    @RequestMapping(value = "/receivevoice", method = RequestMethod.POST,produces = "multipart/form-data")
     public @ResponseBody String getResult(@RequestParam("voicefile") MultipartFile voiceFile,@RequestParam("token") String token) {
         VoiceRecognitionUtil.init();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
