@@ -1,0 +1,10 @@
+2019-08-05 11:44:49,081 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 26.455 seconds (JVM running for 32.864)
+2019-08-05 11:51:38,880 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: select account,password,belongBank,level from manager where account=?; 
+2019-08-05 11:51:40,291 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 123(String)
+2019-08-05 11:51:40,366 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 1
+2019-08-05 13:41:39,069 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: select account,password,belongBank,level from manager where account=?; 
+2019-08-05 13:41:39,079 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 123(String)
+2019-08-05 13:41:39,092 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 1
+2019-08-05 13:45:34,088 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: select account,password,belongBank,level from manager where account=?; 
+2019-08-05 13:45:34,090 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 123(String)
+2019-08-05 13:45:34,095 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 1
