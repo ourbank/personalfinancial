@@ -1,1 +1,9 @@
 2019-08-05 10:37:36,699 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 8.634 seconds (JVM running for 9.741)
+2019-08-05 10:59:48,128 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 11:02:38,496 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 11:04:36,345 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 11:06:35,840 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 11:07:49,240 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 11:07:56,242 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 27.927 seconds (JVM running for 33.953)
+2019-08-05 11:09:11,721 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 11:09:13,089 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 21.509 seconds (JVM running for 110.797)
