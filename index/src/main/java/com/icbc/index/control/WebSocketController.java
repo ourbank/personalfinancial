@@ -20,6 +20,7 @@ import java.util.Date;
 @Controller
 @EnableScheduling
 public class WebSocketController {
+
     private final SimpMessagingTemplate messagingTemplate;
 
     @Autowired

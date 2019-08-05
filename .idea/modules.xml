@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/pythonsidecar/python.iml" filepath="$PROJECT_DIR$/pythonsidecar/python.iml" />
       <module fileurl="file://$PROJECT_DIR$/pythonpredict/pythonpredict.iml" filepath="$PROJECT_DIR$/pythonpredict/pythonpredict.iml" />
       <module fileurl="file://$PROJECT_DIR$/pythonservice/pythonservice.iml" filepath="$PROJECT_DIR$/pythonservice/pythonservice.iml" />
+
       <module fileurl="file://$PROJECT_DIR$/springcloud.iml" filepath="$PROJECT_DIR$/springcloud.iml" />
     </modules>
   </component>
