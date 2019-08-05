@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Soundbank;
 import java.util.List;
 
 /**
@@ -29,10 +30,12 @@ public class ProcessController {
     CardService cardService;
 
     @RequestMapping(value = "/receivevoice", method = RequestMethod.POST)
-    public void getResult(@RequestParam("voicefile") MultipartFile voiceFile) {
+    public @ResponseBody String getResult(@RequestParam("voicefile") MultipartFile voiceFile,@RequestParam("token") String token) {
         VoiceRecognitionUtil.init();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
+        System.out.println(result+token);
+        return result;
 
     }
 
