@@ -1,0 +1,7 @@
+2019-08-05 10:49:33,905 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = ? 
+2019-08-05 10:49:33,942 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 深圳分行(String)
+2019-08-05 10:49:33,979 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 517
+2019-08-05 10:50:31,184 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 10:50:34,402 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 5.176 seconds (JVM running for 5666.726)
+2019-08-05 10:52:01,184 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-05 10:53:07,330 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
