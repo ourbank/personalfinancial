@@ -62,7 +62,7 @@ public class LoginControl {
 
     @RequestMapping(value = "/loginweb", method = RequestMethod.POST)
 
-    public String loginWeb(String code) {
+    public String loginWeb(@RequestParam(name = "code") String code) {
 
         Manager user = (Manager) redisService.getObj(code);
 
@@ -77,6 +77,7 @@ public class LoginControl {
     }
 
     @RequestMapping(value = "/tologinweb")
+
     public String toLoginWeb() {
 
         return "login.html";

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e686f15b-bfb3-416b-ab93-2d5fbbdb7640" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/RedisService.java" afterDir="false" />
+    <list default="true" id="e686f15b-bfb3-416b-ab93-2d5fbbdb7640" name="Default Changelist" comment="修改 redis 服务">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/LoginControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/LoginControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/src/main/resources/static/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/src/main/resources/static/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/demo.2019-08-01.0.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/log/demo.2019-08-01.1.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/log/demo.2019-08-01.2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/tracelog.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/tracelog.log" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -57,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/LoginControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+            <state relative-caret-position="250">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,13 +70,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/RedisService.java">
+        <entry file="file://$PROJECT_DIR$/index/src/main/resources/static/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="712">
-              <caret line="59" column="47" lean-forward="true" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="608">
+              <caret line="321" column="11" lean-forward="true" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -190,7 +190,6 @@
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/ManagerService.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/model/Manager.java" />
-        <option value="$PROJECT_DIR$/index/src/main/resources/static/login.html" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/util/Util.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/dao/ManagerDao.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/PythonService.java" />
@@ -198,13 +197,14 @@
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/Hello.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/IndexApplication.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/mapper/ManagerMapper.java" />
-        <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/LoginControl.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/configuration/WebSocketConfig.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/WebSocketController.java" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/Control.java" />
         <option value="$PROJECT_DIR$/index/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/index/src/main/resources/mapper/manager.xml" />
         <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/RedisService.java" />
+        <option value="$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/LoginControl.java" />
+        <option value="$PROJECT_DIR$/index/src/main/resources/static/login.html" />
       </list>
     </option>
   </component>
@@ -228,9 +228,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1280" />
-    <option name="height" value="800" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-170" />
+    <option name="y" value="-1027" />
+    <option name="width" value="1680" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -318,6 +320,23 @@
               <item name="index" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="personalfinancial" type="b2602c69:ProjectViewProjectNode" />
+              <item name="personalfinancial" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -337,7 +356,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/icbc/Desktop/practice/sources/springcloud/index/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564976306139" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564983747299" />
     <property name="jdk.selected.PYTHON_MODULE" value="Python 3.6" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -845,7 +864,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564975655832</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="修改 redis 服务">
+      <created>1564976396501</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1564976396502</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -857,7 +883,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="276232000" />
+    <option name="totallyTimeSpent" value="278194000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -869,10 +895,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-170" y="-1027" width="1680" height="1027" extended-state="6" />
-    <editor active="true" />
+    <frame x="-170" y="-1027" width="1680" height="1027" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.21062271" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21062271" />
       <window_info id="Designer" order="1" />
       <window_info id="Image Layers" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -1002,7 +1027,8 @@
     <MESSAGE value="整合芝锋" />
     <MESSAGE value="测试使用的控制器" />
     <MESSAGE value="修改了配置文件连接到本地数据库" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了配置文件连接到本地数据库" />
+    <MESSAGE value="修改 redis 服务" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改 redis 服务" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1104,13 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="189" selection-start-line="189" selection-end-line="189" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index/src/main/resources/static/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="301" column="12" lean-forward="true" selection-start-line="301" selection-start-column="12" selection-end-line="301" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1346,23 +1365,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/LoginControl.java">
+    <entry file="file://$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/RedisService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+        <state relative-caret-position="266">
+          <caret line="59" column="47" lean-forward="true" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index/src/main/java/com/icbc/index/service/RedisService.java">
+    <entry file="file://$PROJECT_DIR$/index/src/main/java/com/icbc/index/control/LoginControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="59" column="47" lean-forward="true" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+        <state relative-caret-position="250">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index/src/main/resources/static/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="321" column="11" lean-forward="true" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
         </state>
       </provider>
     </entry>
