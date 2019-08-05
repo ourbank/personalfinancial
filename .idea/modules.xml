@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/index/index.iml" filepath="$PROJECT_DIR$/index/index.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pythonsidecar/python.iml" filepath="$PROJECT_DIR$/pythonsidecar/python.iml" />
       <module fileurl="file://$PROJECT_DIR$/pythonservice/pythonservice.iml" filepath="$PROJECT_DIR$/pythonservice/pythonservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/pythonsidecar/pythonsidecar.iml" filepath="$PROJECT_DIR$/pythonsidecar/pythonsidecar.iml" />
       <module fileurl="file://$PROJECT_DIR$/springcloud.iml" filepath="$PROJECT_DIR$/springcloud.iml" />

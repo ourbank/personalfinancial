@@ -7,7 +7,7 @@ package com.icbc.index.mapper;
 
 import com.icbc.index.model.Manager;
 
-public interface UserMapper {
+public interface ManagerMapper {
 
     public Manager findUser(String account);
 }

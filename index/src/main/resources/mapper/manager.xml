@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.icbc.index.mapper.UserMapper">
+<mapper namespace="com.icbc.index.mapper.ManagerMapper">
 
 
-   <select id="findUser" parameterType="String" resultType="com.icbc.index.model.User">
+   <select id="findUser" parameterType="String" resultType="com.icbc.index.model.Manager">
         select account,passwd,level from user where account=#{account};
     </select>
    <!--
 
-    <insert id="inseruserInfo" parameterType="com.youfan.model.UserMapper">
+    <insert id="inseruserInfo" parameterType="com.youfan.model.ManagerMapper">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into user(name,account,age,passwordencrypt,address,telphone,qq,weixin,email,sex,birthday) value(#{name},#{account},#{age},#{passwordencrypt},#{address},#{telphone},#{qq},#{weixin},#{email},#{sex},#{birthday})
     </insert>
-    <update id="updateUser" parameterType="com.youfan.model.UserMapper">
+    <update id="updateUser" parameterType="com.youfan.model.ManagerMapper">
         update user set name=#{name},age=#{age},address=#{address},qq=#{qq},weixin=#{weixin},email=#{email},sex=#{sex},birthday=#{birthday},account=#{account} where id=#{id}
     </update>
-    <select id="findByUserid" parameterType="int" resultType="com.youfan.model.UserMapper">
+    <select id="findByUserid" parameterType="int" resultType="com.youfan.model.ManagerMapper">
         select * from user where id = #{value}
     </select>
 
-    <select id="queryuserbyvo" parameterType="com.youfan.vo.UserVo" resultType="com.youfan.model.UserMapper">
+    <select id="queryuserbyvo" parameterType="com.youfan.vo.UserVo" resultType="com.youfan.model.ManagerMapper">
         select * from user
         <where>
             <include refid="consutoql"></include>
@@ -62,7 +62,7 @@
             </if>
         </if>
     </sql>
-    <select id="findByUsername" parameterType="java.lang.String" resultType="com.youfan.model.UserMapper">
+    <select id="findByUsername" parameterType="java.lang.String" resultType="com.youfan.model.ManagerMapper">
         select * from user where name = #{value}
     </select>
 

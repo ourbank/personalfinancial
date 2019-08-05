@@ -9,7 +9,6 @@
         <module name="index" />
         <module name="python" />
         <module name="pythonsidecar" />
-        <module name="springcloud" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
