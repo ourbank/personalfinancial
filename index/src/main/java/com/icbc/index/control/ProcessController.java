@@ -1,6 +1,7 @@
 package com.icbc.index.control;
 
 
+
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.service.CardService;
 import com.icbc.index.util.VoiceEncodeUtil;
@@ -35,13 +36,13 @@ public class ProcessController {
 
     }
 
-    @RequestMapping(value = "/getdata")
+    @RequestMapping(value = "/getdata",method = RequestMethod.POST,produces = "application/json")
     @ResponseBody
     @CrossOrigin
-        //@RequestBody String jsonParam
-    String getDataBy3factors(@RequestParam(value = "bankname") List<String> bankName) {
-        logger.info(bankName.toString());
-        return null;
+        //@RequestBody String json
+    String getDataBy3factors() {
+        //JSONObject jb = JSONObject.parseObject(json);
+        return cardService.getDataBy3factors(null);
     }
 
     /**

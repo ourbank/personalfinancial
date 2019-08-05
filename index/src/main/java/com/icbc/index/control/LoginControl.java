@@ -55,8 +55,6 @@ public class LoginControl {
             result.put("code", null);
             return result.toJSONString();
         }
-
-
     }
 
 

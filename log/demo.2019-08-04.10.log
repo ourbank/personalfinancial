@@ -1,0 +1,6 @@
+2019-08-04 18:51:39,816 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 10.807 seconds (JVM running for 13.132)
+2019-08-04 18:51:45,288 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = ? 
+2019-08-04 18:51:45,288 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = ? 
+2019-08-04 18:51:45,310 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 广州分行(String)
+2019-08-04 18:51:45,310 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 深圳分行(String)
+2019-08-04 18:51:45,536 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 517
