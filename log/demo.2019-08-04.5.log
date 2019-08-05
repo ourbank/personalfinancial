@@ -1,0 +1,6 @@
+2019-08-04 18:39:19,192 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND bankname = ? 
+2019-08-04 18:39:19,192 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND bankname = ? 
+2019-08-04 18:39:19,217 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 广州市(String)
+2019-08-04 18:39:19,217 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 深圳市(String)
+2019-08-04 18:39:19,379 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 0
+2019-08-04 18:39:19,379 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 0

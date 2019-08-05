@@ -1,0 +1,6 @@
+2019-08-02 15:00:41,723 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 8.04 seconds (JVM running for 1423.164)
+2019-08-02 15:01:26,520 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-02 15:01:31,565 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 7.742 seconds (JVM running for 1473.005)
+2019-08-02 15:03:18,977 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-02 15:03:23,642 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 7.278 seconds (JVM running for 1585.082)
+2019-08-02 15:33:35,091 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: select b.num as cardNum, a.bankName as bankName,b.time as time from bank a inner join (select bankid,count(id) as num,DATE_FORMAT(createTime,'%Y-%m-%d') as time from card force index (createtime_index) where createTime BETWEEN '2009-01-01 00:00:00' and '2019-01-01 00:00:00' and bankid = (select id from bank where bankname= ?) group by time ) as b on a.id = b.bankId 

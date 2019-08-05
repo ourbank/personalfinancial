@@ -3,6 +3,8 @@ package com.icbc.index.util;
 
 
 
+import org.junit.jupiter.api.Test;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -93,5 +95,32 @@ public class TimeUtil {
         return c.get(Calendar.DAY_OF_MONTH);
     }
 
+    public static int getTimePeriod(String start, String end){
+        //"2018-2","2019-10"
+        int startYear = Integer.parseInt(start.substring(0,4));
+        int endYear = Integer.parseInt(end.substring(0,4));
+        int startMon = Integer.parseInt(start.substring(5));
+        int endMon = Integer.parseInt(end.substring(5));
+        return (endYear-startYear) * 12 + endMon - startMon;
+    }
+
+    public static String  getNextMontStr(String now){
+        int nowYear = Integer.parseInt(now.substring(0,4));
+        int nowMon = Integer.parseInt(now.substring(5));
+        if(nowMon != 12){
+            return ""+nowYear+"-"+(nowMon + 1);
+        }
+        return ""+(nowYear+1)+"-01";
+    }
+
+    public static String praseStartTime(String time){
+        return time + "-01 00:00:00";
+    }
+
+    public static String praseEndTime(String time){
+        int nowYear = Integer.parseInt(time.substring(0,4));
+        int nowMon = Integer.parseInt(time.substring(5));
+        return time+"-"+getDayOfMonth(nowYear,nowMon)+" 23:59:59";
+    }
 
 }

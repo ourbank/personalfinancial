@@ -54,8 +54,6 @@ public class LoginControl {
             result.put("code", null);
             return result.toJSONString();
         }
-
-
     }
 
     @RequestMapping(value = "/loginweb", method = RequestMethod.POST)

@@ -11,7 +11,6 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 //启使用STOMP协议来传输基于代理的消息
 public class WebSocketConfig implements  WebSocketMessageBrokerConfigurer  {
     @Override
-
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.enableSimpleBroker("/topic");
         //registry.setApplicationDestinationPrefixes("/app");

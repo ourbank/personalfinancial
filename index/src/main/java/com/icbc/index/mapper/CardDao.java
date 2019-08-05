@@ -19,4 +19,28 @@ public interface CardDao {
             "\t\t\t\tgroup by time ) as b\n" +
             "        on a.id = b.bankId ")
     List<CardData> getCountByBankName(@Param("bankname") String bankName);
+
+
+    @Select("SELECT \n" +
+            "    a.bankname as bankName,\n" +
+            "    b. DAY as time,\n" +
+            "    b.num as cardNum\n" +
+            "FROM\n" +
+            "    bank a\n" +
+            "INNER JOIN (\n" +
+            "    SELECT\n" +
+            "        bankid,\n" +
+            "        sum(num) AS num,\n" +
+            "        DAY\n" +
+            "    FROM\n" +
+            "        card_bill\n" +
+            "    WHERE\n" +
+            "        DAY BETWEEN #{local_start}\n" +
+            "    AND #{local_end}\n" +
+            "    GROUP BY\n" +
+            "        bankid,\n" +
+            "        DAY\n" +
+            ") b ON a.id = b.bankid\n" +
+            "AND a.bankname = #{city}")
+    List<CardData> getDataBy3factors(@Param("city") String city, @Param("local_start") String local_start, @Param("local_end") String local_end);
 }
