@@ -3641,7 +3641,7 @@ $('#pre_all_btn').on('click', function () {
 // websocket 相关代码
 // 默认加载websocket服务
 function connect() {
-    var socket = new SockJS('http://localhost:8080/socket');
+    var socket = new SockJS('http://localhost:9000/socket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected:' + frame);
