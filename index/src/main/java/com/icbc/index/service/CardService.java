@@ -15,12 +15,11 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 @Service
 public class CardService {
@@ -52,22 +51,23 @@ public class CardService {
             }
         }
         // 获取一个全0的Map结构体
-        Map outMap = JSONParseUtil.getDefaultMap(startYear,endYear,bankName,"card");
+        Map outMap = new HashMap();
+        //Map outMap = JSONParseUtil.getDefaultMap(startYear,endYear,bankName,"card");
         // 修改JSON结构体中的数据
-        int year, month,day;
-        for(int i = 0; i < list.size() ;i++){
-            CardData s = list.get(i);
-            year = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(),"yyyy"));
-            month = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(),"MM"));
-            day = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(),"dd"));
-            ((ArrayList<Integer>)
-                    ((ArrayList<Map>)
-                            ((ArrayList<Map>)outMap.get("data")).get(year-startYear)
-                    .get("data")).get(month-1)
-             .get("data")).set(day - 1,s.getCardNum());
-        }
+//        int year, month,day;
+//        for(int i = 0; i < list.size() ;i++){
+//            CardData s = list.get(i);
+//            year = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(),"yyyy"));
+//            month = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(),"MM"));
+//            day = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(),"dd"));
+//            ((ArrayList<Integer>)
+//                    ((ArrayList<Map>)
+//                            ((ArrayList<Map>)outMap.get("data")).get(year-startYear)
+//                    .get("data")).get(month-1)
+//             .get("data")).set(day - 1,s.getCardNum());
+//        }
         JSONObject out = new JSONObject(outMap);
-        System.out.println(out);
+//        System.out.println(out);
         return out.toJSONString();
     }
 
@@ -84,25 +84,26 @@ public class CardService {
         List<String> list = new ArrayList<>();
         list.add("广州市");
         list.add("深圳市");
-        String factor = "开卡数";
+        List<String> list2 = new ArrayList<>();
+        list2.add("开卡数");
+        list2.add("贷款数目");
         String startTime = "2018-02";
         String endTime = "2019-10";
         ConcurrentHashMap map = new ConcurrentHashMap();
         //启用多线程对不同城市进行查找
-        Date time = new Date();
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list2.size(); i++) {
             try {
                 map.put(list.get(i),myExecutor.submit(new cardSearchThred(
                         cardDao,list.get(i).substring(0,list.get(i).indexOf("市"))+"分行",
-                        factor, TimeUtil.praseStartTime(startTime),TimeUtil.praseEndTime(endTime))).get());
+                        "开卡数", TimeUtil.praseStartTime(startTime),TimeUtil.praseEndTime(endTime))).get());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println(map.get("广州市"));
-
-        return "";
+        String out = JSONParseUtil.getJSONMap(startTime,endTime,list,list2,map);
+        // 测试哦
+        return out;
     }
 }
