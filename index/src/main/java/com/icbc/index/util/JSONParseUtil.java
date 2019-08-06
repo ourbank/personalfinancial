@@ -1,13 +1,11 @@
 package com.icbc.index.util;
 
 
+import com.alibaba.fastjson.JSON;
 import com.icbc.index.model.CardData;
 import com.icbc.index.model.Msql;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
-
-import javax.smartcardio.Card;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import java.util.*;
 
 public class JSONParseUtil {
@@ -19,7 +17,7 @@ public class JSONParseUtil {
      * @return
      */
     public static String getMsql(String str) {
-        JSONObject json = new JSONObject(str);
+        JSONObject json = JSONObject.parseObject(str);
         List<String> timeList = new ArrayList<>();
         List<String> companyList = new ArrayList<>();
         List<String> businessList = new ArrayList<>();
@@ -302,8 +300,13 @@ public class JSONParseUtil {
         Map outMap = new HashMap();
         int startYear = Integer.parseInt(startTime.substring(0, 4));
         int endYear = Integer.parseInt(endTime.substring(0, 4));
-        int startMon = Integer.parseInt(startTime.substring(5));
-        int endMon = Integer.parseInt(endTime.substring(5));
+        // 如果想查询具体某个月的
+        //int startMon = Integer.parseInt(startTime.substring(5,7));
+        //int endMon = Integer.parseInt(endTime.substring(5,7));
+
+        // 查询所有月份的
+        int startMon = 1;
+        int endMon = 12;
         int i_endMon, i_startMon;
         // 不同业务
         for (int b = 0; b < buss.size(); b++) {
@@ -336,19 +339,20 @@ public class JSONParseUtil {
                         for (int k = 1; k <= TimeUtil.getDayOfMonth(i, j); k++) {
                             days.add(0);
                         }
-                        monthmap.put("days", days);
+                        monthmap.put("data", days);
                         months.add(monthmap);
                     }
-                    yearmap.put("months", months);
+                    yearmap.put("data", months);
                     years.add(yearmap);
                 }
-                citymap.put("years", years);
+                citymap.put("data", years);
                 citys.add(citymap);
             }
             outMap.put("citys", citys);
         }
         return outMap;
     }
+
 
 
     public static String getJSONMap(String startTime, String endTime, List<String> bankName, List<String> buss, Map<String, List<CardData>> inputData) {
@@ -368,7 +372,6 @@ public class JSONParseUtil {
                     year = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(), "yyyy"));
                     month = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(), "MM"));
                     day = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(), "dd"));
-
                     ((ArrayList<Integer>)
                             ((ArrayList<Map>)
                                     ((ArrayList<Map>) outMap.get("years")).get(year - startYear)
@@ -378,44 +381,114 @@ public class JSONParseUtil {
             }
         }
 
-
-//        int year,month,day;
-//
-//            List<>
-//            for (int i = 0; i < entry.getValue().size(); i++) {
-//                year = Integer.parseInt(TimeUtil.dateToFormatStr(entry.getValue().get(i).getTime(),"yyyy"));
-//                month = Integer.parseInt(TimeUtil.dateToFormatStr(entry.getValue().get(i).getTime(),"MM"));
-//                day = Integer.parseInt(TimeUtil.dateToFormatStr(entry.getValue().get(i).getTime(),"dd"));
-//
-//            }
-//            outMap.put(entry.getValue(),list)
-//        }
-
-//        outMap.put("bussiness",buss);
-//
-//
-//
-//
-//        outMap.put("bankname",bankName);
-//        List<Map> years = new ArrayList<>();
-//        for(int i = startYear;i <= endYear;i++){
-//            Map yearmap = new HashMap(); //生成每一年的map
-//            yearmap.put("time",i+"年");
-//            List<Map> months = new ArrayList<>();
-//            for(int j = 1; j <= 12 ; j++){
-//                Map monthmap = new HashMap();
-//                monthmap.put("time",j+"月");
-//                List<Integer> days = new ArrayList<>();
-//                for (int k = 1; k <= TimeUtil.getDayOfMonth(i,j);k++){
-//                    days.add(0);
-//                }
-//                monthmap.put("days",days);
-//                months.add(monthmap);
-//            }
-//            yearmap.put("months",months);
-//            years.add(yearmap);
-//        }
-//        outMap.put("years",years);
         return outMap.toString();
     }
+
+
+
+    /**
+     * 核心查询界面的查询接口，只支持单一业务，默认查询年的所有数据，不区分月份
+     * @param startTime 开始时间 xxxx-xx-xx
+     * @param endTime 结束 xxxx-xx-xx
+     * @param bankName 银行列表
+     * @param buss 单一业务
+     * @param input 从数据库查得的数据，格式 [CardData{bankName,bussiness,time},....]
+     * @return
+     */
+    public static String getSingleBusJson(String startTime, String endTime, List<String> bankName, String buss,List<CardData> input){
+        List<Map> out = getDefaultMap(startTime,endTime,bankName,buss);
+        System.out.println(out);
+        int startYear = Integer.parseInt(startTime.substring(0, 4));
+        // 如果想查询具体某个月的
+        //int startMon = Integer.parseInt(startTime.substring(5,7));
+        // 查询所有月份的
+        int startMon = 1;
+        int local_mon;
+        int year,month,day;
+        for (int i = 0; i < input.size(); i++) {
+            CardData cardData = input.get(i);
+            year = Integer.parseInt(TimeUtil.dateToFormatStr(cardData.getTime(), "yyyy"));
+            month = Integer.parseInt(TimeUtil.dateToFormatStr(cardData.getTime(), "MM"));
+            day = Integer.parseInt(TimeUtil.dateToFormatStr(cardData.getTime(), "dd"));
+            //判断当前城市
+            for (int j = 0; j < out.size(); j++) {
+                if(out.get(j).get("bankname").equals(cardData.getBankName())){
+                    if (year == startYear) {
+                        local_mon = startMon;
+                    } else {
+                        local_mon = 1;
+                    }
+                    ((ArrayList<Integer>)
+                            ((ArrayList<Map>)
+                                    ((ArrayList<Map>) out.get(j).get("data")).get(year - startYear)
+                                            .get("data")).get(month - local_mon)
+                                    .get("data")).set(day - 1, cardData.getCardNum());
+                    break;
+                }
+            }
+        }
+        return JSON.toJSONString(out);
+    }
+
+    /**
+     * 核心查询界面的查询接口,返回一个全零的初始化JSONArray（String格式）
+     * @param startTime 开始时间 xxxx-xx-xx
+     * @param endTime 结束时间 xxxx-xx-xx
+     * @param bankName 银行列表 支持多银行
+     * @param buss 业务 只支持单一业务
+     * @return
+     */
+    public static List<Map> getDefaultMap(String startTime, String endTime, List<String> bankName, String buss) {
+        List<Map> out = new ArrayList<>();
+        int startYear = Integer.parseInt(startTime.substring(0, 4));
+        int endYear = Integer.parseInt(endTime.substring(0, 4));
+        // 如果想查询具体某个月的
+        //int startMon = Integer.parseInt(startTime.substring(5,7));
+        //int endMon = Integer.parseInt(endTime.substring(5,7));
+
+        // 查询所有月份的
+        int startMon = 1;
+        int endMon = 12;
+        int i_endMon, i_startMon;
+        //不同城市
+        for (int z = 0; z < bankName.size(); z++) {
+            Map citymap = new HashMap();
+            citymap.put("bankname", bankName.get(z));
+            citymap.put("business", buss);
+            List<Map> years = new ArrayList<>();
+            for (int i = startYear; i <= endYear; i++) {
+                Map yearmap = new HashMap();
+                yearmap.put("time", i + "年");
+                List<Map> months = new ArrayList<>();
+                //判断需要迭代的月份
+                if (i == startYear) {
+                    i_startMon = startMon;
+                    i_endMon = 12;
+                } else if (i == endYear) {
+                    i_startMon = 1;
+                    i_endMon = endMon;
+                } else {
+                    i_startMon = 1;
+                    i_endMon = 12;
+                }
+                for (int j = i_startMon; j <= i_endMon; j++) {
+                    Map monthmap = new HashMap();
+                    monthmap.put("time", j + "月");
+                    List<Integer> days = new ArrayList<>();
+                    for (int k = 1; k <= TimeUtil.getDayOfMonth(i, j); k++) {
+                        days.add(0);
+                    }
+                    monthmap.put("data", days);
+                    months.add(monthmap);
+                }
+                yearmap.put("data", months);
+                years.add(yearmap);
+            }
+            citymap.put("data", years);
+            out.add(citymap);
+        }
+        return out;
+    }
+
+
 }

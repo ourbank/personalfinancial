@@ -114,13 +114,16 @@ public class TimeUtil {
     }
 
     public static String praseStartTime(String time){
-        return time + "-01 00:00:00";
+        time = time.substring(0,4);
+        return time + "-01-01 00:00:00";
     }
 
     public static String praseEndTime(String time){
-        int nowYear = Integer.parseInt(time.substring(0,4));
-        int nowMon = Integer.parseInt(time.substring(5));
-        return time+"-"+getDayOfMonth(nowYear,nowMon)+" 23:59:59";
+        time = time.substring(0,4);
+//        int nowYear = Integer.parseInt(time.substring(0,4));
+//        int nowMon = Integer.parseInt(time.substring(5));
+//        return time+"-"+getDayOfMonth(nowYear,nowMon)+" 23:59:59";
+        return time + "-12-31 23:59:59";
     }
 
 }

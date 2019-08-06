@@ -8,6 +8,9 @@ public class Msql {
     // 查询时间范围 2019-01-01
     private Date fromData;
     private Date toData;
+    private String strFromDate;
+    private String strToDate;
+    private String singleBusiness;
     // 子公司名
     private List<String> company;
     // 业务类型： 存款数 贷款数 开户数 中间业务收入
@@ -28,51 +31,46 @@ public class Msql {
         this.period = period;
     }
 
-    public Date getFromData() {
-        return fromData;
+    public Msql(String strFromDate, String strToDate, String singleBusiness, List<String> company) {
+        this.strFromDate = strFromDate;
+        this.strToDate = strToDate;
+        this.singleBusiness = singleBusiness;
+        this.company = company;
     }
 
-    public void setFromData(Date fromData) {
-        this.fromData = fromData;
+    public Date getFromData() {
+        return fromData;
     }
 
     public Date getToData() {
         return toData;
     }
 
-    public void setToData(Date toData) {
-        this.toData = toData;
+    public String getStrFromDate() {
+        return strFromDate;
+    }
+
+    public String getStrToDate() {
+        return strToDate;
+    }
+
+    public String getSingleBusiness() {
+        return singleBusiness;
     }
 
     public List<String> getCompany() {
         return company;
     }
 
-    public void setCompany(List<String> company) {
-        this.company = company;
-    }
-
     public List<String> getBusiness() {
         return business;
-    }
-
-    public void setBusiness(List<String> business) {
-        this.business = business;
     }
 
     public String getOperate() {
         return operate;
     }
 
-    public void setOperate(String operate) {
-        this.operate = operate;
-    }
-
     public String getPeriod() {
         return period;
-    }
-
-    public void setPeriod(String period) {
-        this.period = period;
     }
 }
