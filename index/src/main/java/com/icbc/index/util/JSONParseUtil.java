@@ -353,6 +353,7 @@ public class JSONParseUtil {
 
     public static String getJSONMap(String startTime, String endTime, List<String> bankName, List<String> buss, Map<String, List<CardData>> inputData) {
         //CardData{cardNum=22, bankName='广州分行', time=Fri Feb 02 08:00:00 CST 2018}
+        //
         Map outMap = getDefaultMap(startTime, endTime, bankName, buss);
         Map.Entry<String, List<CardData>> entry;
         Iterator<Map.Entry<String, List<CardData>>> iterator = inputData.entrySet().iterator();
