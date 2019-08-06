@@ -9,10 +9,13 @@
         <module name="index" />
         <module name="python" />
         <module name="pythonsidecar" />
+        <module name="springcloud" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="index" target="1.8" />
+      <module name="index (1)" target="1.5" />
+      <module name="index (2)" target="1.5" />
       <module name="personalfinancial" target="1.8" />
       <module name="python" target="1.8" />
       <module name="pythonsidecar" target="1.8" />
