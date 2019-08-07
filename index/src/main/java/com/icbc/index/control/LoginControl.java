@@ -33,7 +33,8 @@ public class LoginControl {
 
     //登录请求
     @RequestMapping(value = "/loginwx", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody String loginwx(@RequestBody Manager manager) {
+    public @ResponseBody
+    String loginwx(@RequestBody Manager manager) {
         boolean temp = managerService.isLegal(manager);
         JSONObject result = new JSONObject();
         if (temp) {
@@ -61,16 +62,16 @@ public class LoginControl {
 
     public String loginWeb(@RequestParam(name = "code") String code) {
 
-        //return "index.html";
 
-        Manager user = (Manager) redisService.getObj(code);
-        System.out.println(user+"88888");
-        if (user == null) {
+        Manager manager = (Manager) redisService.getObj(code);
+
+        if (manager == null) {
 
             return "redirect:login.html";
         }
 
         redisService.del(code);
+        redisService.setObj(manager,manager.getToken());
 
         return "redirect:index.html";
     }
@@ -82,6 +83,15 @@ public class LoginControl {
         return "login.html";
     }
 
+    /**
+     * PC 端用户认证
+     */
+    @GetMapping("/registerwebsocket")
+    public @ResponseBody String beforeWebSocket(){
+
+        return "abcd";
+
+    }
 
 }
 

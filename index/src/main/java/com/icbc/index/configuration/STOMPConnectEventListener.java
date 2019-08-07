@@ -6,6 +6,9 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @description: websocket连接事件监听
  * @author: mychen
@@ -16,30 +19,12 @@ public class STOMPConnectEventListener implements ApplicationListener<SessionCon
 
     @Autowired
     SocketSessionMap socketSessionMap;
+
     @Override
     public void onApplicationEvent(SessionConnectEvent sessionConnectedEvent) {
         StompHeaderAccessor accessor = StompHeaderAccessor.wrap(sessionConnectedEvent.getMessage());
-        String userId = accessor.getFirstNativeHeader("id");
+        String token = accessor.getNativeHeader("token").get(0);
         String sessionId = accessor.getSessionId();
-        switch (accessor.getCommand()) {
-            case CONNECT:
-                System.out.println("上线：" + userId + "  " + sessionId);
-                socketSessionMap.registerSession(userId, sessionId);
-                break;
-            case DISCONNECT:
-                System.out.println("下线");
-                break;
-            case SUBSCRIBE:
-                System.out.println("订阅");
-                break;
-            case SEND:
-                System.out.println("发送");
-                break;
-            case UNSUBSCRIBE:
-                System.out.println("取消订阅");
-                break;
-            default:
-                break;
-        }
+        socketSessionMap.registerSession(token,sessionId);
     }
 }
