@@ -16,11 +16,11 @@ public class SocketSessionMap {
 
     /**
      * 注册Session
-     * @param userId
+     * @param token
      * @param sessionId
      */
-    public synchronized void registerSession(String userId, String sessionId) {
-        sessionMap.put(userId,sessionId);
+    public synchronized void registerSession(String token, String sessionId) {
+        sessionMap.put(token,sessionId);
     }
 
     /**
@@ -34,11 +34,11 @@ public class SocketSessionMap {
 
     /**
      * 获取用户的SessionId
-     * @param userId
+     * @param token
      * @return
      */
-    public String getUserSessionId(String userId){
-        return sessionMap.get(userId);
+    public String getUserSessionId(String token){
+        return sessionMap.get(token);
     }
 
     /**
