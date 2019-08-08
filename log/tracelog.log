@@ -1,8 +1,7 @@
-2019-08-07 16:35:11,561 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 
-2019-08-07 16:35:11,567 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 21
-2019-08-07 16:35:18,646 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT b.num as num, a.bankname as bankName FROM bank a INNER JOIN (SELECT sum(num) as num,bankid FROM card_bill WHERE (day between '2019-4-01' and '2019-6-31') GROUP BY bankid) b on a.id = b.bankid 
-2019-08-07 16:35:18,647 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 
-2019-08-07 16:35:18,651 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 21
-2019-08-07 16:35:36,161 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT b.num as num, a.bankname as bankName FROM bank a INNER JOIN (SELECT sum(num) as num,bankid FROM card_bill WHERE (day between '2019-4-01' and '2019-6-31') GROUP BY bankid) b on a.id = b.bankid 
-2019-08-07 16:35:36,162 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 
-2019-08-07 16:35:36,166 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 21
+2019-08-08 10:19:18,197 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 9.311 seconds (JVM running for 15.218)
+2019-08-08 14:03:46,562 INFO (SpringApplication.java:650)- The following profiles are active: dev
+2019-08-08 14:03:54,184 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 10.19 seconds (JVM running for 12.735)
+2019-08-08 14:30:50,500 INFO (SpringApplication.java:650)- The following profiles are active: dev
+2019-08-08 14:30:56,611 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 8.292 seconds (JVM running for 10.326)
+2019-08-08 14:32:23,133 INFO (SpringApplication.java:650)- The following profiles are active: dev
+2019-08-08 14:32:25,711 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 3.929 seconds (JVM running for 99.426)

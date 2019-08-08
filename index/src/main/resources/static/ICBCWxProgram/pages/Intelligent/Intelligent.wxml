@@ -1,0 +1,43 @@
+<view wx:for="{{recordList}}" class="top">
+  <view data-index="{{item.id}}">
+    <view class="recordblock">
+      <image class="play" src="{{item.playimageurl}}" mode="widthFix" 
+      bindtap="setPlayOrStop" data-id="{{item.id}}"/>
+      <view class="durationtext">
+      <text >{{item.duration}}''</text>
+      </view>
+      <view class="twoicon">
+          <image class="send" src="{{item.sendimageurl}}" mode="widthFix"
+                  bindtap="sendRecord" data-id="{{item.id}}"  />
+
+          <image class="delete" src="../image/icon_del.png" 
+                  mode="widthFix"
+                  bindtap="deleteRecord" data-id="{{item.id}}"  />
+      </view>
+      
+    </view>
+  </view>
+</view>
+<!-- ---------------------------------------------------------------------->
+<view wx:if="{{recordStatus==0}}" class='voiceitem'>
+  <image class='img-voice' src='../image/icon_voice_input.png' 
+    mode="widthFix" bindtap="handleVoiceInput"></image>
+              <text class="text">开始录音 </text>
+</view>
+<view wx:elif="{{recordStatus==1}}" class='voiceitem'>
+  <view style='margin-bottom:-8%'>
+      <image class='img-dot-bg' mode="widthFix"
+              src='../image/icon_recording_dot_bg.png'></image>
+      <image class='img-dot-gif' mode="widthFix"
+               src='../image/gif_record_dot.gif'></image>
+  </view>
+  <view style='margin-bottom:20rpx' 
+               bindtap="handleVoiceEnd">
+      <image class='img-recording-gif' mode="widthFix"
+               src='../image/gif_recording.gif'></image>
+      <image class='img-recording-bg' mode="widthFix"
+               src='../image/ic.png'></image>
+      </view>
+        <text class="text">停止录音</text> 
+      </view>
+      <image class="imageCover" src="../image/index_bg.png"/>
