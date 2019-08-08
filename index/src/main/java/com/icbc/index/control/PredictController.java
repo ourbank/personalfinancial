@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@CrossOrigin
 public class PredictController {
 
     @Autowired
@@ -22,8 +23,18 @@ public class PredictController {
      */
     @RequestMapping(value = "/getscale")
     @ResponseBody
-    @CrossOrigin
     String getScaleByPeriod(@RequestParam("period") String period,@RequestParam("business") String buss){
         return predictService.getScaleByPeriod(period,buss);
+    }
+
+    /**
+     * 获取默认的预测数据，数据默认是 2历史 + 4 用户要求
+     * @return json字符串
+     */
+    @RequestMapping(value = "/getdefaultpredict")
+    @ResponseBody
+    String getdefaultpredict(){
+        System.out.println("getdefaultpredict");
+        return predictService.getdefaultpredict();
     }
 }
