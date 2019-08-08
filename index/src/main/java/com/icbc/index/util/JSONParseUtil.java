@@ -2,6 +2,7 @@ package com.icbc.index.util;
 
 
 import com.alibaba.fastjson.JSON;
+import com.icbc.index.model.BusinessSaveData;
 import com.icbc.index.model.CardData;
 import com.icbc.index.model.Msql;
 import com.alibaba.fastjson.JSONArray;
@@ -491,4 +492,10 @@ public class JSONParseUtil {
     }
 
 
+
+    public static String getSaveJson(String startTime, String endTime, List<String> cities, List<String> business,List<BusinessSaveData> input){
+        JSONObject jsonObject = new JSONObject();
+
+        return jsonObject.toString();
+    }
 }
