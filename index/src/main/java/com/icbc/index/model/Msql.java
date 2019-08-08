@@ -38,6 +38,20 @@ public class Msql {
         this.company = company;
     }
 
+    /**
+     * 多业务多城市查询保存
+     * @param strFromDate
+     * @param strToDate
+     * @param business
+     * @param company
+     */
+    public Msql(String strFromDate, String strToDate, List<String> business, List<String> company) {
+        this.strFromDate = strFromDate;
+        this.strToDate = strToDate;
+        this.business = business;
+        this.company = company;
+    }
+
     public Date getFromData() {
         return fromData;
     }
