@@ -1,0 +1,139 @@
+
+.mcontainer {
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+} 
+
+.item{
+    flex-grow:1;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 96%;
+    padding: 0 2%;
+}
+
+.image{
+    width: 500rpx;
+    height: 120rpx;  
+}
+
+.login-item{
+    width: 90%;
+    margin-top: 2%;
+    border-bottom: 1px solid #eee;
+    flex-grow:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 20rpx;
+}
+
+ .bottom{
+     border-bottom: 0px;
+}
+
+.login-item-info{
+    color: white;
+    
+    font-size: 20px;  
+     padding-bottom: 20rpx;
+}
+
+.login-pwd{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    align-items: center;
+  
+}
+
+.login-pwd text{
+    height: 100%;
+    font-size: 14px;
+    color: #888;
+    display: flex;
+     
+}
+.login-btn{
+    width: 80%;
+    color: white;
+    background-color: green;
+    border-radius: 0;
+    font-size: 14px;
+
+}
+
+.login-btn:hover{
+    width: 80%;
+    color: white;
+    border-radius: 0;
+
+}
+
+.wechat-icon{
+    margin-top: 30px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid seagreen;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.wechat-icon image{
+    width: 30px;
+    height: 30px;
+}
+.ball{
+  margin-top: -5%;
+  width: 200px;
+  position: relative;
+  margin-right: 30%;
+   
+}
+.imageCover{
+ 
+   position: absolute;
+   top:0;
+   left:0;
+   width:100%;
+   height:130%;
+   z-index:-1;
+
+}
+.text{
+  color: #e6f32da2
+}
+.icbctext{
+  margin-top: 5%;
+  font-family: "mengquruantangti";
+  font-size:60px;
+  color: lightblue;
+}
+.btok{
+  width: 35%;
+  height: 60px;
+  font-size: 30px;
+  opacity: 0.9;
+  font-family: "mengquruantangti";
+  background: #1e82d2; 
+  color:lightblue;
+
+
+}
+.input1{
+  font-size: 20px;
+  color: whitesmoke;
+}
+.ball1{
+   width: 250px;
+   position: relative;
+  right: -20%;
+  margin-top: 20%;
+}
