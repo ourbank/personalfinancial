@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 
+
 /*
  * 该控制器负责登陆相关请求
  */
@@ -70,8 +71,7 @@ public class LoginControl {
             return "redirect:login.html";
         }
 
-        redisService.del(code);
-        redisService.setObj(manager,manager.getToken());
+        redisService.setObj("token",manager.getToken());
 
         return "redirect:index.html";
     }
@@ -89,7 +89,9 @@ public class LoginControl {
     @GetMapping("/registerwebsocket")
     public @ResponseBody String beforeWebSocket(){
 
-        return "abcd";
+        String token = (String) redisService.getObj("token");
+
+        return token;
 
     }
 

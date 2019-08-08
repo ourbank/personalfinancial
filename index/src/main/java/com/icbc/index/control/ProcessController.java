@@ -30,14 +30,15 @@ public class ProcessController {
     @Autowired
     CardService cardService;
 
+    @Autowired
+    WebSocketController webSocketController;
+
     @RequestMapping(value = "/receivevoice", method = RequestMethod.POST,produces = "multipart/form-data")
-    public @ResponseBody String getResult(@RequestParam("voicefile") MultipartFile voiceFile,@RequestParam("token") String token) {
+    public @ResponseBody void getResult(@RequestParam("voicefile") MultipartFile voiceFile,@RequestParam("token") String token) {
         VoiceRecognitionUtil.init();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
-        System.out.println(result+token);
-        return result;
-
+        webSocketController.sendToUser(token,result);
     }
 
     @RequestMapping(value = "/getdata",method = RequestMethod.POST,produces = "application/json")
@@ -65,5 +66,11 @@ public class ProcessController {
     String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
 
         return cardService.getDaysNumByBankName(jsonParam);
+    }
+
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public @ResponseBody void test(@RequestParam("test") String test,@RequestParam("token") String token) {
+        webSocketController.sendToUser(token,test);
     }
 }
