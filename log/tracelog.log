@@ -1,1 +1,8 @@
-2019-08-06 10:34:56,892 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 6.317 seconds (JVM running for 3665.334)
+2019-08-07 16:35:11,561 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 
+2019-08-07 16:35:11,567 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 21
+2019-08-07 16:35:18,646 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT b.num as num, a.bankname as bankName FROM bank a INNER JOIN (SELECT sum(num) as num,bankid FROM card_bill WHERE (day between '2019-4-01' and '2019-6-31') GROUP BY bankid) b on a.id = b.bankid 
+2019-08-07 16:35:18,647 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 
+2019-08-07 16:35:18,651 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 21
+2019-08-07 16:35:36,161 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT b.num as num, a.bankname as bankName FROM bank a INNER JOIN (SELECT sum(num) as num,bankid FROM card_bill WHERE (day between '2019-4-01' and '2019-6-31') GROUP BY bankid) b on a.id = b.bankid 
+2019-08-07 16:35:36,162 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 
+2019-08-07 16:35:36,166 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 21

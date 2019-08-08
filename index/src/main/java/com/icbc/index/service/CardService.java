@@ -45,11 +45,13 @@ public class CardService {
         String endTime = json.get("endtime").toString();
         List<String> bankNames = JSONArray.parseArray(json.getJSONArray("banknames").toJSONString(),String.class);
         for (int i = 0; i < bankNames.size() ; i++) {
-            bankNames.set(i,bankNames.get(i).substring(0,bankNames.get(i).indexOf("市"))+"分行");
+            if(bankNames.get(i).indexOf("市") != -1)
+                bankNames.set(i,bankNames.get(i).substring(0,bankNames.get(i).indexOf("市"))+"分行");
         }
         Msql msql = new Msql(startTime,endTime,business,bankNames);
         List<CardData> list = cardDao.getCountByBankName(msql);
         String out = JSONParseUtil.getSingleBusJson(startTime,endTime,bankNames,business,list);
+        System.out.println(out);
         return out;
     }
 

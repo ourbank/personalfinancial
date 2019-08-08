@@ -41,36 +41,18 @@ public class ProcessController {
         webSocketController.sendToUser(token,result);
     }
 
-    @RequestMapping(value = "/getdata",method = RequestMethod.POST,produces = "application/json")
-    @ResponseBody
-    @CrossOrigin
-        //@RequestBody String json
-    String getDataBy3factors() {
-        //JSONObject jb = JSONObject.parseObject(json);
-        //return cardService.getDataBy3factors(null);
-       // cardService.test();
-        return null;
-    }
-
     /**
-     *
+     * 核心查询业务控制器
      * @param model
      * @param response
-     * @param jsonParam  请求体
+     * @param jsonParam
      * @return
      */
-    @RequestMapping(value = "/getdata_test",produces = "application/json")
+    @RequestMapping(value = "/getsinglebuss", method = RequestMethod.POST,produces = "application/json")
     @ResponseBody
     @CrossOrigin
     //@RequestBody String jsonParam
     String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
-
         return cardService.getDaysNumByBankName(jsonParam);
-    }
-
-
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public @ResponseBody void test(@RequestParam("test") String test,@RequestParam("token") String token) {
-        webSocketController.sendToUser(token,test);
     }
 }

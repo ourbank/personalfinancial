@@ -53,6 +53,13 @@ public class TimeUtil {
         return dateString;
     }
 
+    public static int dateToFormatInt(Date date,String format){
+        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        String dateString = formatter.format(date);
+        int dateInt = Integer.parseInt(dateString);
+        return dateInt;
+    }
+
     public static String dateToYearStr(Date date){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
         String dateString = formatter.format(date);
