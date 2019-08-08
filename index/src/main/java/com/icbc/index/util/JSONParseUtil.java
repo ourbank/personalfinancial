@@ -398,7 +398,6 @@ public class JSONParseUtil {
      */
     public static String getSingleBusJson(String startTime, String endTime, List<String> bankName, String buss,List<CardData> input){
         List<Map> out = getDefaultMap(startTime,endTime,bankName,buss);
-        System.out.println(out);
         int startYear = Integer.parseInt(startTime.substring(0, 4));
         // 如果想查询具体某个月的
         //int startMon = Integer.parseInt(startTime.substring(5,7));

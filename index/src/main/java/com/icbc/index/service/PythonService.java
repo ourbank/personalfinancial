@@ -61,8 +61,10 @@ public class PythonService {
         return cardMountDao.getCardMount();
     }
 
-    public void test(){
-        String object = restTemplate.getForObject("localhost://PYTHONSERVICE/hello", String.class);
-        System.out.println("8***"+object);
+    public String test(String word){
+        String cutWord = getRawCutWord(word);
+        System.out.println("分词结果"+cutWord);
+        return cutWord;
+
     }
 }

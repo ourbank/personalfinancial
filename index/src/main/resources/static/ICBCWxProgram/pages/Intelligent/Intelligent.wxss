@@ -1,0 +1,90 @@
+view{
+  padding: 15px;
+  opacity: 0.85
+}
+.voiceitem {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+   position: relative
+}
+.img-voice {
+  margin-top:90%;
+  width: 160rpx;
+  padding-bottom: 15px;
+
+}
+.img-dot-bg {
+  position: relative;
+  left: 30rpx;
+  width: 184rpx;
+}
+.img-dot-gif {
+  width: 60rpx;
+  position: relative;
+  margin-top:292px;
+  right: 92rpx;
+  top:-22px;
+}
+.img-recording-gif {
+  width: 160rpx;
+  height: 160rpx;
+  position: relative;
+  left: 80rpx;
+}
+.img-recording-bg {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  right: 80rpx;
+}
+.recordblock{
+  position: relative;
+  width:300px;
+  background-color: #f8f8f8;
+  border-radius: 3%;
+  height: 60rpx;
+  top:10px;
+  margin-bottom: -30px;
+}
+
+.play{
+  width: 40px;
+}
+.durationtext{
+  position: relative;
+  top:-53px;
+  left:15%;
+  font-size: 18px;
+  color: black;
+}
+.send{
+  position: relative;
+  width: 40px;
+  left:50%;
+}
+.delete{
+  position: relative;
+  width: 17px;
+  left:55%;
+  top:-10px;
+}
+.imageCover{
+ 
+   position: absolute;
+   top:0;
+   left:0;
+   width:100%;
+   height:130%;
+   z-index:-1;
+
+}
+.text{
+  font-size: 20px;
+  color: whitesmoke;
+}
+.twoicon{
+  position: relative;
+  bottom:350%;
+  left:140rpx;
+}

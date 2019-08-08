@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
     <script type="text/javascript" src="js/rem.js"></script>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.transit.js"></script>
@@ -13,13 +16,15 @@
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/stomp.min.js"></script>
     <script type="text/javascript" src="js/sockjs.min.js"></script>
+	<script type="text/javascript" src="js/DatePicker.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>ICBC个金运营管理平台</title>
 </head>
 
 <body style="visibility: hidden;">
+
 <div class="container-flex" id="wholepage" tabindex="0" hidefocus="true">
-    <div class="box-left">
+    <div class="box-left" >
         <div class="left-top">
             <div class="current-num">
                 <div class="weather-box">
@@ -91,7 +96,7 @@
                     </div>
                     <div class="select" tabindex="0" hidefocus="true">
                         <div id="analyli2_1" class="select-div">预测指标</div>
-                        <ul class="select-ul">
+                        <ul class="select-ul" id ="pre_select_business">
                             <li data-value="1">开卡数</li>
                             <li data-value="2">贷款数</li>
                             <li data-value="3">存款数</li>
@@ -149,6 +154,7 @@
                         <img style="width:0.3rem;height:0.3rem;" src="images/time.png" alt="">
                         时间选择
                     </div>
+					
                     <div class="time-box" id="timeBox">
                         <div class="time-div">
                             <input class="time-input" type="text" value="开始时间" id="startTime">
@@ -160,6 +166,9 @@
                         </div>
                     </div>
                 </div>
+				<div class="pages-div" >
+                    <button id="commit" class="skip2" >开始查询</button>
+				</div>
                 <div class="select-box-map2_2">
                     <div id='tohistory' class="main_title" style="cursor:pointer">
                         <img style="width:0.3rem;height:0.3rem;" src="images/time.png" alt="">
@@ -174,9 +183,7 @@
                     <div class="historydata-box">
                         <p class="historydata">3. 2019-07-11 22:52 预测贷款数</p>
                     </div>
-                    <div class="historydata-box">
-                        <p class="historydata">4. 2019-06-12 17:52 查询中间收入</p>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -195,7 +202,7 @@
         <div id="bigchart1" class="analy-pop" style="width:30%;height:40%; 
         right:70%;top:10%  "></div>
         <div class="chart-box pie-chart">
-            <div id="pie"></div>
+            <div class="pie"></div>
             <div>
                 <div class="pie-data1" id="pie1" style="left:-60%;top:5%">
 
@@ -206,7 +213,7 @@
         <div id="bigchart2" class="analy-pop" style="width:30%;height:40%;
         right:25%;top:10%  "></div>
         <div class="chart-box pie-chart">
-            <div id="pie"></div>
+            <div class="pie"></div>
             <div>
                 <div class="pie-data1" id="pie2" style="left:55%;top:5%">
 
@@ -217,7 +224,7 @@
         <div id="bigchart3" class="analy-pop" style="width:30%;height:40%;
         right:70%;top:50%  "></div>
         <div class="chart-box pie-chart">
-            <div id="pie"></div>
+            <div class="pie"></div>
             <div>
                 <div class="pie-data1" id="pie3" style="left:-60%;top:57%">
 
@@ -228,7 +235,7 @@
         <div id="bigchart4" class="analy-pop" style="width:30%;height:40%;
         right:25%;top:50%  "></div>
         <div class="chart-box pie-chart">
-            <div id="pie"></div>
+            <div class="pie"></div>
             <div>
                 <div class="pie-data1" id="pie4" style="left:55%;top:50%">
 
@@ -240,7 +247,7 @@
 
     <div class="pop-up">
         <span class="close-pop"></span>
-        <h2 class="title">业务预测分析</h2>
+        <h2 id = "big_title2" class="title">业务预测分析</h2>
         <!--<h2 class="title">业务预测分析</h2>-->
         <div class="pre-left">
             <div class="pre-left-top">
@@ -361,7 +368,6 @@
 <script type="text/javascript" src="js/data/guangdong.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript">
-
     $('document').ready(function () {
         $("body").css('visibility', 'visible');
         var localData = [$('#teacher').val(), $('#start').val() + '/' + $('#end').val(), $('#leader').val()]
@@ -376,12 +382,22 @@
                 $('#lea_a').html(arr[2]);
             }
         });
-
-
         // 默认加载ajax请求，测试用
         // myChart4.showLoading({
         //     text : '',
         // });
+        // $.ajax({
+        //     type: 'post',
+        //     contentType: "application/x-www-form-urlencoded",
+        // 	dataType:'json',
+        //     url: 'http://localhost:8080/getdata',
+        //     data: {bankname:'广州分行'},
+        //     success: function(res){
+        //         myChart4.hideLoading();
+        //         console.log(res);
+        // 	}
+        // });
+    
 
         // var wait = function () {
         //     var defer = $.Deferred();
@@ -407,7 +423,30 @@
         // }
         //
         // myTotalprice();
-        register()
+
+        // var temp;
+        // function wait_predict_data() {
+        //      return new Promise((resolve, reject) => {
+        //         $.ajax({
+        //             type: 'post',
+        //             contentType: "application/x-www-form-urlencoded",
+        //             url: 'http://localhost:9000/getdefaultpredict',
+        //             success: function (res) {
+        //                 temp = res;
+        //                 resolve()
+        //             }
+        //         });
+        //     })
+        // }
+        //
+        // async function test(){
+        //     await wait_predict_data();
+        //     console.log(temp);
+        // }
+        //
+        // test();
+
+
     });
 
 </script>

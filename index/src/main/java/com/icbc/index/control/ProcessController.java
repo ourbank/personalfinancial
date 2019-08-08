@@ -5,6 +5,7 @@ package com.icbc.index.control;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.service.CardService;
+import com.icbc.index.service.PythonService;
 import com.icbc.index.util.VoiceEncodeUtil;
 import com.icbc.index.util.VoiceRecognitionUtil;
 import org.slf4j.Logger;
@@ -30,40 +31,41 @@ public class ProcessController {
     @Autowired
     CardService cardService;
 
+    @Autowired
+    WebSocketController webSocketController;
+
+    @Autowired
+    PythonService pythonService;
+
     @RequestMapping(value = "/receivevoice", method = RequestMethod.POST,produces = "multipart/form-data")
-    public @ResponseBody String getResult(@RequestParam("voicefile") MultipartFile voiceFile,@RequestParam("token") String token) {
+    public @ResponseBody void getResult(@RequestParam("voicefile") MultipartFile voiceFile,@RequestParam("token") String token) {
         VoiceRecognitionUtil.init();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
-        System.out.println(result+token);
-        return result;
+        pythonService.test(result);
 
-    }
-
-    @RequestMapping(value = "/getdata",method = RequestMethod.POST,produces = "application/json")
-    @ResponseBody
-    @CrossOrigin
-        //@RequestBody String json
-    String getDataBy3factors() {
-        //JSONObject jb = JSONObject.parseObject(json);
-        //return cardService.getDataBy3factors(null);
-       // cardService.test();
-        return null;
+        webSocketController.sendToUser(token,result);
     }
 
     /**
-     *
+     * 核心查询业务控制器
      * @param model
      * @param response
-     * @param jsonParam  请求体
+     * @param jsonParam
      * @return
      */
-    @RequestMapping(value = "/getdata_test",produces = "application/json")
+    @RequestMapping(value = "/getsinglebuss", method = RequestMethod.POST,produces = "application/json")
     @ResponseBody
     @CrossOrigin
     //@RequestBody String jsonParam
     String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
-
         return cardService.getDaysNumByBankName(jsonParam);
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public @ResponseBody void test(@RequestParam("voice") String voice,@RequestParam("token") String token) {
+        String test = pythonService.test(voice);
+        webSocketController.sendToUser(token,test);
+    }
+
 }
