@@ -5,6 +5,7 @@ package com.icbc.index.control;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.service.CardService;
+import com.icbc.index.service.PythonService;
 import com.icbc.index.util.VoiceEncodeUtil;
 import com.icbc.index.util.VoiceRecognitionUtil;
 import org.slf4j.Logger;
@@ -33,11 +34,16 @@ public class ProcessController {
     @Autowired
     WebSocketController webSocketController;
 
+    @Autowired
+    PythonService pythonService;
+
     @RequestMapping(value = "/receivevoice", method = RequestMethod.POST,produces = "multipart/form-data")
     public @ResponseBody void getResult(@RequestParam("voicefile") MultipartFile voiceFile,@RequestParam("token") String token) {
         VoiceRecognitionUtil.init();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
+        pythonService.test(result);
+
         webSocketController.sendToUser(token,result);
     }
 
@@ -55,4 +61,11 @@ public class ProcessController {
     String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
         return cardService.getDaysNumByBankName(jsonParam);
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public @ResponseBody void test(@RequestParam("voice") String voice,@RequestParam("token") String token) {
+        String test = pythonService.test(voice);
+        webSocketController.sendToUser(token,test);
+    }
+
 }

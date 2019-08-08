@@ -1,5 +1,6 @@
 package com.icbc.index.control;
 
+import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.configuration.SocketSessionMap;
 import com.icbc.index.service.RedisService;
 import com.icbc.index.vo.RequestMessage;
@@ -62,16 +63,11 @@ public class WebSocketController {
     public void sendToUser(String token,String message){
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        messagingTemplate.convertAndSend("/topic/"+token,"定时推送消息时间: "
-                + df.format(new Date())+message);
+        JSONObject object=new JSONObject();
+        object.put("Jcarnum",true);
+        messagingTemplate.convertAndSend("/topic/"+token,object);
     }
-    private MessageHeaders createHeaders(String token) {
-        SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor
-                .create(SimpMessageType.MESSAGE);
-        headerAccessor.setSessionId(token);
-        headerAccessor.setLeaveMutable(true);
-        return headerAccessor.getMessageHeaders();
-    }
+
 
 
 }

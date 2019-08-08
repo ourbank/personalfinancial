@@ -1,6 +1,7 @@
 package com.icbc.index.vo;
 
 public class ResponseMessage {
+
     private String responseMessage;
 
     public ResponseMessage(String responseMessage) {
