@@ -1,6 +1,7 @@
 package com.icbc.index.control;
 
 
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.service.CardService;
@@ -29,21 +30,15 @@ public class ProcessController {
     @Autowired
     CardService cardService;
 
-    /**
-     * 接收语音并解析控制器
-     * @param voiceFile 语音文件
-     * @param token
-     * @return
-     */
-    @RequestMapping(value = "/receivevoice", method = RequestMethod.POST, produces = "multipart/form-data")
-    public @ResponseBody
-    String getResult(@RequestParam("voicefile") MultipartFile voiceFile, @RequestParam("token") String token) {
+    @Autowired
+    WebSocketController webSocketController;
+
+    @RequestMapping(value = "/receivevoice", method = RequestMethod.POST,produces = "multipart/form-data")
+    public @ResponseBody void getResult(@RequestParam("voicefile") MultipartFile voiceFile,@RequestParam("token") String token) {
         VoiceRecognitionUtil.init();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
-        System.out.println(result + token);
-        return result;
-
+        webSocketController.sendToUser(token,result);
     }
 
     /**
@@ -56,7 +51,7 @@ public class ProcessController {
     @RequestMapping(value = "/getsinglebuss", method = RequestMethod.POST,produces = "application/json")
     @ResponseBody
     @CrossOrigin
-        //@RequestBody String jsonParam
+    //@RequestBody String jsonParam
     String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
         return cardService.getDaysNumByBankName(jsonParam);
     }

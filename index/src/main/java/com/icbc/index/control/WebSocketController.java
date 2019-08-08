@@ -1,6 +1,7 @@
 package com.icbc.index.control;
 
 import com.icbc.index.configuration.SocketSessionMap;
+import com.icbc.index.service.RedisService;
 import com.icbc.index.vo.RequestMessage;
 import com.icbc.index.vo.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,6 +29,9 @@ public class WebSocketController {
 
     @Autowired
     SocketSessionMap sessionMap;
+
+    @Autowired
+    RedisService redisService;
 
     @Autowired
     public WebSocketController(SimpMessagingTemplate messagingTemplate) {
@@ -55,20 +57,13 @@ public class WebSocketController {
         messagingTemplate.convertAndSend("/topic/callback", "定时推送消息时间: " + df.format(new Date()));
     }
 */
-    @Scheduled(fixedRate = 100000)
-    public void callback() {
+
+
+    public void sendToUser(String token,String message){
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sessionid = sessionMap.getUserSessionId("abcd");
-        System.out.println("-------"+sessionid);
-        messagingTemplate.convertAndSendToUser(sessionid,"/topic/callback",
-                "定时推送消息时间: " + df.format(new Date()),createHeaders(sessionid));
-    }
-
-
-
-    public void sendToUser(){
-
-        messagingTemplate.convertAndSendToUser("abc","",new Object(),createHeaders(""));
+        messagingTemplate.convertAndSend("/topic/"+token,"定时推送消息时间: "
+                + df.format(new Date())+message);
     }
     private MessageHeaders createHeaders(String token) {
         SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor

@@ -3642,22 +3642,22 @@ $('#pre_all_btn').on('click', function () {
 // 默认加载websocket服务
 //websocket 全局变量
 var stompClient;
-function connect(user) {
+function connect(token) {
     var socket= new SockJS('http://localhost:9000/socket');
     stompClient = Stomp.over(socket);
-    stompClient.connect({token:user}, function (frame) {
+    stompClient.connect({}, function (frame) {
         console.log('Connected:' + frame);
-        // 订阅hello事件
-        stompClient.subscribe('/topic/say', function (response) {
+        // 订阅公有业务
+        stompClient.subscribe('/topic/public', function (response) {
             showResponse(JSON.parse(response.body).responseMessage);
         });
-        // 订阅定时任务
-        stompClient.subscribe('/topic/callback', function (response) {
+        // 订阅私有业务
+        stompClient.subscribe('/topic/'+token, function (response) {
             console.log(response);
             showCallback(response.body);
         });
     });
-}
+};
 
 
 $(window).on('unload', function () {
@@ -3682,10 +3682,9 @@ function register() {
     $.ajax({
         url:"http://127.0.0.1:9000/registerwebsocket",
         type:"get",
-        success:function (data) {
-            console.log(data)
+        success:function (token) {
             if (data!=null)
-                connect(data);
+                connect(token);
 
         }
     })
