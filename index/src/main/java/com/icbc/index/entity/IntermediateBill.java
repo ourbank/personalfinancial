@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class Loan_Bill {
+public class IntermediateBill {
 
     private Integer id;
     private Integer bankId;

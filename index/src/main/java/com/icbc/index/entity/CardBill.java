@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Card_Bill {
+public class CardBill {
 
     private Integer id;
     private Integer bankId;

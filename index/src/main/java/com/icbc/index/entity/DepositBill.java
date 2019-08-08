@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class Deposit_Bill {
+public class DepositBill {
     private Integer id;
     private Integer bankId;
     private Date day;
