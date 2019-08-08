@@ -3,12 +3,12 @@ package com.icbc.index.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Bill {
+public class IntermediateBill {
+
     private Integer id;
     private Integer bankId;
     private Date day;
     private BigDecimal num;
-    private Enum business;
 
     public Integer getId() {
         return id;
@@ -40,13 +40,5 @@ public class Bill {
 
     public void setNum(BigDecimal num) {
         this.num = num;
-    }
-
-    public Enum getBusiness() {
-        return business;
-    }
-
-    public void setBusiness(Enum business) {
-        this.business = business;
     }
 }
