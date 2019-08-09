@@ -287,7 +287,8 @@ pre {
     overflow-y: auto;
     padding-right: 5px;
 }
-.pie-data1{
+
+.pie-data1 {
     height: 2.25rem;
     position: relative;
     margin: auto;
@@ -301,17 +302,19 @@ pre {
     overflow-y: auto;
     padding-right: 5px;
 }
+
 .pie-data1 p {
     width: 80%;
     height: 0.45rem;
     line-height: 0.45rem;
     font-size: 0.2rem;
     color: #cdddf7;
-    
+
     flex-flow: row nowrap;
     justify-content: space-around;
     cursor: default;
 }
+
 .pie-data1 p > span {
     width: 0;
     flex-grow: 1;
@@ -321,6 +324,7 @@ pre {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .pie-data1 p > .pie-number {
     flex-grow: 2;
 }
@@ -346,6 +350,7 @@ pre {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .pie-data p > .pie-number {
     flex-grow: 2;
 }
@@ -1303,6 +1308,16 @@ pre {
     visibility: hidden;
 }
 
+/*预测放大界面*/
+.pre-pop-up {
+    width: 80%;
+}
+
+.ana-pop-up {
+    width: 95%;
+    height: 95%;
+}
+
 .pop-up1 {
     width: 20%;
     height: 80%;
@@ -1380,7 +1395,7 @@ pre {
 }
 
 
-.analy-pop{
+.analy-pop {
     display: inline-block;
     position: absolute;
     top: 0.018rem;
@@ -1560,6 +1575,7 @@ pre {
     background: rgba(14, 148, 235, 0.2);
     color: white;
 }
+
 .set-box > .input-edit {
     width: 4.3rem;
 }
@@ -1569,7 +1585,7 @@ pre {
     margin: 0 0.2rem;
 }
 
-.pre_citybox > input{
+.pre_citybox > input {
     background: transparent;
 }
 
@@ -1691,7 +1707,7 @@ pre {
 }
 
 
-.pre_citybox{
+.pre_citybox {
     width: 20%;
     height: 10%;
     display: flex;
@@ -1701,12 +1717,12 @@ pre {
     font-size: 0.18rem;
 }
 
-.pre_citybox p{
+.pre_citybox p {
     color: white;
     margin: 0 0.1rem;
 }
 
-.pre-right1 > .pages-div > .skip:hover{
+.pre-right1 > .pages-div > .skip:hover {
     background-color: #b104ff;
 }
 
@@ -1865,44 +1881,46 @@ pre {
 }
 
 .pre-left {
-    float:left;
-    height:90%;
+    float: left;
+    height: 85%;
     width: 60%;
-    margin:auto;
+    margin: auto;
+    position: absolute;
+    left: 6%;
 }
 
 .pre-right1 {
     height: 90%;
     width: 100%;
-    margin:auto;
+    margin: auto;
 }
 
-.city-container{
+.city-container {
     height: 90%;
     width: 100%;
-    margin:auto;
+    margin: auto;
     display: flex;
     flex-flow: row wrap;
 }
 
-.detail-container{
+.detail-container {
     height: 80%;
     width: 100%;
-    margin:auto;
+    margin: auto;
     display: flex;
     flex-flow: row wrap;
 }
 
-.pre-right2{
+.pre-right2 {
     position: absolute;
     height: 80%;
-    width: 38%;
-    margin:auto;
-    right:2%;
+    width: 33%;
+    margin: auto;
+    right: 2%;
 }
 
 .pre-left-top {
-    position:absolute;
+    position: absolute;
     height: 10%;
     width: 10%;
     margin: auto;
@@ -1910,32 +1928,117 @@ pre {
 }
 
 .pre-left-bottom {
-    float:left;
+    float: left;
     height: 100%;
     width: 100%;
     margin: auto;
 }
 
 #tobigmap {
-	cursor: pointer;
+    cursor: pointer;
 }
 
-.map-center{
-	height:90%;
-	width:80%;
-	margin:auto;
+.map-center {
+    height: 90%;
+    width: 80%;
+    margin: auto;
 }
 
-#gdMap_big{
-	height:100%;
-	width:90%;
-	margin:auto;
+#gdMap_big {
+    height: 100%;
+    width: 90%;
+    margin: auto;
 }
 
-.laydate_table { 
-display: none;
-}
-#laydate_hms{
-	display: none !important;
+.laydate_table {
+    display: none;
 }
 
+#laydate_hms {
+    display: none !important;
+}
+
+#main_hover {
+    position: absolute;
+    top: 25%;
+    right: -0.5%;
+    width: 30px;
+    height: 30px;
+}
+
+#main_hover img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 30px;
+    height: 30px;
+}
+
+#right_float_window {
+    border-radius: 5px;
+    position: absolute;
+    top: 5%;
+    right: -3%;
+    background-color: #2E2D3C;
+    width: 3%;
+    height: 90%;
+    box-shadow: 0 0 10px #0d0e54;
+}
+
+.float_window_icon {
+    flex-flow: row wrap;
+    height: 7%;
+    width: 90%;
+    margin: 50% auto auto;
+    cursor: pointer;
+    position: relative;
+}
+
+.float_window_icon img {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10%;
+    left: 20%;
+}
+
+.pre-navigation {
+    width: 5%;
+    height: 84%;
+    position: absolute;
+    left: 1.5%;
+    border-right: #131a45;
+    border-style: solid;
+    border-width: 0 2px 0 0;
+}
+
+.pre-navigation .float_window_icon {
+    background: #0c1a2c;
+}
+
+#big_title2 {
+    border-bottom: #131a45;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+}
+
+#big_title_plan {
+    border-bottom: #131a45;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+}
+
+.ana_main {
+    width: 90%;
+    height: 85%;
+    position: absolute;
+    right: 3%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.ana_main div {
+    width: 45%;
+    height: 45%;
+    margin:auto;
+}
