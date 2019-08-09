@@ -492,7 +492,7 @@ public class JSONParseUtil {
         return out;
     }
 
-    /**
+    /**多业务多城市查询返回前端table的JSON格式
      * {
      *     "tablecolData": [
      *         {
@@ -540,6 +540,7 @@ public class JSONParseUtil {
      *         }
      *     ]
      * }
+     * @author zhenjin
      * @param bankSet
      * @param businessSet
      * @param startTime
@@ -547,7 +548,6 @@ public class JSONParseUtil {
      * @param input
      * @return
      */
-
     public static String getSaveJson(TreeSet<Integer> bankSet, TreeSet<String> businessSet,
                                      String startTime, String endTime,
                                      List<BusinessSaveData> input){
@@ -575,7 +575,7 @@ public class JSONParseUtil {
         List<String> everydays = AccountDate.getEveryday(startTime,endTime);
         for (String date: everydays) {
             HashMap<String, Object> tableDataMap = new HashMap<>();
-            tableDataMap.put("tableDate",date);
+            tableDataMap.put("tableData",date);
             for(String busine : businessSet){
                 for(int bank : bankSet){
                     tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+busine, input.get(index).getNum());
