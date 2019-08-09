@@ -2,7 +2,7 @@ package com.icbc.index.entity;
 
 import java.util.Date;
 
-public class Loandetail {
+public class LoanDetail {
 
     private Integer id;
     private Integer bankId;
