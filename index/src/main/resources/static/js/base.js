@@ -5297,5 +5297,16 @@ function showCallback(message) {
     //$("#").html(message);
 }
 
+function registerwebsock() {
+    $.ajax({
+        url:"http://127.0.0.1:9000/registerwebsocket",
+        type:"get",
+        success:function (token) {
+            connect(token);
+        }
+    });
+
+}
+
 // 页面加载的时候运行的
 draw_default_pre(); //默认预测

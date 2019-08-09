@@ -5,7 +5,8 @@ package com.icbc.index.mapper;
 * @author
 * */
 
-import com.icbc.index.model.Manager;
+
+import com.icbc.index.entity.Manager;
 
 public interface ManagerMapper {
 

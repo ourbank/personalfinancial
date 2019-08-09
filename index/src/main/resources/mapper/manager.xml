@@ -3,7 +3,7 @@
 <mapper namespace="com.icbc.index.mapper.ManagerMapper">
 
 
-   <select id="findUser" parameterType="String" resultType="com.icbc.index.model.Manager">
+   <select id="findUser" parameterType="String" resultType="com.icbc.index.entity.Manager">
         select account,password,belongBank,level from manager where account=#{account};
     </select>
    <!--

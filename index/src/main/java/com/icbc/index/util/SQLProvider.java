@@ -5,6 +5,9 @@ import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Date;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLProvider {
 
     public String getSingleBusSql(Msql msql) {
@@ -78,6 +81,41 @@ public class SQLProvider {
         sql.FROM("bank a");
         sql.INNER_JOIN("("+innersql.toString()+") b on a.id = b.bankid");
         System.out.println("auto sql:\n" + sql.toString());
+        return sql.toString();
+    }
+
+    public String CountThreeByAddrAndBusiness(Msql msql){
+        SQL sql = new SQL();
+        String startTime = msql.getStrFromDate();
+        String endTime = msql.getStrToDate();
+        String addr;
+
+        StringBuilder bankCondition = new StringBuilder("(");
+        List<Integer> bankId = new ArrayList<>();
+        for(int i = 0; i<msql.getCompany().size();i++){
+            bankId.add(i,BankIdConstant.getBanIdByAddr( msql.getCompany().get(i)));
+            bankCondition.append("bankId  = "+bankId.get(i));
+            if(i<msql.getCompany().size()-1) bankCondition.append(" OR ");
+        }
+        bankCondition.append(" )");
+
+        StringBuilder businessCondition= new StringBuilder("(");
+        List<String> business = new ArrayList<>();
+        for(int j = 0;j<msql.getBusiness().size(); j++){
+            business.add(j,msql.getBusiness().get(j));
+            businessCondition.append("business = '" +TableNameConstant.getBillBusiness(business.get(j)) +"'");
+            if(j<msql.getBusiness().size()-1) businessCondition.append(" OR ");
+        }
+        businessCondition.append(")");
+
+        String timeCondition = "day BETWEEN '" + startTime + "' AND '" + endTime+"'";
+
+        sql.SELECT("day","num");
+        sql.FROM("Bill");
+        sql.WHERE(businessCondition.toString(), bankCondition.toString() ,timeCondition);
+        sql.ORDER_BY("day");
+
+
         return sql.toString();
     }
 

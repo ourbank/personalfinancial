@@ -1,7 +1,8 @@
 package com.icbc.index.service;
 
 import com.icbc.index.dao.ManagerDao;
-import com.icbc.index.model.Manager;
+
+import com.icbc.index.entity.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

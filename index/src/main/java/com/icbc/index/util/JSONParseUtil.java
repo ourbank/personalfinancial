@@ -2,10 +2,13 @@ package com.icbc.index.util;
 
 
 import com.alibaba.fastjson.JSON;
+import com.icbc.index.model.BusinessSaveData;
 import com.icbc.index.model.CardData;
 import com.icbc.index.model.Msql;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.ibatis.annotations.SelectProvider;
+
 import java.util.*;
 
 public class JSONParseUtil {
@@ -489,5 +492,102 @@ public class JSONParseUtil {
         return out;
     }
 
+    /**
+     * {
+     *     "tablecolData": [
+     *         {
+     *             "colName": "日期",
+     *             "colItem": "tableData"
+     *         },
+     *         {
+     *             "colName": "广州/存款数",
+     *             "colItem": "广州存款数"
+     *         },
+     *         {
+     *             "colName": "广州/开卡数",
+     *             "colItem": "广州开卡数"
+     *         },
+     *         {
+     *             "colName": "深圳/存款数",
+     *             "colItem": "深圳存款数"
+     *         },
+     *         {
+     *             "colName": "深圳/开卡数",
+     *             "colItem": "深圳开卡数"
+     *         }
+     *     ],
+     *     "tableData": [
+     *         {
+     *             "广州存款数": 27,
+     *             "深圳存款数": 35,
+     *             "深圳开卡数": 25767570100,
+     *             "广州开卡数": 25655509300,
+     *             "tableDate": "2019-01-01"
+     *         },
+     *         {
+     *             "广州存款数": 36,
+     *             "深圳存款数": 38,
+     *             "深圳开卡数": 25776485300,
+     *             "广州开卡数": 25663916700,
+     *             "tableDate": "2019-01-02"
+     *         },
+     *         {
+     *             "广州存款数": 34,
+     *             "深圳存款数": 37,
+     *             "深圳开卡数": 25785846900,
+     *             "广州开卡数": 25671529000,
+     *             "tableDate": "2019-01-03"
+     *         }
+     *     ]
+     * }
+     * @param bankSet
+     * @param businessSet
+     * @param startTime
+     * @param endTime
+     * @param input
+     * @return
+     */
 
+    public static String getSaveJson(TreeSet<Integer> bankSet, TreeSet<String> businessSet,
+                                     String startTime, String endTime,
+                                     List<BusinessSaveData> input){
+        Map<String,Object> outmap = new HashMap<>();
+        List<Map<String,String>> tablecolData = new ArrayList<>();
+        List<Map<String,Object>> tableData = new ArrayList<>();
+        int index = 0;
+        int size = bankSet.size()+businessSet.size();
+        //1.添加tablecolData的colItem和colName
+        Map<String,String> tablecolMap = new HashMap<>();
+        tablecolMap.put("colItem", "tableData");
+        tablecolMap.put("colName","日期");
+        tablecolData.add(tablecolMap);
+        for(int ba : bankSet){
+            for(String bu :businessSet){
+                tablecolMap = new HashMap<>();
+                tablecolMap.put("colName", BankIdConstant.getAddrByBankId(ba) +"/" + bu);
+                tablecolMap.put("colItem", BankIdConstant.getAddrByBankId(ba) + bu);
+                tablecolData.add(tablecolMap);
+            }
+        }
+
+        //2.添加tableData 的tableDate 和其他数据
+        Calendar calendar = Calendar.getInstance();
+        List<String> everydays = AccountDate.getEveryday(startTime,endTime);
+        for (String date: everydays) {
+            HashMap<String, Object> tableDataMap = new HashMap<>();
+            tableDataMap.put("tableDate",date);
+            for(String busine : businessSet){
+                for(int bank : bankSet){
+                    tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+busine, input.get(index).getNum());
+                    index++;
+                }
+            }
+            tableData.add(tableDataMap);
+        }
+
+        outmap.put("tablecolData",tablecolData);
+        outmap.put("tableData",tableData);
+
+        return JSON.toJSONString(outmap);
+    }
 }

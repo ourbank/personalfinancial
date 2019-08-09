@@ -1,23 +1,27 @@
-package com.icbc.index.model;
+package com.icbc.index.entity;
+
 
 import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 
-/*
- * 对应于数据库的user表
- * @author mychen
- * */
+
 public class Manager implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
     private String account;
     private String password;
-    private String belongBank;
-    private int level;
-
+    private String level;
+    private int belongBank;
     @Transient
     private String token;
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
     public String getPassword() {
         return password;
@@ -27,11 +31,19 @@ public class Manager implements Serializable {
         this.password = password;
     }
 
-    public String getBelongBank() {
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public int getBelongBank() {
         return belongBank;
     }
 
-    public void setBelongBank(String belongBank) {
+    public void setBelongBank(int belongBank) {
         this.belongBank = belongBank;
     }
 
@@ -42,24 +54,4 @@ public class Manager implements Serializable {
     public void setToken(String token) {
         this.token = token;
     }
-
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-
 }
