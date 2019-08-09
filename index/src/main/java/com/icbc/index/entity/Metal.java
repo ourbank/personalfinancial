@@ -2,7 +2,7 @@ package com.icbc.index.entity;
 
 import java.util.Date;
 
-public class metal {
+public class Metal {
     private Integer id;
     private Enum metalType;
     private Integer money;
