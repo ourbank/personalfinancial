@@ -95,6 +95,7 @@ public class BusinessSaveService {
 
 
         String out = JSONParseUtil.getSaveJson(bankSet, businessSet, startTime, endTime, list);
+        System.out.println(out);
         return out;
     }
 

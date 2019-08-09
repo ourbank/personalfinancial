@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="/font/iconfont.css">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div class="GM_ipone">
+    <div class="GM_ipone_bar" id="apptop">
+        <div class="GM_ipone_one a">
+            筛选条件
+        </div>
+        <!--  th:each="baseAttrValue: ${baseAttrValuesList}"  th:utext="${baseAttrValue.valueName}+'<b> ✖ </b>'"   th:href="'/list.html?'+${baseAttrValue.urlParam}"-->
+        <!--<i><img src="/image/right-@1x.png" alt=""></i>v-for="pan in panlist"-->
+        <a class="select-attr" href="#" v-for="(pan,index) in panlist.list" @click="deleteSelected(index)"> {{ pan.panAttrValue }}<b> ✖ </b>
+        </a>
+        <!--<a  class="select-attr"  href="#"> 地点:广州<b> ✖ </b>-->
+
+        <!--</a>-->
+
+    </div>
+</div>
+
+<div class="GM_banner w">
+    <div class="GM_nav">
+        <div class="GM_selector">
+            <!--手机商品筛选-->
+            <div class="title">
+                <h3><em>导出筛选</em></h3>
+
+            </div>
+            <div class="GM_nav_logo" id="app"  >
+                <div  class="GM_pre" v-for="(attrinfo,index) in attrlist" >
+                    <div class="sl_key"  >
+                        <span  >{{ attrinfo.attrName }} :</span>
+                    </div>
+                    <div class="sl_value"  >
+                        <ul>
+                            <li v-for="attrValue in attrinfo.attrValueList">
+                                <a @click="addSelected($event,index)" >{{ attrValue.valueName }}</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="appdate">
+        <template>
+            <div class="block">
+                <div style = "width:1210px;margin:auto">
+                    <span class="demonstration"  style="color: #666;font-size: 14px;margin: 0px auto;" >时间范围：</span>
+                    <el-date-picker
+                            v-model="value1"
+                            type="daterange"
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            @change="chooseTimeRange"
+                            value-format="yyyy-MM-dd">
+                    </el-date-picker>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <br/>
+    <br/>
+    <div id="apptable">
+        <el-table
+                border
+                :data="tableData"
+                style="width: 1210px;margin:auto">
+            <template v-for='(col) in tablecolData'>
+                <el-table-column
+                        :prop="col.colItem"
+                        :label="col.colName"
+                        width="124px"
+                >
+                </el-table-column>
+            </template>
+        </el-table>
+    </div>
+
+    <div>
+        <el-button  icon="el-icon-download" circle></el-button>
+    </div>
+
+</div>
+
+
+
+
+</body>
+<!-- 先引入 Vue -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- qs axios-->
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script type="text/javascript">
+    // import ElementUI from 'element-ui' //element-ui的全部组件
+    // import 'element-ui/lib/theme-chalk/index.css'//element-ui的css
+    // Vue.use(ElementUI) //使用elementUI
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            attrlist: null
+        },
+        created () {
+            var _this = this;
+
+            axios({
+                method:'get',
+                url:'http://localhost:9000/list2',
+                headers:{'Access-Control-Allow-Origin':'*'}
+            }).then(function (response) {
+                _this.attrlist = response.data;
+                //console.log(response);
+            });
+
+
+        },
+        methods: {
+            addSelected: function (event,index) {
+                //获取点击对象
+                var el = event.currentTarget;
+                //alert("当前对象的内容：" + el.innerHTML);
+                var text =  el.innerHTML
+                //alert(index)
+                //去重
+                for (var i in vmtop.panlist.list){
+                    if (vmtop.panlist.list[i].panAttrValue===text) return ;
+                }
+
+                //选择列表增加
+                //获取业务名字
+                //在这里面编辑希望的json格式
+               var pan = {
+                        panAttrName  : vm.attrlist[index].attrName,
+                        panAttrValue : text
+                }
+
+                vmtop.panlist.list.push(pan);
+                this.sendSql();
+            },
+            sendSql:function () {
+                axios({
+                    url:'http://localhost:9000/sendSql',
+                    method:'post',
+                    headers:{'Access-Control-Allow-Origin':'*',
+                        'Content-Type': 'application/json'
+                        // 'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: [function (data) {
+                        // 对 data 进行任意转换处理
+                        //return Qs.stringify(data, {arrayFormat: 'repeat'})
+                        data =  JSON.stringify(data)
+                        return data
+                    }],
+                    data: {
+                        //tablelist:["1","2"]
+                        tablelist : vmtop.panlist
+                    }
+                }).then(function (response) {
+                    //vm.panlist = response.data;
+                    // alert(response.data);
+                });
+            }
+
+        }
+    })
+
+
+    var vmtop = new Vue({
+        el: '#apptop',
+        data: {
+            panlist : {
+                list :[]
+            }
+
+        },
+        methods: {
+            deleteSelected: function (index) {
+                vmtop.panlist.list.splice(index,1);
+                //1跟后台拿数据，参数是panlist
+                //发送sql的参数
+                this.sendSql();
+                //2更新table
+            },
+            sendSql:function () {
+                axios({
+                    url:'http://localhost:9000/sendSql',
+                    method:'post',
+                    headers:{'Access-Control-Allow-Origin':'*',
+                        'Content-Type': 'application/json'
+                        // 'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: [function (data) {
+                        // 对 data 进行任意转换处理
+                        //return Qs.stringify(data, {arrayFormat: 'repeat'})
+                        data =  JSON.stringify(data)
+                        return data
+                    }],
+                    data: {
+                        //tablelist:["1","2"]
+                        tablelist : vmtop.panlist
+                    }
+                }).then(function (response) {
+                    //vm.panlist = response.data;
+                    // alert(response.data);
+                });
+            }
+        }
+    })
+    var vmtable = new Vue({
+        el: '#apptable',
+        data :{"tablecolData": [{
+                "colName": "日期",
+                "colItem": "tableData"
+            }, {
+                "colName": "广州/存款数",
+                "colItem": "广州存款数"
+            }, {
+                "colName": "广州/开卡数",
+                "colItem": "广州开卡数"
+            }, {
+                "colName": "深圳/存款数",
+                "colItem": "深圳存款数"
+            }, {
+                "colName": "深圳/开卡数",
+                "colItem": "深圳开卡数"
+            }],
+            "tableData": [{
+                "广州存款数": 27,
+                "深圳存款数": 35,
+                "深圳开卡数": 25767570100,
+                "广州开卡数": 25655509300,
+                "tableData": "2019-01-01"
+            }, {
+                "广州存款数": 36,
+                "深圳存款数": 38,
+                "深圳开卡数": 25776485300,
+                "广州开卡数": 25663916700,
+                "tableData": "2019-01-02"
+            }, {
+                "广州存款数": 34,
+                "深圳存款数": 37,
+                "深圳开卡数": 25785846900,
+                "广州开卡数": 25671529000,
+                "tableData": "2019-01-03"
+            }, {
+                "广州存款数": 30,
+                "深圳存款数": 31,
+                "深圳开卡数": 25794934700,
+                "广州开卡数": 25679504000,
+                "tableData": "2019-01-04"
+            }, {
+                "广州存款数": 37,
+                "深圳存款数": 26,
+                "深圳开卡数": 25800826100,
+                "广州开卡数": 25689332700,
+                "tableData": "2019-01-05"
+            }]
+        }})
+</script>
+
+<script>
+    var Main = {
+        data() {
+            return {
+                value1: '',
+                // value2: ''
+            };
+        },methods:{
+            chooseTimeRange(t) {
+                alert(t);//结果为一个数组，如：["2018-08-04", "2018-08-06"]
+            }
+        }
+    };
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#appdate')
+</script>
+</html>

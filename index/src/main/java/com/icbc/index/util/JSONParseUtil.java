@@ -575,7 +575,7 @@ public class JSONParseUtil {
         List<String> everydays = AccountDate.getEveryday(startTime,endTime);
         for (String date: everydays) {
             HashMap<String, Object> tableDataMap = new HashMap<>();
-            tableDataMap.put("tableDate",date);
+            tableDataMap.put("tableData",date);
             for(String busine : businessSet){
                 for(int bank : bankSet){
                     tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+busine, input.get(index).getNum());
