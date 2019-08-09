@@ -1,7 +1,7 @@
 package com.icbc.index.dao;
 
+import com.icbc.index.entity.Manager;
 import com.icbc.index.mapper.ManagerMapper;
-import com.icbc.index.model.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

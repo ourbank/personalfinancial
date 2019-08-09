@@ -1,6 +1,8 @@
 package com.icbc.index.entity;
 
 
+import org.springframework.data.annotation.Transient;
+
 import java.io.Serializable;
 
 
@@ -10,9 +12,9 @@ public class Manager implements Serializable {
     private String account;
     private String password;
     private String level;
-    private Integer belongBank;
-
-
+    private int belongBank;
+    @Transient
+    private String token;
     public String getAccount() {
         return account;
     }
@@ -37,11 +39,19 @@ public class Manager implements Serializable {
         this.level = level;
     }
 
-    public Integer getBelongBank() {
+    public int getBelongBank() {
         return belongBank;
     }
 
-    public void setBelongBank(Integer belongBank) {
+    public void setBelongBank(int belongBank) {
         this.belongBank = belongBank;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
