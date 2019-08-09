@@ -1,6 +1,7 @@
 package com.icbc.index.util;
 
-import com.icbc.index.model.Manager;
+
+import com.icbc.index.entity.Manager;
 import io.jsonwebtoken.*;
 
 import java.security.MessageDigest;

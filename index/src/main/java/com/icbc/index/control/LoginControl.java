@@ -2,7 +2,7 @@ package com.icbc.index.control;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.icbc.index.model.Manager;
+import com.icbc.index.entity.Manager;
 import com.icbc.index.service.*;
 import com.icbc.index.util.LoginUtil;
 import org.slf4j.Logger;
