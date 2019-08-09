@@ -20,4 +20,14 @@ public class TableNameConstant {
             default:return null;
         }
     }
+
+    public static String getBillBusiness(String business){
+        switch (business){
+            case "开卡数":return "card";
+            case "存款数":return "deposit";
+            case "贷款数":return "intermediate";
+            case "中间业务收入":return "loan";
+            default:return null;
+        }
+    }
 }

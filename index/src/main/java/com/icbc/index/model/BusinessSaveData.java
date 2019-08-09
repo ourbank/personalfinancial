@@ -6,7 +6,6 @@ public class BusinessSaveData {
 
     private String day;
     private BigDecimal num;
-    private String tableCol;
 
     public String getDay() {
         return day;
@@ -24,11 +23,4 @@ public class BusinessSaveData {
         this.num = num;
     }
 
-    public String getTableCol() {
-        return tableCol;
-    }
-
-    public void setTableCol(String tableCol) {
-        this.tableCol = tableCol;
-    }
 }
