@@ -39,7 +39,7 @@ public class SQLProvider {
         innersql.SELECT("sum(num) as num,bankid");
         // 判断查询哪张表
         switch (buss) {
-            case "card":
+            case "开卡数":
                 innersql.FROM("card_bill");
                 break;
         }
@@ -66,8 +66,8 @@ public class SQLProvider {
             case "month":
                 if(TimeUtil.dateToFormatInt(now,"MM") - 1 > 0){
                     int mon = TimeUtil.dateToFormatInt(now,"MM");
-                    startTime = TimeUtil.dateToFormatInt(now,"yyyy") +(mon - 1)+"-01";
-                    endTime = TimeUtil.dateToFormatInt(now,"yyyy") +(mon - 1)+"-31";
+                    startTime = TimeUtil.dateToFormatInt(now,"yyyy") +"-"+ (mon - 1)+"-01";
+                    endTime = TimeUtil.dateToFormatInt(now,"yyyy") +"-"+ (mon - 1)+"-31";
                 }else{
                     startTime = TimeUtil.dateToFormatInt(now,"yyyy") -1 +"12-01";
                     endTime = TimeUtil.dateToFormatInt(now,"yyyy") - 1 +"12-31";

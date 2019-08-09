@@ -2931,6 +2931,79 @@ bigchart4()
 
 var data;
 
+// 泽瀚的分析界面，留存
+let ana_simple_chart = echarts.init(document.getElementById('pie'));
+
+function createRandomItemStyle() {
+    return {
+        normal: {
+            color: 'rgb(' + [
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160)
+            ].join(',') + ')'
+        }
+    };
+}
+
+async function anasimplechart() {
+    ana_simple_chart.clear();
+    let option = {
+        title: {
+            text: ''
+        },
+        tooltip: {},
+        series: [{
+            type: 'wordCloud',  //类型为字符云
+            sizeRange: [1, 50],
+            rotationRange: [-90, 90],
+            rotationStep: 90,
+            shape: 'pentagon',
+            top:0,
+            left:0,
+            width:'98%',
+            height:'90%',
+            textStyle: {
+                normal: {
+                    fontFamily: 'sans-serif',
+                    color: function () {
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 255 + 100),
+                            Math.round(Math.random() * 255 + 100),
+                            Math.round(Math.random() * 255 + 100)
+                        ].join(',') + ')';
+                    }
+                },
+                emphasis: {
+                    shadowBlur: 30,
+                    shadowColor: '#333'
+                }
+            },
+            data: []
+        }]
+    };
+    let res = await wait_wordcloud();
+    option.series[0].data = res;
+    console.log(res)
+    ana_simple_chart.setOption(option);
+}
+
+let wait_wordcloud = function(){
+    return new Promise((resolve)=>{
+        $.ajax({
+            type: 'post',
+            contentType: "application/x-www-form-urlencoded",
+            dataType: 'json',
+            url: 'http://localhost:9000/getwordcloud',
+            data: {period: 'month', business: '开卡数'},
+            success: function (res) {
+                resolve(res);
+            }
+        });//ajax
+    })//promise
+}
+
+
 function chart1() {
     //data 为模拟数据
 
@@ -3093,11 +3166,11 @@ $('#filBtn').on('click', function () {
         $('#filCon').attr('style', 'display:flex');
     } else {
         $('#filCon').hide();
-}
+    }
 })
 //点击筛选按钮end
 
-chart1()
+// chart1()
 // 分析模块：按钮变色功能
 let ana_choose;
 $('#ana_config_btn').on('mouseenter', function () {
@@ -3116,11 +3189,11 @@ $('#ana_chart_btn').on('mouseleave', function () {
         $('#ana_chart_btn').attr('style', 'background: #0c1a2c')
 })
 let ana_chart_id = 0;
-$('#ana_test').on('click',function(){
+$('#ana_test').on('click', function () {
     let color = $('#test_color').val();
     ana_chart_id = ana_chart_id + 1;
-    if(ana_chart_id <= 4)
-        $('#ana_chart_page').append('<div id = ana_chart_'+ana_chart_id+' style="background-color: '+color+'"></div>')
+    if (ana_chart_id <= 4)
+        $('#ana_chart_page').append('<div id = ana_chart_' + ana_chart_id + ' style="background-color: ' + color + '"></div>')
 })
 //----------------------业务指标分析占比内容end---------------
 
@@ -3679,7 +3752,7 @@ let wait_scale = function () {
             contentType: "application/x-www-form-urlencoded",
             dataType: 'json',
             url: 'http://localhost:9000/getscale',
-            data: {period: 'season', business: 'card'},
+            data: {period: 'season', business: '开卡数'},
             success: function (res) {
                 resolve(res);
             }
@@ -5143,7 +5216,7 @@ $('#title1').on('click', function () {
     ana_choose = 0;
 });
 
-$('#ana_config_btn').on('click',function(){
+$('#ana_config_btn').on('click', function () {
     $('#ana_config_btn').attr('style', 'background: #4169E1');
     $('#ana_chart_btn').attr('style', 'background: #0c1a2c');
     $('#ana_config_page').attr('style', 'visibility: visible');
@@ -5151,7 +5224,7 @@ $('#ana_config_btn').on('click',function(){
     ana_choose = 0;
 })
 
-$('#ana_chart_btn').on('click',function(){
+$('#ana_chart_btn').on('click', function () {
     $('#ana_config_btn').attr('style', 'background: #0c1a2c');
     $('#ana_chart_btn').attr('style', 'background: #4169E1');
     $('#ana_config_page').attr('style', 'visibility: hidden');
@@ -5299,9 +5372,9 @@ function showCallback(message) {
 
 function registerwebsock() {
     $.ajax({
-        url:"http://127.0.0.1:9000/registerwebsocket",
-        type:"get",
-        success:function (token) {
+        url: "http://127.0.0.1:9000/registerwebsocket",
+        type: "get",
+        success: function (token) {
             connect(token);
         }
     });
@@ -5310,3 +5383,4 @@ function registerwebsock() {
 
 // 页面加载的时候运行的
 draw_default_pre(); //默认预测
+anasimplechart(); //默认分析
