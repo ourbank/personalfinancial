@@ -6,6 +6,8 @@ var chart4_bscissa = []; //chart4的横坐标
 var searchcitys = [];
 var factor = '-1'; //代办业务
 //第一份数据，定制化查询部分
+
+
 var testdata = [{
     "data": [{
         "data": [{
@@ -2279,15 +2281,18 @@ $('#select_factor').on('click', function () {
     }
 });
 
-// 预测模块 标题
+// 预测模块 筛选按钮点击事件
 $('#pre_select_business').on('click', function () {
+    // 更改标题
     title2_1 = $("#analyli2_1").text();
     title2 = '业务指标预测';
     if (title2_1 != '预测指标') {
         $("#title2").text(title2 + ": " + title2_1);
         $("#big_title2").text('业务指标预测' + ": " + title2_1);
+        $("#big_title_plan").text('计划配置' + ": " + title2_1);
     }
-    $('#fil1Con').attr('style', 'visibility: hidden')
+    $('#fil1Con').attr('style', 'visibility: hidden');
+    draw_simple_pre(title2_1);
 });
 
 //鼠标滑动到按钮，按钮内容变成白色
@@ -3088,12 +3093,35 @@ $('#filBtn').on('click', function () {
         $('#filCon').attr('style', 'display:flex');
     } else {
         $('#filCon').hide();
-    }
+}
 })
 //点击筛选按钮end
 
 chart1()
+// 分析模块：按钮变色功能
+let ana_choose;
+$('#ana_config_btn').on('mouseenter', function () {
+    $('#ana_config_btn').attr('style', 'background: #4169E1')
+})
+$('#ana_config_btn').on('mouseleave', function () {
+    if (ana_choose != 0)
+        $('#ana_config_btn').attr('style', 'background: #0c1a2c')
+})
 
+$('#ana_chart_btn').on('mouseenter', function () {
+    $('#ana_chart_btn').attr('style', 'background: #4169E1')
+})
+$('#ana_chart_btn').on('mouseleave', function () {
+    if (ana_choose != 1)
+        $('#ana_chart_btn').attr('style', 'background: #0c1a2c')
+})
+let ana_chart_id = 0;
+$('#ana_test').on('click',function(){
+    let color = $('#test_color').val();
+    ana_chart_id = ana_chart_id + 1;
+    if(ana_chart_id <= 4)
+        $('#ana_chart_page').append('<div id = ana_chart_'+ana_chart_id+' style="background-color: '+color+'"></div>')
+})
 //----------------------业务指标分析占比内容end---------------
 
 //------------业务预测数据内容---------------
@@ -3115,11 +3143,29 @@ $('#fil1Btn').on('click', function () {
 })
 
 // =====================放大的预测详细图
-var myChartPre = echarts.init(document.getElementById('chart11'));
+let pre_choose_plan;
+let pre_choose_chart;
+$('#pre_plan_btn').on('mouseenter', function () {
+    $('#pre_plan_btn').attr('style', 'background: #4169E1')
+})
+$('#pre_plan_btn').on('mouseleave', function () {
+    if (pre_choose_plan != 1)
+        $('#pre_plan_btn').attr('style', 'background: #0c1a2c')
+})
+
+$('#plan_chart_btn').on('mouseenter', function () {
+    $('#plan_chart_btn').attr('style', 'background: #4169E1')
+})
+$('#plan_chart_btn').on('mouseleave', function () {
+    if (pre_choose_chart != 1)
+        $('#plan_chart_btn').attr('style', 'background: #0c1a2c')
+})
+
+var preBigChart = echarts.init(document.getElementById('chart11'));
 
 function chart11() {
     // 基于准备好的dom，初始化echarts实例
-    myChartPre.clear();
+    preBigChart.clear();
     option = {
         toolbox: {
             show: false,
@@ -3211,14 +3257,14 @@ function chart11() {
             // 此处添加
         ]
     };
-    myChartPre.setOption(option);
+    preBigChart.setOption(option);
 }
 
 chart11('');
 
 // 预测界面中  目标分析
 $("#pre_ana_btn").on('click', function () {
-    var options = myChartPre.getOption();
+    var options = preBigChart.getOption();
     var out = [options.series[0], options.series[1]];
     var target = $("#target").val();
     var pre = options.series[1].data;
@@ -3226,8 +3272,8 @@ $("#pre_ana_btn").on('click', function () {
     var out_data = {name: '计划', type: 'line', smooth: true, data: plan}
     out.push(out_data);
     options.series = out;
-    myChartPre.clear();
-    myChartPre.setOption(options);
+    preBigChart.clear();
+    preBigChart.setOption(options);
 })
 
 // 目标分析函数
@@ -3254,6 +3300,7 @@ function getplan(pre, target) {
 //----------------首页展示的简单图
 //点击筛选按钮end
 let preSimpleChart = echarts.init(document.getElementById('prechart'));
+
 function chart2() {
     // 基于准备好的dom，初始化echarts实例
     option = {
@@ -3263,22 +3310,22 @@ function chart2() {
         tooltip: {
             trigger: 'axis',
             formatter: function (params) {
-                if(params.length != 1){
+                if (params.length != 1) {
                     return params[0].name + "<br/>"
-                    + params[1].marker + params[1].seriesName + "：" + params[1].value + "<br/>"
-                }else{
+                        + params[1].marker + params[1].seriesName + "：" + params[1].value + "<br/>"
+                } else {
                     return params[0].name + "<br/>"
-                    + params[0].marker + params[0].seriesName + "：" + params[0].value + "<br/>"
+                        + params[0].marker + params[0].seriesName + "：" + params[0].value + "<br/>"
                 }
             }
         },
         legend: {
-            selectedMode:false,
-            enable:false,
+            selectedMode: false,
+            enable: false,
             textStyle: {
                 color: '#fff'
             },
-            top:'5%'
+            top: '5%'
         },
         grid: {
             top: '20%',
@@ -3312,8 +3359,7 @@ function chart2() {
                 }
             }
         },
-        series: [
-        ]
+        series: []
     };
     preSimpleChart.clear();
     preSimpleChart.setOption(option);
@@ -3327,7 +3373,7 @@ chart2('');
 // predictData: Array(8) [ 7888, 8000, 8031, … ]
 // predictUnit: "season"},...]
 let wait_default_predict = function () {
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
         $.ajax({
             type: 'post',
             contentType: "application/x-www-form-urlencoded",
@@ -3340,58 +3386,96 @@ let wait_default_predict = function () {
     });//promise
 };
 
+let wait_simple_predict = function (business) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            type: 'post',
+            contentType: "application/x-www-form-urlencoded",
+            dataType: 'json',
+            url: 'http://localhost:9000/getsimplepredict',
+            data: {
+                business: business
+            },
+            success: function (res) {
+                resolve(res);
+            }
+        });//ajax
+    });//promise
+};
+
 async function draw_default_pre() {
-    preSimpleChart.showLoading({text: ''});
+    preSimpleChart.showLoading({
+        maskColor: 'rgba(68,120,255,0.7)'
+    });
     let res = await wait_default_predict();
+    updatePreSimpleChart(res);
+    preSimpleChart.hideLoading();
+}
+
+async function draw_simple_pre(business) {
+    preSimpleChart.showLoading({
+        maskColor: 'rgba(68,120,255,0.7)'
+    });
+    let res = await wait_simple_predict(business);
+    updatePreSimpleChart(res);
+    preSimpleChart.hideLoading();
+}
+
+// 更新简单预测表的主要函数
+function updatePreSimpleChart(res) {
     // 更换标题
     $("#title2").text('业务指标预测' + ": " + res[0].business);
     $("#analyli2_1").text(res[0].business);
     $("#big_title2").text('业务指标预测' + ": " + res[0].business);
+    $("#big_title_plan").text('计划配置' + ": " + res[0].business);
     let config = preSimpleChart.getOption();
     // 更换横纵坐标轴
-    let xAxis = generateX(res[0].predictUnit,res[0].predictData.length);
+    let xAxis = generateX(res[0].predictUnit, res[0].predictData.length);
     config.xAxis[0].data = xAxis;
+    if (res[0].business != '开卡数') config.yAxis[0].name = '元';
+    else config.yAxis[0].name = '张';
     // 更换图例
     //config.legend.data = [res[0].banknames];
     // 更换数据
     config.series = [];
     config.series.push({
-            name: res[0].bankName+'预测',
-            type: 'line',
-            smooth: true,
-            data: res[0].predictData
+        name: res[0].bankName + '预测',
+        type: 'line',
+        smooth: true,
+        data: res[0].predictData
     });
     let history = [];
     history.push(res[0].predictData[0]);
     history.push(res[0].predictData[1]);
     config.series.push({
-        name: res[0].bankName+'历史',
+        name: res[0].bankName + '历史',
         type: 'line',
         smooth: true,
         data: history
     });
     preSimpleChart.clear();
     preSimpleChart.setOption(config);
-    preSimpleChart.hideLoading();
+    preBigChart.clear();
+    preBigChart.setOption(config);
 }
 
 // 生成横坐标轴
-function generateX(unit,num){
+function generateX(unit, num) {
     let xAxis = [];
     let now = new Date();
     switch (unit) {
         case 'year':
-            for (let i = -2 ; i < num -2; i++) {
+            for (let i = -2; i < num - 2; i++) {
                 xAxis.push((now.getMonth() - 2 + i) + '年');
             }
             break;
         case 'season':
-            for (let i = -2 ; i < num -2; i++) {
+            for (let i = -2; i < num - 2; i++) {
                 xAxis.push(plan_getseason(i));
             }
             break;
         case 'month':
-            for (let i = -2 ; i < num -2; i++) {
+            for (let i = -2; i < num - 2; i++) {
                 xAxis.push(plan_getmon(i));
             }
             break;
@@ -3399,10 +3483,6 @@ function generateX(unit,num){
     return xAxis;
 }
 
-
-
-// 页面加载默认预测
-draw_default_pre()
 
 // value的值代表，该城市的计划值，长度由预测时间长度决定
 // 如[x,x,x,x]，即为当前时间接下去4个时间单位
@@ -3651,7 +3731,7 @@ async function main_all() {
 }
 
 // 动态添加
-// 默认预测4
+// 默认预测4个时间单位
 $('#pre_period').val(4);
 $('#gz_click').on('click', function () {
     if (pre_unit_choose != 0 && pre_unit_choose != 1 && pre_unit_choose != 2) {
@@ -3690,10 +3770,13 @@ $('#pre_all_btn').on('click', function () {
     var access = true;
     if ($('#广州target').val() == '') {
         alert("智能分配根据省会计划进行同比分配，请添加省会计划");
+        access = false;
     } else if (pre_unit_choose != 0 && pre_unit_choose != 1 && pre_unit_choose != 2) {
         alert("请选择预测单位");
+        access = false;
     } else if (typeof ($('#pre_period').val()) == 'undefined') {
         alert("请进入广州市配置界面设置时长");
+        access = false;
     } else if (gd_city[0].value != 0) {
         access = confirm("智能分配会覆盖掉手动修改的值，是否继续")
     }
@@ -4111,6 +4194,22 @@ chart_alert();
 
 /* =========================地图模块图表节结束============================*/
 
+//=============================悬浮窗相关样式
+
+$('#main_hover').on('mouseenter', function () {
+    $('#right_float_window').transition({
+        x: -45
+    }, 100, 'linear');
+})
+$('#right_float_window').on('mouseleave', function () {
+    $('#right_float_window').transition({
+        x: 0
+    }, 100, 'linear');
+})
+
+
+//                                悬浮窗结束==============================================
+
 /* =========================业务选择============================*/
 
 //业务选择 按钮动态展示
@@ -4443,6 +4542,7 @@ $('#commit').on('click', async function () {
 
 /* =========================核心查询图表============================*/
 var myChart4 = echarts.init(document.getElementById('chart4'));
+
 //xAxis
 function chart4() {
     // 基于准备好的dom，初始化echarts实例
@@ -5033,12 +5133,37 @@ $('.close-pop').on('click', function () {
 });
 // 分析界面标题 点击放大
 $('#title1').on('click', function () {
-    $('.container').attr('style', 'visibility: visible').find('.pop-up').eq(0).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
-    $('#filCon').hide();
+    // 泽涵的eq0保存，现在放大别的界面
+    //$('.container').attr('style', 'visibility: visible').find('.pop-up').eq(0).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
+    //$('#filCon').hide();
+    $('.container').attr('style', 'visibility: visible').find('.pop-up').eq(5).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
+    $('#ana_config_btn').attr('style', 'background: #4169E1');
+    $('#ana_config_page').attr('style', 'visibility: visible');
+    $('#ana_chart_page').attr('style', 'visibility: hidden');
+    ana_choose = 0;
 });
+
+$('#ana_config_btn').on('click',function(){
+    $('#ana_config_btn').attr('style', 'background: #4169E1');
+    $('#ana_chart_btn').attr('style', 'background: #0c1a2c');
+    $('#ana_config_page').attr('style', 'visibility: visible');
+    $('#ana_chart_page').attr('style', 'visibility: hidden');
+    ana_choose = 0;
+})
+
+$('#ana_chart_btn').on('click',function(){
+    $('#ana_config_btn').attr('style', 'background: #0c1a2c');
+    $('#ana_chart_btn').attr('style', 'background: #4169E1');
+    $('#ana_config_page').attr('style', 'visibility: hidden');
+    $('#ana_chart_page').attr('style', 'visibility: visible');
+    ana_choose = 1;
+})
 // 预测界面标题点击放大
 $('#title2').on('click', function () {
     $('.container').attr('style', 'visibility: visible').find('.pop-up').eq(1).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
+    $('#pre_chart_btn').attr('style', 'background: #4169E1');
+    pre_choose_chart = 1;
+    pre_choose_plan = 0;
 });
 // 查询历史标题 点击放大
 $('#tohistory').on('click', function () {
@@ -5048,8 +5173,25 @@ $('#tohistory').on('click', function () {
 $("#tobigmap").on('click', function () {
     $('.container').attr('style', 'visibility: visible').find('.pop-up').eq(3).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
 });
+
 $('#pre_plan_btn').on('click', function () {
     $('.container').attr('style', 'visibility: visible').find('.pop-up').eq(4).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
+    pre_choose_chart = 0;
+    pre_choose_plan = 1;
+    $('#plan_plan_btn').attr('style', 'background: #4169E1');
+    $('#plan_chart_btn').attr('style', 'background: #0c1a2c');
+    $('#pre_plan_btn').attr('style', 'background: #0c1a2c');
+    $('#pre_chart_btn').attr('style', 'background: #0c1a2c');
+});
+
+$('#plan_chart_btn').on('click', function () {
+    $('.container').attr('style', 'visibility: visible').find('.pop-up').eq(1).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
+    $('#plan_plan_btn').attr('style', 'background: #0c1a2c');
+    $('#plan_chart_btn').attr('style', 'background: #0c1a2c');
+    $('#pre_plan_btn').attr('style', 'background: #0c1a2c');
+    $('#pre_chart_btn').attr('style', 'background: #4169E1');
+    pre_choose_chart = 1;
+    pre_choose_plan = 0;
 });
 
 // 查询历史放大图表
@@ -5114,32 +5256,13 @@ $('.savehistory').on('click', function () {
     });
 })
 
-
-// 业务预测放大界面
-// 计划指定按钮
-// $('#pre_plan_btn').on('click', function () {
-//     $('.pre-right1').attr('style', 'visibility: visible');
-//     $('#pre_plan_btn').attr('style', 'visibility: hidden');
-//     $('.pre-right1').attr('style', 'visibility: visible');
-//     $('.pre-right2').attr('style', 'visibility: hidden');
-// })
-//
-//
-// $('#pre_ana_btn').on('click', function () {
-//     $('.pre-right1').attr('style', 'visibility: hidden');
-//     $('.pre-right2').attr('style', 'visibility: visible');
-//     $('#pre_ana_btn').attr('style', 'visibility: hidden');
-//     $('#pre_plan_btn').attr('style', 'visibility: visible');
-//
-// })
-
-
 // websocket 相关代码
 // 默认加载websocket服务
 //websocket 全局变量
 var stompClient;
+
 function connect(token) {
-    var socket= new SockJS('http://localhost:9000/socket');
+    var socket = new SockJS('http://localhost:9000/socket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected:' + frame);
@@ -5148,10 +5271,10 @@ function connect(token) {
             showResponse(JSON.parse(response.body).responseMessage);
         });
         // 订阅私有业务
-        stompClient.subscribe('/topic/'+token, function (response) {
+        stompClient.subscribe('/topic/' + token, function (response) {
             console.log(response);
-            result=response.body.Jcarnum
-            mouseleaveable_1=result
+            result = response.body.Jcarnum
+            mouseleaveable_1 = result
         });
     });
 };
@@ -5184,3 +5307,6 @@ function registerwebsock() {
     });
 
 }
+
+// 页面加载的时候运行的
+draw_default_pre(); //默认预测

@@ -1,6 +1,7 @@
 package com.icbc.index.control;
 
 import com.icbc.index.service.PredictService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,5 +37,17 @@ public class PredictController {
     String getdefaultpredict(){
         System.out.println("getdefaultpredict");
         return predictService.getdefaultpredict();
+    }
+
+    @RequestMapping(value = "/getsimplepredict")
+    @ResponseBody
+    String getsimplepredict(@Param(value = "business")String business){
+        System.out.println("getsimplepredict");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return predictService.getSimplePredictByBus(business);
     }
 }
