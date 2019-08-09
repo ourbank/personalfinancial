@@ -2,7 +2,8 @@ package com.icbc.index.util;
 
 
 /**
- * 四个业务的表名
+ * 四个业务的表名和业务名,用来生成sql
+ * @author zhenjin
  */
 public class TableNameConstant {
     public static final String CARDNUM = "card_Bill";

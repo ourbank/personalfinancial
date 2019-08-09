@@ -12,6 +12,6 @@ import java.util.List;
 @Mapper
 public interface BusinessSaveMapper {
 
-    @SelectProvider(type = SQLProvider.class, method = "CountThreeByAddrAndBusiness")
-    List<BusinessSaveData> CountThreeDaysByAddrAndBusiness(Msql msql);
+    @SelectProvider(type = SQLProvider.class, method = "CountByAddrAndBusiness")
+    List<BusinessSaveData> CountDaysByAddrAndBusiness(Msql msql);
    }

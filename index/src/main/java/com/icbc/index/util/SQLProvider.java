@@ -84,7 +84,20 @@ public class SQLProvider {
         return sql.toString();
     }
 
-    public String CountThreeByAddrAndBusiness(Msql msql){
+
+    /**
+     * 多业务多城市查询sql语句生成
+     *例子：SELECT DAY, num
+     * FROM Bill
+     * WHERE (( business = 'card' OR business = 'deposit' )
+     * 	AND ( bankId = 3 OR bankId = 4 )
+     * 	AND DAY BETWEEN '2019-01-01' AND '2019-01-10' )
+     * ORDER BYDAY
+     * @author zhenjin
+     * @param msql
+     * @return
+     */
+    public String CountByAddrAndBusiness(Msql msql){
         SQL sql = new SQL();
         String startTime = msql.getStrFromDate();
         String endTime = msql.getStrToDate();
