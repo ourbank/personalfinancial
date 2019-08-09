@@ -1,6 +1,7 @@
 package com.icbc.index.service;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.mapper.CardDao;
@@ -88,6 +89,21 @@ public class CardService {
 //        }
         String out = JSONParseUtil.getJSONMap(startTime,endTime,list,list2,map);
         // 测试哦
+        return out;
+    }
+
+    /**
+     * 获取到高频的数据库查询参数，进行数据库查询
+     * @return
+     */
+    public String getRecommendData() {
+        //这里先写死,假设推荐的查询是广州分行，深圳分行2018-2019的开卡数
+        String staticJson = "{\"business\":\"开卡数\"," +
+                "\"starttime\":\"2018-01-01\"," +
+                "\"endtime\":\"2019-07-31\"," +
+                "\"banknames\":[\"广州分行\",\"深圳分行\"]}";
+        JSONObject jb = JSONObject.parseObject(staticJson);
+        String out = getDaysNumByBankName(jb);
         return out;
     }
 }

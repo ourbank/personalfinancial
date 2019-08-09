@@ -2955,14 +2955,14 @@ async function anasimplechart() {
         tooltip: {},
         series: [{
             type: 'wordCloud',  //类型为字符云
-            sizeRange: [1, 50],
+            sizeRange: [1, 45],
             rotationRange: [-90, 90],
             rotationStep: 90,
             shape: 'pentagon',
-            top:0,
-            left:0,
-            width:'98%',
-            height:'90%',
+            top: 0,
+            left: 0,
+            width: '98%',
+            height: '90%',
             textStyle: {
                 normal: {
                     fontFamily: 'sans-serif',
@@ -2984,12 +2984,11 @@ async function anasimplechart() {
     };
     let res = await wait_wordcloud();
     option.series[0].data = res;
-    console.log(res)
     ana_simple_chart.setOption(option);
 }
 
-let wait_wordcloud = function(){
-    return new Promise((resolve)=>{
+let wait_wordcloud = function () {
+    return new Promise((resolve) => {
         $.ajax({
             type: 'post',
             contentType: "application/x-www-form-urlencoded",
@@ -3893,7 +3892,7 @@ var myChart3 = echarts.init(document.getElementById('gdMap'));
 var myChart33 = echarts.init(document.getElementById('gdMap_big'));
 var myChart_gdmap_alert = echarts.init(document.getElementById('gdMap_alert'));
 
-function chart3(chartType) {
+async function chart3(chartType) {
     var data = [
         {
             name: '广州市',
@@ -3990,7 +3989,7 @@ function chart3(chartType) {
             yMax = data[j].value;
         }
     }
-    var option = {
+    let option = {
         animation: true,
         tooltip: {
             show: true
@@ -4046,7 +4045,7 @@ function chart3(chartType) {
             }
         ]
     };
-    var option_big = {
+    let option_big = {
         animation: true,
         tooltip: {
             show: true
@@ -4102,11 +4101,23 @@ function chart3(chartType) {
             }
         ]
     };
+
+    for (let i = 0; i < arealist.length; i++) {
+        let d = option.series[0].data;
+        let bigd = option_big.series[0].data
+        for (let j = 0; j < d.length; j++) {
+            if(d[j].name == arealist[i].bankname.slice(0,arealist[i].bankname.length-2)+'市'){
+                d[j].selected = true;
+                bigd[j].selected = true;
+                break;
+            }
+        }
+    }
+    console.log(option)
     myChart3.setOption(option);
     myChart33.setOption(option_big);
 }
 
-chart3('');
 
 // 警报界面地图
 function chart_alert(chartType) {
@@ -4390,13 +4401,50 @@ $('#Jmiddle').on('click', function () {
     $('#Jmiddle').css({background: '#9400D3'});
 });
 
+function change_business_style(){
+    if(arealist[0].business == '开卡数'){
+        $('#Jcardnum').css({background: '#9400D3'});
+        $('#Jloan').css({background: '#4169E1'});
+        $('#Jcash').css({background: '#4169E1'});
+        $('#Jmiddle').css({background: '#4169E1'});
+        mouseleaveable_1 = false;
+        mouseleaveable_2 = true;
+        mouseleaveable_3 = true;
+        mouseleaveable_4 = true;
+    }else if(arealist[0].business == '贷款数'){
+        $('#Jcardnum').css({background: '#4169E1'});
+        $('#Jloan').css({background: '#9400D3'});
+        $('#Jcash').css({background: '#4169E1'});
+        $('#Jmiddle').css({background: '#4169E1'});
+        mouseleaveable_1 = true;
+        mouseleaveable_2 = false;
+        mouseleaveable_3 = true;
+        mouseleaveable_4 = true;
+    }else if(arealist[0].business == '存款数'){
+        $('#Jcardnum').css({background: '#4169E1'});
+        $('#Jloan').css({background: '#4169E1'});
+        $('#Jcash').css({background: '#9400D3'});
+        $('#Jmiddle').css({background: '#4169E1'});
+        mouseleaveable_1 = true;
+        mouseleaveable_2 = true;
+        mouseleaveable_3 = false;
+        mouseleaveable_4 = true;
+    }else {
+        $('#Jcardnum').css({background: '#4169E1'});
+        $('#Jloan').css({background: '#4169E1'});
+        $('#Jcash').css({background: '#4169E1'});
+        $('#Jmiddle').css({background: '#9400D3'});
+        mouseleaveable_1 = true;
+        mouseleaveable_2 = true;
+        mouseleaveable_3 = true;
+        mouseleaveable_4 = false;
+    }
+}
 
 $('#gdMap').css({opacity: 0, scale: 0.2}).transition({
     opacity: 1,
     scale: 1
 }, 1000, 'linear');
-
-
 /* =========================业务选择结束============================*/
 
 /* =========================历史查询============================*/
@@ -4452,10 +4500,8 @@ var endTime = {
     choose: function (datas) {
         startTime.max = datas; //结束日选好后，重置开始日的最大日期
         endV = datas;
-
         endY = endV.slice(0, 4);
         endM = endV.slice(5, 7);
-
     }
 };
 
@@ -4486,13 +4532,32 @@ function dateCss() {
     $('#laydate_box').attr('style', cssStr);
 }
 
+var sendajax = function () {
+    return new Promise((resolve) => {
+        $.ajax({
+            // nginx 的url http://localhost/proxy/getdata
+            url: "http://localhost:9000/getsinglebuss",
+            data: JSON.stringify({
+                "banknames": searchcitys,
+                "business": factor,
+                "starttime": startV,
+                "endtime": endV
+            }),
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            success: function (res) {
+                arealist = res;
+                resolve();
+            }
+        });
+    });
+}
 //开始发送啦
 $('#commit').on('click', async function () {
-    var myChart4 = echarts.init(document.getElementById('chart4'));
-    for (var i = 0; i < selectedCity.length; i++) {
+    for (let i = 0; i < selectedCity.length; i++) {
         searchcitys[i] = parsearea(selectedCity[i]);
     }
-    for (var i = 0; i < 1; i++) {
+    for (let i = 0; i < 1; i++) {
         if (searchcitys.length == 0) {
             alert("请选择你要查询的城市");
             break;
@@ -4508,7 +4573,54 @@ $('#commit').on('click', async function () {
         }
     }
     await sendajax();
-    var options = myChart4.getOption();
+    draw_main_chart();
+})
+// 默认查询请求
+var get_default_main = function () {
+    return new Promise((resolve) => {
+        $.ajax({
+            // nginx 的url http://localhost/proxy/getdata
+            url: "http://localhost:9000/getdefaultmain",
+            type: 'post',
+            dataType: 'json',
+            success: function (res) {
+                arealist = res;
+                resolve();
+            }
+        });
+    });
+}
+
+// 页面加载进行推荐查询
+async function process_main() {
+    await get_default_main();
+    console.log(arealist)
+    // 自动注入地图
+    chart3('');
+    // 自动显示图表
+    factor = arealist[0].business;
+    startY = arealist[0].data[0].time.slice(0, 4);//开始年
+    startM = '01'//开始月
+    endY = arealist[0].data[arealist[0].data.length - 1].time.slice(0, 4);//结束年
+    endM = '12';//结束月
+    selectedCity = [];
+    for (let i = 0; i < arealist.length; i++) {
+        selectedCity.push(arealist[i].bankname.slice(0, arealist[i].bankname.length - 2) + '市')
+    }
+    // 自动更改业务样式
+    change_business_style();
+    // 更改时间选择器
+    $('#endTime').val(endY+"-"+endM);
+    $('#startTime').val(startY+"-"+startM);
+
+    draw_main_chart();
+}
+
+
+// 将画图功能抽取出来，方便其他地方调用
+function draw_main_chart() {
+    let myChart4 = echarts.init(document.getElementById('chart4'));
+    let options = myChart4.getOption();
     if (factor == '开卡数') {
         options.yAxis[0] = {
             type: 'value',
@@ -4567,13 +4679,9 @@ $('#commit').on('click', async function () {
         }
     }
     options.legend[0].data = selectedCity;
-
-
     options.xAxis[0].data = getChart4_bscissa();
     // 加载数据
-
     var dataIndex = options.xAxis[0].data;
-
     options.series = []; // 先清空
     if (dataIndex[0].indexOf('号') != -1) {
         //点进来在日里面
@@ -4581,7 +4689,6 @@ $('#commit').on('click', async function () {
             options.series.push({name: '', type: '', data: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = 'bar';
-
             options.series[i].data = getmonthcount(
                 selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                 curyear, clickMonth);
@@ -4592,8 +4699,6 @@ $('#commit').on('click', async function () {
             options.series.push({name: '', type: '', data: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = 'bar';
-
-
             options.series[i].data = getmonth(
                 selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                 parseInt(startY));
@@ -4608,8 +4713,7 @@ $('#commit').on('click', async function () {
     }
     myChart4.clear();
     myChart4.setOption(options);
-})
-
+}
 
 /* =========================时间选择器结束============================*/
 
@@ -5009,16 +5113,7 @@ myChart4.getZr().on('click', params => {
 
     }
 });
-/*
-myChart3.dispatchAction({
-    type: 'selectDataRange',        //选取映射的数值范围。
-    //visualMapIndex: number,         // 可选，visualMap 组件的 index，多个 visualMap 组件时有用，默认为 0
-    // 连续型 visualMap 和 离散型 visualMap 不一样
-    // 连续型的是一个表示数值范围的数组。selected: [20, 40],
-    // 离散型的是一个对象，键值是类目或者分段的索引。值是 `true`, `false`,例如：selected: { 1: false }// 取消选中第二段, selected: { '优': false }// 取消选中类目 `优`
-    selected: Object|Array
-});
-*/
+
 var arealist = [];//用来存放地点list 的array
 //--------------------------------------------------------------------------------------------------
 //点击地图中的一个地方，发送第一次发送一个post请求，
@@ -5142,45 +5237,23 @@ function cachicatch(city) {
 
 function getChart4_bscissa() {
     chart4_bscissa = [];
-    var templist = arealist[0];
-    for (var i = 0; i < templist.data.length; i++) {
+    let templist = arealist[0];
+    for (let i = 0; i < templist.data.length; i++) {
         chart4_bscissa[i] = templist.data[i].time;
     }
 
     if (chart4_bscissa.length == 1) {
         chart4_bscissa = [];
         templist = templist.data[0].data;
-        var i = parseInt(startM);
-        var count = parseInt(endM) - i + 1;
-        for (var k = 0; k < count; k++) {
+        let i = parseInt(startM);
+        let count = parseInt(endM) - i + 1;
+        for (let k = 0; k < count; k++) {
             chart4_bscissa[k] = templist[i - 1].time;
             i++;
         }
     }
     return chart4_bscissa;
 }
-
-var sendajax = function () {
-    return new Promise((resolve) => {
-        $.ajax({
-            // nginx 的url http://localhost/proxy/getdata
-            url: "http://localhost:9000/getsinglebuss",
-            data: JSON.stringify({
-                "banknames": searchcitys,
-                "business": factor,
-                "starttime": startV,
-                "endtime": endV
-            }),
-            type: 'post',
-            contentType: 'application/json;charset=utf-8',
-            success: function (res) {
-                arealist = res;
-                resolve();
-            }
-        });
-    });
-}
-
 
 /*获取选择的地点，并赋予到查询表的图例中*/
 myChart3.on('mapselectchanged', function (params) {
@@ -5384,3 +5457,4 @@ function registerwebsock() {
 // 页面加载的时候运行的
 draw_default_pre(); //默认预测
 anasimplechart(); //默认分析
+process_main(); //默认查询

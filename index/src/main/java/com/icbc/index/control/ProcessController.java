@@ -62,10 +62,24 @@ public class ProcessController {
         return cardService.getDaysNumByBankName(jsonParam);
     }
 
+    /**
+     * 返回推荐的默认查询数据
+     * @return json数据
+     */
+    @RequestMapping(value = "/getdefaultmain", method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    String getdefaultmain(){
+         return cardService.getRecommendData();
+    }
+
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public @ResponseBody void test(@RequestParam("voice") String voice,@RequestParam("token") String token) {
         String test = pythonService.test(voice);
         webSocketController.sendToUser(token,test);
     }
+
+
+
 
 }

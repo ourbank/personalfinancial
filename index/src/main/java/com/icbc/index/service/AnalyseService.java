@@ -22,7 +22,6 @@ public class AnalyseService {
         for (PredictScaleVo psv : wordcloud){
             out.add(new WordCloudVo(psv.getBankName(),psv.getNum()));
         }
-        System.out.println(JSON.toJSONString(out));
         return JSON.toJSONString(out);
     }
 }
