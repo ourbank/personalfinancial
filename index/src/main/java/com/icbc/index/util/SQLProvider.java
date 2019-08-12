@@ -126,7 +126,7 @@ public class SQLProvider {
         sql.SELECT("day","num");
         sql.FROM("Bill");
         sql.WHERE(businessCondition.toString(), bankCondition.toString() ,timeCondition);
-        sql.ORDER_BY("day");
+        sql.ORDER_BY("day","business");
 
 
         return sql.toString();

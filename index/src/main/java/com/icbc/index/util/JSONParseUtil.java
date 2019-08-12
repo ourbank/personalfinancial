@@ -548,7 +548,7 @@ public class JSONParseUtil {
      * @param input
      * @return
      */
-    public static String getSaveJson(TreeSet<Integer> bankSet, TreeSet<String> businessSet,
+    public static JSONObject getSaveJson(TreeSet<Integer> bankSet, TreeSet<String> businessSet,
                                      String startTime, String endTime,
                                      List<BusinessSaveData> input){
         Map<String,Object> outmap = new HashMap<>();
@@ -564,8 +564,8 @@ public class JSONParseUtil {
         for(int ba : bankSet){
             for(String bu :businessSet){
                 tablecolMap = new HashMap<>();
-                tablecolMap.put("colName", BankIdConstant.getAddrByBankId(ba) +"/" + bu);
-                tablecolMap.put("colItem", BankIdConstant.getAddrByBankId(ba) + bu);
+                tablecolMap.put("colName", BankIdConstant.getAddrByBankId(ba) +"/" + TableNameConstant.getBusinessNameByBill(bu));
+                tablecolMap.put("colItem", BankIdConstant.getAddrByBankId(ba) + TableNameConstant.getBusinessNameByBill(bu));
                 tablecolData.add(tablecolMap);
             }
         }
@@ -578,7 +578,7 @@ public class JSONParseUtil {
             tableDataMap.put("tableData",date);
             for(String busine : businessSet){
                 for(int bank : bankSet){
-                    tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+busine, input.get(index).getNum());
+                    tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+TableNameConstant.getBusinessNameByBill(busine), input.get(index).getNum());
                     index++;
                 }
             }
@@ -588,6 +588,7 @@ public class JSONParseUtil {
         outmap.put("tablecolData",tablecolData);
         outmap.put("tableData",tableData);
 
-        return JSON.toJSONString(outmap);
+        JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(outmap));
+        return jsonObject;
     }
 }
