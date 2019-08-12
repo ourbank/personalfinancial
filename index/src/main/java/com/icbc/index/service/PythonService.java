@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 @Service
@@ -90,7 +91,8 @@ public class PythonService {
                 String time = (String) object.get("b");
                 switch (time){
                     case "去年":
-                        startTime= TimeUtil.dateToYearStr(date) +"-01-01";
+                        int year = TimeUtil.dateToFormatInt(date, "yyyy");
+                        startTime= (year-1) +"-01-01";
                         endTime=startTime.replace("-01-01","-12-31");
                         sql.setStrFromDate(startTime);
                         sql.setStrToDate(endTime);
