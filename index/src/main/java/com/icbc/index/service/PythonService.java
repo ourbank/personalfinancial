@@ -112,11 +112,9 @@ public class PythonService {
                 business = (String) object.get("d");
                 sql.setSingleBusiness(business);
             }
-
         }
         List<CardData> countByBankName = cardDao.getCountByBankName(sql);
         String singleBusJson = JSONParseUtil.getSingleBusJson(startTime, endTime, place, business, countByBankName);
         return singleBusJson;
-
     }
 }
