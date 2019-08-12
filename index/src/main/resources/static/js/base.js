@@ -3960,7 +3960,7 @@ async function chart3(chartType) {
         },
         {
             name: '东莞市',
-            value: 0
+            value: 0.0
         },
         {
             name: '中山市',

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,7 @@ public class PythonService {
     @Autowired
     CardMountDao cardMountDao;
 
-    @Autowired
+    @Resource
     CardDao cardDao;
 
     Logger logger = LoggerFactory.getLogger(PythonService.class);
