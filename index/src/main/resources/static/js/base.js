@@ -5418,9 +5418,7 @@ function connect(token) {
         });
         // 订阅私有业务
         stompClient.subscribe('/topic/' + token, function (response) {
-            console.log(response);
-            result = response.body.Jcarnum
-            mouseleaveable_1 = result
+            console.log(response.body);
         });
     });
 };

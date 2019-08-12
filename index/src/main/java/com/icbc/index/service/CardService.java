@@ -1,15 +1,12 @@
 package com.icbc.index.service;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.mapper.CardDao;
 import com.icbc.index.model.CardData;
-import com.icbc.index.model.Msql;
+import com.icbc.index.model.CoreInQuerySQL;
 import com.icbc.index.util.JSONParseUtil;
-import com.icbc.index.util.SQLProvider;
-import com.icbc.index.util.TimeUtil;
 
 
 import org.slf4j.Logger;
@@ -49,8 +46,8 @@ public class CardService {
             if(bankNames.get(i).indexOf("市") != -1)
                 bankNames.set(i,bankNames.get(i).substring(0,bankNames.get(i).indexOf("市"))+"分行");
         }
-        Msql msql = new Msql(startTime,endTime,business,bankNames);
-        List<CardData> list = cardDao.getCountByBankName(msql);
+        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL(startTime,endTime,business,bankNames);
+        List<CardData> list = cardDao.getCountByBankName(coreInQuerySQL);
         String out = JSONParseUtil.getSingleBusJson(startTime,endTime,bankNames,business,list);
         logger.info("查询到某行每天的数据："+out);
         return out;

@@ -2,7 +2,7 @@ package com.icbc.index.mapper;
 
 
 import com.icbc.index.model.CardData;
-import com.icbc.index.model.Msql;
+import com.icbc.index.model.CoreInQuerySQL;
 import com.icbc.index.util.SQLProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,7 +16,7 @@ public interface CardDao {
 
 
     @SelectProvider(type= SQLProvider.class, method="getSingleBusSql")
-    List<CardData> getCountByBankName(Msql msql);
+    List<CardData> getCountByBankName(CoreInQuerySQL coreInQuerySQL);
 
 
     @Select("SELECT \n" +

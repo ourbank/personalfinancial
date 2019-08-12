@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.mapper.BusinessSaveMapper;
 import com.icbc.index.model.BusinessSaveData;
-import com.icbc.index.model.Msql;
+import com.icbc.index.model.CoreInQuerySQL;
 import com.icbc.index.util.BankIdConstant;
 import com.icbc.index.util.JSONParseUtil;
 import org.springframework.stereotype.Service;
@@ -80,11 +80,11 @@ public class BusinessSaveService {
         }
 
 
-        Msql msql = new Msql(startTime,endTime,businesslist,banklist);
+        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL(startTime,endTime,businesslist,banklist);
 //        banklist = new ArrayList<>();banklist.add("广州");banklist.add("深圳");
 //        businesslist = new ArrayList<>();businesslist.add("开卡数");businesslist.add("存款数");
-//        Msql msql = new Msql("2019-01-01","2019-01-10",businesslist,banklist);
-        List<BusinessSaveData> list = businessSaveMapper.CountDaysByAddrAndBusiness(msql);
+//        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL("2019-01-01","2019-01-10",businesslist,banklist);
+        List<BusinessSaveData> list = businessSaveMapper.CountDaysByAddrAndBusiness(coreInQuerySQL);
 
         TreeSet<Integer> bankSet = new TreeSet<>();
         TreeSet<String> businessSet = new TreeSet<>(businesslist);

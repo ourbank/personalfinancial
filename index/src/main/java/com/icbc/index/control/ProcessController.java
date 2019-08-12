@@ -4,6 +4,7 @@ package com.icbc.index.control;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.icbc.index.model.CardData;
 import com.icbc.index.service.CardService;
 import com.icbc.index.service.PythonService;
 import com.icbc.index.util.VoiceEncodeUtil;
@@ -42,9 +43,10 @@ public class ProcessController {
         VoiceRecognitionUtil.init();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
+        logger.info("微信语音转文字结果："+result);
         pythonService.test(result);
 
-        webSocketController.sendToUser(token,result);
+       // webSocketController.sendToUser(token,result);
     }
 
     /**
@@ -76,10 +78,8 @@ public class ProcessController {
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public @ResponseBody void test(@RequestParam("voice") String voice,@RequestParam("token") String token) {
         String test = pythonService.test(voice);
+
         webSocketController.sendToUser(token,test);
     }
-
-
-
 
 }

@@ -3,7 +3,7 @@ package com.icbc.index.model;
 import java.util.Date;
 import java.util.List;
 
-public class Msql {
+public class CoreInQuerySQL {
 
     // 查询时间范围 2019-01-01
     private Date fromDate;
@@ -20,9 +20,9 @@ public class Msql {
     // 数据库时间查询间隔
     private String period;
 
-    public Msql() {}
+    public CoreInQuerySQL() {}
 
-    public Msql(Date fromData, Date toData, List<String> company, List<String> business, String operate, String period) {
+    public CoreInQuerySQL(Date fromData, Date toData, List<String> company, List<String> business, String operate, String period) {
         this.fromDate = fromData;
         this.toDate = toData;
         this.company = company;
@@ -31,7 +31,7 @@ public class Msql {
         this.period = period;
     }
 
-    public Msql(String strFromDate, String strToDate, String singleBusiness, List<String> company) {
+    public CoreInQuerySQL(String strFromDate, String strToDate, String singleBusiness, List<String> company) {
         this.strFromDate = strFromDate;
         this.strToDate = strToDate;
         this.singleBusiness = singleBusiness;
@@ -45,7 +45,7 @@ public class Msql {
      * @param business
      * @param company
      */
-    public Msql(String strFromDate, String strToDate, List<String> business, List<String> company) {
+    public CoreInQuerySQL(String strFromDate, String strToDate, List<String> business, List<String> company) {
         this.strFromDate = strFromDate;
         this.strToDate = strToDate;
         this.business = business;
@@ -86,5 +86,49 @@ public class Msql {
 
     public String getPeriod() {
         return period;
+    }
+
+    public Date getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
+
+    public void setStrFromDate(String strFromDate) {
+        this.strFromDate = strFromDate;
+    }
+
+    public void setStrToDate(String strToDate) {
+        this.strToDate = strToDate;
+    }
+
+    public void setSingleBusiness(String singleBusiness) {
+        this.singleBusiness = singleBusiness;
+    }
+
+    public void setCompany(List<String> company) {
+        this.company = company;
+    }
+
+    public void setBusiness(List<String> business) {
+        this.business = business;
+    }
+
+    public void setOperate(String operate) {
+        this.operate = operate;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
     }
 }
