@@ -57,7 +57,6 @@ public class ProcessController {
     @RequestMapping(value = "/getsinglebuss", method = RequestMethod.POST,produces = "application/json")
     @ResponseBody
     @CrossOrigin
-    //@RequestBody String jsonParam
     String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
         return cardService.getDaysNumByBankName(jsonParam);
     }

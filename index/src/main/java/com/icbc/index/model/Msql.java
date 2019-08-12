@@ -6,8 +6,8 @@ import java.util.List;
 public class Msql {
 
     // 查询时间范围 2019-01-01
-    private Date fromData;
-    private Date toData;
+    private Date fromDate;
+    private Date toDate;
     private String strFromDate;
     private String strToDate;
     private String singleBusiness;
@@ -23,8 +23,8 @@ public class Msql {
     public Msql() {}
 
     public Msql(Date fromData, Date toData, List<String> company, List<String> business, String operate, String period) {
-        this.fromData = fromData;
-        this.toData = toData;
+        this.fromDate = fromData;
+        this.toDate = toData;
         this.company = company;
         this.business = business;
         this.operate = operate;
@@ -53,11 +53,11 @@ public class Msql {
     }
 
     public Date getFromData() {
-        return fromData;
+        return fromDate;
     }
 
     public Date getToData() {
-        return toData;
+        return toDate;
     }
 
     public String getStrFromDate() {
