@@ -31,6 +31,3 @@ def jiebacut(request):
     return HttpResponse(json.dumps(list, ensure_ascii=False), content_type="application/json;charset=utf-8")
 
 
-def predict(request):
-    # Nothing now
-    return 'a'

@@ -22,13 +22,14 @@ public class SQLProvider {
         innersql.GROUP_BY("bankid", "day");
         SQL sql = new SQL().SELECT("a.bankname as bankName,b.day as time,b.num as cardNum");
         sql.FROM("bank a"); //添加from语句
-        sql.INNER_JOIN("(" + innersql.toString() + ") b on a.id = b.bankid");
+        sql.INNER_JOIN("(" + innersql.toString() + ") b on a.id = b.bankid ");
         for (int i = 0; i < msql.getCompany().size(); i++) {
             bankName = msql.getCompany().get(i);
             sql.WHERE("a.bankname ='" + bankName + "'");
             if (i != msql.getCompany().size() - 1)
                 sql.OR();
         }
+        sql.ORDER_BY("day");
         System.out.println("auto sql:\n" + sql.toString());
         return sql.toString();
     }
@@ -80,6 +81,7 @@ public class SQLProvider {
         sql.SELECT("b.num as num, a.bankname as bankName");
         sql.FROM("bank a");
         sql.INNER_JOIN("("+innersql.toString()+") b on a.id = b.bankid");
+        sql.ORDER_BY("day");
         System.out.println("auto sql:\n" + sql.toString());
         return sql.toString();
     }

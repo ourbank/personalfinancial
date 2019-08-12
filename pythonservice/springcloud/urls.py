@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
+
+from springcloud import predict
 from . import view
 
 urlpatterns = [
@@ -24,5 +26,5 @@ urlpatterns = [
     url('health/', view.health),
     url('jieba/$', view.jiebacut),
     # 获取预测结果
-    url('predict/$', view.predict)
+    url('predict/', predict.predict)
 ]

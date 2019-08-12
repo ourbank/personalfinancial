@@ -4612,7 +4612,7 @@ async function process_main() {
     // 更改时间选择器
     $('#endTime').val(endY+"-"+endM);
     $('#startTime').val(startY+"-"+startM);
-
+    // 更改图表
     draw_main_chart();
 }
 
@@ -5016,7 +5016,7 @@ $('#chart4').on('dblclick', function (params) {
                         parseInt(startY));
                 }
             } else {
-                options.xAxis[0].data = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '2月'];
+                options.xAxis[0].data = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
                 for (var i = 0; i < selectedCity.length; i++) {
                     options.series[i].data = getmonth(
                         selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
@@ -5276,6 +5276,9 @@ $('.close-pop').on('click', function () {
     $(this).parent().parent().hide();
     $('.pop-up1').attr('style', 'visibility: hidden');
     $('#pages-div').attr('style', 'visibility: hidden');
+    $('#ana_config_page').attr('style', 'visibility: hidden');
+    $('#ana_chart_page').attr('style', 'visibility: hidden');
+
 });
 // 分析界面标题 点击放大
 $('#title1').on('click', function () {

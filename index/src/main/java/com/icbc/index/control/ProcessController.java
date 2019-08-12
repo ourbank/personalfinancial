@@ -72,6 +72,7 @@ public class ProcessController {
          return cardService.getRecommendData();
     }
 
+
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public @ResponseBody void test(@RequestParam("voice") String voice,@RequestParam("token") String token) {
         String test = pythonService.test(voice);

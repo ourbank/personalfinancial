@@ -4,10 +4,7 @@ import com.icbc.index.service.AnalyseService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @CrossOrigin
@@ -21,7 +18,7 @@ public class AnalyseController {
      * @param period
      * @return
      */
-    @RequestMapping(value = "/getwordcloud")
+    @RequestMapping(value = "/getwordcloud",method = RequestMethod.POST)
     @ResponseBody
     String getwordcloud(@RequestParam("business") String bus,@RequestParam("period") String period){
         System.out.println("getwordcloud");
