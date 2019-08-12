@@ -1,5 +1,10 @@
 package com.icbc.index.util;
 
+
+/**
+ * 匹配银行的地点和id
+ * @author zhenjin
+ */
 public class BankIdConstant {
 
     public static Integer getBanIdByAddr(String addr){

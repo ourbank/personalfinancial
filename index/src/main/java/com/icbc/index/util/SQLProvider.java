@@ -39,7 +39,7 @@ public class SQLProvider {
         innersql.SELECT("sum(num) as num,bankid");
         // 判断查询哪张表
         switch (buss) {
-            case "card":
+            case "开卡数":
                 innersql.FROM("card_bill");
                 break;
         }
@@ -66,8 +66,8 @@ public class SQLProvider {
             case "month":
                 if(TimeUtil.dateToFormatInt(now,"MM") - 1 > 0){
                     int mon = TimeUtil.dateToFormatInt(now,"MM");
-                    startTime = TimeUtil.dateToFormatInt(now,"yyyy") +(mon - 1)+"-01";
-                    endTime = TimeUtil.dateToFormatInt(now,"yyyy") +(mon - 1)+"-31";
+                    startTime = TimeUtil.dateToFormatInt(now,"yyyy") +"-"+ (mon - 1)+"-01";
+                    endTime = TimeUtil.dateToFormatInt(now,"yyyy") +"-"+ (mon - 1)+"-31";
                 }else{
                     startTime = TimeUtil.dateToFormatInt(now,"yyyy") -1 +"12-01";
                     endTime = TimeUtil.dateToFormatInt(now,"yyyy") - 1 +"12-31";
@@ -84,7 +84,20 @@ public class SQLProvider {
         return sql.toString();
     }
 
-    public String CountThreeByAddrAndBusiness(Msql msql){
+
+    /**
+     * 多业务多城市查询sql语句生成
+     *例子：SELECT DAY, num
+     * FROM Bill
+     * WHERE (( business = 'card' OR business = 'deposit' )
+     * 	AND ( bankId = 3 OR bankId = 4 )
+     * 	AND DAY BETWEEN '2019-01-01' AND '2019-01-10' )
+     * ORDER BYDAY
+     * @author zhenjin
+     * @param msql
+     * @return
+     */
+    public String CountByAddrAndBusiness(Msql msql){
         SQL sql = new SQL();
         String startTime = msql.getStrFromDate();
         String endTime = msql.getStrToDate();
