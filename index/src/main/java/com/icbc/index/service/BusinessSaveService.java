@@ -9,6 +9,7 @@ import com.icbc.index.model.BusinessSaveData;
 import com.icbc.index.model.CoreInQuerySQL;
 import com.icbc.index.util.BankIdConstant;
 import com.icbc.index.util.JSONParseUtil;
+import com.icbc.index.util.TableNameConstant;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +22,7 @@ public class BusinessSaveService {
     BusinessSaveMapper businessSaveMapper;
 
     public JSONObject getDaysNumByBankName(JSONObject objectlist){
-//        1.获取JSONobject里面的业务名以及对应的业务值为map
+        //1.获取JSONobject里面的业务名以及对应的业务值为map
         JSONArray jsonArray = objectlist.getJSONArray("list");
 
         Iterator iterator = jsonArray.iterator();
@@ -30,7 +31,7 @@ public class BusinessSaveService {
             JSONObject jsonObject = (JSONObject)iterator.next();
             //前端传过来的map的key（条件名）
             String keystr = jsonObject.get("panAttrName").toString();
-            //前端传过来的map的list（条件值）
+            //前端传过来的map的value（条件值）
             String value = jsonObject.get("panAttrValue").toString();
             //从已经放入的查询条件获取valueList
             List<String> valueList = new ArrayList<>();
@@ -48,10 +49,7 @@ public class BusinessSaveService {
         for(String key : map.keySet()){
             System.out.print("Key = "+key+"value = "+map.get(key));
         }
-//        String startTime = map.get("startTime").toString();
-//        String endTime = map.get("endTime").toString();
-//        List<String> cities = map.get("city");
-//        List<String> business =  map.get("business");
+        //2.初始化参数
         String startTime = "2019-01-01";
         String endTime = "2019-01-05";
         List<String> banklist = new ArrayList<>();
@@ -70,32 +68,31 @@ public class BusinessSaveService {
             businesslist = map.get("业务");
         }else {
             System.out.println("sql给他一个默认业务");
-            businesslist.add("存储数");
-            map.put("存储数",businesslist);
+            businesslist.add("存款数");
         }
-        if (map.containsKey("时间")){
-            System.out.println("sql拿到: 时间");
-            startTime = map.get("时间").get(0);
-            endTime = map.get("时间").get(1);
+        if (map.containsKey("日期")){
+            System.out.println("sql拿到: 日期");
+            startTime = map.get("日期").get(0).substring(2,12);
+            endTime = map.get("日期").get(0).substring(15,25);
         }
 
+        //3.查询数据库
+        CoreInQuerySQL msql = new CoreInQuerySQL(startTime,endTime,businesslist,banklist);
+        List<BusinessSaveData> list = businessSaveMapper.CountDaysByAddrAndBusiness(msql);
 
-        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL(startTime,endTime,businesslist,banklist);
-//        banklist = new ArrayList<>();banklist.add("广州");banklist.add("深圳");
-//        businesslist = new ArrayList<>();businesslist.add("开卡数");businesslist.add("存款数");
-//        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL("2019-01-01","2019-01-10",businesslist,banklist);
-        List<BusinessSaveData> list = businessSaveMapper.CountDaysByAddrAndBusiness(coreInQuerySQL);
-
+        //4.转化为JSON
         TreeSet<Integer> bankSet = new TreeSet<>();
-        TreeSet<String> businessSet = new TreeSet<>(businesslist);
-
+        TreeSet<String> businessSet = new TreeSet<>();
         for (int i=0; i<banklist.size();i++){
             bankSet.add(BankIdConstant.getBanIdByAddr(banklist.get(i)));
         }
-
-
-        JSONObject jsonObject =  JSONParseUtil.getSaveJson(bankSet, businessSet, startTime, endTime, list);
+        for (int i=0; i<businesslist.size();i++){
+            businessSet.add(TableNameConstant.getBillBusiness(businesslist.get(i)));
+        }
+        JSONObject jsonObject = JSONParseUtil.getSaveJson(bankSet, businessSet, startTime, endTime, list);
+//        System.out.println(jsonObject);
         return jsonObject;
     }
+
 
 }
