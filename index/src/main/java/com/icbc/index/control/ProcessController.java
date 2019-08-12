@@ -44,9 +44,9 @@ public class ProcessController {
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
         logger.info("微信语音转文字结果："+result);
-        pythonService.test(result);
+        String test = pythonService.test(result);
 
-       // webSocketController.sendToUser(token,result);
+         webSocketController.sendToUser(token,test);
     }
 
     /**
