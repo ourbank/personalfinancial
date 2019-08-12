@@ -22,5 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('maxmatch/$', view.getcutword),
     url('health/', view.health),
-    url('jieba/$', view.jiebacut)
+    url('jieba/$', view.jiebacut),
+    # 获取预测结果
+    url('predict/$', view.predict)
 ]
