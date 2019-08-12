@@ -79,7 +79,6 @@ public class ProcessController {
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public @ResponseBody void test(@RequestParam("voice") String voice,@RequestParam("token") String token) {
         String test = pythonService.test(voice);
-
         webSocketController.sendToUser(token,test);
     }
 

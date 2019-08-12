@@ -64,8 +64,6 @@ public class WebSocketController {
 
 
     public void sendToUser(String token, String message){
-
-
         messagingTemplate.convertAndSend("/topic/"+token,message);
     }
 

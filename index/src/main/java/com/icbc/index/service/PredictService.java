@@ -3,12 +3,10 @@ package com.icbc.index.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.parser.Feature;
 import com.icbc.index.mapper.CardDao;
 import com.icbc.index.mapper.PredictDao;
 import com.icbc.index.model.CardData;
-import com.icbc.index.model.Msql;
+import com.icbc.index.model.CoreInQuerySQL;
 import com.icbc.index.util.TimeUtil;
 import com.icbc.index.vo.PredictDataVo;
 import com.icbc.index.vo.PredictScaleVo;
@@ -71,7 +69,7 @@ public class PredictService {
         System.out.println("------获取训练数据------");
         List<String> bankNames = new ArrayList<>();
         bankNames.add("广州分行");
-        Msql msql = new Msql("2009-01-01","2019-12-31",business,bankNames);
+        CoreInQuerySQL msql = new CoreInQuerySQL("2009-01-01","2019-12-31",business,bankNames);
         List<CardData> train_data = cardDao.getCountByBankName(msql);
         List<Integer> parse_train_data = new ArrayList<>();
         List<String> parse_train_time = new ArrayList<>();
