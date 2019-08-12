@@ -20,7 +20,7 @@ public class BusinessSaveService {
     @Resource
     BusinessSaveMapper businessSaveMapper;
 
-    public String getDaysNumByBankName(JSONObject objectlist){
+    public JSONObject getDaysNumByBankName(JSONObject objectlist){
 //        1.获取JSONobject里面的业务名以及对应的业务值为map
         JSONArray jsonArray = objectlist.getJSONArray("list");
 
@@ -94,9 +94,8 @@ public class BusinessSaveService {
         }
 
 
-        String out = JSONParseUtil.getSaveJson(bankSet, businessSet, startTime, endTime, list);
-        System.out.println(out);
-        return out;
+        JSONObject jsonObject =  JSONParseUtil.getSaveJson(bankSet, businessSet, startTime, endTime, list);
+        return jsonObject;
     }
 
 }
