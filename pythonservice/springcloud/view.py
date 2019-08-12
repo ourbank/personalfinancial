@@ -19,9 +19,7 @@ def health(request):
     return HttpResponse(json.dumps(response), content_type="application/json;charset=utf-8")
 
 
-
 def jiebacut(request):
-
     raw = request.GET.get('raw')
     jb.load_userdict('./user_dict.txt')
     word_list = pg.cut(raw)
@@ -31,3 +29,8 @@ def jiebacut(request):
         element[flag] = word
         list.append(element)
     return HttpResponse(json.dumps(list, ensure_ascii=False), content_type="application/json;charset=utf-8")
+
+
+def predict(request):
+    # Nothing now
+    return 'a'

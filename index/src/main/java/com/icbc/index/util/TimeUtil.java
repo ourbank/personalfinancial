@@ -101,6 +101,7 @@ public class TimeUtil {
         return c.get(Calendar.DAY_OF_MONTH);
     }
 
+
     public static int getTimePeriod(String start, String end){
         //"2018-2","2019-10"
         int startYear = Integer.parseInt(start.substring(0,4));

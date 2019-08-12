@@ -12,21 +12,21 @@ import com.icbc.index.util.SQLProvider;
 import com.icbc.index.util.TimeUtil;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class CardService {
 
+    Logger logger = LoggerFactory.getLogger(CardService.class);
     @Autowired
     CardDao cardDao;
 
@@ -52,7 +52,7 @@ public class CardService {
         Msql msql = new Msql(startTime,endTime,business,bankNames);
         List<CardData> list = cardDao.getCountByBankName(msql);
         String out = JSONParseUtil.getSingleBusJson(startTime,endTime,bankNames,business,list);
-        System.out.println(out);
+        logger.info("查询到某行每天的数据："+out);
         return out;
     }
 

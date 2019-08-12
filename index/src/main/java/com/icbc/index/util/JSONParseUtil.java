@@ -8,10 +8,14 @@ import com.icbc.index.model.Msql;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public class JSONParseUtil {
+
+    private static Logger logger= LoggerFactory.getLogger(JSONParseUtil.class);
 
     /**
      * 从百度分词API中获取得到关键分词，组装成为特定的sql对象
@@ -314,7 +318,7 @@ public class JSONParseUtil {
         // 不同业务
         for (int b = 0; b < buss.size(); b++) {
             outMap.put("bussiness", buss.get(b));
-            List<Map> citys = new ArrayList<>();
+            List<Map> cities= new ArrayList<>();
             //不同城市
             for (int z = 0; z < bankName.size(); z++) {
                 Map citymap = new HashMap();
@@ -349,9 +353,9 @@ public class JSONParseUtil {
                     years.add(yearmap);
                 }
                 citymap.put("data", years);
-                citys.add(citymap);
+                cities.add(citymap);
             }
-            outMap.put("citys", citys);
+            outMap.put("citys", cities);
         }
         return outMap;
     }
@@ -489,6 +493,7 @@ public class JSONParseUtil {
             citymap.put("data", years);
             out.add(citymap);
         }
+
         return out;
     }
 

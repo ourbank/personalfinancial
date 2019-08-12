@@ -57,8 +57,8 @@ public class ProcessController {
     @RequestMapping(value = "/getsinglebuss", method = RequestMethod.POST,produces = "application/json")
     @ResponseBody
     @CrossOrigin
-    //@RequestBody String jsonParam
-    String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
+    public String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
+        logger.info("前台传递过来查询核心业务"+jsonParam.toJSONString());
         return cardService.getDaysNumByBankName(jsonParam);
     }
 
@@ -69,7 +69,7 @@ public class ProcessController {
     @RequestMapping(value = "/getdefaultmain", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    String getdefaultmain(){
+    public String getdefaultmain(){
          return cardService.getRecommendData();
     }
 
