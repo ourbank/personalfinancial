@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="/font/iconfont.css">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class="GM_ipone">
@@ -53,51 +55,48 @@
             </div>
         </div>
     </div>
-    <div id="appdate">
-        <template>
-            <div class="block">
-                <div style = "width:1210px;margin:auto">
-                    <span class="demonstration"  style="color: #666;font-size: 14px;margin: 0px auto;" >时间范围：</span>
-                    <el-date-picker
-                            v-model="value1"
-                            type="daterange"
-                            range-separator="至"
-                            start-placeholder="开始日期"
-                            end-placeholder="结束日期"
-                            @change="chooseTimeRange"
-                            value-format="yyyy-MM-dd">
-                    </el-date-picker>
-                </div>
-            </div>
-        </template>
-    </div>
 
-    <br/>
-    <br/>
-    <div id="apptable">
-        <el-table
-                border
-                :data="tableData"
-                style="width: 1210px;margin:auto">
-            <template v-for='(col) in tablecolData'>
-                <el-table-column
-                        :prop="col.colItem"
-                        :label="col.colName"
-                        width="124px"
-                >
-                </el-table-column>
-            </template>
-        </el-table>
-    </div>
-
-    <div>
-        <el-button  icon="el-icon-download" circle></el-button>
-    </div>
 
 </div>
 
+<div id="appdate">
+    <template>
+        <div class="block">
+            <div style = "width:1210px;margin:auto">
+                <span class="demonstration"  style="color: #666;font-size: 14px;margin: 0px auto;" >时间范围：</span>
+                <el-date-picker
+                        v-model="value1"
+                        type="daterange"
+                        range-separator="至"
+                        start-placeholder="开始日期"
+                        end-placeholder="结束日期"
+                        @change="chooseTimeRange"
+                        value-format="yyyy-MM-dd">
+                </el-date-picker>
+                <el-button  icon="el-icon-download" circle onclick="exportExcel_Doit()"></el-button>
+            </div>
+        </div>
+    </template>
+</div>
 
-
+<br/>
+<br/>
+<div id="apptable">
+    <el-table
+            id = "ttt"
+            border
+            :data="table.tableData"
+            style="width: 1210px;margin:auto">
+        <template v-for='(col) in table.tablecolData'>
+            <el-table-column
+                    :prop="col.colItem"
+                    :label="col.colName"
+                    width="124px"
+            >
+            </el-table-column>
+        </template>
+    </el-table>
+</div>
 
 </body>
 <!-- 先引入 Vue -->
@@ -175,6 +174,8 @@
                 }).then(function (response) {
                     //vm.panlist = response.data;
                     // alert(response.data);
+                    vmtable.table = response.data;
+                    console.log(response.data)
                 });
             }
 
@@ -219,60 +220,65 @@
                 }).then(function (response) {
                     //vm.panlist = response.data;
                     // alert(response.data);
+                    vmtable.table = response.data;
                 });
             }
         }
     })
     var vmtable = new Vue({
         el: '#apptable',
-        data :{"tablecolData": [{
-                "colName": "日期",
-                "colItem": "tableData"
-            }, {
-                "colName": "广州/存款数",
-                "colItem": "广州存款数"
-            }, {
-                "colName": "广州/开卡数",
-                "colItem": "广州开卡数"
-            }, {
-                "colName": "深圳/存款数",
-                "colItem": "深圳存款数"
-            }, {
-                "colName": "深圳/开卡数",
-                "colItem": "深圳开卡数"
-            }],
-            "tableData": [{
-                "广州存款数": 27,
-                "深圳存款数": 35,
-                "深圳开卡数": 25767570100,
-                "广州开卡数": 25655509300,
-                "tableData": "2019-01-01"
-            }, {
-                "广州存款数": 36,
-                "深圳存款数": 38,
-                "深圳开卡数": 25776485300,
-                "广州开卡数": 25663916700,
-                "tableData": "2019-01-02"
-            }, {
-                "广州存款数": 34,
-                "深圳存款数": 37,
-                "深圳开卡数": 25785846900,
-                "广州开卡数": 25671529000,
-                "tableData": "2019-01-03"
-            }, {
-                "广州存款数": 30,
-                "深圳存款数": 31,
-                "深圳开卡数": 25794934700,
-                "广州开卡数": 25679504000,
-                "tableData": "2019-01-04"
-            }, {
-                "广州存款数": 37,
-                "深圳存款数": 26,
-                "深圳开卡数": 25800826100,
-                "广州开卡数": 25689332700,
-                "tableData": "2019-01-05"
-            }]
-        }})
+        data :{
+            table:null
+        }
+        //     {"tablecolData": [{
+        //         "colName": "日期",
+        //         "colItem": "tableData"
+        //     }, {
+        //         "colName": "广州/存款数",
+        //         "colItem": "广州存款数"
+        //     }, {
+        //         "colName": "广州/开卡数",
+        //         "colItem": "广州开卡数"
+        //     }, {
+        //         "colName": "深圳/存款数",
+        //         "colItem": "深圳存款数"
+        //     }, {
+        //         "colName": "深圳/开卡数",
+        //         "colItem": "深圳开卡数"
+        //     }],
+        //     "tableData": [{
+        //         "广州存款数": 27,
+        //         "深圳存款数": 35,
+        //         "深圳开卡数": 25767570100,
+        //         "广州开卡数": 25655509300,
+        //         "tableData": "2019-01-01"
+        //     }, {
+        //         "广州存款数": 36,
+        //         "深圳存款数": 38,
+        //         "深圳开卡数": 25776485300,
+        //         "广州开卡数": 25663916700,
+        //         "tableData": "2019-01-02"
+        //     }, {
+        //         "广州存款数": 34,
+        //         "深圳存款数": 37,
+        //         "深圳开卡数": 25785846900,
+        //         "广州开卡数": 25671529000,
+        //         "tableData": "2019-01-03"
+        //     }, {
+        //         "广州存款数": 30,
+        //         "深圳存款数": 31,
+        //         "深圳开卡数": 25794934700,
+        //         "广州开卡数": 25679504000,
+        //         "tableData": "2019-01-04"
+        //     }, {
+        //         "广州存款数": 37,
+        //         "深圳存款数": 26,
+        //         "深圳开卡数": 25800826100,
+        //         "广州开卡数": 25689332700,
+        //         "tableData": "2019-01-05"
+        //     }]
+        // }
+    })
 </script>
 
 <script>
@@ -285,10 +291,51 @@
         },methods:{
             chooseTimeRange(t) {
                 alert(t);//结果为一个数组，如：["2018-08-04", "2018-08-06"]
+                //去重
+                //var flag = 0;
+                for (var i in vmtop.panlist.list){
+                    if (vmtop.panlist.list[i].panAttrName==="日期"){
+                        vmtop.panlist.list.splice(i,2);
+                    }
+                }
+                this.addTimeIfNo(t);
+
+            },
+            addTimeIfNo(t){
+                var pans = {
+                    panAttrName  : "日期",
+                    panAttrValue : t
+                }
+                var pane={
+                    panAttrName  : "日期",
+                    panAttrValue : t[1]
+                }
+                vmtop.panlist.list.push(pans);
+                vmtop.sendSql();
             }
         }
     };
     var Ctor = Vue.extend(Main)
     new Ctor().$mount('#appdate')
 </script>
+
+
+<!--excel导出相关的包-->
+<script type="text/javascript" src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/blob.js@1.0.1/Blob.js"></script>
+<script type="text/javascript" src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
+
+<script>
+    /*
+     *   导出excel function
+     * */
+    exportExcel_Doit = function(type, fn, dl) {
+        var elt = document.getElementById('ttt');
+        var wb = XLSX.utils.table_to_book(elt, {sheet: "Sheet JS"});
+        return dl ?
+            XLSX.write(wb, {bookType: type, bookSST: true, type: 'base64'}) :
+            XLSX.writeFile(wb, fn || ('test.' + (type || 'xlsx')));
+    }
+</script>
+
 </html>
