@@ -3838,7 +3838,6 @@ $('#gz_click').on('click', function () {
 
 // 动态添加 城市配置
 $('#pre_all_btn').on('click', function () {
-    console.log(gd_city)
     var access = true;
     if ($('#广州target').val() == '') {
         alert("智能分配根据省会计划进行同比分配，请添加省会计划");
@@ -4113,7 +4112,6 @@ async function chart3(chartType) {
             }
         }
     }
-    console.log(option)
     myChart3.setOption(option);
     myChart33.setOption(option_big);
 }
@@ -4592,9 +4590,11 @@ var get_default_main = function () {
 }
 
 // 页面加载进行推荐查询
-async function process_main() {
-    await get_default_main();
+async function process_main(hasdata) {
+    if(!hasdata)
+        await get_default_main();
     console.log(arealist)
+    console.log(arealist[0])
     // 自动注入地图
     chart3('');
     // 自动显示图表
@@ -5423,6 +5423,11 @@ function connect(token) {
         stompClient.subscribe('/topic/' + token, function (response) {
             console.log(response.body);
         });
+        stompClient.subscribe('/topic/test', function (res) {
+            // console.log(response.body);
+            arealist = JSON.parse(res.body);
+            process_main(true)
+        });
     });
 };
 
@@ -5446,7 +5451,7 @@ function showCallback(message) {
 
 function registerwebsock() {
     $.ajax({
-        url: "http://127.0.0.1:9000/registerwebsocket",
+        url: "http://localhost:9000/registerwebsocket",
         type: "get",
         success: function (token) {
             connect(token);
@@ -5458,4 +5463,4 @@ function registerwebsock() {
 // 页面加载的时候运行的
 draw_default_pre(); //默认预测
 anasimplechart(); //默认分析
-process_main(); //默认查询
+process_main(false); //默认查询

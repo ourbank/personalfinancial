@@ -67,6 +67,11 @@ public class WebSocketController {
         messagingTemplate.convertAndSend("/topic/"+token,message);
     }
 
+    // 测试用，绕开小程序的token
+    public void sendToUserLimk(String message){
+        messagingTemplate.convertAndSend("/topic/test",message);
+    }
+
 
 
 }

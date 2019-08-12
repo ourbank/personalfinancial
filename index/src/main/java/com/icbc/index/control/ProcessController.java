@@ -76,12 +76,12 @@ public class ProcessController {
         return cardService.getRecommendData();
     }
 
-
+    // 测试用，不用小程序的token
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public @ResponseBody
-    void test(@RequestParam("voice") String voice, @RequestParam("token") String token) {
+    void test(@RequestParam("voice") String voice) {
         String test = pythonService.test(voice);
-        webSocketController.sendToUser(token, test);
+        webSocketController.sendToUserLimk(test);
     }
 
 }
