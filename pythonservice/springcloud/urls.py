@@ -24,5 +24,5 @@ urlpatterns = [
     url('health/', view.health),
     url('jieba/$', view.jiebacut),
     # 获取预测结果
-    url('predict/$', view.predict)
+    url('predict/', view.predict)
 ]

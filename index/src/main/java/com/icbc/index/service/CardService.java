@@ -44,11 +44,7 @@ public class CardService {
         String business = json.get("business").toString();
         String startTime = json.get("starttime").toString();
         String endTime = json.get("endtime").toString();
-        logger.info("业务: "+business);
-        logger.info("开始时间: "+startTime);
-        logger.info("结束时间: "+endTime);
         List<String> bankNames = JSONArray.parseArray(json.getJSONArray("banknames").toJSONString(),String.class);
-        logger.info("选择的银行"+Arrays.toString(bankNames.toArray()));
         for (int i = 0; i < bankNames.size() ; i++) {
             if(bankNames.get(i).indexOf("市") != -1)
                 bankNames.set(i,bankNames.get(i).substring(0,bankNames.get(i).indexOf("市"))+"分行");
@@ -56,7 +52,7 @@ public class CardService {
         Msql msql = new Msql(startTime,endTime,business,bankNames);
         List<CardData> list = cardDao.getCountByBankName(msql);
         String out = JSONParseUtil.getSingleBusJson(startTime,endTime,bankNames,business,list);
-        System.out.println(out);
+        logger.info("查询到某行每天的数据："+out);
         return out;
     }
 

@@ -33,7 +33,7 @@ public class SQLProvider {
             if (i != msql.getCompany().size() - 1)
                 sql.OR();
         }
-
+        logger.info("核心业务查询:"+sql.toString());
         return sql.toString();
     }
 
