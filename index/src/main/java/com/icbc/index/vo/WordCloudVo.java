@@ -1,7 +1,7 @@
 package com.icbc.index.vo;
 
 /**
- * 该类为配合前端字符与 数据格式要求
+ * 该类为配合前端字符与数据格式要求
  */
 public class WordCloudVo {
     private String name;

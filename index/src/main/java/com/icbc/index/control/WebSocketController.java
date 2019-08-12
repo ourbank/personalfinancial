@@ -2,6 +2,8 @@ package com.icbc.index.control;
 
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.configuration.SocketSessionMap;
+import com.icbc.index.mapper.CardDao;
+import com.icbc.index.model.CardData;
 import com.icbc.index.service.RedisService;
 import com.icbc.index.vo.RequestMessage;
 import com.icbc.index.vo.ResponseMessage;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 该控制器负责websocket的相关请求和推送
@@ -60,12 +63,10 @@ public class WebSocketController {
 */
 
 
-    public void sendToUser(String token,String message){
+    public void sendToUser(String token, String message){
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        JSONObject object=new JSONObject();
-        object.put("Jcarnum",true);
-        messagingTemplate.convertAndSend("/topic/"+token,object);
+
+        messagingTemplate.convertAndSend("/topic/"+token,message);
     }
 
 

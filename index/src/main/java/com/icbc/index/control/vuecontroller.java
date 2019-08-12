@@ -116,10 +116,30 @@ public class vuecontroller {
         AttrValue attrValue = new AttrValue();
         attrValue.setValueName("广州");
         AttrValue attrValue2 = new AttrValue();
-        attrValue2.setValueName("深圳");
+        attrValue2.setValueName("佛山");
+        AttrValue attrValue3 = new AttrValue();
+        attrValue3.setValueName("深圳");
+        AttrValue attrValue4 = new AttrValue();
+        attrValue4.setValueName("东莞");
+        AttrValue attrValue5 = new AttrValue();
+        attrValue5.setValueName("中山");
+        AttrValue attrValue6 = new AttrValue();
+        attrValue6.setValueName("珠海");
+        AttrValue attrValue7 = new AttrValue();
+        attrValue7.setValueName("江门");
+        AttrValue attrValue8 = new AttrValue();
+        attrValue8.setValueName("肇庆");
         List<AttrValue> list  = new ArrayList<>();
         list.add(attrValue);
         list.add(attrValue2);
+        list.add(attrValue3);
+        list.add(attrValue4);
+        list.add(attrValue5);
+        list.add(attrValue6);
+        list.add(attrValue7);
+        list.add(attrValue8);
+
+
         attrInfo.setAttrValueList(list);
         return attrInfo;
     }
@@ -136,9 +156,7 @@ public class vuecontroller {
         //System.out.println("hello" + objectlist);
 
         //给getTableByJson方法处理
-        businessSaveService.getDaysNumByBankName(objectlist);
-        JSONObject object1 = new JSONObject();
-        object1.put("return","200");
+        JSONObject object1 =businessSaveService.getDaysNumByBankName(objectlist);
         return object1;
     }
     //String substring = list.substring(list.indexOf("["));

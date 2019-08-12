@@ -1,7 +1,8 @@
 package com.icbc.index.control;
 
 import com.icbc.index.service.AnalyseService;
-import org.apache.ibatis.annotations.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @CrossOrigin
 public class AnalyseController {
+
+    Logger logger = LoggerFactory.getLogger(AnalyseController.class);
     @Autowired
     AnalyseService analyseService;
 
@@ -20,8 +23,9 @@ public class AnalyseController {
      */
     @RequestMapping(value = "/getwordcloud",method = RequestMethod.POST)
     @ResponseBody
-    String getwordcloud(@RequestParam("business") String bus,@RequestParam("period") String period){
-        System.out.println("getwordcloud");
+    public String getwordcloud(@RequestParam("business") String bus,@RequestParam("period") String period){
+
+        logger.debug("根据时间周期和业务控制器："+bus+"<--->"+period);
         return analyseService.getwordcloudByBus(bus,period);
     }
 }

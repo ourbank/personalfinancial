@@ -26,9 +26,20 @@ public class TableNameConstant {
         switch (business){
             case "开卡数":return "card";
             case "存款数":return "deposit";
-            case "贷款数":return "intermediate";
-            case "中间业务收入":return "loan";
+            case "贷款数":return "loan";
+            case "中间业务收入":return "intermediate";
             default:return null;
         }
     }
+
+    public static String getBusinessNameByBill(String business){
+        switch (business){
+            case "card": return "开卡数";
+            case "deposit":return "存款数";
+            case "loan":return "贷款数";
+            case "intermediate":return "中间业务收入";
+            default:return null;
+        }
+    }
+
 }

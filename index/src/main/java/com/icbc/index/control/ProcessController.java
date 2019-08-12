@@ -4,6 +4,7 @@ package com.icbc.index.control;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.icbc.index.model.CardData;
 import com.icbc.index.service.CardService;
 import com.icbc.index.service.PythonService;
 import com.icbc.index.util.VoiceEncodeUtil;
@@ -42,9 +43,10 @@ public class ProcessController {
         VoiceRecognitionUtil.init();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
+        logger.info("微信语音转文字结果："+result);
         pythonService.test(result);
 
-        webSocketController.sendToUser(token,result);
+       // webSocketController.sendToUser(token,result);
     }
 
     /**
@@ -57,7 +59,8 @@ public class ProcessController {
     @RequestMapping(value = "/getsinglebuss", method = RequestMethod.POST,produces = "application/json")
     @ResponseBody
     @CrossOrigin
-    String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
+    public String testGzData(Model model, HttpServletResponse response, @RequestBody JSONObject jsonParam) {
+        logger.info("前台传递过来查询核心业务"+jsonParam.toJSONString());
         return cardService.getDaysNumByBankName(jsonParam);
     }
 
@@ -68,7 +71,7 @@ public class ProcessController {
     @RequestMapping(value = "/getdefaultmain", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    String getdefaultmain(){
+    public String getdefaultmain(){
          return cardService.getRecommendData();
     }
 
@@ -76,10 +79,8 @@ public class ProcessController {
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public @ResponseBody void test(@RequestParam("voice") String voice,@RequestParam("token") String token) {
         String test = pythonService.test(voice);
+
         webSocketController.sendToUser(token,test);
     }
-
-
-
 
 }

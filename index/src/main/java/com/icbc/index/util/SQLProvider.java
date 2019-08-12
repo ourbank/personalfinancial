@@ -1,7 +1,9 @@
 package com.icbc.index.util;
 
-import com.icbc.index.model.Msql;
+import com.icbc.index.model.CoreInQuerySQL;
 import org.apache.ibatis.jdbc.SQL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -10,11 +12,13 @@ import java.util.List;
 
 public class SQLProvider {
 
-    public String getSingleBusSql(Msql msql) {
+    Logger logger = LoggerFactory.getLogger(SQLProvider.class);
+
+    public String getSingleBusSql(CoreInQuerySQL coreInQuerySQL) {
         //创建SQL对象并设置select语句要查询的列
         SQL innersql = new SQL();
-        String startTime = TimeUtil.praseStartTime(msql.getStrFromDate());
-        String endTime = TimeUtil.praseEndTime(msql.getStrToDate());
+        String startTime = TimeUtil.praseStartTime(coreInQuerySQL.getStrFromDate());
+        String endTime = TimeUtil.praseEndTime(coreInQuerySQL.getStrToDate());
         String bankName;
         innersql.SELECT("bankid", "sum(num) as num", "day");
         innersql.FROM("card_bill");
@@ -22,15 +26,15 @@ public class SQLProvider {
         innersql.GROUP_BY("bankid", "day");
         SQL sql = new SQL().SELECT("a.bankname as bankName,b.day as time,b.num as cardNum");
         sql.FROM("bank a"); //添加from语句
-        sql.INNER_JOIN("(" + innersql.toString() + ") b on a.id = b.bankid ");
-        for (int i = 0; i < msql.getCompany().size(); i++) {
-            bankName = msql.getCompany().get(i);
+        sql.INNER_JOIN("(" + innersql.toString() + ") b on a.id = b.bankid");
+        for (int i = 0; i < coreInQuerySQL.getCompany().size(); i++) {
+            bankName = coreInQuerySQL.getCompany().get(i);
             sql.WHERE("a.bankname ='" + bankName + "'");
-            if (i != msql.getCompany().size() - 1)
+            if (i != coreInQuerySQL.getCompany().size() - 1)
                 sql.OR();
         }
         sql.ORDER_BY("day");
-        System.out.println("auto sql:\n" + sql.toString());
+        logger.info("核心业务查询:"+sql.toString());
         return sql.toString();
     }
 
@@ -95,30 +99,30 @@ public class SQLProvider {
      * 	AND DAY BETWEEN '2019-01-01' AND '2019-01-10' )
      * ORDER BYDAY
      * @author zhenjin
-     * @param msql
+     * @param coreInQuerySQL
      * @return
      */
-    public String CountByAddrAndBusiness(Msql msql){
+    public String CountByAddrAndBusiness(CoreInQuerySQL coreInQuerySQL){
         SQL sql = new SQL();
-        String startTime = msql.getStrFromDate();
-        String endTime = msql.getStrToDate();
+        String startTime = coreInQuerySQL.getStrFromDate();
+        String endTime = coreInQuerySQL.getStrToDate();
         String addr;
 
         StringBuilder bankCondition = new StringBuilder("(");
         List<Integer> bankId = new ArrayList<>();
-        for(int i = 0; i<msql.getCompany().size();i++){
-            bankId.add(i,BankIdConstant.getBanIdByAddr( msql.getCompany().get(i)));
+        for(int i = 0; i< coreInQuerySQL.getCompany().size(); i++){
+            bankId.add(i,BankIdConstant.getBanIdByAddr( coreInQuerySQL.getCompany().get(i)));
             bankCondition.append("bankId  = "+bankId.get(i));
-            if(i<msql.getCompany().size()-1) bankCondition.append(" OR ");
+            if(i< coreInQuerySQL.getCompany().size()-1) bankCondition.append(" OR ");
         }
         bankCondition.append(" )");
 
         StringBuilder businessCondition= new StringBuilder("(");
         List<String> business = new ArrayList<>();
-        for(int j = 0;j<msql.getBusiness().size(); j++){
-            business.add(j,msql.getBusiness().get(j));
+        for(int j = 0; j< coreInQuerySQL.getBusiness().size(); j++){
+            business.add(j, coreInQuerySQL.getBusiness().get(j));
             businessCondition.append("business = '" +TableNameConstant.getBillBusiness(business.get(j)) +"'");
-            if(j<msql.getBusiness().size()-1) businessCondition.append(" OR ");
+            if(j< coreInQuerySQL.getBusiness().size()-1) businessCondition.append(" OR ");
         }
         businessCondition.append(")");
 
@@ -127,7 +131,7 @@ public class SQLProvider {
         sql.SELECT("day","num");
         sql.FROM("Bill");
         sql.WHERE(businessCondition.toString(), bankCondition.toString() ,timeCondition);
-        sql.ORDER_BY("day");
+        sql.ORDER_BY("day","business");
 
 
         return sql.toString();

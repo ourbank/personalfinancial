@@ -4,19 +4,22 @@ package com.icbc.index.util;
 import com.alibaba.fastjson.JSON;
 import com.icbc.index.model.BusinessSaveData;
 import com.icbc.index.model.CardData;
-import com.icbc.index.model.Msql;
+import com.icbc.index.model.CoreInQuerySQL;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public class JSONParseUtil {
 
+    private static Logger logger= LoggerFactory.getLogger(JSONParseUtil.class);
+
     /**
      * 从百度分词API中获取得到关键分词，组装成为特定的sql对象
      *
-     * @param str List<Msql>
+     * @param str List<CoreInQuerySQL>
      * @return
      */
     public static String getMsql(String str) {
@@ -59,8 +62,8 @@ public class JSONParseUtil {
             }
         }
         //
-        Msql msql = toMsql(operate, timeProcess(timeList), companyList, businessProcess(businessList));
-        String select = tranMsql(msql);
+        CoreInQuerySQL coreInQuerySQL = toMsql(operate, timeProcess(timeList), companyList, businessProcess(businessList));
+        String select = tranMsql(coreInQuerySQL);
         // 测试用
         Map map = new HashMap();
         map.put("操作", operate);
@@ -83,7 +86,7 @@ public class JSONParseUtil {
      * @param businessList 业务集合，用于查询业务类别
      * @return
      */
-    private static Msql toMsql(String operate, List<String> timeList, List<String> companyList, List<String> businessList) {
+    private static CoreInQuerySQL toMsql(String operate, List<String> timeList, List<String> companyList, List<String> businessList) {
         Date fromDate = null;
         Date toDate = null;
         String period = null;
@@ -107,8 +110,8 @@ public class JSONParseUtil {
             }
             fromDate = TimeUtil.strToDateLong(timeList.get(0));
         }
-        Msql msql = new Msql(fromDate, toDate, companyList, businessList, operate, period);
-        return msql;
+        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL(fromDate, toDate, companyList, businessList, operate, period);
+        return coreInQuerySQL;
     }
 
     /**
@@ -116,17 +119,17 @@ public class JSONParseUtil {
      *
      * @return
      */
-    private static String tranMsql(Msql msql) {
+    private static String tranMsql(CoreInQuerySQL coreInQuerySQL) {
         String sql = "";
-        switch (msql.getOperate()) {
+        switch (coreInQuerySQL.getOperate()) {
             case "查询":
-                sql = tranSelectMsql(msql);
+                sql = tranSelectMsql(coreInQuerySQL);
                 break;
             case "统计":
-                //sql = tranCountMsql(msql);
+                //sql = tranCountMsql(coreInQuerySQL);
                 break;
             case "对比":
-                //sql = tranCompareMsql(msql);
+                //sql = tranCompareMsql(coreInQuerySQL);
                 break;
         }
         return sql;
@@ -135,12 +138,12 @@ public class JSONParseUtil {
     /**
      * 处理查询请求
      *
-     * @param msql
+     * @param coreInQuerySQL
      */
-    private static String tranSelectMsql(Msql msql) {
+    private static String tranSelectMsql(CoreInQuerySQL coreInQuerySQL) {
         String sql = "";
-        String business = msql.getBusiness().get(0);
-        switch (msql.getPeriod()) {
+        String business = coreInQuerySQL.getBusiness().get(0);
+        switch (coreInQuerySQL.getPeriod()) {
             // 查询具体某一天的情况
             // 这部分代码后期转移到dao层中，在这里测试用！！！
             case "day":
@@ -148,8 +151,8 @@ public class JSONParseUtil {
                 // 样例语句：select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m-%d') as day from bank inner join card on bank.id = card.bankId
                 //where DATE_FORMAT(createTime,'%Y-%m-%d') = '2019-07-06' GROUP BY bankName
                 sql = sql + "select count(card.id),bankname,date_format(createtime,%Y-%m-%d) as day from bank inner join card on bank.id = card.bankId " +
-                        "where date_format(createtime,%Y-%m-%d) = '" + TimeUtil.dateToDayStr(msql.getFromData()) + "' group by bankname having ";
-                for (String company : msql.getCompany()) {
+                        "where date_format(createtime,%Y-%m-%d) = '" + TimeUtil.dateToDayStr(coreInQuerySQL.getFromData()) + "' group by bankname having ";
+                for (String company : coreInQuerySQL.getCompany()) {
                     sql = sql + " bankname = '" + company + "' or ";
                 }
                 sql = sql.substring(0, sql.lastIndexOf("or"));
@@ -160,8 +163,8 @@ public class JSONParseUtil {
                 //样例语句：select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m-%d') as day from bank inner join card on bank.id = card.bankId
                 //where DATE_FORMAT(createTime,'%Y-%m') = '2019-07' GROUP BY bankName,day
                 sql = sql + "select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m-%d') as day from bank inner join card on bank.id = card.bankId " +
-                        "where date_format(createtime,%Y-%m) = '" + TimeUtil.dateToMonthStr(msql.getFromData()) + "' group by bankname,day having bankname = ";
-                for (String company : msql.getCompany()) {
+                        "where date_format(createtime,%Y-%m) = '" + TimeUtil.dateToMonthStr(coreInQuerySQL.getFromData()) + "' group by bankname,day having bankname = ";
+                for (String company : coreInQuerySQL.getCompany()) {
                     sql = sql + " bankname = '" + company + "' or ";
                 }
                 sql = sql.substring(0, sql.lastIndexOf("or"));
@@ -172,8 +175,8 @@ public class JSONParseUtil {
                 //样例语句：select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m') as month from bank inner join card on bank.id = card.bankId
                 //where DATE_FORMAT(createTime,'%Y') = '2019' GROUP BY bankName,month
                 sql = sql + "select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m') as month from bank inner join card on bank.id = card.bankId " +
-                        "where date_format(createtime,%Y) = '" + TimeUtil.dateToYearStr(msql.getFromData()) + "' group by bankname,month having bankname = ";
-                for (String company : msql.getCompany()) {
+                        "where date_format(createtime,%Y) = '" + TimeUtil.dateToYearStr(coreInQuerySQL.getFromData()) + "' group by bankname,month having bankname = ";
+                for (String company : coreInQuerySQL.getCompany()) {
                     sql = sql + " bankname = '" + company + "' or ";
                 }
                 sql = sql.substring(0, sql.lastIndexOf("or"));
@@ -184,8 +187,8 @@ public class JSONParseUtil {
                 //样例语句：select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m-%d') as day from bank inner join card on bank.id = card.bankId
                 //where createTime BETWEEN '2019-07-01' and '2019-07-07' GROUP BY bankName,day
                 sql = sql + "select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m-%d') as day from bank inner join card on bank.id = card.bankId " +
-                        "where createtime between '" + TimeUtil.dateToDayStr(msql.getFromData()) + "' and '" + TimeUtil.dateToDayStr(msql.getToData()) + "' group by bankname,day having bankname = ";
-                for (String company : msql.getCompany()) {
+                        "where createtime between '" + TimeUtil.dateToDayStr(coreInQuerySQL.getFromData()) + "' and '" + TimeUtil.dateToDayStr(coreInQuerySQL.getToData()) + "' group by bankname,day having bankname = ";
+                for (String company : coreInQuerySQL.getCompany()) {
                     sql = sql + " bankname = '" + company + "' or ";
                 }
                 sql = sql.substring(0, sql.lastIndexOf("or"));
@@ -195,8 +198,8 @@ public class JSONParseUtil {
                 //样例语句：select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m') as month from bank inner join card on bank.id = card.bankId
                 //where createTime BETWEEN '2019-06-01' and '2019-08-01' GROUP BY bankName,month
                 sql = sql + "select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y-%m-%d') as day from bank inner join card on bank.id = card.bankId " +
-                        "where createtime between '" + TimeUtil.dateToDayStr(msql.getFromData()) + "' and '" + TimeUtil.getNextMonnth(msql.getToData()) + "' group by bankname,day having bankname = ";
-                for (String company : msql.getCompany()) {
+                        "where createtime between '" + TimeUtil.dateToDayStr(coreInQuerySQL.getFromData()) + "' and '" + TimeUtil.getNextMonnth(coreInQuerySQL.getToData()) + "' group by bankname,day having bankname = ";
+                for (String company : coreInQuerySQL.getCompany()) {
                     sql = sql + " bankname = '" + company + "' or ";
                 }
                 sql = sql.substring(0, sql.lastIndexOf("or"));
@@ -206,8 +209,8 @@ public class JSONParseUtil {
                 //样例语句：select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y') as year from bank inner join card on bank.id = card.bankId
                 //where createTime BETWEEN '2018-01-01' and '2020-01-01' GROUP BY bankName,year
                 sql = sql + "select count(card.id) as newCardNum, bankname as bankName,DATE_FORMAT(createTime,'%Y') as year from bank inner join card on bank.id = card.bankId " +
-                        "where createtime between '" + TimeUtil.dateToDayStr(msql.getFromData()) + "' and '" + TimeUtil.getNextYear(msql.getToData()) + "' group by bankname,day having bankname = ";
-                for (String company : msql.getCompany()) {
+                        "where createtime between '" + TimeUtil.dateToDayStr(coreInQuerySQL.getFromData()) + "' and '" + TimeUtil.getNextYear(coreInQuerySQL.getToData()) + "' group by bankname,day having bankname = ";
+                for (String company : coreInQuerySQL.getCompany()) {
                     sql = sql + " bankname = '" + company + "' or ";
                 }
                 sql = sql.substring(0, sql.lastIndexOf("or"));
@@ -314,7 +317,7 @@ public class JSONParseUtil {
         // 不同业务
         for (int b = 0; b < buss.size(); b++) {
             outMap.put("bussiness", buss.get(b));
-            List<Map> citys = new ArrayList<>();
+            List<Map> cities= new ArrayList<>();
             //不同城市
             for (int z = 0; z < bankName.size(); z++) {
                 Map citymap = new HashMap();
@@ -349,9 +352,9 @@ public class JSONParseUtil {
                     years.add(yearmap);
                 }
                 citymap.put("data", years);
-                citys.add(citymap);
+                cities.add(citymap);
             }
-            outMap.put("citys", citys);
+            outMap.put("citys", cities);
         }
         return outMap;
     }
@@ -489,6 +492,7 @@ public class JSONParseUtil {
             citymap.put("data", years);
             out.add(citymap);
         }
+
         return out;
     }
 
@@ -548,7 +552,7 @@ public class JSONParseUtil {
      * @param input
      * @return
      */
-    public static String getSaveJson(TreeSet<Integer> bankSet, TreeSet<String> businessSet,
+    public static JSONObject getSaveJson(TreeSet<Integer> bankSet, TreeSet<String> businessSet,
                                      String startTime, String endTime,
                                      List<BusinessSaveData> input){
         Map<String,Object> outmap = new HashMap<>();
@@ -564,8 +568,8 @@ public class JSONParseUtil {
         for(int ba : bankSet){
             for(String bu :businessSet){
                 tablecolMap = new HashMap<>();
-                tablecolMap.put("colName", BankIdConstant.getAddrByBankId(ba) +"/" + bu);
-                tablecolMap.put("colItem", BankIdConstant.getAddrByBankId(ba) + bu);
+                tablecolMap.put("colName", BankIdConstant.getAddrByBankId(ba) +"/" + TableNameConstant.getBusinessNameByBill(bu));
+                tablecolMap.put("colItem", BankIdConstant.getAddrByBankId(ba) + TableNameConstant.getBusinessNameByBill(bu));
                 tablecolData.add(tablecolMap);
             }
         }
@@ -578,7 +582,7 @@ public class JSONParseUtil {
             tableDataMap.put("tableData",date);
             for(String busine : businessSet){
                 for(int bank : bankSet){
-                    tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+busine, input.get(index).getNum());
+                    tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+TableNameConstant.getBusinessNameByBill(busine), input.get(index).getNum());
                     index++;
                 }
             }
@@ -588,6 +592,7 @@ public class JSONParseUtil {
         outmap.put("tablecolData",tablecolData);
         outmap.put("tableData",tableData);
 
-        return JSON.toJSONString(outmap);
+        JSONObject jsonObject = JSONObject.parseObject(JSON.toJSONString(outmap));
+        return jsonObject;
     }
 }
