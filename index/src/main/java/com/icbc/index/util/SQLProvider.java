@@ -2,6 +2,8 @@ package com.icbc.index.util;
 
 import com.icbc.index.model.Msql;
 import org.apache.ibatis.jdbc.SQL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -9,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLProvider {
+
+    Logger logger = LoggerFactory.getLogger(SQLProvider.class);
 
     public String getSingleBusSql(Msql msql) {
         //创建SQL对象并设置select语句要查询的列
@@ -29,7 +33,7 @@ public class SQLProvider {
             if (i != msql.getCompany().size() - 1)
                 sql.OR();
         }
-        System.out.println("auto sql:\n" + sql.toString());
+
         return sql.toString();
     }
 
@@ -80,7 +84,7 @@ public class SQLProvider {
         sql.SELECT("b.num as num, a.bankname as bankName");
         sql.FROM("bank a");
         sql.INNER_JOIN("("+innersql.toString()+") b on a.id = b.bankid");
-        System.out.println("auto sql:\n" + sql.toString());
+        logger.info("根据年月季度查询开卡数："+sql.toString());
         return sql.toString();
     }
 

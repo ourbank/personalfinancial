@@ -2999,8 +2999,8 @@ let wait_wordcloud = function () {
                 resolve(res);
             }
         });//ajax
-    })//promise
-}
+    });//promise
+};
 
 
 function chart1() {

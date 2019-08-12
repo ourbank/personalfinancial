@@ -7,13 +7,14 @@ import com.icbc.index.vo.WordCloudVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class AnalyseService {
 
-    @Autowired
+    @Resource
     AnalyseDao analyseDao;
 
     public String getwordcloudByBus(String bus, String period) {
