@@ -83,7 +83,7 @@
 <br/>
 <div id="apptable">
     <el-table
-            id = "ttt"
+            id = "historySaveTable"
             border
             :data="table.tableData"
             style="width: 1210px;margin:auto">
@@ -330,7 +330,7 @@
      *   导出excel function
      * */
     exportExcel_Doit = function(type, fn, dl) {
-        var elt = document.getElementById('ttt');
+        var elt = document.getElementById('historySaveTable');
         var wb = XLSX.utils.table_to_book(elt, {sheet: "Sheet JS"});
         return dl ?
             XLSX.write(wb, {bookType: type, bookSST: true, type: 'base64'}) :

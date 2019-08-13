@@ -9,10 +9,7 @@ import com.icbc.index.model.AttrValue;
 import com.icbc.index.service.BusinessSaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -25,48 +22,15 @@ public class vuecontroller {
     BusinessSaveService businessSaveService;
 
 
-//    @RequestMapping("/list")
-//    public void vue(){
-//
-//    }
-
-//    @RequestMapping(value = "/list" )
-//    public JSONArray vuedemo(HttpServletResponse response) {
-//
-//       //jsonObject: attrinfo
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("attrName","地点");
-//
-//        //jsonArray:attrvaluelist
-//        JSONObject jsonObject1 = new JSONObject();
-//        jsonObject1.put("valueName","广州");
-//        JSONObject jsonObject2 = new JSONObject();
-//        jsonObject2.put("valueName","汕尾");
-//        JSONArray jsonArray = new JSONArray();
-//        jsonArray.put(jsonObject1);
-//        jsonArray.put(jsonObject2);
-//
-//        JSONObject jsonObject3 = new JSONObject();
-//        jsonObject3.put("attrValueList",jsonArray);
-//
-//        JSONArray jsonArray1 = new JSONArray();
-//        jsonArray1.put(jsonObject);
-//        jsonArray1.put(jsonObject3);
-//
-//        System.out.println(jsonObject);
-//        response.setHeader("Access-Control-Allow-Origin","*");
-//        return  jsonArray1;
-//    }
-
-
     @RequestMapping(value = "/listpage" )
     public String vuelist() {
         return "redirect:list.html";
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/list2" )
     @ResponseBody
-    public JSONArray axiotest(HttpServletResponse response) {
+    public JSONArray axiotest() {
         AttrInfo attrInfo = buildObject();
         AttrInfo attrInfo1 = buildObject2();
 
@@ -83,7 +47,7 @@ public class vuecontroller {
         jsonArray.add(object);
         jsonArray.add(object1);
 
-        response.setHeader("Access-Control-Allow-Origin","*");
+//        response.setHeader("Access-Control-Allow-Origin","*");
         return  jsonArray;
     }
 
@@ -145,6 +109,7 @@ public class vuecontroller {
     }
 
 
+    @CrossOrigin
     @RequestMapping(value = "/sendSql",method = RequestMethod.POST)
     @ResponseBody
         public JSONObject sendSql(@RequestBody String tablelist) {
@@ -157,11 +122,9 @@ public class vuecontroller {
 
         //给getTableByJson方法处理
         JSONObject object1 =businessSaveService.getDaysNumByBankName(objectlist);
+//        response.setHeader("Access-Control-Allow-Origin","*");
         return object1;
     }
-    //String substring = list.substring(list.indexOf("["));
-    //String x = URLDecoder.decode(list,"utf-8");
-
     /**
      * {"tablelist":{
      *     "list":[
