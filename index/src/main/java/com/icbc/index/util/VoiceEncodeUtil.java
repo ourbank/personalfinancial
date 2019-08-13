@@ -12,27 +12,35 @@ public class VoiceEncodeUtil {
     /**
      * 接收前端的音频，语音识别之后最后转化成为JSON字符串
      * 通过调用VoiceEncodUtil和VoiceRecognitionUtil中的方法
+     *
      * @param receFile 多分片的音频文件
      * @return
      */
-    public static String getJsonOfVoice(MultipartFile receFile){
+    public static String getJsonOfVoice(MultipartFile receFile) {
 
-        if(!voiceReceive(receFile)){
-           return "VOICE_RECEIVE_FAIL";
-       }
-
-       convert("voice.mp3","voice.wav", avcodec.AV_CODEC_ID_PCM_S16LE,16000,9600,1);
-       VoiceEncodeUtil.convertWav2Pcm("voice.wav","voice.pcm");
+        if (!voiceReceive(receFile)) {
+            return "VOICE_RECEIVE_FAIL";
+        }
+//        Date now = new Date();
+//        System.out.println("开始转码");
+        convert("voice.mp3", "voice.wav", avcodec.AV_CODEC_ID_PCM_S16LE, 16000, 9600, 1);
+//        Date then = new Date();
+//        System.out.println("转码完成，花费时间："+(then.getTime() - now.getTime()));
+//        System.out.println("开始第二次转码");
+        VoiceEncodeUtil.convertWav2Pcm("voice.wav", "voice.pcm");
+//        Date then2 = new Date();
+//        System.out.println("第二次转码完成，花费时间："+(then2.getTime() - then.getTime()));
         String result = VoiceRecognitionUtil.voiceToStr("voice.pcm");
        return result;
     }
 
     /**
      * 负责将前端接收到的文件转化为mp3格式保存，统一使用voice.mp3，不提供音频保存功能
+     *
      * @param receFile 多分片的音频文件
      * @return
      */
-    private static boolean voiceReceive(MultipartFile receFile){
+    private static boolean voiceReceive(MultipartFile receFile) {
         if (!receFile.isEmpty()) {
             byte[] bytes = new byte[0];
             try {
@@ -55,19 +63,14 @@ public class VoiceEncodeUtil {
     /**
      * 通用音频格式参数转换,经测试不支持 pcm 格式的转换，如将 mp3 转成 wav
      *
-     * @param inputFile
-     *            -导入音频文件
-     * @param outputFile
-     *            -导出音频文件
-     * @param audioCodec
-     *            -音频编码
-     * @param sampleRate
-     *            -音频采样率
-     * @param audioBitrate
-     *            -音频比特率
+     * @param inputFile    -导入音频文件
+     * @param outputFile   -导出音频文件
+     * @param audioCodec   -音频编码
+     * @param sampleRate   -音频采样率
+     * @param audioBitrate -音频比特率
      */
     private static void convert(String inputFile, String outputFile, int audioCodec, int sampleRate, int audioBitrate,
-                               int audioChannels) {
+                                int audioChannels) {
         Frame audioSamples = null;
         // 音频录制（输出地址，音频通道）
         FFmpegFrameRecorder recorder = null;
@@ -182,11 +185,12 @@ public class VoiceEncodeUtil {
 
     /**
      * wav 格式转 pcm格式
-     * @param wavfilepath  eg：voice.wav
-     * @param pcmfilepath  eg:voice.pcm
+     *
+     * @param wavfilepath eg：voice.wav
+     * @param pcmfilepath eg:voice.pcm
      * @return 返回pcm文件路径
      */
-    public static String convertWav2Pcm(String wavfilepath,String pcmfilepath){
+    public static String convertWav2Pcm(String wavfilepath, String pcmfilepath) {
         FileInputStream fileInputStream = null;
         FileOutputStream fileOutputStream = null;
         try {
@@ -211,11 +215,12 @@ public class VoiceEncodeUtil {
 
     /**
      * 输入流转byte二进制数据
+     *
      * @param fis
      * @return
      * @throws IOException
      */
-    private static byte[] InputStreamToByte(FileInputStream fis){
+    private static byte[] InputStreamToByte(FileInputStream fis) {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         long size = 0;
         byte[] buffer = null;

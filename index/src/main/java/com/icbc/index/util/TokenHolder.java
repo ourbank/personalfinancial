@@ -125,5 +125,6 @@ public class TokenHolder {
         }
         token = json.getString("access_token");
         expiresAt = System.currentTimeMillis() + json.getLong("expires_in") * 1000;
+        System.out.println("token持续时间:"+json.getLong("expires_in")/24/3600);
     }
 }

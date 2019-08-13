@@ -1,8 +1,6 @@
 package com.icbc.index.util;
 
-
-import com.alibaba.fastjson.JSONObject;
-
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,7 +10,6 @@ import java.net.URL;
 import java.util.Base64;
 
 public class VoiceRecognitionUtil {
-
     private static final boolean METHOD_RAW = false; // 默认以json方式上传音频文件
     //  填写网页上申请的 appkey 如 $apiKey="g8eBUMSokVB1BHGmgxxxxxx"
     private static final String APP_KEY = "z8byo4jFgqSDs1vy2fTOPfhC";
@@ -45,18 +42,20 @@ public class VoiceRecognitionUtil {
 //        SCOPE = "brain_enhanced_asr";
 //    }
 
-    public static void init(){
+    public static void init(String token){
+        accessToken = token;
+    }
+
+    public static String getToken(){
         TokenHolder holder = new TokenHolder(APP_KEY, SECRET_KEY, SCOPE,TOKEN_URL);
-        if(accessToken == null || accessToken.equals("")){
-            try {
-                holder.refresh();
-                accessToken = holder.getToken();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (DemoException e) {
-                e.printStackTrace();
-            }
+        try {
+            holder.resfresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DemoException e) {
+            e.printStackTrace();
         }
+        return holder.getToken();
     }
 
     public static String voiceToStr(String fileName) {
@@ -118,10 +117,7 @@ public class VoiceRecognitionUtil {
         conn.setDoOutput(true);
         conn.getOutputStream().write(params.toString().getBytes());
         conn.getOutputStream().close();
-
         String result = ConnUtil.getResponseString(conn);
-
-
         params.put("speech", "base64Encode(getFileContent(FILENAME))");
         //System.out.println("url is : " + URL);
        // System.out.println("params is :" + params.toString());
