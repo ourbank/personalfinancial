@@ -5421,7 +5421,8 @@ function connect(token) {
         });
         // 订阅私有业务
         stompClient.subscribe('/topic/' + token, function (response) {
-            console.log(response.body);
+            arealist = JSON.parse(response.body);
+            process_main(true)
         });
         stompClient.subscribe('/topic/test', function (res) {
             // console.log(response.body);

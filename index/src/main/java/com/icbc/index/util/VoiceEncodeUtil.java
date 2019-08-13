@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Date;
 
 public class VoiceEncodeUtil {
 
@@ -32,9 +31,7 @@ public class VoiceEncodeUtil {
 //        Date then2 = new Date();
 //        System.out.println("第二次转码完成，花费时间："+(then2.getTime() - then.getTime()));
         String result = VoiceRecognitionUtil.voiceToStr("voice.pcm");
-        System.out.println("识别结束：结果是：");
-        System.out.println(result);
-        return result;
+       return result;
     }
 
     /**
