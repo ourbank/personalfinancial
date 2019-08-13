@@ -1,2 +1,0 @@
-2019-08-12 15:45:09,138 INFO (SpringApplication.java:650)- The following profiles are active: test
-2019-08-12 15:45:20,316 INFO (StartupInfoLogger.java:59)- Started IndexApplicationTests in 32.715 seconds (JVM running for 35.394)

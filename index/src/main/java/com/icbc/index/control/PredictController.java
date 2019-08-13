@@ -43,11 +43,6 @@ public class PredictController {
     @ResponseBody
     String getsimplepredict(@Param(value = "business")String business){
         System.out.println("getsimplepredict");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return predictService.getSimplePredictByBus(business);
     }
 }

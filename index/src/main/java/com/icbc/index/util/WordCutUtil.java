@@ -1,6 +1,8 @@
 package com.icbc.index.util;
 
-import org.json.JSONObject;
+
+
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -25,7 +27,7 @@ public class WordCutUtil {
         TokenHolder holder = new TokenHolder(APP_KEY, SECRET_KEY, "",TOKEN_URL);
         if(accessToken == null || accessToken.equals("")){
             try {
-                holder.resfresh();
+                holder.refresh();
                 accessToken = holder.getToken();
             } catch (IOException e) {
                 e.printStackTrace();

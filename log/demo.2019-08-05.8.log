@@ -1,8 +1,0 @@
-2019-08-05 10:53:35,103 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 517
-2019-08-05 10:54:49,015 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
-2019-08-05 10:54:52,074 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 5.071 seconds (JVM running for 5924.398)
-2019-08-05 10:55:41,797 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = ? 
-2019-08-05 10:55:41,798 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 广州分行(String)
-2019-08-05 10:55:41,833 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 517
-2019-08-05 10:55:41,835 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = ? 
-2019-08-05 10:55:41,835 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 深圳分行(String)
