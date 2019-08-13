@@ -438,7 +438,7 @@
         <div id="appdate">
             <template>
                 <div class="block">
-                    <div style = "width:1210px;margin:auto">
+                    <div style = "width:800px;height:33.6px;margin:auto">
                         <span class="demonstration"  style="color:#56abe4;font-size: 14px;margin: 0px auto;" >时间范围：</span>
                         <el-date-picker
                                 v-model="value1"
@@ -459,7 +459,7 @@
                     id = "historySaveTable"
                     border
                     :data="table.tableData"
-                    style="width: 1210px;margin:auto;color:#56abe4;">
+                    style="width: 800px;margin:auto;color:#56abe4;">
                 <template v-for='(col) in table.tablecolData'>
                     <el-table-column
                             :prop="col.colItem"
