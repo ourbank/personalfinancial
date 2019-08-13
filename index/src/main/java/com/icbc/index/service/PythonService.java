@@ -1,13 +1,12 @@
 package com.icbc.index.service;
 
-import com.alibaba.fastjson.JSON;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.dao.CardMountDao;
 import com.icbc.index.mapper.CardDao;
 import com.icbc.index.model.CardData;
 import com.icbc.index.model.CoreInQuerySQL;
-import com.icbc.index.model.Inquire;
 import com.icbc.index.util.JSONParseUtil;
 import com.icbc.index.util.TimeUtil;
 import org.slf4j.Logger;
@@ -15,12 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 @Service

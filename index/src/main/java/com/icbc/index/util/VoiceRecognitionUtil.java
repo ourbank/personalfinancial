@@ -1,6 +1,7 @@
 package com.icbc.index.util;
 
-import org.json.JSONObject;
+
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,7 +50,7 @@ public class VoiceRecognitionUtil {
     public static String getToken(){
         TokenHolder holder = new TokenHolder(APP_KEY, SECRET_KEY, SCOPE,TOKEN_URL);
         try {
-            holder.resfresh();
+            holder.refresh();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (DemoException e) {

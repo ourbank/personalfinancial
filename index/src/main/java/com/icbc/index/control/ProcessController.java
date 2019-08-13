@@ -5,7 +5,6 @@ import com.icbc.index.service.CardService;
 import com.icbc.index.service.PythonService;
 import com.icbc.index.service.VoiceService;
 import com.icbc.index.util.VoiceEncodeUtil;
-import com.icbc.index.util.VoiceRecognitionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
