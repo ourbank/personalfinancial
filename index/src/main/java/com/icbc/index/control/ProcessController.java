@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.model.CardData;
 import com.icbc.index.service.CardService;
 import com.icbc.index.service.PythonService;
+import com.icbc.index.service.VoiceService;
 import com.icbc.index.util.VoiceEncodeUtil;
 import com.icbc.index.util.VoiceRecognitionUtil;
 import org.slf4j.Logger;
@@ -37,10 +38,13 @@ public class ProcessController {
     @Autowired
     PythonService pythonService;
 
+    @Autowired
+    VoiceService voiceService;
+
     @RequestMapping(value = "/receivevoice", method = RequestMethod.POST, produces = "multipart/form-data")
     public @ResponseBody
     void getResult(@RequestParam("voicefile") MultipartFile voiceFile, @RequestParam("token") String token) {
-        VoiceRecognitionUtil.init();
+        voiceService.getBaiduToken();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         String result = JSONObject.parseObject(temp).getString("result");
         logger.info("微信语音转文字结果：" + result);

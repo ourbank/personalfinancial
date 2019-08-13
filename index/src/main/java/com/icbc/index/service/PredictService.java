@@ -88,6 +88,7 @@ public class PredictService {
         params.put("traindata", json_train_data);
         params.put("traintime", json_train_time);
         params.put("business", "开卡数");
+        params.put("unit", "month");
         params.put("period", 6);
         HttpEntity httpEntity = new HttpEntity(params,headers);
         ResponseEntity<String> request = restTemplate.postForEntity(url, httpEntity,String.class);
