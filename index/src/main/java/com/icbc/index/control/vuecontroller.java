@@ -80,9 +80,9 @@ public class vuecontroller {
         AttrValue attrValue = new AttrValue();
         attrValue.setValueName("广州");
         AttrValue attrValue2 = new AttrValue();
-        attrValue2.setValueName("佛山");
+        attrValue2.setValueName("深圳");
         AttrValue attrValue3 = new AttrValue();
-        attrValue3.setValueName("深圳");
+        attrValue3.setValueName("佛山");
         AttrValue attrValue4 = new AttrValue();
         attrValue4.setValueName("东莞");
         AttrValue attrValue5 = new AttrValue();
@@ -93,6 +93,34 @@ public class vuecontroller {
         attrValue7.setValueName("江门");
         AttrValue attrValue8 = new AttrValue();
         attrValue8.setValueName("肇庆");
+        AttrValue attrValue9 = new AttrValue();
+        AttrValue attrValue10 = new AttrValue();
+        AttrValue attrValue11 = new AttrValue();
+        AttrValue attrValue12 = new AttrValue();
+        AttrValue attrValue13 = new AttrValue();
+        AttrValue attrValue14 = new AttrValue();
+        AttrValue attrValue15 = new AttrValue();
+        AttrValue attrValue16 = new AttrValue();
+        AttrValue attrValue17 = new AttrValue();
+        AttrValue attrValue18 = new AttrValue();
+        AttrValue attrValue19 = new AttrValue();
+        AttrValue attrValue20 = new AttrValue();
+        AttrValue attrValue21 = new AttrValue();
+
+        attrValue9.setValueName("惠州");
+        attrValue10.setValueName("汕头");
+        attrValue11.setValueName("潮州");
+        attrValue12.setValueName("揭阳");
+        attrValue13.setValueName("汕尾");
+        attrValue14.setValueName("湛江");
+        attrValue15.setValueName("茂名");
+        attrValue16.setValueName("阳江");
+        attrValue17.setValueName("云浮");
+        attrValue18.setValueName("韶关");
+        attrValue19.setValueName("清远");
+        attrValue20.setValueName("梅州");
+        attrValue21.setValueName("河源");
+
         List<AttrValue> list  = new ArrayList<>();
         list.add(attrValue);
         list.add(attrValue2);
@@ -102,7 +130,19 @@ public class vuecontroller {
         list.add(attrValue6);
         list.add(attrValue7);
         list.add(attrValue8);
-
+        list.add(attrValue9);
+        list.add(attrValue10);
+        list.add(attrValue11);
+        list.add(attrValue12);
+        list.add(attrValue13);
+        list.add(attrValue14);
+        list.add(attrValue15);
+        list.add(attrValue16);
+        list.add(attrValue17);
+        list.add(attrValue18);
+        list.add(attrValue19);
+        list.add(attrValue20);
+        list.add(attrValue21);
 
         attrInfo.setAttrValueList(list);
         return attrInfo;

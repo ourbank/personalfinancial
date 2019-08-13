@@ -1307,7 +1307,10 @@ pre {
     padding: 0.2rem 0.5rem;
     visibility: hidden;
 }
-
+.save-pop-up {
+    width: 95%;
+    height: 95%;
+}
 /*预测放大界面*/
 .pre-pop-up {
     width: 80%;
