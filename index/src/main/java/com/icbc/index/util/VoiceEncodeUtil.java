@@ -24,8 +24,6 @@ public class VoiceEncodeUtil {
        convert("voice.mp3","voice.wav", avcodec.AV_CODEC_ID_PCM_S16LE,16000,9600,1);
        VoiceEncodeUtil.convertWav2Pcm("voice.wav","voice.pcm");
         String result = VoiceRecognitionUtil.voiceToStr("voice.pcm");
-       //System.out.println("识别结束：结果是：");
-       //System.out.println(result);
        return result;
     }
 
