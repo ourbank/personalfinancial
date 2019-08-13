@@ -38,33 +38,13 @@ public class PythonService {
 
     Logger logger = LoggerFactory.getLogger(PythonService.class);
 
-    public Inquire bulidSQL(String raw) {
-
-        Inquire inquire = new Inquire();
-        String cutword = getRawCutWord(raw);
-        JSONArray jsonArray = JSON.parseArray(cutword);
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JSONObject object = jsonArray.getJSONObject(i);
-            if (object.containsKey("a")) {
-                inquire.setOperation(object.getString("a"));
-            } else if (object.containsKey("b")) {
-                inquire.setTime(object.getString("b"));
-            } else if (object.containsKey("c")) {
-                inquire.setPlace(object.getString("c"));
-            } else if (object.containsKey("d")) {
-                inquire.setBusiness(object.getString("d"));
-            }
-
-        }
-
-        return inquire;
-    }
 
     public String getRawCutWord(String raw) {
 
         //请求python微服务
         String cutword = restTemplate.getForEntity("http://127.0.0.1:8000" +
                 "/jieba?raw=" + raw, String.class).getBody();
+        logger.info("分词结束且结果："+cutword);
         return cutword;
     }
 
@@ -73,7 +53,7 @@ public class PythonService {
         return cardMountDao.getCardMount();
     }
 
-    public String test(String word) {
+    public String getResultByWeChat(String word) {
         String cutWord = getRawCutWord(word);
         JSONArray array = JSONArray.parseArray(cutWord);
         CoreInQuerySQL sql = new CoreInQuerySQL();

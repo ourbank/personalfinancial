@@ -1,6 +1,8 @@
 package com.icbc.index.util;
 
-import org.json.JSONObject;
+
+import com.alibaba.fastjson.JSONObject;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +12,7 @@ import java.net.URL;
 import java.util.Base64;
 
 public class VoiceRecognitionUtil {
+
     private static final boolean METHOD_RAW = false; // 默认以json方式上传音频文件
     //  填写网页上申请的 appkey 如 $apiKey="g8eBUMSokVB1BHGmgxxxxxx"
     private static final String APP_KEY = "z8byo4jFgqSDs1vy2fTOPfhC";
@@ -46,14 +49,13 @@ public class VoiceRecognitionUtil {
         TokenHolder holder = new TokenHolder(APP_KEY, SECRET_KEY, SCOPE,TOKEN_URL);
         if(accessToken == null || accessToken.equals("")){
             try {
-                holder.resfresh();
+                holder.refresh();
                 accessToken = holder.getToken();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (DemoException e) {
                 e.printStackTrace();
             }
-            //System.out.println("Get AccessToken of Baidu Voice API SUCCESS");
         }
     }
 
