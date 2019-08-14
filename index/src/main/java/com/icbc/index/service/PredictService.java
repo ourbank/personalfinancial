@@ -72,7 +72,7 @@ public class PredictService {
         bankNames.add("广州分行");
         CoreInQuerySQL msql = new CoreInQuerySQL("2009-01-01","2019-12-31",business,bankNames);
         List<CardData> train_data = cardDao.getCountByBankName(msql);
-        List<Integer> parse_train_data = new ArrayList<>();
+        List<Double> parse_train_data = new ArrayList<>();
         List<String> parse_train_time = new ArrayList<>();
         for (int i = 0; i < train_data.size(); i++) {
             parse_train_data.add(train_data.get(i).getCardNum());

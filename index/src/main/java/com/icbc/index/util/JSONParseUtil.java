@@ -378,7 +378,7 @@ public class JSONParseUtil {
                     year = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(), "yyyy"));
                     month = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(), "MM"));
                     day = Integer.parseInt(TimeUtil.dateToFormatStr(s.getTime(), "dd"));
-                    ((ArrayList<Integer>)
+                    ((ArrayList<Double>)
                             ((ArrayList<Map>)
                                     ((ArrayList<Map>) outMap.get("years")).get(year - startYear)
                                             .get("months")).get(month - 1)
@@ -423,7 +423,7 @@ public class JSONParseUtil {
                     } else {
                         local_mon = 1;
                     }
-                    ((ArrayList<Integer>)
+                    ((ArrayList<Double>)
                             ((ArrayList<Map>)
                                     ((ArrayList<Map>) out.get(j).get("data")).get(year - startYear)
                                             .get("data")).get(month - local_mon)
