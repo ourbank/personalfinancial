@@ -1,6 +1,0 @@
-2019-08-05 09:16:13,728 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
-2019-08-05 09:16:21,877 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 11.503 seconds (JVM running for 14.201)
-2019-08-05 09:23:09,635 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
-2019-08-05 09:23:12,575 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 4.753 seconds (JVM running for 424.899)
-2019-08-05 09:23:33,727 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = ? 
-2019-08-05 09:23:33,727 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN ? AND ? GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = ? 

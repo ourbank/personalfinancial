@@ -1,2 +1,0 @@
-2019-08-02 15:33:35,125 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 肇庆分行(String)
-2019-08-02 15:33:44,577 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 3471
