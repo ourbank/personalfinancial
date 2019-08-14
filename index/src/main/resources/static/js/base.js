@@ -4295,7 +4295,7 @@ $('#right_float_window').on('mouseleave', function () {
      *   导出excel function
      * */
 exportExcel_Doit = function(type, fn, dl) {
-    var elt = document.getElementById('historySaveTable');
+    var elt = document.getElementById('downloan-his');
     var wb = XLSX.utils.table_to_book(elt, {sheet: "Sheet JS"});
     return dl ?
         XLSX.write(wb, {bookType: type, bookSST: true, type: 'base64'}) :
@@ -4365,6 +4365,7 @@ var vm = new Vue({
                 //vm.panlist = response.data;
                 // alert(response.data);
                 vmtable.table = response.data;
+                dowantable.table = response.data;
                 console.log(response.data)
             });
         }
@@ -4409,64 +4410,25 @@ var vmtop = new Vue({
                 //vm.panlist = response.data;
                 // alert(response.data);
                 vmtable.table = response.data;
+                dowantable.table = response.data;
             });
         }
     }
 })
 var vmtable = new Vue({
     el: '#apptable',
+     data :{
+        table:null
+    }
+})
+
+var dowantable = new Vue({
+    el: '#downloadTable',
     data :{
         table:null
     }
-    //     {"tablecolData": [{
-    //         "colName": "日期",
-    //         "colItem": "tableData"
-    //     }, {
-    //         "colName": "广州/存款数",
-    //         "colItem": "广州存款数"
-    //     }, {
-    //         "colName": "广州/开卡数",
-    //         "colItem": "广州开卡数"
-    //     }, {
-    //         "colName": "深圳/存款数",
-    //         "colItem": "深圳存款数"
-    //     }, {
-    //         "colName": "深圳/开卡数",
-    //         "colItem": "深圳开卡数"
-    //     }],
-    //     "tableData": [{
-    //         "广州存款数": 27,
-    //         "深圳存款数": 35,
-    //         "深圳开卡数": 25767570100,
-    //         "广州开卡数": 25655509300,
-    //         "tableData": "2019-01-01"
-    //     }, {
-    //         "广州存款数": 36,
-    //         "深圳存款数": 38,
-    //         "深圳开卡数": 25776485300,
-    //         "广州开卡数": 25663916700,
-    //         "tableData": "2019-01-02"
-    //     }, {
-    //         "广州存款数": 34,
-    //         "深圳存款数": 37,
-    //         "深圳开卡数": 25785846900,
-    //         "广州开卡数": 25671529000,
-    //         "tableData": "2019-01-03"
-    //     }, {
-    //         "广州存款数": 30,
-    //         "深圳存款数": 31,
-    //         "深圳开卡数": 25794934700,
-    //         "广州开卡数": 25679504000,
-    //         "tableData": "2019-01-04"
-    //     }, {
-    //         "广州存款数": 37,
-    //         "深圳存款数": 26,
-    //         "深圳开卡数": 25800826100,
-    //         "广州开卡数": 25689332700,
-    //         "tableData": "2019-01-05"
-    //     }]
-    // }
 })
+
 var Main = {
     data() {
         return {

@@ -104,7 +104,7 @@ position: relative;
       margin-bottom: 10px; }
       .GM_banner .GM_nav .GM_selector .title {
         border-bottom: 1px solid #526cdf;
-        /*background: #FFFFFF;*/
+        background: #0C1A2C;
         line-height: 34px;
         height: 34px;
         overflow: hidden;
@@ -119,6 +119,7 @@ position: relative;
             margin-right: 5px; }
           .GM_banner .GM_nav .GM_selector .title h3 em {
             font-style: normal;
+            color: #2d72ed;
           }
         .GM_banner .GM_nav .GM_selector .title .st-ext {
           float: left;
@@ -139,14 +140,18 @@ position: relative;
           padding-right: 130px;
           padding-left: 10px;
           color: #526cdf;
-          overflow: hidden; }
+          overflow: hidden;
+          background-color: #0C1A2C }
           .GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_value a:hover {
             color: red; }
+          .GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_value ul a {
+          color: #526cdf; }
         .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre {
           overflow: hidden;
           position: relative;
           line-height: 34px;
-          border-bottom: 1px dashed #eee; }
+          border-bottom: 1px dashed #eee; 
+          background-color: #0C1A2C}
           .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul {
            /* float: left;
             overflow: hidden;
@@ -199,7 +204,5 @@ position: relative;
                 line-height: 19px;
                 border: 1px solid #526cdf; }
 
-.el-his-tab .el-table tr{
-    background: #0C1A2C;
-  }
+
 /*# sourceMappingURL=index.css.map */
