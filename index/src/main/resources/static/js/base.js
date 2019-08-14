@@ -4291,7 +4291,217 @@ $('#right_float_window').on('mouseleave', function () {
 
 
 //                                悬浮窗结束==============================================
+/*
+     *   导出excel function
+     * */
+exportExcel_Doit = function(type, fn, dl) {
+    var elt = document.getElementById('historySaveTable');
+    var wb = XLSX.utils.table_to_book(elt, {sheet: "Sheet JS"});
+    return dl ?
+        XLSX.write(wb, {bookType: type, bookSST: true, type: 'base64'}) :
+        XLSX.writeFile(wb, fn || ('test.' + (type || 'xlsx')));
+}
+var vm = new Vue({
+    el: '#app',
+    data: {
+        attrlist: null
+    },
+    created () {
+        var _this = this;
 
+        axios({
+            method:'get',
+            url:'http://localhost:9000/list2',
+            headers:{'Access-Control-Allow-Origin':'*'}
+        }).then(function (response) {
+            _this.attrlist = response.data;
+            //console.log(response);
+        });
+
+
+    },
+    methods: {
+        addSelected: function (event,index) {
+            //获取点击对象
+            var el = event.currentTarget;
+            //alert("当前对象的内容：" + el.innerHTML);
+            var text =  el.innerHTML
+            //alert(index)
+            //去重
+            for (var i in vmtop.panlist.list){
+                if (vmtop.panlist.list[i].panAttrValue===text) return ;
+            }
+
+            //选择列表增加
+            //获取业务名字
+            //在这里面编辑希望的json格式
+            var pan = {
+                panAttrName  : vm.attrlist[index].attrName,
+                panAttrValue : text
+            }
+
+            vmtop.panlist.list.push(pan);
+            this.sendSql();
+        },
+        sendSql:function () {
+            axios({
+                url:'http://localhost:9000/sendSql',
+                method:'post',
+                headers:{'Access-Control-Allow-Origin':'*',
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: [function (data) {
+                    // 对 data 进行任意转换处理
+                    //return Qs.stringify(data, {arrayFormat: 'repeat'})
+                    data =  JSON.stringify(data)
+                    return data
+                }],
+                data: {
+                    //tablelist:["1","2"]
+                    tablelist : vmtop.panlist
+                }
+            }).then(function (response) {
+                //vm.panlist = response.data;
+                // alert(response.data);
+                vmtable.table = response.data;
+                console.log(response.data)
+            });
+        }
+
+    }
+})
+var vmtop = new Vue({
+    el: '#apptop',
+    data: {
+        panlist : {
+            list :[]
+        }
+
+    },
+    methods: {
+        deleteSelected: function (index) {
+            vmtop.panlist.list.splice(index,1);
+            //1跟后台拿数据，参数是panlist
+            //发送sql的参数
+            this.sendSql();
+            //2更新table
+        },
+        sendSql:function () {
+            axios({
+                url:'http://localhost:9000/sendSql',
+                method:'post',
+                headers:{'Access-Control-Allow-Origin':'*',
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                transformRequest: [function (data) {
+                    // 对 data 进行任意转换处理
+                    //return Qs.stringify(data, {arrayFormat: 'repeat'})
+                    data =  JSON.stringify(data)
+                    return data
+                }],
+                data: {
+                    //tablelist:["1","2"]
+                    tablelist : vmtop.panlist
+                }
+            }).then(function (response) {
+                //vm.panlist = response.data;
+                // alert(response.data);
+                vmtable.table = response.data;
+            });
+        }
+    }
+})
+var vmtable = new Vue({
+    el: '#apptable',
+    data :{
+        table:null
+    }
+    //     {"tablecolData": [{
+    //         "colName": "日期",
+    //         "colItem": "tableData"
+    //     }, {
+    //         "colName": "广州/存款数",
+    //         "colItem": "广州存款数"
+    //     }, {
+    //         "colName": "广州/开卡数",
+    //         "colItem": "广州开卡数"
+    //     }, {
+    //         "colName": "深圳/存款数",
+    //         "colItem": "深圳存款数"
+    //     }, {
+    //         "colName": "深圳/开卡数",
+    //         "colItem": "深圳开卡数"
+    //     }],
+    //     "tableData": [{
+    //         "广州存款数": 27,
+    //         "深圳存款数": 35,
+    //         "深圳开卡数": 25767570100,
+    //         "广州开卡数": 25655509300,
+    //         "tableData": "2019-01-01"
+    //     }, {
+    //         "广州存款数": 36,
+    //         "深圳存款数": 38,
+    //         "深圳开卡数": 25776485300,
+    //         "广州开卡数": 25663916700,
+    //         "tableData": "2019-01-02"
+    //     }, {
+    //         "广州存款数": 34,
+    //         "深圳存款数": 37,
+    //         "深圳开卡数": 25785846900,
+    //         "广州开卡数": 25671529000,
+    //         "tableData": "2019-01-03"
+    //     }, {
+    //         "广州存款数": 30,
+    //         "深圳存款数": 31,
+    //         "深圳开卡数": 25794934700,
+    //         "广州开卡数": 25679504000,
+    //         "tableData": "2019-01-04"
+    //     }, {
+    //         "广州存款数": 37,
+    //         "深圳存款数": 26,
+    //         "深圳开卡数": 25800826100,
+    //         "广州开卡数": 25689332700,
+    //         "tableData": "2019-01-05"
+    //     }]
+    // }
+})
+var Main = {
+    data() {
+        return {
+            value1: '',
+            // value2: ''
+        };
+    },methods:{
+        chooseTimeRange(t) {
+            alert(t);//结果为一个数组，如：["2018-08-04", "2018-08-06"]
+            //去重
+            //var flag = 0;
+            for (var i in vmtop.panlist.list){
+                if (vmtop.panlist.list[i].panAttrName==="日期"){
+                    vmtop.panlist.list.splice(i,2);
+                }
+            }
+            this.addTimeIfNo(t);
+
+        },
+        addTimeIfNo(t){
+            var pans = {
+                panAttrName  : "日期",
+                panAttrValue : t
+            }
+            var pane={
+                panAttrName  : "日期",
+                panAttrValue : t[1]
+            }
+            vmtop.panlist.list.push(pans);
+            vmtop.sendSql();
+        }
+    }
+};
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#appdate')
 /* =========================业务选择============================*/
 
 //业务选择 按钮动态展示
@@ -5340,6 +5550,11 @@ $('#plan_chart_btn').on('click', function () {
     $('#pre_chart_btn').attr('style', 'background: #4169E1');
     pre_choose_chart = 1;
     pre_choose_plan = 0;
+});
+
+//放大历史保存excel页面
+$('#his-save').on('click', function () {
+    $('.container').attr('style', 'visibility: visible').find('.ana-pop-up').eq(1).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
 });
 
 // 查询历史放大图表

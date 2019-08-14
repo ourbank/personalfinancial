@@ -1,14 +1,10 @@
 package com.icbc.index.control;
 
-
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.icbc.index.model.CardData;
 import com.icbc.index.service.CardService;
 import com.icbc.index.service.PythonService;
 import com.icbc.index.service.VoiceService;
 import com.icbc.index.util.VoiceEncodeUtil;
-import com.icbc.index.util.VoiceRecognitionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.sound.midi.Soundbank;
-import java.util.List;
 
 /**
  * 该控制器负责处理前端ajax数据请求
@@ -43,13 +37,13 @@ public class ProcessController {
 
     @RequestMapping(value = "/receivevoice", method = RequestMethod.POST, produces = "multipart/form-data")
     public @ResponseBody
-    void getResult(@RequestParam("voicefile") MultipartFile voiceFile, @RequestParam("token") String token) {
+    void getResultByWeChat(@RequestParam("voicefile") MultipartFile voiceFile, @RequestParam("token") String token) {
         voiceService.getBaiduToken();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
-        String result = JSONObject.parseObject(temp).getString("result");
-        logger.info("微信语音转文字结果：" + result);
-        String test = pythonService.test(result);
-        webSocketController.sendToUser(token, test);
+        logger.info("微信语音转文字结果：" + temp);
+        logger.info("开始分词");
+        String data = pythonService.getResultByWeChat(temp);
+        webSocketController.sendToUser(token, data);
     }
 
     /**
@@ -84,7 +78,7 @@ public class ProcessController {
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public @ResponseBody
     void test(@RequestParam("voice") String voice) {
-        String test = pythonService.test(voice);
+        String test = pythonService.getResultByWeChat(voice);
         webSocketController.sendToUserLimk(test);
     }
 

@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 
 
@@ -32,7 +36,8 @@ public class LoginControl {
     @Autowired
     RedisService redisService;
 
-
+    //记录所有用户的 token 值
+    Map<String,Manager> allUser =new HashMap();
     //登录请求
     @RequestMapping(value = "/loginwx", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
@@ -71,8 +76,10 @@ public class LoginControl {
 
             return "redirect:login.html";
         }
-
-        redisService.setObj("token",manager.getToken());
+        redisService.delObj(code);
+        allUser.put(manager.getToken(),manager);
+        redisService.setObj("token",allUser);
+        redisService.setObj("register",manager.getToken());
 
         return "redirect:index.html";
     }
@@ -90,8 +97,8 @@ public class LoginControl {
     @GetMapping("/registerwebsocket")
     public @ResponseBody String beforeWebSocket(){
 
-        String token = (String) redisService.getObj("token");
-
+        String token = (String) redisService.getObj("register");
+        redisService.delObj("register");
         return token;
 
     }

@@ -122,10 +122,20 @@ public class AccountDate {
         return day;
     }
 
+
+
+    public static String getAfterFiveday(String beginDate , String endDate){
+        long days = countDay(beginDate, endDate);
+        int[] ymd = splitYMD( beginDate );
+        if(days<6) return endDate;
+        for(int i = 0; i < 5; i++){
+            ymd = addOneDay(ymd[Y], ymd[M], ymd[D]);
+        }
+        return formatYear(ymd[Y])+"-"+formatMonthDay(ymd[M])+"-"+formatMonthDay(ymd[D]);
+    }
     /**
      * 以循环的方式计算日期
      * @param beginDate endDate
-     * @param days
      * @return
      */
     public static List<String> getEveryday(String beginDate , String endDate){

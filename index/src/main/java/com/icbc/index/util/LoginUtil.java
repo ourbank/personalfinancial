@@ -3,16 +3,24 @@ package com.icbc.index.util;
 
 import com.icbc.index.entity.Manager;
 import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+@Component
 public class LoginUtil {
 
 
-    private final static String key = "icbcsdc";
+    private  static String key;
+
+    @Value("login.secret")
+    private void setKey(String temp){
+        key=temp;
+    }
 
     public static String getCode(Manager manager) {
         String account = manager.getAccount();
@@ -51,6 +59,7 @@ public class LoginUtil {
         Map<String, Object> param = new HashMap<>();
         param.put("account", manager.getAccount());
         param.put("password", manager.getPassword());
+
         JwtBuilder jwtBuilder = Jwts.builder().signWith(SignatureAlgorithm.HS256, key);
         //用户信息放入
         jwtBuilder = jwtBuilder.setClaims(param);

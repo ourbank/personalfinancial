@@ -1,10 +1,19 @@
 package com.icbc.index.util;
 
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.bytedeco.opencv.presets.opencv_core;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * token的获取类
@@ -13,8 +22,10 @@ import java.net.URL;
 public class TokenHolder {
 
 
+
     public static final String TTS_SCOPE = "audio_tts_post";
 
+    Logger logger = LoggerFactory.getLogger(TokenHolder.class);
     /**
      * url , Token的url，http可以改为https
      */
@@ -86,41 +97,31 @@ public class TokenHolder {
      * @throws IOException   http请求错误
      * @throws DemoException http接口返回不是 200, access_token未获取
      */
-    public void resfresh() throws IOException, DemoException {
+    public void refresh() throws IOException, DemoException {
+
         String getTokenURL = tokenUrl + "?grant_type=client_credentials"
                 + "&client_id=" + ConnUtil.urlEncode(apiKey) + "&client_secret=" + ConnUtil.urlEncode(secretKey);
-
-        // 打印的url出来放到浏览器内可以复现
-        //System.out.println("Getting AccessToken of Baidu API from:" + getTokenURL);
-        URL url = new URL(getTokenURL);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setConnectTimeout(5000);
-        String result = ConnUtil.getResponseString(conn);
-        //System.out.println("Token result json:" + result);
-        parseJson(result);
-    }
-
-    /**
-     * @param result token接口获得的result
-     * @throws DemoException
-     */
-    private void parseJson(String result) throws DemoException {
-        JSONObject json = new JSONObject(result);
-        if (!json.has("access_token")) {
+        RestTemplate template=new RestTemplate();
+        JSONObject object = template.postForObject(getTokenURL, null, JSONObject.class);
+        if (object==null)
+            throw new DemoException("fail to get token of baidu api");
+        if (!object.containsKey("access_token")) {
             // 返回没有access_token字段
-            throw new DemoException("access_token not obtained, " + result);
+            throw new DemoException("access_token not obtained, " );
         }
-        if (!json.has("scope")) {
+        if (!object.containsKey("scope")) {
             // 返回没有scope字段
-            throw new DemoException("scopenot obtained, " + result);
+            throw new DemoException("scopenot obtained, " );
         }
-        // scope = null, 忽略scope检查
 
-        if (scope != null && !json.getString("scope").contains(scope)) {
-            throw new DemoException("scope not exist, " + scope + "," + result);
+        if (scope != null && !object.getString("scope").contains(scope)) {
+            throw new DemoException("scope not exist, " + scope + "," );
         }
-        token = json.getString("access_token");
-        expiresAt = System.currentTimeMillis() + json.getLong("expires_in") * 1000;
-        System.out.println("token持续时间:"+json.getLong("expires_in")/24/3600);
+        token = object.getString("access_token");
+        expiresAt = System.currentTimeMillis() + object.getLong("expires_in") * 1000;
+        System.out.println("token持续时间:"+object.getLong("expires_in")/24/3600);
+
     }
+
+
 }
