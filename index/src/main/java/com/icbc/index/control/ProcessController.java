@@ -37,14 +37,13 @@ public class ProcessController {
 
     @RequestMapping(value = "/receivevoice", method = RequestMethod.POST, produces = "multipart/form-data")
     public @ResponseBody
-    void getResult(@RequestParam("voicefile") MultipartFile voiceFile, @RequestParam("token") String token) {
+    void getResultByWeChat(@RequestParam("voicefile") MultipartFile voiceFile, @RequestParam("token") String token) {
         voiceService.getBaiduToken();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
-        String result = JSONObject.parseObject(temp).getString("result");
-        logger.info("微信语音转文字结果：" + result);
+        logger.info("微信语音转文字结果：" + temp);
         logger.info("开始分词");
-        String test = pythonService.getResultByWeChat(result);
-        webSocketController.sendToUser(token, test);
+        String data = pythonService.getResultByWeChat(temp);
+        webSocketController.sendToUser(token, data);
     }
 
     /**

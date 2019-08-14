@@ -75,15 +75,24 @@ public class PythonService {
                         sql.setStrToDate(endTime);
                         break;
                     case "上个月":
+                        String current=TimeUtil.dateToMonthStr(date);
+                        startTime= current +"-01";
+                        endTime=startTime.replace("-01","-31");
+                        sql.setStrFromDate(startTime);
+                        sql.setStrToDate(endTime);
                         break;
                     case "前两年":
                         break;
                     case "前两个月":
+                        default:
                         break;
                 }
             }
             if (object.containsKey("c")) {
                 String temp = (String) object.get("c");
+                if (temp.contains("市")||temp.length()==2){
+                    temp=temp.substring(0,2)+"分行";
+                }
                 place.add(temp);
                 sql.setCompany(place);
             }
