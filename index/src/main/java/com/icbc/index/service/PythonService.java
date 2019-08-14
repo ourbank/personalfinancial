@@ -3,7 +3,6 @@ package com.icbc.index.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.icbc.index.dao.CardMountDao;
 import com.icbc.index.mapper.CardDao;
 import com.icbc.index.model.CardData;
 import com.icbc.index.model.CoreInQuerySQL;
@@ -45,10 +44,7 @@ public class PythonService {
         return cutword;
     }
 
-    public List<CardData> getCardMount() {
 
-        return cardMountDao.getCardMount();
-    }
 
     public String getResultByWeChat(String word) {
         String cutWord = getRawCutWord(word);

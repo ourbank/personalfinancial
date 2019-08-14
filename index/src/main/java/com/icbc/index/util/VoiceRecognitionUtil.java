@@ -10,8 +10,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Base64;
 
 public class VoiceRecognitionUtil {
@@ -84,7 +82,6 @@ public class VoiceRecognitionUtil {
         String format = fileName.substring(fileName.length() - 3);
         String url2 = URL + "?cuid=" + ConnUtil.urlEncode(CUID) + "&dev_pid=" + DEV_PID + "&token=" + token;
         String contentTypeStr = "audio/" + format + "; rate=" + RATE;
-        //System.out.println(url2);
         byte[] content = getFileContent(fileName);
         /*HttpURLConnection conn = (HttpURLConnection) new URL(url2).openConnection();
         conn.setConnectTimeout(5000);
@@ -96,10 +93,10 @@ public class VoiceRecognitionUtil {
         RestTemplate template=new RestTemplate();
         HttpHeaders headers=new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(contentTypeStr));
-        JSONObject object = template.postForObject(url2, null, JSONObject.class);
+        HttpEntity<String> httpEntity=new HttpEntity<>(new String(content),headers);
+        JSONObject object = template.postForObject(url2, httpEntity, JSONObject.class);
         System.out.println("url is " + url2);
         System.out.println("header is  " + "Content-Type :" + contentTypeStr);
-        //String result = ConnUtil.getResponseString(conn);
         if (object!=null){
             return (String) object.get("result");
         }
