@@ -1348,8 +1348,8 @@ let wait_default_predict = function () {
             success: function (res) {
                 resolve(res);
             }
-        });//ajax
-    });//promise
+        })//ajax
+    })//promise
 };
 
 let wait_simple_predict = function (business) {
@@ -1365,8 +1365,8 @@ let wait_simple_predict = function (business) {
             success: function (res) {
                 resolve(res);
             }
-        });//ajax
-    });//promise
+        })//ajax
+    })//promise
 };
 
 async function draw_default_pre() {
