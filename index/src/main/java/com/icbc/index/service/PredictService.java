@@ -18,15 +18,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 @Service
 public class PredictService {
 
-    @Autowired
+    @Resource
     PredictDao predictDao;
 
-    @Autowired
+    @Resource
     CardDao cardDao;
 
     @Autowired

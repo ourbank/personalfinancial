@@ -3,7 +3,6 @@ package com.icbc.index.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.icbc.index.dao.CardMountDao;
 import com.icbc.index.mapper.CardDao;
 import com.icbc.index.model.CardData;
 import com.icbc.index.model.CoreInQuerySQL;
@@ -27,8 +26,6 @@ public class PythonService {
     @Autowired
     RestTemplate restTemplate;
 
-    @Autowired
-    CardMountDao cardMountDao;
 
     @Resource
     CardDao cardDao;
@@ -45,10 +42,7 @@ public class PythonService {
         return cutword;
     }
 
-    public List<CardData> getCardMount() {
 
-        return cardMountDao.getCardMount();
-    }
 
     public String getResultByWeChat(String word) {
         String cutWord = getRawCutWord(word);
@@ -75,15 +69,24 @@ public class PythonService {
                         sql.setStrToDate(endTime);
                         break;
                     case "上个月":
+                        String current=TimeUtil.dateToMonthStr(date);
+                        startTime= current +"-01";
+                        endTime=startTime.replace("-01","-31");
+                        sql.setStrFromDate(startTime);
+                        sql.setStrToDate(endTime);
                         break;
                     case "前两年":
                         break;
                     case "前两个月":
+                        default:
                         break;
                 }
             }
             if (object.containsKey("c")) {
                 String temp = (String) object.get("c");
+                if (temp.contains("市")||temp.length()==2){
+                    temp=temp.substring(0,2)+"分行";
+                }
                 place.add(temp);
                 sql.setCompany(place);
             }

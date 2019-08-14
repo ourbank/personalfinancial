@@ -2,12 +2,14 @@ package com.icbc.index.util;
 
 
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Base64;
 
 public class VoiceRecognitionUtil {
@@ -80,26 +82,31 @@ public class VoiceRecognitionUtil {
         String format = fileName.substring(fileName.length() - 3);
         String url2 = URL + "?cuid=" + ConnUtil.urlEncode(CUID) + "&dev_pid=" + DEV_PID + "&token=" + token;
         String contentTypeStr = "audio/" + format + "; rate=" + RATE;
-        //System.out.println(url2);
         byte[] content = getFileContent(fileName);
-        HttpURLConnection conn = (HttpURLConnection) new URL(url2).openConnection();
+        /*HttpURLConnection conn = (HttpURLConnection) new URL(url2).openConnection();
         conn.setConnectTimeout(5000);
         conn.setRequestProperty("Content-Type", contentTypeStr);
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
         conn.getOutputStream().write(content);
-        conn.getOutputStream().close();
+        conn.getOutputStream().close();*/
+        RestTemplate template=new RestTemplate();
+        HttpHeaders headers=new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType(contentTypeStr));
+        HttpEntity<String> httpEntity=new HttpEntity<>(new String(content),headers);
+        JSONObject object = template.postForObject(url2, httpEntity, JSONObject.class);
         System.out.println("url is " + url2);
         System.out.println("header is  " + "Content-Type :" + contentTypeStr);
-        String result = ConnUtil.getResponseString(conn);
-        return result;
+        if (object!=null){
+            return (String) object.get("result");
+        }
+        return null;
     }
 
     public static String  runJsonPostMethod(String token,String fileName) throws DemoException, IOException {
         String format = fileName.substring(fileName.length() - 3);
         byte[] content = getFileContent(fileName);
         String speech = base64Encode(content);
-
         JSONObject params = new JSONObject();
         params.put("dev_pid", DEV_PID);
         params.put("format", format);
@@ -109,22 +116,17 @@ public class VoiceRecognitionUtil {
         params.put("channel", "1");
         params.put("len", content.length);
         params.put("speech", speech);
+        RestTemplate template=new RestTemplate();
+        HttpHeaders headers=new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/json; charset=utf-8"));
+        HttpEntity<String> entity=new HttpEntity<>(params.toJSONString(),headers);
+        JSONObject object = template.postForObject(URL, entity, JSONObject.class);
+        if (object!=null){
+           String result= (String) object.getJSONArray("result").get(0);
+           return result;
+        }
 
-        // System.out.println(params.toString());
-        HttpURLConnection conn = (HttpURLConnection) new URL(URL).openConnection();
-        conn.setConnectTimeout(5000);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
-        conn.setDoOutput(true);
-        conn.getOutputStream().write(params.toString().getBytes());
-        conn.getOutputStream().close();
-        String result = ConnUtil.getResponseString(conn);
-        params.put("speech", "base64Encode(getFileContent(FILENAME))");
-        //System.out.println("url is : " + URL);
-       // System.out.println("params is :" + params.toString());
-
-
-        return result;
+        return null;
     }
 
     private static byte[]  getFileContent(String filename) throws DemoException, IOException {

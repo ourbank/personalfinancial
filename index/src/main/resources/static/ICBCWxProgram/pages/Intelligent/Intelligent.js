@@ -138,7 +138,7 @@ Page({
     wx.uploadFile({
       
       //url:  "http://127.0.0.1:8080/personalfinancial-0.0.1-SNAPSHOT/sendVoice",
-      url: "http://dc9ad608.ngrok.io/receivevoice?token=" + that.data.token,
+      url: "http://localhost:9000/receivevoice?token=" + that.data.token,
       filePath: this.data.recordList[i].src,
       name: 'voicefile',
       method: 'POST',
