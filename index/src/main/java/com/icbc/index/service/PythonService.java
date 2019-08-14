@@ -26,8 +26,6 @@ public class PythonService {
     @Autowired
     RestTemplate restTemplate;
 
-    @Autowired
-    CardMountDao cardMountDao;
 
     @Resource
     CardDao cardDao;
