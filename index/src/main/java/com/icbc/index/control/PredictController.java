@@ -24,7 +24,7 @@ public class PredictController {
      */
     @RequestMapping(value = "/getscale")
     @ResponseBody
-    String getScaleByPeriod(@RequestParam("period") String period,@RequestParam("business") String buss){
+    public String getScaleByPeriod(@RequestParam("period") String period,@RequestParam("business") String buss){
         return predictService.getScaleByPeriod(period,buss);
     }
 
@@ -34,20 +34,15 @@ public class PredictController {
      */
     @RequestMapping(value = "/getdefaultpredict")
     @ResponseBody
-    String getdefaultpredict(){
+    public String getdefaultpredict(){
         System.out.println("getdefaultpredict");
         return predictService.getdefaultpredict();
     }
 
     @RequestMapping(value = "/getsimplepredict")
     @ResponseBody
-    String getsimplepredict(@Param(value = "business")String business){
+    public String getsimplepredict(@Param(value = "business")String business){
         System.out.println("getsimplepredict");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return predictService.getSimplePredictByBus(business);
     }
 }

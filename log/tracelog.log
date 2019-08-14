@@ -1,7 +1,0 @@
-2019-08-08 10:19:18,197 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 9.311 seconds (JVM running for 15.218)
-2019-08-08 14:03:46,562 INFO (SpringApplication.java:650)- The following profiles are active: dev
-2019-08-08 14:03:54,184 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 10.19 seconds (JVM running for 12.735)
-2019-08-08 14:30:50,500 INFO (SpringApplication.java:650)- The following profiles are active: dev
-2019-08-08 14:30:56,611 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 8.292 seconds (JVM running for 10.326)
-2019-08-08 14:32:23,133 INFO (SpringApplication.java:650)- The following profiles are active: dev
-2019-08-08 14:32:25,711 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 3.929 seconds (JVM running for 99.426)

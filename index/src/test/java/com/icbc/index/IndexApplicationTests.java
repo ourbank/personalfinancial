@@ -1,4 +1,5 @@
 package com.icbc.index;
+import com.icbc.index.control.Control;
 import com.icbc.index.service.BusinessSaveService;
 import com.icbc.index.service.CardService;
 import com.icbc.index.util.TimeUtil;
@@ -21,6 +22,7 @@ public class IndexApplicationTests {
     @Autowired
     BusinessSaveService businessSaveService;
 
+
     @Test
     public void contextLoads() {
         //cardService.getDataBy3factors(null);
@@ -40,6 +42,7 @@ public class IndexApplicationTests {
         System.out.println(map);
 //        businessSaveService.getBusiness(map);
     }
+
 
 
 

@@ -1,9 +1,0 @@
-2019-08-04 18:44:44,059 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 广州市(String)
-2019-08-04 18:44:44,059 DEBUG (BaseJdbcLogger.java:143)- ==> Parameters: 2018-02-01 00:00:00(String), 2019-10-31 23:59:59(String), 深圳市(String)
-2019-08-04 18:44:44,236 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 0
-2019-08-04 18:44:44,236 DEBUG (BaseJdbcLogger.java:143)- <==      Total: 0
-2019-08-04 18:46:51,355 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
-2019-08-04 18:46:58,737 INFO (StartupInfoLogger.java:59)- Started IndexApplication in 10.224 seconds (JVM running for 12.667)
-2019-08-04 18:47:09,192 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN '?' AND '?' GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = '?' 
-2019-08-04 18:47:09,192 DEBUG (BaseJdbcLogger.java:143)- ==>  Preparing: SELECT a.bankname as bankName, b. DAY as time, b.num as cardNum FROM bank a INNER JOIN ( SELECT bankid, sum(num) AS num, DAY FROM card_bill WHERE DAY BETWEEN '?' AND '?' GROUP BY bankid, DAY ) b ON a.id = b.bankid AND a.bankname = '?' 
-2019-08-04 18:51:31,799 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default

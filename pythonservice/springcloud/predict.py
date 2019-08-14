@@ -23,7 +23,6 @@ def predict(request):
     # 这里有个坑，使用dic接收json数组，顺序会被打乱，类似于java中的map
     train_data = json.loads(postBody, object_pairs_hook=OrderedDict)
     load_data()
-    show_data()
     return HttpResponse("hello")
 
 
@@ -31,11 +30,11 @@ def predict_mon(request):
     # 存储训练数据
     postBody = request.body
     global train_data
-    # 这里有个坑，使用dic接收json数组，顺序会被打乱，类似于java中的map
     train_data = json.loads(postBody, object_pairs_hook=OrderedDict)
     load_data()
-    # predict_by_mon()
-    return HttpResponse("predict_mon")
+    result = predict_by_mon(train_data['period'])
+    print(result)
+    return HttpResponse(result)
 
 
 def load_data():
@@ -51,11 +50,11 @@ def load_data():
     if train_data['business'] == '开卡数':
         print(train)
     if train_data['business'] == '贷款数':
-        print(df)
+        print(train)
     if train_data['business'] == '存款数':
-        print(df)
+        print(train)
     if train_data['business'] == '中间收入':
-        print(df)
+        print(train)
 
         # df = pd.read_csv(os.path.dirname(__file__) + '\\static\\train.csv', nrows=11856)
         # global train
@@ -77,29 +76,32 @@ def load_data():
         # test = test.resample('D').mean()
 
 
-# def predict_by_mon():
+def predict_by_mon(period):
+    global train
+    train = train.resample('M').mean()
+    return holt_winter(period)
 
 
-def show_data():
-    # Plotting data
-    load_data();
-    train.Count.plot(figsize=(15, 8), title='Daily Ridership', fontsize=14)
-    # test.Count.plot(figsize=(15, 8), title='Daily Ridership', fontsize=14)
-    plt.show()
+# def show_data():
+#     # Plotting data
+#     load_data();
+#     train.Count.plot(figsize=(15, 8), title='Daily Ridership', fontsize=14)
+#     # test.Count.plot(figsize=(15, 8), title='Daily Ridership', fontsize=14)
+#     plt.show()
 
 
-# def holt_winter():
-    # load_data();
-    # y_hat_avg = test.copy()
-    # fit1 = ExponentialSmoothing(np.asarray(train['Count']), seasonal_periods=7, trend='add', seasonal='add', ).fit()
-    # y_hat_avg['Holt_Winter'] = fit1.forecast(len(test))
-    # plt.figure(figsize=(16, 8))
+def holt_winter(period):
+    out = np.arange(period)
+    global train
+    fit1 = ExponentialSmoothing(np.asarray(train['Count']), seasonal_periods=7, trend='add', seasonal='add', ).fit()
+    out = fit1.forecast(len(out))
     # plt.plot(train['Count'], label='Train')
-    # plt.plot(test['Count'], label='Test')
-    # plt.plot(y_hat_avg['Holt_Winter'], label='Holt_Winter')
+    # plt.plot(out, label='Holt-Winter')
     # plt.legend(loc='best')
     # plt.show()
-    # print(y_hat_avg)
+    dic = {'predicted': out.tolist()}
+    dicJson = json.dumps(dic)
+    return dicJson
 
 
 # def arima():
