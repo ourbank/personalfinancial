@@ -4803,8 +4803,6 @@ var get_default_main = function () {
 async function process_main(hasdata) {
     if(!hasdata)
         await get_default_main();
-    console.log(arealist)
-    console.log(arealist[0])
     // 自动注入地图
     chart3('');
     // 自动显示图表
@@ -4831,6 +4829,8 @@ async function process_main(hasdata) {
 function draw_main_chart() {
     let myChart4 = echarts.init(document.getElementById('chart4'));
     let options = myChart4.getOption();
+    console.log("option配置")
+    console.log(options)
     if (factor == '开卡数') {
         options.yAxis[0] = {
             type: 'value',
@@ -4944,7 +4944,6 @@ function chart4() {
                 mark: {show: true},
                 magicType: {show: true, type: ['line', 'bar']},
                 restore: {show: true},
-                saveAsImage: {show: true}
             }
         },
         dataZoom: {
