@@ -1,17 +1,6 @@
 * {
   margin: 0;
   padding: 0; }
-
-li,
-ul {
-  list-style: none;
-  font-size:30px;
-  color: black;
-}
-
-a {
-  color: #000; }
-
 body,
 html {
   position: relative; }

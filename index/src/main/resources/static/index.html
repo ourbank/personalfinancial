@@ -456,6 +456,8 @@
             <el-table
                     id = "historySaveTable"
                     border
+                    :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"
+                    :cell-style="{background:'#0c1c2a',color:'#2e74f1'}"
                     :data="table.tableData.slice(0,1*5)"
                     style="width: 1200px;margin:auto;color:#56abe4;">
                 <template v-for='(col) in table.tablecolData'>
