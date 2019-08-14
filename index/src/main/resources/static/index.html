@@ -399,7 +399,7 @@
         </div>
     </div>
 
-    <div class="pop-up history-save">
+    <div class="pop-up ana-pop-up">
         <span class="close-pop"></span>
         <h2 class="title">历史数据保存</h2>
         <div class="GM_ipone">
@@ -423,10 +423,8 @@
                                 <span  >{{ attrinfo.attrName }} :</span>
                             </div>
                             <div class="sl_value"  >
-                                <ul>
-                                    <li v-for="attrValue in attrinfo.attrValueList">
+                                <ul v-for="attrValue in attrinfo.attrValueList">
                                         <a @click="addSelected($event,index)" >{{ attrValue.valueName }}</a>
-                                    </li>
 
                                 </ul>
                             </div>
@@ -437,9 +435,9 @@
         </div>
         <div id="appdate">
             <template>
-                <div class="block">
-                    <div style = "width:800px;height:33.6px;margin:auto">
-                        <span class="demonstration"  style="color:#56abe4;font-size: 14px;margin: 0px auto;" >时间范围：</span>
+                <div class="block"  >
+                    <div style = "width:1200px; margin:auto" >
+                        <span class="demonstration" style=" color:#56abe4; font-size: 14px;margin: 0px auto;" >时间范围：</span>
                         <el-date-picker
                                 v-model="value1"
                                 type="daterange"
@@ -449,7 +447,7 @@
                                 @change="chooseTimeRange"
                                 value-format="yyyy-MM-dd">
                         </el-date-picker>
-                        <el-button  icon="el-icon-download" circle onclick="exportExcel_Doit()"></el-button>
+                        <el-button  icon="el-icon-download" circle onclick="exportExcel_Doit()" ></el-button>
                     </div>
                 </div>
             </template>
@@ -459,7 +457,7 @@
                     id = "historySaveTable"
                     border
                     :data="table.tableData"
-                    style="width: 800px;margin:auto;color:#56abe4;">
+                    style="width: 1200px;margin:auto;color:#56abe4;">
                 <template v-for='(col) in table.tablecolData'>
                     <el-table-column
                             :prop="col.colItem"
@@ -471,6 +469,22 @@
             </el-table>
         </div>
     </div>
+    <div id="downloadTable" style="visibility: hidden;">
+        <el-table
+                border
+                :data="table.tableData"
+                style="width: 1200px;margin:auto;color:#56abe4;">
+            <template v-for='(col) in table.tablecolData'>
+                <el-table-column
+                        :prop="col.colItem"
+                        :label="col.colName"
+                        width="124px"
+                >
+                </el-table-column>
+            </template>
+        </el-table>
+    </div>
+</div>
 
     <div class="container2">
         <div class="pop-up1">
