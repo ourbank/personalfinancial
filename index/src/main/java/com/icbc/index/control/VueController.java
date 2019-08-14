@@ -154,10 +154,10 @@ public class VueController {
         public JSONObject sendSql(@RequestBody String tablelist) {
 
         JSONObject object = JSONObject.parseObject(tablelist);
-        System.out.println(object);
+
 
         JSONObject objectlist = object.getJSONObject("tablelist");
-        //System.out.println("hello" + objectlist);
+
 
         //给getTableByJson方法处理
         JSONObject object1 =businessSaveService.getDaysNumByBankName(objectlist);

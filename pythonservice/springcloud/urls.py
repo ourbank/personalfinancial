@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf.urls import url
 
 from springcloud import predict
+from springcloud import recommend
 from . import view
 
 urlpatterns = [
@@ -26,5 +27,6 @@ urlpatterns = [
     url('health/', view.health),
     url('jieba/$', view.jiebacut),
     # 获取预测结果
-    url('predict/', predict.predict_mon)
+    url('predict/', predict.predict_mon),
+    url('recommend/$', recommend.recommend)
 ]
