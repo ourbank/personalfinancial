@@ -67,6 +67,8 @@ public class WebSocketController {
     @ResponseBody
     public String  sendRecommend(){
         int id = (int) redisService.getObj("id");
+        if (id==0)
+            id=1;
         MultiValueMap<String,Object> user=new LinkedMultiValueMap<>();
         user.add("user",id);
         String recommend = pythonInvoke.recommend(user);

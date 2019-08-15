@@ -3563,7 +3563,7 @@ function connect(token) {
         });
         
         stompClient.subscribe('/topic/recommend',function (response) {
-           alert(response.body)
+           console.log(response.body)
         })
 
     });
