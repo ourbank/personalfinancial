@@ -28,5 +28,5 @@ urlpatterns = [
     url('jieba/$', view.jiebacut),
     # 获取预测结果
     url('predict/', predict.predict_mon),
-    url('recommend/$', recommend.recommend)
+    url('recommend/$', recommend.recommend),
 ]

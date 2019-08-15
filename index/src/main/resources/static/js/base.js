@@ -5600,6 +5600,10 @@ function connect(token) {
             arealist = JSON.parse(response.body);
             process_main(true)
         });
+        
+        stompClient.subscribe('/topic/recommend',function (response) {
+           alert(response.body)
+        })
 
     });
 };
