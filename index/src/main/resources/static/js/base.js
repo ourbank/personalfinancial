@@ -2318,6 +2318,13 @@ var vmtable = new Vue({
     }
 })
 
+var vmRecommand = new Vue({
+    el: '#vueRecommand',
+    data: {
+        recdata :null
+    }
+})
+
 var dowantable = new Vue({
     el: '#downloadTable',
     data :{
