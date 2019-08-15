@@ -3563,7 +3563,8 @@ function connect(token) {
         });
         
         stompClient.subscribe('/topic/recommend',function (response) {
-           console.log(response.body)
+            data=JSON.parse(response.body)
+            vmRecommand.recdata = data
         })
 
     });

@@ -32,7 +32,7 @@ public class Control {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @RequestMapping(value = "/get",method = RequestMethod.GET)
     public Object test1(){
-       return null;
+       return pythonInvoke.cutWord("查询广州分行开卡数");
 
     }
 

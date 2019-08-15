@@ -19,4 +19,7 @@ public interface PythonInvoke {
             headers = {"content-type=application/x-www-form-urlencoded"}
             ,consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public  String recommend(MultiValueMap<String,Object> user);
+
+    @RequestMapping(value = "/jieba")
+    public String cutWord(@RequestParam("raw")String raw);
 }
