@@ -35,7 +35,6 @@ public class PredictController {
     @RequestMapping(value = "/getdefaultpredict")
     @ResponseBody
     public String getdefaultpredict(){
-        System.out.println("getdefaultpredict");
         return predictService.getdefaultpredict();
     }
 

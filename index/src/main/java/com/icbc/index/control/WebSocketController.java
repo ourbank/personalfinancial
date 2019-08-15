@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.configuration.SocketSessionMap;
 import com.icbc.index.mapper.CardDao;
 import com.icbc.index.model.CardData;
+import com.icbc.index.service.PythonInvoke;
 import com.icbc.index.service.RedisService;
 import com.icbc.index.vo.RequestMessage;
 import com.icbc.index.vo.ResponseMessage;
@@ -14,9 +15,14 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,10 +32,12 @@ import java.util.List;
  * 该控制器负责websocket的相关请求和推送
  */
 @Controller
-@EnableScheduling
 public class WebSocketController {
 
     private final SimpMessagingTemplate messagingTemplate;
+
+    @Resource
+    PythonInvoke pythonInvoke;
 
     @Autowired
     SocketSessionMap sessionMap;
@@ -50,28 +58,23 @@ public class WebSocketController {
         return new ResponseMessage("welcome," + message.getName() + " !");
     }
 
-    /**
-     * 定时推送消息
-     */
-   /* @Scheduled(fixedRate = 100000)
-    public void callback() {
-        // 发现消息
-        //System.out.println("call back");
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        messagingTemplate.convertAndSend("/topic/callback", "定时推送消息时间: " + df.format(new Date()));
-    }
-*/
-
 
     public void sendToUser(String token, String message){
         messagingTemplate.convertAndSend("/topic/"+token,message);
     }
 
-    // 测试用，绕开小程序的token
-    public void sendToUserLimk(String message){
-        messagingTemplate.convertAndSend("/topic/test",message);
-    }
+    @SubscribeMapping("/topic/recommend")
+    @ResponseBody
+    public String  sendRecommend(){
+        int id = (int) redisService.getObj("id");
+        if (id==0)
+            id=1;
+        MultiValueMap<String,Object> user=new LinkedMultiValueMap<>();
+        user.add("user",id);
+        String recommend = pythonInvoke.recommend(user);
+        return recommend;
 
+    }
 
 
 }

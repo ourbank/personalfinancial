@@ -11,6 +11,8 @@ import com.icbc.index.util.AccountDate;
 import com.icbc.index.util.BankIdConstant;
 import com.icbc.index.util.JSONParseUtil;
 import com.icbc.index.util.TableNameConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,7 +24,10 @@ public class BusinessSaveService {
     @Resource
     BusinessSaveMapper businessSaveMapper;
 
+    Logger logger = LoggerFactory.getLogger(BusinessSaveService.class);
+
     public JSONObject getDaysNumByBankName(JSONObject objectlist){
+        logger.info("历史查询传进来参数："+objectlist.toJSONString());
         //1.获取JSONobject里面的业务名以及对应的业务值为map
         JSONArray jsonArray = objectlist.getJSONArray("list");
 
@@ -95,7 +100,7 @@ public class BusinessSaveService {
         return jsonObject;
     }
 
-    public JSONObject getFiveDaysNumByBankName(JSONObject objectlist){
+   /* public JSONObject getFiveDaysNumByBankName(JSONObject objectlist){
         //1.获取JSONobject里面的业务名以及对应的业务值为map
         JSONArray jsonArray = objectlist.getJSONArray("list");
 
@@ -167,6 +172,6 @@ public class BusinessSaveService {
         JSONObject jsonObject = JSONParseUtil.getSaveJson(bankSet, businessSet, startTime, endTime, list);
 //        System.out.println(jsonObject);
         return jsonObject;
-    }
+    }*/
 
 }

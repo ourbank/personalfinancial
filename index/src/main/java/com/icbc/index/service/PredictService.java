@@ -10,6 +10,8 @@ import com.icbc.index.model.CoreInQuerySQL;
 import com.icbc.index.util.TimeUtil;
 import com.icbc.index.vo.PredictDataVo;
 import com.icbc.index.vo.PredictScaleVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +34,8 @@ public class PredictService {
 
     @Autowired
     RestTemplate restTemplate;
+
+    Logger logger= LoggerFactory.getLogger(PredictService.class);
     /**
      * 将拿到的数据封装成json格式，暂时使用测试数据
      * @param period
@@ -56,7 +60,9 @@ public class PredictService {
         list.add(10231);
         list.add(10553);
         out.add(new PredictDataVo("开卡数","广州分行","season",list));
-        return JSON.toJSONString(out);
+        String result=JSON.toJSONString(out);
+        logger.info("默认的预测："+result);
+        return result;
     }
 
     /**

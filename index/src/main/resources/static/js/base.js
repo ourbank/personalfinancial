@@ -3568,11 +3568,11 @@ function connect(token) {
             arealist = JSON.parse(response.body);
             process_main(true)
         });
-        stompClient.subscribe('/topic/test', function (res) {
-            // console.log(response.body);
-            arealist = JSON.parse(res.body);
-            process_main(true)
-        });
+        
+        stompClient.subscribe('/topic/recommend',function (response) {
+           console.log(response.body)
+        })
+
     });
 };
 
