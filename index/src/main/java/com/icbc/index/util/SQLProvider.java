@@ -20,8 +20,24 @@ public class SQLProvider {
         String startTime = TimeUtil.praseStartTime(coreInQuerySQL.getStrFromDate());
         String endTime = TimeUtil.praseEndTime(coreInQuerySQL.getStrToDate());
         String bankName;
-        innersql.SELECT("bankid", "sum(num) as num", "day");
-        innersql.FROM("card_bill");
+        switch (coreInQuerySQL.getSingleBusiness()){
+            case "开卡数":
+                innersql.SELECT("bankid", "sum(num) as num", "day");
+                innersql.FROM("card_bill");
+                break;
+            case "存款数":
+                innersql.SELECT("bankid", "num as num", "day");
+                innersql.FROM("deposit_daily");
+                break;
+            case "贷款数":
+                innersql.SELECT("bankid", "num as num", "day");
+                innersql.FROM("loan_daily");
+                break;
+            case "中间收入":
+                innersql.SELECT("bankid", "num as num", "day");
+                innersql.FROM("intermediate_bill");
+                break;
+        }
         innersql.WHERE("DAY BETWEEN '" + startTime + "' and '" + endTime + "'");
         innersql.GROUP_BY("bankid", "day");
         SQL sql = new SQL().SELECT("a.bankname as bankName,b.day as time,b.num as cardNum");
