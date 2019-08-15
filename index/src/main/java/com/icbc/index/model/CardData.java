@@ -3,22 +3,22 @@ package com.icbc.index.model;
 import java.util.Date;
 
 public class CardData {
-    private int cardNum;
+    private double cardNum;
     private String bankName;
     private Date time;
     public CardData() {
     }
-    public CardData(int cardNum, String bankName, Date time) {
+    public CardData(double cardNum, String bankName, Date time) {
         this.cardNum = cardNum;
         this.bankName = bankName;
         this.time = time;
     }
 
-    public int getCardNum() {
+    public double getCardNum() {
         return cardNum;
     }
 
-    public void setCardNum(int cardNum) {
+    public void setCardNum(double cardNum) {
         this.cardNum = cardNum;
     }
 
