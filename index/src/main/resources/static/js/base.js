@@ -2651,6 +2651,7 @@ var sendajax = function () {
 }
 //开始发送啦
 $('#commit').on('click', async function () {
+    arealist = [];
 	if($('#startTime').val() == ''){
 		alert('请输入带查询初始年月');
 	}
@@ -2737,8 +2738,10 @@ async function process_main(hasdata) {
 
 // 将画图功能抽取出来，方便其他地方调用
 function draw_main_chart() {
+    //console.log(arealist)
     let myChart4 = echarts.init(document.getElementById('chart4'));
     let options = myChart4.getOption();
+    myChart4.clear();
 
 
     if (factor == '开卡数') {
@@ -3396,6 +3399,7 @@ myChart3.on('mapselectchanged', function (params) {
                 selectedCity.push(keys[i]);//被选中的城市集合
             }
         }
+
     }
 );
 
