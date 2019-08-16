@@ -2814,29 +2814,77 @@ function draw_main_chart() {
     options.series = []; // 先清空
     if (dataIndex[0].indexOf('号') != -1) {
         //点进来在日里面
+        options.calculable = true;
         for (var i = 0; i < selectedCity.length; i++) {
-            options.series.push({name: '', type: '', data: ''});
+            options.series.push({name: '', type: '', data: '',markPoint:'',markLine:''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = showstyle;
+
+            options.series[i].markPoint = {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            };
+            options.series[i].markLine = {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ],
+            };
+            options.series[i].markPoint.label.show = false;
             options.series[i].data = getmonthcount(
                 selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                 curyear, clickMonth);
         }
         //点进来在月里面
     } else if (dataIndex[0].indexOf('月') != -1) {
+        options.calculable = true;
         for (var i = 0; i < selectedCity.length; i++) {
             options.series.push({name: '', type: '', data: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = showstyle;
+
+            options.series[i].markLine = {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ],
+            };
+            options.series[i].markPoint = {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ],
+
+            };
+            options.series[i].markPoint.label.show = false;
             options.series[i].data = getmonth(
                 selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                 parseInt(startY));
         }
     } else {//点进来在年里面
+         options.calculable = true;
         for (var i = 0; i < selectedCity.length; i++) {
+
             options.series.push({name: '', type: '', data: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = showstyle;
+            options.series[i].axisLine ={onZero: true};
+            options.series[i].markLine = {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ],
+
+
+            };
+            options.series[i].markPoint = {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ],
+                symbol:'pin',
+
+            };
+
             options.series[i].data = getyear(selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行');
         }
     }
@@ -2848,7 +2896,7 @@ function draw_main_chart() {
 
 /* =========================核心查询图表============================*/
 var myChart4 = echarts.init(document.getElementById('chart4'));
-var showstyle = 'bar'
+var showstyle = 'bar';
 myChart4.on('magictypechanged',function(obj){
 
 	if(myChart4.getOption().series[0].type =='bar'){
@@ -2913,6 +2961,7 @@ function chart4() {
         xAxis: [
             {
                 axisLine: {
+                    onZero:true,
                     lineStyle: {
                         color: '#fff'
                     }
@@ -2941,6 +2990,7 @@ function chart4() {
 
         ],
         series: [
+
             /*
             {
                 name:'广州市',
