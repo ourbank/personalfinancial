@@ -10,9 +10,7 @@ import com.icbc.index.util.JSONParseUtil;
 import com.icbc.index.util.TimeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,30 +20,17 @@ import java.util.List;
 @Service
 public class PythonService {
 
-    //模拟http请求，使用在微服务向python请求服务
-    @Autowired
-    RestTemplate restTemplate;
 
-
+    @Resource
+     PythonInvoke pythonInvoke;
     @Resource
     CardDao cardDao;
 
     Logger logger = LoggerFactory.getLogger(PythonService.class);
 
 
-    public String getRawCutWord(String raw) {
-
-        //请求python微服务
-        String cutword = restTemplate.getForEntity("http://127.0.0.1:8000" +
-                "/jieba?raw=" + raw, String.class).getBody();
-        logger.info("分词结束且结果："+cutword);
-        return cutword;
-    }
-
-
-
     public String getResultByWeChat(String word) {
-        String cutWord = getRawCutWord(word);
+        String cutWord = pythonInvoke.cutWord(word);
         JSONArray array = JSONArray.parseArray(cutWord);
         CoreInQuerySQL sql = new CoreInQuerySQL();
         List<String> place = new ArrayList<>();

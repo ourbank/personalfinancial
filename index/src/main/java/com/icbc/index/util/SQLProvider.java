@@ -101,7 +101,7 @@ public class SQLProvider {
         sql.SELECT("b.num as num, a.bankname as bankName");
         sql.FROM("bank a");
         sql.INNER_JOIN("("+innersql.toString()+") b on a.id = b.bankid");
-        System.out.println("auto sql:\n" + sql.toString());
+        logger.info("获得年季度月数据："+sql.toString());
         return sql.toString();
     }
 
@@ -148,7 +148,7 @@ public class SQLProvider {
         sql.FROM("Bill");
         sql.WHERE(businessCondition.toString(), bankCondition.toString() ,timeCondition);
         sql.ORDER_BY("day","business");
-
+        logger.info("多业务多城市查询sql语句生成："+sql.toString());
 
         return sql.toString();
     }

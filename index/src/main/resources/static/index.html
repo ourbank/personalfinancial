@@ -17,10 +17,9 @@
     <script type="text/javascript" src="js/stomp.min.js"></script>
     <script type="text/javascript" src="js/sockjs.min.js"></script>
 	<script type="text/javascript" src="js/DatePicker.js"></script>
-    <!-- 先引入 Vue -->
     <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
-    <!-- qs axios-->
     <script type="text/javascript" src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <!-- qs axios-->
     <script type="text/javascript" src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -182,21 +181,24 @@
 				<div class="pages-div" >
                     <button id="commit" class="skip2" >开始查询</button>
 				</div>
-                <div class="select-box-map2_2">
+                <div class="select-box-map2_2" >
                     <div id='tohistory' class="main_title" style="cursor:pointer">
                         <img style="width:0.3rem;height:0.3rem;" src="images/time.png" alt="">
-                        历史查询
+                        推荐
                     </div>
-                    <div class="historydata-box">
-                        <p class="historydata" id='historydata1'>1. 2019-06-19 17:52 查询开卡数</p>
+                    <div style="height:90%;" id="vueRecommand">
+                        <el-scrollbar style="height:100%">
+                            <div class="historydata-box" v-for="rec in recdata">
+                                <p class="historydata" id='historydata1'>{{rec.title}}</p>
+                            </div>
+                        </el-scrollbar>
                     </div>
-                    <div class="historydata-box">
-                        <p class="historydata" id='historydata2'>2. 2019-07-10 11:52 分析职业和贷款数</p>
-                    </div>
-                    <div class="historydata-box">
-                        <p class="historydata">3. 2019-07-11 22:52 预测贷款数</p>
-                    </div>
-                    
+
+                    <style>
+                        .el-scrollbar__wrap {
+                            overflow-x: hidden;
+                        }
+                    </style>
                 </div>
             </div>
         </div>
@@ -441,6 +443,7 @@
                         <el-date-picker
                                 v-model="value1"
                                 type="daterange"
+                                size="small"
                                 range-separator="至"
                                 start-placeholder="开始日期"
                                 end-placeholder="结束日期"
@@ -455,15 +458,21 @@
         <div id="apptable">
             <el-table
                     id = "historySaveTable"
-                    border
                     :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"
                     :cell-style="{background:'#0c1c2a',color:'#2e74f1'}"
                     :data="table.tableData.slice(0,1*5)"
+                    border
+                    max-height="300"
                     style="width: 1200px;margin:auto;color:#56abe4;">
+                <el-table-column
+                        type="index"
+                        width="60px">
+                </el-table-column>
                 <template v-for='(col) in table.tablecolData'>
                     <el-table-column
                             :prop="col.colItem"
                             :label="col.colName"
+                            sortable
                     >
                     </el-table-column>
                 </template>
@@ -531,6 +540,12 @@
     });
 
 </script>
-
-
+<script>
+    var vmRecommand = new Vue({
+        el: '#vueRecommand',
+        data: {
+            recdata :null
+        }
+    })
+</script>
 </html>
