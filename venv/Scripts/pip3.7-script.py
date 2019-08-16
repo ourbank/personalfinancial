@@ -1,4 +1,4 @@
-#!E:\shixi\personalfinancial\venv\Scripts\python.exe
+#!E:\shixi\personalfinancial\venv\Scripts\pythonsidecar.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==10.0.1','console_scripts','pip3.7'
 __requires__ = 'pip==10.0.1'
 import re
