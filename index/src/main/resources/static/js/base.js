@@ -2858,9 +2858,10 @@ myChart4.on('magictypechanged',function(obj){
 		showstyle = 'line';
 	}
 });
-//xAxis
+//xAxis he
 function chart4() {
     // 基于准备好的dom，初始化echarts实例
+    console.log("233")
     myChart4.clear();
     option = {
         tooltip: {
