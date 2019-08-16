@@ -6,6 +6,7 @@ var chart4_bscissa = []; //chart4的横坐标
 var searchcitys = [];
 var factor = '-1'; //代办业务
 
+var a=[2,3,4,5,6];
 //职业
 var data00 = [{
     name: 'IT人员',
@@ -2701,8 +2702,9 @@ var get_default_main = function () {
 async function process_main(hasdata) {
     if(!hasdata)
         await get_default_main();
-    console.log(arealist)
-    console.log(arealist[0])
+    //console.log(arealist)
+
+    //console.log(arealist[0])
     // 自动注入地图
     chart3('');
     // 自动显示图表
@@ -2739,6 +2741,7 @@ async function process_main(hasdata) {
 // 将画图功能抽取出来，方便其他地方调用
 function draw_main_chart() {
     //console.log(arealist)
+
     let myChart4 = echarts.init(document.getElementById('chart4'));
     let options = myChart4.getOption();
     myChart4.clear();
@@ -2769,7 +2772,7 @@ function draw_main_chart() {
                     color: '#fff'
                 }
             },
-            name: '贷款数/元',
+            name: '贷款数/百万元',
             axisLabel: {formatter: '{value} '}
         }
     } else if (factor == '存款数') {
@@ -2783,7 +2786,7 @@ function draw_main_chart() {
                     color: '#fff'
                 }
             },
-            name: '存款数/元',
+            name: '存款数/百万元',
             axisLabel: {formatter: '{value} '}
         }
     } else if (factor == '中间收入') {
@@ -2797,10 +2800,11 @@ function draw_main_chart() {
                     color: '#fff'
                 }
             },
-            name: '中间收入/元',
+            name: '中间收入/百万元',
             axisLabel: {formatter: '{value} '}
         }
     }
+	
     options.legend[0].data = selectedCity;
     options.xAxis[0].data = getChart4_bscissa();
     // 加载数据
@@ -3206,17 +3210,19 @@ myChart4.getZr().on('click', params => {
                 //clickMonth = xIndex + 1;
                 if (startY == endY) {
                     clickMonth = xIndex + parseInt(startM);
-
+                    curyear = startY;
                 } else {
-                    clickMonth = xIndex + 1
+                    clickMonth = xIndex + 1;
                 }
                 options.xAxis[0].data = getday(clickMonth + '月');
+
                 for (var i = 0; i < selectedCity.length; i++) {
                     options.series[i].data = getmonthcount(
                         selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
-                        parseInt(startY), clickMonth);
-
+                        curyear, clickMonth);
                 }
+
+
                 options.dataZoom[0].start = 0;
                 options.dataZoom[0].end = 100;
                 myChart4.clear();
@@ -3261,6 +3267,7 @@ function getmonthcount(city, year, month) { //year：2009  month：6
     year = year + '年'
     month = month + '月'
     var array = [];
+	var array1 = [];
     var templist = cachicatch(city); //x
     var templist1 = templist;
     if (startY == endY) {
@@ -3286,17 +3293,32 @@ function getmonthcount(city, year, month) { //year：2009  month：6
             }
         }
     }
-    //console.log(templist.data)
-    return templist.data;
+	array1 =[].concat(templist.data);
+	if(factor != '开卡数'){
+		return parsearray(array1)
+	}
+   else return array1;
+    
 }
 
 //得到一个集合的和
 function arraysum(arr) {
     var sum = 0;
     for (var i = 0; i < arr.length; i++) {
+		
         sum += arr[i];
     }
     return sum;
+}
+
+//针对钱来处理的函数：除以100000再保留两位小数
+function parsearray(array){
+	for(var i=0;i<array.length;i++){
+		array[i] /= 1000000.0;
+		array[i] = array[i].toFixed(2);
+		array[i] = parseFloat(array[i]);
+	}
+	return array;
 }
 
 //得到某个地区某一年的集合(月的集合)
@@ -3324,11 +3346,15 @@ function getmonth(city, year) {
             array[i] = arraysum(templist.data[i].data);
         }
     }
-    return array;
+	 var array1 = [].concat(array);
+	 if(factor!='开卡数'){
+		return parsearray(array1);
+	 }
+	 else return array1;
 
 }
 
-//得到某个地区的集合(2009-2019)
+//得到某个地区的集合
 function getyear(city) {
 
     var array = [];
@@ -3336,16 +3362,18 @@ function getyear(city) {
     var templist = cachicatch(city);
     for (var i = 0; i < templist.data.length; i++) {
         array1[i] = templist.data[i].time.slice(0, name.length - 1);
-
     }
 
     for (var i = 0; i < templist.data.length; i++) {
         array[i] = arraysum(getmonth(city, array1[i]))
-
     }
-
-
-    return array;
+    if(factor != '开卡数'){
+        for(var i=0;i<array.length;i++){
+            array[i] = array[i].toFixed(2);
+            array[i] = parseFloat(array[i]);
+        }
+    }
+	return array;
 }
 
 
@@ -3357,7 +3385,6 @@ function parsearea(name) {
 
 //返回bankname为area的整个list
 function cachicatch(city) {
-
     for (var i = 0; i < arealist.length; i++) {
         if (arealist[i].bankname == city) {
             return arealist[i];
