@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 /*
-* 调用微服务接口（python）
+* 调用微服务接口（pythonsidecar）
 * @author mychen
 * */
 @FeignClient(name ="PYTHONSIDECAR")

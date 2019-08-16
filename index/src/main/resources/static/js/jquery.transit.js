@@ -50,7 +50,7 @@
   // Helper function to get the proper vendor property name.
   // (`transition` => `WebkitTransition`)
   function getVendorPropertyName(prop) {
-    // Handle unprefixed versions (FF16+, for example)
+    // Handle unprefixed versions (FF16+, for icbc)
     if (prop in div.style) return prop;
 
     var prefixes = ['Moz', 'Webkit', 'O', 'ms'];

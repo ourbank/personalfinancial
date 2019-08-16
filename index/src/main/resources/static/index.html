@@ -17,10 +17,9 @@
     <script type="text/javascript" src="js/stomp.min.js"></script>
     <script type="text/javascript" src="js/sockjs.min.js"></script>
 	<script type="text/javascript" src="js/DatePicker.js"></script>
-    <!-- 先引入 Vue -->
-    <script type="text/javascript" src="js/vue.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
     <!-- qs axios-->
-    <script type="text/javascript" src="js/axios.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -190,7 +189,7 @@
                     <div style="height:90%;" id="vueRecommand">
                         <el-scrollbar style="height:100%">
                             <div class="historydata-box" v-for="rec in recdata">
-                                <p class="historydata" id='historydata1'  >{{ rec.title }}</p >
+                                <p class="historydata" id='historydata1'>{{rec.title}}</p>
                             </div>
                         </el-scrollbar>
                     </div>

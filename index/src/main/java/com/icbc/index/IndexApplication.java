@@ -22,7 +22,6 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.icbc.index.service"})
 @MapperScan(basePackages = {"com.icbc.index.mapper"})
-@EnableEurekaClient
 public class IndexApplication {
 
     public static void main(String[] args) {
