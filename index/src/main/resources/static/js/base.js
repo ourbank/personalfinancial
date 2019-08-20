@@ -1,13 +1,13 @@
-var analysebus = '-1';
-var analysefac = '-1';
-var curyear;
+let analysebus = '-1';
+let analysefac = '-1';
+let curyear;
 
-var chart4_bscissa = []; //chart4的横坐标
-var searchcitys = [];
-var factor = '-1'; //代办业务
+let chart4_bscissa = []; //chart4的横坐标
+let searchcitys = [];
+let factor = '-1'; //代办业务
 
 //职业
-var data00 = [{
+let data00 = [{
     name: 'IT人员',
     value: 192581,
     percent: '30'
@@ -29,7 +29,7 @@ var data00 = [{
     percent: '14.67',
 }];
 //年龄
-var data01 = [{
+let data01 = [{
     name: '高于50岁',
     value: 192581,
     percent: '30'
@@ -49,7 +49,7 @@ var data01 = [{
 
 //地址
 
-var data02 = [{
+let data02 = [{
     name: '一线城市',
     value: 192581,
     percent: '30'
@@ -67,7 +67,7 @@ var data02 = [{
     percent: '14.67',
 }];
 
-var data03 = [{
+let data03 = [{
     name: '男性',
     value: 192581,
     percent: '40'
@@ -76,18 +76,18 @@ var data03 = [{
     value: 215635,
     percent: '60',
 }];
-var data10 = data00;
-var data20 = data00;
-var data30 = data00;
-var data11 = data01;
-var data21 = data01;
-var data31 = data01;
-var data12 = data02;
-var data22 = data02;
-var data32 = data02;
-var data13 = data03;
-var data23 = data03;
-var data33 = data03;
+let data10 = data00;
+let data20 = data00;
+let data30 = data00;
+let data11 = data01;
+let data21 = data01;
+let data31 = data01;
+let data12 = data02;
+let data22 = data02;
+let data32 = data02;
+let data13 = data03;
+let data23 = data03;
+let data33 = data03;
 
 //选择对应数据
 function selectdata(num1, num2) {
@@ -110,34 +110,34 @@ function selectdata(num1, num2) {
 
 
 function fnW(str) {
-    var num;
+    let num;
     str >= 10 ? num = str : num = "0" + str;
     return num;
 }
 
 //获取当前时间
-var timer = setInterval(function () {
-    var date = new Date();
-    var year = date.getFullYear(); //当前年份
-    var month = date.getMonth(); //当前月份
-    var data = date.getDate(); //天
-    var hours = date.getHours(); //小时
-    var minute = date.getMinutes(); //分
-    var second = date.getSeconds(); //秒
-    var day = date.getDay(); //获取当前星期几
-    var ampm = hours < 12 ? 'am' : 'pm';
+let timer = setInterval(function () {
+    let date = new Date();
+    let year = date.getFullYear(); //当前年份
+    let month = date.getMonth(); //当前月份
+    let data = date.getDate(); //天
+    let hours = date.getHours(); //小时
+    let minute = date.getMinutes(); //分
+    let second = date.getSeconds(); //秒
+    let day = date.getDay(); //获取当前星期几
+    let ampm = hours < 12 ? 'am' : 'pm';
     $('#time').html(fnW(hours) + ":" + fnW(minute) + ":" + fnW(second));
     $('#date').html('<span>' + year + '/' + (month + 1) + '/' + data + '</span><span>' + ampm + '</span><span>周' + day + '</span>')
 
 }, 1000)
 
-var title1_1; //标题1：分析 的第一个选择参数
-var title1_2; //标题1：分析 的第二个选择参数
-var title2_1; //标题2：预测 的第一个选择参数
+let title1_1; //标题1：分析 的第一个选择参数
+let title1_2; //标题1：分析 的第二个选择参数
+let title2_1; //标题2：预测 的第一个选择参数
 /*按钮点击方法*/
 $('.select-ul').on('click', 'li', function () {
     $(this).addClass('active').siblings('li').removeClass('active').parent().hide().siblings('.select-div').html($(this).html());
-    var parentDiv = $(this).parent().parent().parent();
+    let parentDiv = $(this).parent().parent().parent();
     //alert($(this).attr("data-value"));
 })
 
@@ -158,7 +158,7 @@ $('#select_factor').on('click', 'li', function () {
 
 // 分析模块 标题
 $('#select_business').on('click', function () {
-    //var ul = document.getElementById("analyli1_1").getElementsByTagName("ul")[0].getElementsByTagName("li");
+    //let ul = document.getElementById("analyli1_1").getElementsByTagName("ul")[0].getElementsByTagName("li");
     title1_1 = $("#analyli1_1").text();
     title1_2 = $("#analyli1_2").text();
     title1 = '业务指标分析';
@@ -190,7 +190,7 @@ $('#pre_select_business').on('click', function () {
 });
 
 //鼠标滑动到按钮，按钮内容变成白色
-var imgName;
+let imgName;
 $('.title-box').children('button').hover(function () {
     imgName = $(this).children('img').attr('src').split('.png')[0];
     $(this).children('img').attr('src', imgName + '_on.png');
@@ -200,8 +200,8 @@ $('.title-box').children('button').hover(function () {
 });
 
 
-var startColor = ['#0e94eb', '#c440ef', '#efb013', '#2fda07', '#d8ef13', '#2e4af8', '#0eebc4', '#f129b1', '#17defc', '#f86363'];
-var borderStartColor = ['#0077c5', '#a819d7', '#c99002', '#24bc00', '#b6cb04', '#112ee2', '#00bd9c', '#ce078f', '#00b2cd', '#ec3c3c'];
+let startColor = ['#0e94eb', '#c440ef', '#efb013', '#2fda07', '#d8ef13', '#2e4af8', '#0eebc4', '#f129b1', '#17defc', '#f86363'];
+let borderStartColor = ['#0077c5', '#a819d7', '#c99002', '#24bc00', '#b6cb04', '#112ee2', '#00bd9c', '#ce078f', '#00b2cd', '#ec3c3c'];
 
 
 $('.select').on('blur', function () {
@@ -217,7 +217,7 @@ $('.select-div').on('click', function () {
 })
 $('.select-ul').on('click', 'li', function () {
     $(this).addClass('active').siblings('li').removeClass('active').parent().hide().siblings('.select-div').html($(this).html());
-    var parentDiv = $(this).parent().parent().parent();
+    let parentDiv = $(this).parent().parent().parent();
 })
 
 //银行指标分析占比，带边框效果的饼图
@@ -226,16 +226,16 @@ $('.select-ul').on('click', 'li', function () {
 
 function bigchart1() {
 
-    var data;
+    let data;
     //data 为模拟数据
     data = data00
-    var mybigchart1 = echarts.init(document.getElementById('bigchart1'));
+    let mybigchart1 = echarts.init(document.getElementById('bigchart1'));
     window.addEventListener('resize', function () {
         mybigchart1.resize();
     });
 
-    var str = '';
-    for (var i = 0; i < data.length; i++) {
+    let str = '';
+    for (let i = 0; i < data.length; i++) {
         //这句可以删除百分数
         //str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + ""+ '</span></p>';
         str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + "" + '</span>' + Number(data[i].percent).toFixed(2) + '%</p>';
@@ -247,20 +247,20 @@ function bigchart1() {
         if (typeof obj !== 'object') {
             return obj;
         }
-        var newobj = {};
-        for (var attr in obj) {
+        let newobj = {};
+        for (let attr in obj) {
             newobj[attr] = obj[attr];
         }
         return newobj;
     }
 
-    var RealData = [];
-    var borderData = [];
+    let RealData = [];
+    let borderData = [];
     RealData.splice(0, RealData.length);
     borderData.splice(0, borderData.length);
     data.map((item, index) => {
-        var newobj = deepCopy(item);
-        var newobj1 = deepCopy(item);
+        let newobj = deepCopy(item);
+        let newobj1 = deepCopy(item);
         RealData.push(newobj);
         borderData.push(newobj1);
     });
@@ -306,7 +306,7 @@ function bigchart1() {
             }
         }
     });
-    var option = {
+    let option = {
         tooltip: {
             trigger: 'item',
             //            position: ['30%', '50%'],
@@ -376,16 +376,16 @@ bigchart1()
 
 function bigchart2() {
 
-    var data;
+    let data;
     //data 为模拟数据
     data = data01
-    var mybigchart2 = echarts.init(document.getElementById('bigchart2'));
+    let mybigchart2 = echarts.init(document.getElementById('bigchart2'));
     window.addEventListener('resize', function () {
         mybigchart2.resize();
     });
 
-    var str = '';
-    for (var i = 0; i < data.length; i++) {
+    let str = '';
+    for (let i = 0; i < data.length; i++) {
         //这句可以删除百分数
         //str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + ""+ '</span></p>';
         str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + "" + '</span>' + Number(data[i].percent).toFixed(2) + '%</p>';
@@ -396,20 +396,20 @@ function bigchart2() {
         if (typeof obj !== 'object') {
             return obj;
         }
-        var newobj = {};
-        for (var attr in obj) {
+        let newobj = {};
+        for (let attr in obj) {
             newobj[attr] = obj[attr];
         }
         return newobj;
     }
 
-    var RealData = [];
-    var borderData = [];
+    let RealData = [];
+    let borderData = [];
     RealData.splice(0, RealData.length);
     borderData.splice(0, borderData.length);
     data.map((item, index) => {
-        var newobj = deepCopy(item);
-        var newobj1 = deepCopy(item);
+        let newobj = deepCopy(item);
+        let newobj1 = deepCopy(item);
         RealData.push(newobj);
         borderData.push(newobj1);
     });
@@ -455,7 +455,7 @@ function bigchart2() {
             }
         }
     });
-    var option = {
+    let option = {
         tooltip: {
             trigger: 'item',
             //            position: ['30%', '50%'],
@@ -526,15 +526,15 @@ bigchart2()
 
 function bigchart3() {
 
-    var data;
+    let data;
     //data 为模拟数据
     data = data02
-    var mybigchart3 = echarts.init(document.getElementById('bigchart3'));
+    let mybigchart3 = echarts.init(document.getElementById('bigchart3'));
     window.addEventListener('resize', function () {
         mybigchart3.resize();
     });
-    var str = '';
-    for (var i = 0; i < data.length; i++) {
+    let str = '';
+    for (let i = 0; i < data.length; i++) {
         //这句可以删除百分数
         //str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + ""+ '</span></p>';
         str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + "" + '</span>' + Number(data[i].percent).toFixed(2) + '%</p>';
@@ -545,20 +545,20 @@ function bigchart3() {
         if (typeof obj !== 'object') {
             return obj;
         }
-        var newobj = {};
-        for (var attr in obj) {
+        let newobj = {};
+        for (let attr in obj) {
             newobj[attr] = obj[attr];
         }
         return newobj;
     }
 
-    var RealData = [];
-    var borderData = [];
+    let RealData = [];
+    let borderData = [];
     RealData.splice(0, RealData.length);
     borderData.splice(0, borderData.length);
     data.map((item, index) => {
-        var newobj = deepCopy(item);
-        var newobj1 = deepCopy(item);
+        let newobj = deepCopy(item);
+        let newobj1 = deepCopy(item);
         RealData.push(newobj);
         borderData.push(newobj1);
     });
@@ -604,7 +604,7 @@ function bigchart3() {
             }
         }
     });
-    var option = {
+    let option = {
         tooltip: {
             trigger: 'item',
             //            position: ['30%', '50%'],
@@ -675,16 +675,16 @@ bigchart3()
 
 function bigchart4() {
 
-    var data;
+    let data;
     //data 为模拟数据
     data = data03
-    var mybigchart4 = echarts.init(document.getElementById('bigchart4'));
+    let mybigchart4 = echarts.init(document.getElementById('bigchart4'));
     window.addEventListener('resize', function () {
         mybigchart4.resize();
     });
 
-    var str = '';
-    for (var i = 0; i < data.length; i++) {
+    let str = '';
+    for (let i = 0; i < data.length; i++) {
         //这句可以删除百分数
         //str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + ""+ '</span></p>';
         str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + "" + '</span>' + Number(data[i].percent).toFixed(2) + '%</p>';
@@ -695,20 +695,20 @@ function bigchart4() {
         if (typeof obj !== 'object') {
             return obj;
         }
-        var newobj = {};
-        for (var attr in obj) {
+        let newobj = {};
+        for (let attr in obj) {
             newobj[attr] = obj[attr];
         }
         return newobj;
     }
 
-    var RealData = [];
-    var borderData = [];
+    let RealData = [];
+    let borderData = [];
     RealData.splice(0, RealData.length);
     borderData.splice(0, borderData.length);
     data.map((item, index) => {
-        var newobj = deepCopy(item);
-        var newobj1 = deepCopy(item);
+        let newobj = deepCopy(item);
+        let newobj1 = deepCopy(item);
         RealData.push(newobj);
         borderData.push(newobj1);
     });
@@ -754,7 +754,7 @@ function bigchart4() {
             }
         }
     });
-    var option = {
+    let option = {
         tooltip: {
             trigger: 'item',
             //            position: ['30%', '50%'],
@@ -823,7 +823,7 @@ function bigchart4() {
 bigchart4()
 
 
-var data;
+let data;
 
 // 泽瀚的分析界面，留存
 let ana_simple_chart = echarts.init(document.getElementById('pie'));
@@ -905,7 +905,7 @@ function chart1() {
         data = data00;
     } else data = selectdata(analysebus, analysefac);
 
-    var myChart = echarts.init(document.getElementById('pie'));
+    let myChart = echarts.init(document.getElementById('pie'));
     window.addEventListener('resize', function () {
         myChart.resize();
     });
@@ -915,14 +915,14 @@ function chart1() {
         if (typeof obj !== 'object') {
             return obj;
         }
-        var newobj = {};
-        for (var attr in obj) {
+        let newobj = {};
+        for (let attr in obj) {
             newobj[attr] = obj[attr];
         }
         return newobj;
     }
 
-    var xData = [],
+    let xData = [],
         yData = [];
     data.map((a, b) => {
         xData.push(a.name);
@@ -930,11 +930,11 @@ function chart1() {
     });
 
 
-    var RealData = [];
-    var borderData = [];
+    let RealData = [];
+    let borderData = [];
     data.map((item, index) => {
-        var newobj = deepCopy(item);
-        var newobj1 = deepCopy(item);
+        let newobj = deepCopy(item);
+        let newobj1 = deepCopy(item);
         RealData.push(newobj);
         borderData.push(newobj1);
     });
@@ -980,7 +980,7 @@ function chart1() {
             }
         }
     });
-    var option = {
+    let option = {
         tooltip: {
             trigger: 'item',
             //            position: ['30%', '50%'],
@@ -1042,8 +1042,8 @@ function chart1() {
         ]
     };
 
-    var str = '';
-    for (var i = 0; i < data.length; i++) {
+    let str = '';
+    for (let i = 0; i < data.length; i++) {
         //这句可以删除百分数
         //str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + ""+ '</span></p>';
         str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + "" + '</span>' + Number(data[i].percent).toFixed(2) + '%</p>';
@@ -1127,141 +1127,8 @@ $('#plan_chart_btn').on('mouseleave', function () {
         $('#plan_chart_btn').attr('style', 'background: #0c1a2c')
 })
 
-var preBigChart = echarts.init(document.getElementById('chart11'));
+let preBigChart = echarts.init(document.getElementById('chart11'));
 
-function chart11() {
-    // 基于准备好的dom，初始化echarts实例
-    preBigChart.clear();
-    option = {
-        toolbox: {
-            show: false,
-            feature: {
-                mark: {show: true},
-                restore: {show: true},
-                saveAsImage: {show: true}
-            }
-        },
-        title: {
-            text: ''
-        },
-        tooltip: {
-            trigger: 'axis',
-            formatter: function (params) {
-                // 自定义悬浮框，用于展示增量百分比
-                if (params.length > 1 && params[0].seriesName.indexOf('预测') != -1) {
-                    return params[0].name + "<br/>"
-                        + params[0].seriesName + "：" + params[0].value + "<br/>"
-                        + params[1].seriesName + "：" + params[1].value + "<br/>"
-                        + "业务理论增量：" + ((((params[1].value - params[0].value) / params[0].value) * 100).toFixed(2)) + "%";
-                }
-                if (params.length > 1 && params[0].seriesName.indexOf('历史') != -1) {
-                    return params[0].name + "<br/>"
-                        + params[0].seriesName + "：" + params[0].value + "<br/>";
-                }
-                if (params.length = 1 && params[0].seriesName.indexOf('预测') != -1) {
-                    return params[0].name + "<br/>"
-                        + params[0].seriesName + "：" + params[0].value + "<br/>";
-                }
-                return params[0].name + "<br/>"
-                    + params[0].seriesName + "：" + params[0].value + "<br/>"
-                    + params[1].seriesName + "：" + params[1].value + "<br/>";
-            }
-        },
-        legend: {
-            data: ['历史', '预测', '计划'],
-            textStyle: {
-                color: '#fff'
-            },
-            top: '8%'
-        },
-        grid: {
-            top: '20%',
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        color: ['#FF4949', '#FFA74D', '#FFEA51', '#4BF0FF', '#44AFF0', '#4E82FF', '#584BFF', '#BE4DFF', '#F845F1'],
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: ['7月', '8月', '9月', '10月', '11月', '12月'],
-            splitLine: {
-                show: false
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#fff'
-                }
-            }
-        },
-        yAxis: {
-            name: '张',
-            type: 'value',
-            splitLine: {
-                show: false
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#fff'
-                }
-            }
-        },
-        series: [
-            {
-                name: '历史',
-                type: 'line',
-                smooth: true, //平滑曲线显示
-                data: [3961.88, 4233.63, 4183.14]
-            },
-            {
-                name: '预测',
-                type: 'line',
-                smooth: true, //平滑曲线显示
-                data: [, , 4183.14, 3633.01, 3704.47, 4204.47]
-            }
-            // 此处添加
-        ]
-    };
-    preBigChart.setOption(option);
-}
-
-chart11('');
-
-// 预测界面中  目标分析
-$("#pre_ana_btn").on('click', function () {
-    var options = preBigChart.getOption();
-    var out = [options.series[0], options.series[1]];
-    var target = $("#target").val();
-    var pre = options.series[1].data;
-    var plan = getplan(pre, target);
-    var out_data = {name: '计划', type: 'line', smooth: true, data: plan}
-    out.push(out_data);
-    options.series = out;
-    preBigChart.clear();
-    preBigChart.setOption(options);
-})
-
-// 目标分析函数
-function getplan(pre, target) {
-    //console.log(target);
-    var out = [];
-    var i;
-    for (i = 0; i < pre.length; i++) {
-        out.push(pre[i]);
-        if (pre[i] != null) break;
-    }
-    var now = out[i];
-    var gap = (target - now) / (pre.length - i - 1);
-    //console.log(gap);
-
-    for (i = i + 1; i < pre.length; i++) {
-        now = now + gap;
-        out.push(now.toFixed(2));
-    }
-    //console.log(out);
-    return out;
-}
 
 //----------------首页展示的简单图
 //点击筛选按钮end
@@ -1278,7 +1145,7 @@ function chart2() {
             formatter: function (params) {
                 if (params.length != 1) {
                     return params[0].name + "<br/>"
-                        + params[1].marker + params[1].seriesName + "：" + params[1].value + "<br/>"
+                        + params[1].marker + "历史数据：" + params[1].value + "<br/>"
                 } else {
                     return params[0].name + "<br/>"
                         + params[0].marker + params[0].seriesName + "：" + params[0].value + "<br/>"
@@ -1352,6 +1219,7 @@ let wait_default_predict = function () {
     })//promise
 };
 
+// 单城市预测
 let wait_simple_predict = function (business) {
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -1370,21 +1238,17 @@ let wait_simple_predict = function (business) {
 };
 
 async function draw_default_pre() {
-    preSimpleChart.showLoading({
-        maskColor: 'rgba(68,120,255,0.7)'
-    });
     let res = await wait_default_predict();
     updatePreSimpleChart(res);
-    preSimpleChart.hideLoading();
 }
 
 async function draw_simple_pre(business) {
-    preSimpleChart.showLoading({
-        maskColor: 'rgba(68,120,255,0.7)'
-    });
+    // preSimpleChart.showLoading({
+    //     maskColor: 'rgba(68,120,255,0.7)'
+    // });
     let res = await wait_simple_predict(business);
     updatePreSimpleChart(res);
-    preSimpleChart.hideLoading();
+    // preSimpleChart.hideLoading();
 }
 
 // 更新简单预测表的主要函数
@@ -1398,8 +1262,12 @@ function updatePreSimpleChart(res) {
     // 更换横纵坐标轴
     let xAxis = generateX(res[0].predictUnit, res[0].predictData.length);
     config.xAxis[0].data = xAxis;
-    if (res[0].business != '开卡数') config.yAxis[0].name = '元';
-    else config.yAxis[0].name = '张';
+    if (res[0].business != '开卡数') {
+        config.yAxis[0].name = '百万元';
+        for (let i = 0; i < res[0].predictData.length; i++) {
+            res[0].predictData[i] = (res[0].predictData[i] / 1000000).toFixed(2)
+        }
+    } else config.yAxis[0].name = '张';
     // 更换图例
     //config.legend.data = [res[0].banknames];
     // 更换数据
@@ -1414,11 +1282,12 @@ function updatePreSimpleChart(res) {
     history.push(res[0].predictData[0]);
     history.push(res[0].predictData[1]);
     config.series.push({
-        name: res[0].bankName + '历史',
-        type: 'line',
+        name: '',
+        type: 'scatter',
         smooth: true,
         data: history
     });
+    // 同时将大小两个图进行更新
     preSimpleChart.clear();
     preSimpleChart.setOption(config);
     preBigChart.clear();
@@ -1432,7 +1301,7 @@ function generateX(unit, num) {
     switch (unit) {
         case 'year':
             for (let i = -2; i < num - 2; i++) {
-                xAxis.push((now.getMonth() - 2 + i) + '年');
+                xAxis.push((now.getFullYear() - 2 + i) + '年');
             }
             break;
         case 'season':
@@ -1452,95 +1321,117 @@ function generateX(unit, num) {
 
 // value的值代表，该城市的计划值，长度由预测时间长度决定
 // 如[x,x,x,x]，即为当前时间接下去4个时间单位
-var gd_city = [
+// value 用来存储计划，value2用来存储预测结果（包含多两个单位历史）
+let gd_city = [
     {
         name: '广州市',
-        value: 0
+        value: 0,
+        value2: 0
     },
     {
         name: '韶关市',
-        value: 0
+        value: 0,
+        value2: 0
     },
     {
         name: '深圳市',
-        value: 0
+        value: 0,
+        value2: 0
     },
     {
         name: '珠海市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '汕头市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '佛山市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '江门市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '湛江市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '茂名市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '肇庆市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '惠州市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '梅州市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '汕尾市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '河源市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '阳江市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '清远市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '东莞市',
-        value: 0
+        value: 0,
+        value2: 0
     },
     {
         name: '中山市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '潮州市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '揭阳市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     },
     {
         name: '云浮市',
-        value: 0.0
+        value: 0.0,
+        value2: 0
     }]
 
 //变色
-var pre_unit_choose;
-var pre_city_choose;
+let pre_unit_choose;
+let pre_city_choose;
 $('#1mon').on('click', function () {
     pre_unit_choose = 0;
     $('#1mon').attr("style", "background-color: #b104ff;")
@@ -1561,25 +1452,24 @@ $('#12mon').on('click', function () {
 })
 
 function plan_getmon(i) {
-    var date = new Date();
-    var year = date.getFullYear();
-    var mon = date.getMonth();
+    let date = new Date();
+    let year = date.getFullYear();
+    let mon = date.getMonth();
     return parseInt(year + (mon + i) / 12) + '年 ' + (((mon + i) % 12) + 1) + '月';
 }
 
-
 function plan_getyear() {
-    var date = new Date();
-    var year = date.getFullYear();
+    let date = new Date();
+    let year = date.getFullYear();
     return year;
 }
 
 // 获取当前季度的后i个季度
 function plan_getseason(i) {
-    var date = new Date();
-    var year = date.getFullYear();
-    var mon = date.getMonth();
-    var season;
+    let date = new Date();
+    let year = date.getFullYear();
+    let mon = date.getMonth();
+    let season;
     if (mon == 1 || mon == 2 || mon == 3) {
         season = 1;
     } else if (mon == 4 || mon == 5 || mon == 6) {
@@ -1596,21 +1486,21 @@ function plan_getseason(i) {
 function draw_config() {
     $('.detail-container').empty();
     if (pre_unit_choose == 0) {
-        for (var i = 0; i < $('#pre_period').val(); i++) {
+        for (let i = 0; i < $('#pre_period').val(); i++) {
             $('.detail-container').append('<div style="width:100%" class="pre_citybox">\n' +
                 '                    <p ><span>' + plan_getmon(i) + '：</span></p>\n' +
                 '                    <input id="' + pre_city_choose + plan_getmon(i) + '_input">\n' +
                 '                </div>')
         }
     } else if (pre_unit_choose == 1) {
-        for (var i = 0; i < $('#pre_period').val(); i++) {
+        for (let i = 0; i < $('#pre_period').val(); i++) {
             $('.detail-container').append('<div style="width:100%" class="pre_citybox">\n' +
                 '                    <p ><span>' + plan_getseason(i) + '：</span></p>\n' +
                 '                    <input id="' + pre_city_choose + plan_getseason(i) + '_input">\n' +
                 '                </div>')
         }
     } else {
-        for (var i = 0; i < $('#pre_period').val(); i++) {
+        for (let i = 0; i < $('#pre_period').val(); i++) {
             $('.detail-container').append('<div style="width:100%" class="pre_citybox">\n' +
                 '                    <p ><span>' + (plan_getyear() + i) + '年：</span></p>\n' +
                 '                    <input id="' + pre_city_choose + (plan_getyear() + i) + '_input">\n' +
@@ -1622,13 +1512,13 @@ function draw_config() {
 
 // 将gd_city中value的值赋给对应的input
 function get_gd_city_data(id) {
-    var temp = [];
-    for (var i = 0; i < gd_city.length; i++) {
+    let temp = [];
+    for (let i = 0; i < gd_city.length; i++) {
         if (gd_city[i].name == id) {
             temp = gd_city[i].value;
         }
     }
-    for (var i = 0; i < $('#pre_period').val(); i++) {
+    for (let i = 0; i < $('#pre_period').val(); i++) {
         $('.detail-container').find('input').eq(i).val(temp[i].toFixed(0));
     }
 }
@@ -1638,14 +1528,14 @@ function randomNum(minNum, maxNum) {
 }
 
 // 用于动态获取占比数据
-let wait_scale = function () {
+let wait_scale = function (unit, business) {
     return new Promise((resolve) => {
         $.ajax({
             type: 'post',
             contentType: "application/x-www-form-urlencoded",
             dataType: 'json',
             url: 'http://localhost:9000/getscale',
-            data: {period: 'season', business: '开卡数'},
+            data: {unit: unit, business: business},
             success: function (res) {
                 resolve(res);
             }
@@ -1653,13 +1543,31 @@ let wait_scale = function () {
     });//promise
 };
 
+function translateTimeUnit(pre_unit_choose) {
+    let unit = ''
+    switch (pre_unit_choose) {
+        case 0:
+            unit = 'month';
+            break;
+        case 1:
+            unit = 'season';
+            break;
+        case 2:
+            unit = 'year';
+            break;
+    }
+    return unit;
+}
+
 //根据占比(ajax获得)进行分配
 async function main_all() {
-    var target = $('#广州target').val();
-    var res = await wait_scale();
-    var zhanbi = [1];
-    var data = [];
-    var base;
+    let target = $('#广州target').val();
+    let unit = translateTimeUnit(pre_unit_choose)
+    let business = title2_1 = $("#analyli2_1").text();
+    let res = await wait_scale(unit, business);
+    let zhanbi = [1];
+    let data = [];
+    let base;
     for (let i = 0; i < res.length; i++) {
         if (res[i].bankName == '广州分行') {
             base = res[i].num;
@@ -1680,20 +1588,19 @@ async function main_all() {
             }
         }
     }
-    for (var i = 1; i <= gd_city.length; i++) {
-        $('.city-container').find('input').eq(i - 1).val((target * zhanbi[i]).toFixed(0));
+    for (let i = 1; i <= gd_city.length; i++) {
+        $('.city-container').find('.inp').eq(i - 1).val((target * zhanbi[i]).toFixed(0));
     }
-    for (var i = 0; i < gd_city.length; i++) {
-        var temp = [];
-        var target_temp = target * zhanbi[i];
-        var test_mon = data[i];
-        var gap = ((target_temp - test_mon) / $('#pre_period').val()).toFixed(2);
-        for (var j = 0; j < $('#pre_period').val(); j++) {
+    for (let i = 0; i < gd_city.length; i++) {
+        let temp = [];
+        let target_temp = target * zhanbi[i];
+        let test_mon = data[i];
+        let gap = ((target_temp - test_mon) / $('#pre_period').val()).toFixed(2);
+        for (let j = 0; j < $('#pre_period').val(); j++) {
             temp.push(test_mon + gap * (j + 1));
         }
         gd_city[i].value = temp;
     }
-
 }
 
 // 动态添加
@@ -1716,10 +1623,10 @@ $('#gz_click').on('click', function () {
         draw_config();
         get_gd_city_data('广州市');
         $('.detail-container input').on('blur', function () {
-            for (var i = 0; i < gd_city.length; i++) {
+            for (let i = 0; i < gd_city.length; i++) {
                 if (gd_city[i].name == pre_city_choose) {
-                    var temp = []
-                    for (var j = 0; j < $('#pre_period').val(); j++) {
+                    let temp = []
+                    for (let j = 0; j < $('#pre_period').val(); j++) {
                         temp.push($('.detail-container').find('input').eq(j).val());
                     }
                     gd_city[i].value = temp;
@@ -1731,8 +1638,9 @@ $('#gz_click').on('click', function () {
 
 
 // 动态添加 城市配置
+let pre_choose = [] //希望进行预测的城市
 $('#pre_all_btn').on('click', function () {
-    var access = true;
+    let access = true;
     if ($('#广州target').val() == '') {
         alert("智能分配根据省会计划进行同比分配，请添加省会计划");
         access = false;
@@ -1747,24 +1655,54 @@ $('#pre_all_btn').on('click', function () {
     }
     if (access == true) {
         $('.city-container').empty();
-        for (var i = 1; i < gd_city.length; i++) {
+        // 动态添加DOM元素，城市配置
+        for (let i = 1; i < gd_city.length; i++) {
             $('.city-container').append('<div class="pre_citybox">\n' +
-                '                    <p style="cursor: pointer" id="' + gd_city[i].name + '_p"><span>' + gd_city[i].name + '：</span></p>\n' +
-                '                    <input id="' + gd_city[i].name + '_input">\n' +
+                '                    <input class ="chk" type="checkbox" id= "' + gd_city[i].name + '_chk">\n' +
+                '                    <label for="' + gd_city[i].name + '_chk"></label>' +
+                '                    <p style="cursor: pointer" id="' + gd_city[i].name + '_p"><span>' + gd_city[i].name.slice(0, gd_city[i].name.indexOf('市')) + '：</span></p>\n' +
+                '                    <input class ="inp" id="' + gd_city[i].name + '_input">\n' +
                 '                </div>');
+            // 添加动态CSS属性
+            $('<style>#' + gd_city[i].name + '_chk {display: none;}</style>').appendTo('body');
+            $('<style>#' + gd_city[i].name + '_chk + label{    position: relative;\n' +
+                '    display: inline-block;\n' +
+                '    width: 60px;\n' +
+                '    height: 20px;\n' +
+                '    border-radius: 10px;\n' +
+                '    background-color: #bbb;}</style>').appendTo('body');
+            $('<style>#' + gd_city[i].name + '_chk + label:before{content: \'\';\n' +
+                '    cursor: pointer;\n' +
+                '    position: absolute;\n' +
+                '    top: -5px;\n' +
+                '    left: 0;\n' +
+                '    z-index: 1;\n' +
+                '    width: 30px;\n' +
+                '    height: 30px;\n' +
+                '    border-radius: 50%;\n' +
+                '    background: #F7F4F4;\n' +
+                '    box-shadow: 0 3px 1px rgba(0,0,0,0.05), 0 0px 1px rgba(0,0,0,0.3);\n' +
+                '    -webkit-transition: all 0.1s ease-in;\n' +
+                '    transition: all 0.1s ease-in;}</style>').appendTo('body');
+            $('<style>#' + gd_city[i].name + '_chk:checked + label{background: #aabbfd;}</style>').appendTo('body');
+            $('<style>#' + gd_city[i].name + '_chk:checked + label:before{content: \'\';\n' +
+                '    position: absolute;\n' +
+                '    left: 30px;\n' +
+                '    background-color: #7272dd;' +
+                '    z-index:1;}</style>').appendTo('body');
             // 添加点击事件
             $('#' + gd_city[i].name + '_p').on('click', function (res) {
                 $('#pages-div').attr('style', 'visibility: hidden');
                 $('.container2').attr('style', 'visibility: visible').find('.pop-up1').eq(0).attr('style', 'visibility: visible');
-                $('.pop-up1').find('h2').eq(0).text(res.currentTarget.innerText.slice(0, -2) + '分行计划配置');
-                pre_city_choose = res.currentTarget.innerText.slice(0, -1);
+                $('.pop-up1').find('h2').eq(0).text(res.currentTarget.innerText.slice(0, -1) + '分行计划配置');
+                pre_city_choose = res.currentTarget.innerText.slice(0, -1) + '市';
                 draw_config();
                 get_gd_city_data(pre_city_choose);
                 $('.detail-container input').on('blur', function () {
-                    for (var i = 0; i < gd_city.length; i++) {
+                    for (let i = 0; i < gd_city.length; i++) {
                         if (gd_city[i].name == pre_city_choose) {
-                            var temp = []
-                            for (var j = 0; j < $('#pre_period').val(); j++) {
+                            let temp = []
+                            for (let j = 0; j < $('#pre_period').val(); j++) {
                                 temp.push($('.detail-container').find('input').eq(j).val());
                             }
                             gd_city[i].value = temp;
@@ -1774,19 +1712,222 @@ $('#pre_all_btn').on('click', function () {
             });
 
         }
+        $('.chk').on('click', function () {
+            pre_choose = ['广州分行']
+            for (let i = 0; i < $('.pre_citybox').find('.chk').length; i++) {
+                if ($('.pre_citybox').find('.chk').eq(i).is(':checked') == true) {
+                    pre_choose.push($('.pre_citybox').find('span').eq(i).text().slice(0, 2) + '分行')
+                }
+            }
+        })
         main_all();
+    }
+})
+
+// 详情页多城市预测
+let wait_predict = function (banknames, period, unit, business) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            url: 'http://localhost:9000/getpredict',
+            data: JSON.stringify({
+                "banknames": banknames,
+                "period": period,
+                "unit": unit,
+                "business": business
+            }),
+            success: function (res) {
+                resolve(res);
+            }
+        })//ajax
+    })//promise
+};
+let personal_color = ['#52596b','#bd2010','#e7ba10','#639629','#9b55ad','#cec3c6'];
+// 绘制多城市预测图表
+function draw_predict(res) {
+    pre_option = {
+        title: {
+            text: ''
+        },
+        tooltip: {
+            trigger: 'axis',
+            // formatter: function (params) {
+            //     // 自定义悬浮框，用于展示增量百分比
+            //     if (params.length > 1 && params[0].seriesName.indexOf('预测') != -1) {
+            //         return params[0].name + "<br/>"
+            //             + params[0].seriesName + "：" + params[0].value + "<br/>"
+            //             + params[1].seriesName + "：" + params[1].value + "<br/>"
+            //             + "业务理论增量：" + ((((params[1].value - params[0].value) / params[0].value) * 100).toFixed(2)) + "%";
+            //     }
+            //     if (params.length > 1 && params[0].seriesName.indexOf('历史') != -1) {
+            //         return params[0].name + "<br/>"
+            //             + params[0].seriesName + "：" + params[0].value + "<br/>";
+            //     }
+            //     if (params.length = 1 && params[0].seriesName.indexOf('预测') != -1) {
+            //         return params[0].name + "<br/>"
+            //             + params[0].seriesName + "：" + params[0].value + "<br/>";
+            //     }
+            //     return params[0].name + "<br/>"
+            //         + params[0].seriesName + "：" + params[0].value + "<br/>"
+            //         + params[1].seriesName + "：" + params[1].value + "<br/>";
+            // }
+        },
+        legend: {
+            textStyle: {
+                color: '#fff'
+            },
+            top: '5%'
+        },
+        grid: {
+            top: '20%',
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        color: ['#FF4949', '#FFA74D', '#FFEA51', '#4BF0FF', '#44AFF0', '#4E82FF', '#584BFF', '#BE4DFF', '#F845F1'],
+        xAxis: [{
+            type: 'category',
+            boundaryGap: false,
+            data: ['7月', '8月', '9月', '10月', '11月', '12月'],
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#fff'
+                }
+            }
+        }],
+        yAxis: [{
+            name: '张',
+            type: 'value',
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#fff'
+                }
+            }
+        }],
+        series: [
+            {
+                name: '历史',
+                type: 'line',
+                smooth: true, //平滑曲线显示
+                data: [3961.88, 4233.63, 4183.14]
+            },
+            {
+                name: '预测',
+                type: 'line',
+                smooth: true, //平滑曲线显示
+                data: [, , 4183.14, 3633.01, 3704.47, 4204.47]
+            }
+            // 此处添加
+        ]
+    };
+    // gd_citys赋值
+    for (let i = 0; i < res.length; i++) {
+        for (let j = 0; j < gd_city.length; j++) {
+            if (res[i].bankName.slice(0, 2) + '市' == gd_city[j].name) {
+                gd_city[j].value2 = res[i].predictData;
+                break;
+            }
+        }
+    }
+    // 开始绘图
+    // 更换坐标轴
+    let xAxis = generateX(res[0].predictUnit, res[0].predictData.length);
+    pre_option.xAxis[0].data = xAxis;
+    if (res[0].business != '开卡数') {
+        pre_option.yAxis[0].name = '百万元';
+        for (let i = 0; i < res.length; i++) {
+            for (let j = 0; j < res[i].length; j++) {
+                res[i].predictData[j] = (res[i].predictData[j] / 1000000).toFixed(2)
+            }
+        }
+    } else pre_option.yAxis[0].name = '张';
+    // 更换数据
+    pre_option.series = [];
+    for (let i = 0; i < res.length; i++) {
+        let color = personal_color[i % personal_color.length]
+        pre_option.series.push({
+            name: res[i].bankName + '预测',
+            type: 'line',
+            data: res[i].predictData,
+            itemStyle:{
+                color:color
+            }
+        });
+        let history = [];
+        history.push(res[i].predictData[0]);
+        history.push(res[i].predictData[1]);
+        pre_option.series.push({
+            name: res[i].bankName + '历史',
+            type: 'scatter',
+            data: history,
+            itemStyle:{
+                color:color
+            }
+        });
+        let plan = [];
+        plan.push(res[i].predictData[0]);
+        plan.push(res[i].predictData[1]);
+        for (let j = 0; j < gd_city.length; j++) {
+            if (res[i].bankName.slice(0, 2) + '市' == gd_city[j].name) {
+                plan.push(...gd_city[j].value)
+                break;
+            }
+        }
+        pre_option.series.push({
+            name: res[i].bankName + '计划',
+            type: 'line',
+            data: plan,
+            itemStyle:{
+                color:color
+            }
+        });
+    }
+    console.log(pre_option)
+    preBigChart.clear()
+    preBigChart.setOption(pre_option)
+    // 切换到图表页面
+    $('.container').attr('style', 'visibility: visible').find('.pop-up').eq(1).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
+    $('#plan_plan_btn').attr('style', 'background: #0c1a2c');
+    $('#plan_chart_btn').attr('style', 'background: #0c1a2c');
+    $('#pre_plan_btn').attr('style', 'background: #0c1a2c');
+    $('#pre_chart_btn').attr('style', 'background: #4169E1');
+    pre_choose_chart = 1;
+    pre_choose_plan = 0;
+}
+
+$('#pre_ana_btn').on('click', async function () {
+    if (pre_choose.length < 1) {
+        alert("请选择需要进行分析的城市")
+    } else {
+        let banknames = pre_choose;
+        let period = $('#pre_period').val();
+        let unit = translateTimeUnit(pre_unit_choose);
+        let business = $("#analyli2_1").text();
+        let res = await wait_predict(banknames, period, unit, business);
+        console.log(res)
+        draw_predict(res)
+
     }
 })
 //------------指标预测end---------------
 
 /* =========================地图模块图表============================*/
 //地图地点选择
-var myChart3 = echarts.init(document.getElementById('gdMap'));
-var myChart33 = echarts.init(document.getElementById('gdMap_big'));
-var myChart_gdmap_alert = echarts.init(document.getElementById('gdMap_alert'));
+let myChart3 = echarts.init(document.getElementById('gdMap'));
+let myChart33 = echarts.init(document.getElementById('gdMap_big'));
+let myChart_gdmap_alert = echarts.init(document.getElementById('gdMap_alert'));
 
 async function chart3(chartType) {
-    var data = [
+    let data = [
         {
             name: '广州市',
             value: 0.0
@@ -1876,8 +2017,8 @@ async function chart3(chartType) {
         myChart3.resize();
         myChart33.resize();
     });
-    var yMax = 0;
-    for (var j = 0; j < data.length; j++) {
+    let yMax = 0;
+    for (let j = 0; j < data.length; j++) {
         if (yMax < data[j].value) {
             yMax = data[j].value;
         }
@@ -1999,7 +2140,7 @@ async function chart3(chartType) {
         let d = option.series[0].data;
         let bigd = option_big.series[0].data
         for (let j = 0; j < d.length; j++) {
-            if(d[j].name == arealist[i].bankname.slice(0,arealist[i].bankname.length-2)+'市'){
+            if (d[j].name == arealist[i].bankname.slice(0, arealist[i].bankname.length - 2) + '市') {
                 d[j].selected = true;
                 bigd[j].selected = true;
                 break;
@@ -2013,7 +2154,7 @@ async function chart3(chartType) {
 
 // 警报界面地图
 function chart_alert(chartType) {
-    var data = [
+    let data = [
         {
             name: '广州市',
             value: 5
@@ -2102,13 +2243,13 @@ function chart_alert(chartType) {
     window.addEventListener('resize', function () {
         myChart_gdmap_alert.resize();
     });
-    var yMax = 0;
-    for (var j = 0; j < data.length; j++) {
+    let yMax = 0;
+    for (let j = 0; j < data.length; j++) {
         if (yMax < data[j].value) {
             yMax = data[j].value;
         }
     }
-    var option = {
+    let option = {
         animation: true,
         tooltip: {
             show: true
@@ -2190,25 +2331,25 @@ $('#right_float_window').on('mouseleave', function () {
 /*
      *   导出excel function
      * */
-exportExcel_Doit = function(type, fn, dl) {
-    var elt = document.getElementById('downloan-his');
-    var wb = XLSX.utils.table_to_book(elt, {sheet: "Sheet JS"});
+exportExcel_Doit = function (type, fn, dl) {
+    let elt = document.getElementById('downloan-his');
+    let wb = XLSX.utils.table_to_book(elt, {sheet: "Sheet JS"});
     return dl ?
         XLSX.write(wb, {bookType: type, bookSST: true, type: 'base64'}) :
         XLSX.writeFile(wb, fn || ('test.' + (type || 'xlsx')));
 }
-var vm = new Vue({
+let vm = new Vue({
     el: '#app',
     data: {
         attrlist: null
     },
-    created () {
-        var _this = this;
+    created() {
+        let _this = this;
 
         axios({
-            method:'get',
-            url:'http://localhost:9000/list2',
-            headers:{'Access-Control-Allow-Origin':'*'}
+            method: 'get',
+            url: 'http://localhost:9000/list2',
+            headers: {'Access-Control-Allow-Origin': '*'}
         }).then(function (response) {
             _this.attrlist = response.data;
             //console.log(response);
@@ -2217,45 +2358,46 @@ var vm = new Vue({
 
     },
     methods: {
-        addSelected: function (event,index) {
+        addSelected: function (event, index) {
             //获取点击对象
-            var el = event.currentTarget;
+            let el = event.currentTarget;
             //alert("当前对象的内容：" + el.innerHTML);
-            var text =  el.innerHTML
+            let text = el.innerHTML
             //alert(index)
             //去重
-            for (var i in vmtop.panlist.list){
-                if (vmtop.panlist.list[i].panAttrValue===text) return ;
+            for (let i in vmtop.panlist.list) {
+                if (vmtop.panlist.list[i].panAttrValue === text) return;
             }
 
             //选择列表增加
             //获取业务名字
             //在这里面编辑希望的json格式
-            var pan = {
-                panAttrName  : vm.attrlist[index].attrName,
-                panAttrValue : text
+            let pan = {
+                panAttrName: vm.attrlist[index].attrName,
+                panAttrValue: text
             }
 
             vmtop.panlist.list.push(pan);
             this.sendSql();
         },
-        sendSql:function () {
+        sendSql: function () {
             axios({
-                url:'http://localhost:9000/sendSql',
-                method:'post',
-                headers:{'Access-Control-Allow-Origin':'*',
+                url: 'http://localhost:9000/sendSql',
+                method: 'post',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/json'
                     // 'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 transformRequest: [function (data) {
                     // 对 data 进行任意转换处理
                     //return Qs.stringify(data, {arrayFormat: 'repeat'})
-                    data =  JSON.stringify(data)
+                    data = JSON.stringify(data)
                     return data
                 }],
                 data: {
                     //tablelist:["1","2"]
-                    tablelist : vmtop.panlist
+                    tablelist: vmtop.panlist
                 }
             }).then(function (response) {
                 //vm.panlist = response.data;
@@ -2268,39 +2410,40 @@ var vm = new Vue({
 
     }
 })
-var vmtop = new Vue({
+let vmtop = new Vue({
     el: '#apptop',
     data: {
-        panlist : {
-            list :[]
+        panlist: {
+            list: []
         }
 
     },
     methods: {
         deleteSelected: function (index) {
-            vmtop.panlist.list.splice(index,1);
+            vmtop.panlist.list.splice(index, 1);
             //1跟后台拿数据，参数是panlist
             //发送sql的参数
             this.sendSql();
             //2更新table
         },
-        sendSql:function () {
+        sendSql: function () {
             axios({
-                url:'http://localhost:9000/sendSql',
-                method:'post',
-                headers:{'Access-Control-Allow-Origin':'*',
+                url: 'http://localhost:9000/sendSql',
+                method: 'post',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/json'
                     // 'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 transformRequest: [function (data) {
                     // 对 data 进行任意转换处理
                     //return Qs.stringify(data, {arrayFormat: 'repeat'})
-                    data =  JSON.stringify(data)
+                    data = JSON.stringify(data)
                     return data
                 }],
                 data: {
                     //tablelist:["1","2"]
-                    tablelist : vmtop.panlist
+                    tablelist: vmtop.panlist
                 }
             }).then(function (response) {
                 //vm.panlist = response.data;
@@ -2311,62 +2454,62 @@ var vmtop = new Vue({
         }
     }
 })
-var vmtable = new Vue({
+let vmtable = new Vue({
     el: '#apptable',
-     data :{
-        table:null
+    data: {
+        table: null
     }
 })
 
-var dowantable = new Vue({
+let dowantable = new Vue({
     el: '#downloadTable',
-    data :{
-        table:null
+    data: {
+        table: null
     }
 })
 
-var Main = {
+let Main = {
     data() {
         return {
             value1: '',
             // value2: ''
         };
-    },methods:{
+    }, methods: {
         chooseTimeRange(t) {
             alert(t);//结果为一个数组，如：["2018-08-04", "2018-08-06"]
             //去重
-            //var flag = 0;
-            for (var i in vmtop.panlist.list){
-                if (vmtop.panlist.list[i].panAttrName==="日期"){
-                    vmtop.panlist.list.splice(i,2);
+            //let flag = 0;
+            for (let i in vmtop.panlist.list) {
+                if (vmtop.panlist.list[i].panAttrName === "日期") {
+                    vmtop.panlist.list.splice(i, 2);
                 }
             }
             this.addTimeIfNo(t);
 
         },
-        addTimeIfNo(t){
-            var pans = {
-                panAttrName  : "日期",
-                panAttrValue : t
+        addTimeIfNo(t) {
+            let pans = {
+                panAttrName: "日期",
+                panAttrValue: t
             }
-            var pane={
-                panAttrName  : "日期",
-                panAttrValue : t[1]
+            let pane = {
+                panAttrName: "日期",
+                panAttrValue: t[1]
             }
             vmtop.panlist.list.push(pans);
             vmtop.sendSql();
         }
     }
 };
-var Ctor = Vue.extend(Main)
+let Ctor = Vue.extend(Main)
 new Ctor().$mount('#appdate')
 /* =========================业务选择============================*/
 
 //业务选择 按钮动态展示
-var mouseleaveable_1 = true;
-var mouseleaveable_2 = true;
-var mouseleaveable_3 = true;
-var mouseleaveable_4 = true;
+let mouseleaveable_1 = true;
+let mouseleaveable_2 = true;
+let mouseleaveable_3 = true;
+let mouseleaveable_4 = true;
 $('#Jcardnum').css({y: -20}).transition({
     opacity: 1,
     y: 0
@@ -2467,8 +2610,8 @@ $('#Jmiddle').on('click', function () {
     $('#Jmiddle').css({background: '#9400D3'});
 });
 
-function change_business_style(){
-    if(arealist[0].business == '开卡数'){
+function change_business_style() {
+    if (arealist[0].business == '开卡数') {
         $('#Jcardnum').css({background: '#9400D3'});
         $('#Jloan').css({background: '#4169E1'});
         $('#Jcash').css({background: '#4169E1'});
@@ -2477,7 +2620,7 @@ function change_business_style(){
         mouseleaveable_2 = true;
         mouseleaveable_3 = true;
         mouseleaveable_4 = true;
-    }else if(arealist[0].business == '贷款数'){
+    } else if (arealist[0].business == '贷款数') {
         $('#Jcardnum').css({background: '#4169E1'});
         $('#Jloan').css({background: '#9400D3'});
         $('#Jcash').css({background: '#4169E1'});
@@ -2486,7 +2629,7 @@ function change_business_style(){
         mouseleaveable_2 = false;
         mouseleaveable_3 = true;
         mouseleaveable_4 = true;
-    }else if(arealist[0].business == '存款数'){
+    } else if (arealist[0].business == '存款数') {
         $('#Jcardnum').css({background: '#4169E1'});
         $('#Jloan').css({background: '#4169E1'});
         $('#Jcash').css({background: '#9400D3'});
@@ -2495,7 +2638,7 @@ function change_business_style(){
         mouseleaveable_2 = true;
         mouseleaveable_3 = false;
         mouseleaveable_4 = true;
-    }else {
+    } else {
         $('#Jcardnum').css({background: '#4169E1'});
         $('#Jloan').css({background: '#4169E1'});
         $('#Jcash').css({background: '#4169E1'});
@@ -2516,8 +2659,8 @@ $('#gdMap').css({opacity: 0, scale: 0.2}).transition({
 /* =========================历史查询============================*/
 // 新增查询的时候，会自动更新，会进行存储，默认只显示前4条
 $('').on('click', function () {
-    var data1 = $('#historydata1').text();
-    var data2 = $('#historydata2').text();
+    let data1 = $('#historydata1').text();
+    let data2 = $('#historydata2').text();
     $('.historydata').transition({
         opacity: 0
     }, 500);
@@ -2532,14 +2675,14 @@ $('').on('click', function () {
 
 
 /* =========================时间选择器============================*/
-var startV = '-1';//开始年月字符串
-var endV = '-1';//结束年月字符串
-var startY = '';//开始年
-var startM = '';//开始月
-var endY = '';//结束年
-var endM = '';//结束月
+let startV = '-1';//开始年月字符串
+let endV = '-1';//结束年月字符串
+let startY = '';//开始年
+let startM = '';//开始月
+let endY = '';//结束年
+let endM = '';//结束月
 laydate.skin('danlan');
-var startTime = {
+let startTime = {
     elem: '#startTime',
     format: 'YYYY-MM',
     min: '2009-01', //设定最小日期为当前日期
@@ -2548,47 +2691,47 @@ var startTime = {
     istoday: false,
     fixed: false,
     choose: function (datas) {
-	endTime.min = datas; //开始日选好后，重置结束日的最小日期
+        endTime.min = datas; //开始日选好后，重置结束日的最小日期
         startV = datas;
         startY = startV.slice(0, 4);
         startM = startV.slice(5, 7);
-		startTime.start = $('#startTime').val()+'-01';
+        startTime.start = $('#startTime').val() + '-01';
 
     },
-	  testClear: function(){
-        if($('#startTime').val() == ''){
-		endTime.min = '2009-01';
+    testClear: function () {
+        if ($('#startTime').val() == '') {
+            endTime.min = '2009-01';
 
-		//alert($('#startTime').val())
-		}
+            //alert($('#startTime').val())
+        }
     }
 
 };
-var endTime = {
+let endTime = {
     elem: '#endTime',
     format: 'YYYY-MM',
-	min:'2009-01',
+    min: '2009-01',
     max: '2019-08',
     istime: false,
     istoday: false,
     fixed: false,
     choose: function (datas) {
-		startTime.max = datas; //结束日选好后，重置开始日的最大日期
+        startTime.max = datas; //结束日选好后，重置开始日的最大日期
         endV = datas;
         endY = endV.slice(0, 4);
         endM = endV.slice(5, 7);
-		endTime.start = $('#endTime').val()+'-01';
+        endTime.start = $('#endTime').val() + '-01';
 
     },
-	 testClear: function(){
-       if($('#endTime').val() == ''){
+    testClear: function () {
+        if ($('#endTime').val() == '') {
 
-			startTime.max = '2019-08';
+            startTime.max = '2019-08';
 
 
-		//alert($('#endTime').val())
+            //alert($('#endTime').val())
 
-		}
+        }
     }
 };
 
@@ -2614,14 +2757,12 @@ $('#end').on('click', function () {
 })
 
 
-
-
 //更改日期插件的样式
 function dateCss() {
-    var arr = $('#laydate_box').attr('style').split(';');
-    var cssStr =
+    let arr = $('#laydate_box').attr('style').split(';');
+    let cssStr =
         'position:absolute;right:0;';
-    for (var i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         if (arr[i].indexOf('top') != -1) {
             cssStr += arr[i];
         }
@@ -2629,7 +2770,7 @@ function dateCss() {
     $('#laydate_box').attr('style', cssStr);
 }
 
-var sendajax = function () {
+let sendajax = function () {
     return new Promise((resolve) => {
         $.ajax({
             // nginx 的url http://localhost/proxy/getdata
@@ -2651,20 +2792,18 @@ var sendajax = function () {
 }
 //开始发送啦
 $('#commit').on('click', async function () {
-	if($('#startTime').val() == ''){
-		alert('请输入带查询初始年月');
-	}
-	else {
-		startV = $('#startTime').val();
-		startTime.start = $('#startTime').val()+'-01';
-	}
-	if($('#endTime').val() == ''){
-		alert('请输入带查询终止年月');
-	}
-	else{
-		endV = $('#endTime').val();
-		endTime.start = $('#endTime').val()+'-01';
-	}
+    if ($('#startTime').val() == '') {
+        alert('请输入带查询初始年月');
+    } else {
+        startV = $('#startTime').val();
+        startTime.start = $('#startTime').val() + '-01';
+    }
+    if ($('#endTime').val() == '') {
+        alert('请输入带查询终止年月');
+    } else {
+        endV = $('#endTime').val();
+        endTime.start = $('#endTime').val() + '-01';
+    }
     for (let i = 0; i < selectedCity.length; i++) {
         searchcitys[i] = parsearea(selectedCity[i]);
     }
@@ -2681,7 +2820,7 @@ $('#commit').on('click', async function () {
     draw_main_chart();
 })
 // 默认查询请求
-var get_default_main = function () {
+let get_default_main = function () {
     return new Promise((resolve) => {
         $.ajax({
             // nginx 的url http://localhost/proxy/getdata
@@ -2698,10 +2837,8 @@ var get_default_main = function () {
 
 // 页面加载进行推荐查询
 async function process_main(hasdata) {
-    if(!hasdata)
+    if (!hasdata)
         await get_default_main();
-    console.log(arealist)
-    console.log(arealist[0])
     // 自动注入地图
     chart3('');
     // 自动显示图表
@@ -2709,10 +2846,9 @@ async function process_main(hasdata) {
     startY = arealist[0].data[0].time.slice(0, 4);//开始年
     startM = '01'//开始月
     endY = arealist[0].data[arealist[0].data.length - 1].time.slice(0, 4);//结束年
-	if(endY == '2019'){
-		endM = '08';
-	}
-    else endM = '12';//结束月
+    if (endY == '2019') {
+        endM = '08';
+    } else endM = '12';//结束月
     selectedCity = [];
     for (let i = 0; i < arealist.length; i++) {
         selectedCity.push(arealist[i].bankname.slice(0, arealist[i].bankname.length - 2) + '市')
@@ -2720,14 +2856,12 @@ async function process_main(hasdata) {
     // 自动更改业务样式
     change_business_style();
     // 更改时间选择器
-    $('#endTime').val(endY+"-"+endM);
-    $('#startTime').val(startY+"-"+startM);
-	startTime.start = $('#startTime').val()+'-01';
-	endTime.start = $('#endTime').val() +'-01';
-	startTime.max = $('#endTime').val();
-	endTime.min =  $('#startTime').val();
-
-
+    $('#endTime').val(endY + "-" + endM);
+    $('#startTime').val(startY + "-" + startM);
+    startTime.start = $('#startTime').val() + '-01';
+    endTime.start = $('#endTime').val() + '-01';
+    startTime.max = $('#endTime').val();
+    endTime.min = $('#startTime').val();
 
 
     // 更改图表
@@ -2801,11 +2935,11 @@ function draw_main_chart() {
     options.legend[0].data = selectedCity;
     options.xAxis[0].data = getChart4_bscissa();
     // 加载数据
-    var dataIndex = options.xAxis[0].data;
+    let dataIndex = options.xAxis[0].data;
     options.series = []; // 先清空
     if (dataIndex[0].indexOf('号') != -1) {
         //点进来在日里面
-        for (var i = 0; i < selectedCity.length; i++) {
+        for (let i = 0; i < selectedCity.length; i++) {
             options.series.push({name: '', type: '', data: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = showstyle;
@@ -2815,7 +2949,7 @@ function draw_main_chart() {
         }
         //点进来在月里面
     } else if (dataIndex[0].indexOf('月') != -1) {
-        for (var i = 0; i < selectedCity.length; i++) {
+        for (let i = 0; i < selectedCity.length; i++) {
             options.series.push({name: '', type: '', data: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = showstyle;
@@ -2824,7 +2958,7 @@ function draw_main_chart() {
                 parseInt(startY));
         }
     } else {//点进来在年里面
-        for (var i = 0; i < selectedCity.length; i++) {
+        for (let i = 0; i < selectedCity.length; i++) {
             options.series.push({name: '', type: '', data: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = showstyle;
@@ -2838,17 +2972,17 @@ function draw_main_chart() {
 /* =========================时间选择器结束============================*/
 
 /* =========================核心查询图表============================*/
-var myChart4 = echarts.init(document.getElementById('chart4'));
-var showstyle = 'bar'
-myChart4.on('magictypechanged',function(obj){
+let myChart4 = echarts.init(document.getElementById('chart4'));
+let showstyle = 'bar'
+myChart4.on('magictypechanged', function (obj) {
 
-	if(myChart4.getOption().series[0].type =='bar'){
-		showstyle = 'bar';
-	}
-	else {
-		showstyle = 'line';
-	}
+    if (myChart4.getOption().series[0].type == 'bar') {
+        showstyle = 'bar';
+    } else {
+        showstyle = 'line';
+    }
 });
+
 //xAxis
 function chart4() {
     // 基于准备好的dom，初始化echarts实例
@@ -3055,36 +3189,36 @@ chart4('');
 /*==================数据获取的地方==================*/
 /*横坐标参数，年月日信息
 其中年和月静态，日由函数getday()动态获取*/
-var year = ['2009年', '2010年', '2011年', '2012年', '2013年', '2014年', '2015年', '2016年', '2017年', '2018年', '2019年']
-var month = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
-var day = [];
+let year = ['2009年', '2010年', '2011年', '2012年', '2013年', '2014年', '2015年', '2016年', '2017年', '2018年', '2019年']
+let month = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+let day = [];
 
 //计算一个月有多少天
 function getday(params) {
-    var list = [];
+    let list = [];
     if (params.indexOf('1') != -1 || params.indexOf('3') != -1 ||
         params.indexOf('5') != -1 || params.indexOf('7') != -1 ||
         params.indexOf('8') != -1 || params.indexOf('10') != -1 ||
         params.indexOf('12') != -1) {
-        for (var i = 1; i <= 31; i++) {
+        for (let i = 1; i <= 31; i++) {
             list.push(i + '号');
         }
         return list;
     } else if (params.indexOf('2') != -1) {//2月
 
         if (((curyear % 4 == 0) && (curyear % 100 != 0)) || (curyear % 400 == 0)) {
-            for (var i = 1; i <= 29; i++) {
+            for (let i = 1; i <= 29; i++) {
                 list.push(i + '号');
             }
 
         } else {
-            for (var i = 1; i <= 28; i++) {
+            for (let i = 1; i <= 28; i++) {
                 list.push(i + '号');
             }
         }
         return list;
     } else {
-        for (var i = 1; i <= 30; i++) {
+        for (let i = 1; i <= 30; i++) {
             list.push(i + '号');
         }
         return list;
@@ -3095,7 +3229,7 @@ function getday(params) {
 
 /*纵坐标参数，测试的时候数据为静态，动态化给一下变量进行赋值即可
 主要接收的json数据格式
-var jasondata =
+let jasondata =
 [
     {
         {
@@ -3110,14 +3244,14 @@ var jasondata =
 /*===========================数据获取结束============================*/
 /*滑动监听事件*/
 myChart4.on('datazoom', function (params) {
-    var options = myChart4.getOption();
-    var startValue = options.dataZoom[0].startValue;
-    var endValue = options.dataZoom[0].endValue;
+    let options = myChart4.getOption();
+    let startValue = options.dataZoom[0].startValue;
+    let endValue = options.dataZoom[0].endValue;
 
-    var refleshXAxisData = [];
-    var refleshSeriesData = [];
+    let refleshXAxisData = [];
+    let refleshSeriesData = [];
     if (endValue - startValue == 0) { //滑动到只有一个数据
-        var dataIndex = options.xAxis[0].data;
+        let dataIndex = options.xAxis[0].data;
         if (dataIndex[0].indexOf('年') != -1) { //在年里面
             curyear = 2009 + startValue;
         } else if (dataIndex[0].indexOf('月') != -1) { //在月里面
@@ -3130,31 +3264,28 @@ myChart4.on('datazoom', function (params) {
 
 // 双击跳到上一层  号--月--年
 $('#chart4').on('dblclick', function (params) {
-    var options = myChart4.getOption();
-    var dataIndex = options.xAxis[0].data;
+    let options = myChart4.getOption();
+    let dataIndex = options.xAxis[0].data;
 
     if (dataIndex != null) {
         if (dataIndex[0].indexOf('号') != -1) {
 
             if (startY == endY) {
                 options.xAxis[0].data = getChart4_bscissa();
-                for (var i = 0; i < selectedCity.length; i++) {
+                for (let i = 0; i < selectedCity.length; i++) {
                     options.series[i].data = getmonth(
                         selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                         parseInt(startY));
                 }
             } else {
                 options.xAxis[0].data = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
-                for (var i = 0; i < selectedCity.length; i++) {
+                for (let i = 0; i < selectedCity.length; i++) {
                     options.series[i].data = getmonth(
                         selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                         curyear);
                 }
 
             }
-            //console.log(getChart4_bscissa())
-
-
             options.dataZoom[0].start = 0;
             options.dataZoom[0].end = 100;
             myChart4.clear();
@@ -3165,10 +3296,9 @@ $('#chart4').on('dblclick', function (params) {
                 alert("操作失败")
             } else {
                 options.xAxis[0].data = chart4_bscissa;
-                for (var i = 0; i < selectedCity.length; i++) {
+                for (let i = 0; i < selectedCity.length; i++) {
                     options.series[i].data = getyear(
                         selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行');
-
                 }
             }
             options.dataZoom[0].start = 0;
@@ -3179,8 +3309,8 @@ $('#chart4').on('dblclick', function (params) {
     }
 });
 
-var selectedCity = [];
-var clickMonth;
+let selectedCity = [];
+let clickMonth;
 
 /*实现点击进入具体某一年或者某一月的功能*/
 myChart4.getZr().on('click', params => {
@@ -3191,8 +3321,8 @@ myChart4.getZr().on('click', params => {
         let xIndex = myChart4.convertFromPixel({seriesIndex: 0}, [params.offsetX, params.offsetY])[0];
         /*事件处理代码书写位置*/
         if (xIndex != null) {
-            var options = myChart4.getOption();
-            var dataIndex = options.xAxis[0].data;
+            let options = myChart4.getOption();
+            let dataIndex = options.xAxis[0].data;
 
             /*如果是某一天的图形点击事件*/
             if (dataIndex[0].indexOf('号') != -1) {
@@ -3208,7 +3338,7 @@ myChart4.getZr().on('click', params => {
                     clickMonth = xIndex + 1
                 }
                 options.xAxis[0].data = getday(clickMonth + '月');
-                for (var i = 0; i < selectedCity.length; i++) {
+                for (let i = 0; i < selectedCity.length; i++) {
                     options.series[i].data = getmonthcount(
                         selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                         parseInt(startY), clickMonth);
@@ -3220,14 +3350,14 @@ myChart4.getZr().on('click', params => {
                 myChart4.setOption(options)
             } else {
                 // 获取当前点击年份
-                //var clickMonth = xIndex + 1997;
+                //let clickMonth = xIndex + 1997;
                 curyear = xIndex + parseInt(chart4_bscissa[0]);
 
 
                 options.xAxis[0].data = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
 
 
-                for (var i = 0; i < selectedCity.length; i++) {
+                for (let i = 0; i < selectedCity.length; i++) {
                     options.series[i].data = getmonth(
                         selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                         curyear);
@@ -3242,42 +3372,42 @@ myChart4.getZr().on('click', params => {
     }
 });
 
-var arealist = [];//用来存放地点list 的array
+let arealist = [];//用来存放地点list 的array
 //--------------------------------------------------------------------------------------------------
 //点击地图中的一个地方，发送第一次发送一个post请求，
 //测试用
 //arealist.push(testdata);
 //arealist.push(testdata2);
 //arealist.push(testdata3);
-var area = '';//发送post请求时候的地点参数
-var flag = '0' //判断arealist中是否有刚刚点击的地点数据的标志
+let area = '';//发送post请求时候的地点参数
+let flag = '0' //判断arealist中是否有刚刚点击的地点数据的标志
 
 
 //得到某一年，某个月，日的集合  city：**分行
 function getmonthcount(city, year, month) { //year：2009  month：6
     year = year + '年'
     month = month + '月'
-    var array = [];
-    var templist = cachicatch(city); //x
-    var templist1 = templist;
+    let array = [];
+    let templist = cachicatch(city); //x
+    let templist1 = templist;
     if (startY == endY) {
         templist1 = templist1.data[0].data;
         //console.log(month)
-        var i = parseInt(startM);//6    678
-        var j = parseInt(endM) + 1;//9
+        let i = parseInt(startM);//6    678
+        let j = parseInt(endM) + 1;//9
         for (; i < j; i++) {
             if (templist1[i - 1].time == month) {
                 templist = templist1[i - 1];
             }
         }
     } else {
-        for (var i = 0; i < templist.data.length; i++) {
+        for (let i = 0; i < templist.data.length; i++) {
             if (templist.data[i].time == year) {
                 templist = templist.data[i];
             }
         }
         //console.log(templist)
-        for (var i = 0; i < templist.data.length; i++) {
+        for (let i = 0; i < templist.data.length; i++) {
             if (templist.data[i].time == month) {
                 templist = templist.data[i];
             }
@@ -3289,8 +3419,8 @@ function getmonthcount(city, year, month) { //year：2009  month：6
 
 //得到一个集合的和
 function arraysum(arr) {
-    var sum = 0;
-    for (var i = 0; i < arr.length; i++) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
         sum += arr[i];
     }
     return sum;
@@ -3299,25 +3429,25 @@ function arraysum(arr) {
 //得到某个地区某一年的集合(月的集合)
 function getmonth(city, year) {
     year = year + '年'
-    var array = [];
-    var templist = cachicatch(city);
+    let array = [];
+    let templist = cachicatch(city);
 
     if (startY == endY) {
-        var i = parseInt(startM);
-        var count = parseInt(endM) - i + 1;
+        let i = parseInt(startM);
+        let count = parseInt(endM) - i + 1;
         templist = templist.data[0].data;
-        for (var k = 0; k < count; k++) {
+        for (let k = 0; k < count; k++) {
             array[k] = arraysum(templist[i - 1].data);
             i++;
         }
 
     } else {
-        for (var i = 0; i < templist.data.length; i++) {
+        for (let i = 0; i < templist.data.length; i++) {
             if (templist.data[i].time == year) {
                 templist = templist.data[i];
             }
         }
-        for (var i = 0; i < templist.data.length; i++) {
+        for (let i = 0; i < templist.data.length; i++) {
             array[i] = arraysum(templist.data[i].data);
         }
     }
@@ -3328,15 +3458,15 @@ function getmonth(city, year) {
 //得到某个地区的集合(2009-2019)
 function getyear(city) {
 
-    var array = [];
-    var array1 = [];
-    var templist = cachicatch(city);
-    for (var i = 0; i < templist.data.length; i++) {
+    let array = [];
+    let array1 = [];
+    let templist = cachicatch(city);
+    for (let i = 0; i < templist.data.length; i++) {
         array1[i] = templist.data[i].time.slice(0, name.length - 1);
 
     }
 
-    for (var i = 0; i < templist.data.length; i++) {
+    for (let i = 0; i < templist.data.length; i++) {
         array[i] = arraysum(getmonth(city, array1[i]))
 
     }
@@ -3355,7 +3485,7 @@ function parsearea(name) {
 //返回bankname为area的整个list
 function cachicatch(city) {
 
-    for (var i = 0; i < arealist.length; i++) {
+    for (let i = 0; i < arealist.length; i++) {
         if (arealist[i].bankname == city) {
             return arealist[i];
         }
@@ -3389,9 +3519,9 @@ myChart3.on('mapselectchanged', function (params) {
         //赋上地点变量
         area = params.batch[0].name;
         area = parsearea(area);
-        var citys = params.batch[0].selected;//全部城市:true/false
-        var keys = Object.keys(citys);//全部城市名
-        for (var i = 0; i < keys.length; i++) {
+        let citys = params.batch[0].selected;//全部城市:true/false
+        let keys = Object.keys(citys);//全部城市名
+        for (let i = 0; i < keys.length; i++) {
             if (citys[keys[i]] == true) {
                 selectedCity.push(keys[i]);//被选中的城市集合
             }
@@ -3477,7 +3607,7 @@ $('#his-save').on('click', function () {
 });
 
 // 查询历史放大图表
-var historychat = echarts.init(document.getElementById('historychat'));
+let historychat = echarts.init(document.getElementById('historychat'));
 
 function chart_history() {
     historychat.clear();
@@ -3541,10 +3671,10 @@ $('.savehistory').on('click', function () {
 // websocket 相关代码
 // 默认加载websocket服务
 //websocket 全局变量
-var stompClient;
+let stompClient;
 
 function connect(token) {
-    var socket = new SockJS('http://localhost:9000/socket');
+    let socket = new SockJS('http://localhost:9000/socket');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected:' + frame);
@@ -3594,7 +3724,22 @@ function registerwebsock() {
 
 }
 
+let loadtraindata = function () {
+    return new Promise((resolve) => {
+        $.ajax({
+            // nginx 的url http://localhost/proxy/getdata
+            url: "http://localhost:9000/loadtraindata",
+            type: 'post',
+            success: function () {
+                resolve();
+            }
+        });
+    });
+}
+
 // 页面加载的时候运行的
 draw_default_pre(); //默认预测
 anasimplechart(); //默认分析
 process_main(false); //默认查询
+
+

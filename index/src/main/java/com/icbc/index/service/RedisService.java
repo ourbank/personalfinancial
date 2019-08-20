@@ -114,7 +114,7 @@ public class RedisService {
     }
 
     public  void setObj(Object o1, Object o2,long expiration){
-        valOpsObj.set(o1, o2,5,TimeUnit.MINUTES);
+        valOpsObj.set(o1, o2,expiration,TimeUnit.MINUTES);
     }
     /**
      * 删除Obj缓存
