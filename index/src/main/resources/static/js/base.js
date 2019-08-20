@@ -852,7 +852,7 @@ async function anasimplechart() {
             sizeRange: [1, 45],
             rotationRange: [0, 0],
             rotationStep: 90,
-           // textRotation:[0,0],
+            // textRotation:[0,0],
             shape: 'pentagon',
             top: 0,
             left: 0,
@@ -861,12 +861,12 @@ async function anasimplechart() {
             textStyle: {
                 normal: {
                     fontFamily: 'sans-serif',
-                    color: function(v) {
+                    color: function (v) {
                         if (v.value > 900) {
                             return '#4169E1';
-                        }else if (v.value > 800) {
+                        } else if (v.value > 800) {
                             return '#6A5ACD';
-                        }else if (v.value > 700) {
+                        } else if (v.value > 700) {
                             return '#87CEEB';
                         } else if (v.value > 600) {
                             return '#00FFFF';
@@ -1115,7 +1115,6 @@ $('#fil1Btn').on('click', function () {
     }
 })
 
-// =====================放大的预测详细图
 let pre_choose_plan;
 let pre_choose_chart;
 $('#pre_plan_btn').on('mouseenter', function () {
@@ -1751,12 +1750,47 @@ let wait_predict = function (banknames, period, unit, business) {
         })//ajax
     })//promise
 };
-let personal_color = ['#52596b','#bd2010','#e7ba10','#639629','#9b55ad','#cec3c6'];
+let personal_color = ['#52596b', '#bd2010', '#e7ba10', '#639629', '#9b55ad', '#cec3c6'];
+let temp_series = []
+
+let plan_flag = 1;
+
+function trigger_plan() {
+    plan_flag = -plan_flag;
+    let local_series = JSON.parse(JSON.stringify(temp_series))
+    if (plan_flag == 1) {
+
+    } else if (plan_flag == -1) {
+        for (let i = 0; i < local_series.length; i++) {
+            if (local_series[i].id.indexOf('计划') != -1) {
+                local_series[i].data = []
+            }
+        }
+    }
+    let option = preBigChart.getOption();
+    option.series = local_series;
+    preBigChart.setOption(option)
+}
+
 // 绘制多城市预测图表
 function draw_predict(res) {
     pre_option = {
         title: {
             text: ''
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                myTool1: {//自定义按钮 danielinbiti,这里增加，selfbuttons可以随便取名字
+                    show: true,//是否显示
+                    title: '显示/隐藏计划',
+                    icon: 'image://images/zhexian.png', //图标
+                    onclick: function () {//点击事件,这里的option1是chart的option信息
+                        trigger_plan();
+                    }
+                }
+            },
+            right: 30
         },
         tooltip: {
             trigger: 'axis',
@@ -1787,14 +1821,6 @@ function draw_predict(res) {
             },
             top: '5%'
         },
-        grid: {
-            top: '20%',
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        color: ['#FF4949', '#FFA74D', '#FFEA51', '#4BF0FF', '#44AFF0', '#4E82FF', '#584BFF', '#BE4DFF', '#F845F1'],
         xAxis: [{
             type: 'category',
             boundaryGap: false,
@@ -1820,21 +1846,7 @@ function draw_predict(res) {
                 }
             }
         }],
-        series: [
-            {
-                name: '历史',
-                type: 'line',
-                smooth: true, //平滑曲线显示
-                data: [3961.88, 4233.63, 4183.14]
-            },
-            {
-                name: '预测',
-                type: 'line',
-                smooth: true, //平滑曲线显示
-                data: [, , 4183.14, 3633.01, 3704.47, 4204.47]
-            }
-            // 此处添加
-        ]
+        series: []
     };
     // gd_citys赋值
     for (let i = 0; i < res.length; i++) {
@@ -1861,25 +1873,6 @@ function draw_predict(res) {
     pre_option.series = [];
     for (let i = 0; i < res.length; i++) {
         let color = personal_color[i % personal_color.length]
-        pre_option.series.push({
-            name: res[i].bankName + '预测',
-            type: 'line',
-            data: res[i].predictData,
-            itemStyle:{
-                color:color
-            }
-        });
-        let history = [];
-        history.push(res[i].predictData[0]);
-        history.push(res[i].predictData[1]);
-        pre_option.series.push({
-            name: res[i].bankName + '历史',
-            type: 'scatter',
-            data: history,
-            itemStyle:{
-                color:color
-            }
-        });
         let plan = [];
         plan.push(res[i].predictData[0]);
         plan.push(res[i].predictData[1]);
@@ -1889,16 +1882,39 @@ function draw_predict(res) {
                 break;
             }
         }
+        // plan predict history的顺序
         pre_option.series.push({
-            name: res[i].bankName + '计划',
+            name: '',
+            id: res[i].bankName + '计划',
             type: 'line',
             data: plan,
-            itemStyle:{
-                color:color
+            itemStyle: {
+                color: color
+            }
+        })
+        pre_option.series.push({
+            name: res[i].bankName,
+            id: res[i].bankName + '预测',
+            type: 'line',
+            data: res[i].predictData,
+            itemStyle: {
+                color: color
+            }
+        });
+        let history = [];
+        history.push(res[i].predictData[0]);
+        history.push(res[i].predictData[1]);
+        pre_option.series.push({
+            name: '',
+            id: res[i].bankName + '历史',
+            type: 'scatter',
+            data: history,
+            itemStyle: {
+                color: color
             }
         });
     }
-    console.log(pre_option)
+    temp_series = JSON.parse(JSON.stringify(pre_option.series))
     preBigChart.clear()
     preBigChart.setOption(pre_option)
     // 切换到图表页面
@@ -1911,6 +1927,29 @@ function draw_predict(res) {
     pre_choose_plan = 0;
 }
 
+// 实现图例的相关动画
+preBigChart.on('legendselectchanged', function (res) {
+    plan_flag = 1
+    let local_series = JSON.parse(JSON.stringify(temp_series))
+    let unselected = []
+    let keys = Object.keys(res.selected)
+    for (let i = 0; i < keys.length; i++) {
+        if (res.selected[keys[i]] == false) {
+            unselected.push(keys[i])
+        }
+    }
+    for (let i = 0; i < local_series.length; i++) {
+        for (let j = 0; j < unselected.length; j++) {
+            if (local_series[i].id.indexOf(unselected[j]) != -1) {
+                local_series[i].data = []
+            }
+        }
+    }
+    let option = preBigChart.getOption();
+    option.series = local_series;
+    preBigChart.setOption(option)
+})
+
 $('#pre_ana_btn').on('click', async function () {
     if (pre_choose.length < 1) {
         alert("请选择需要进行分析的城市")
@@ -1920,7 +1959,6 @@ $('#pre_ana_btn').on('click', async function () {
         let unit = translateTimeUnit(pre_unit_choose);
         let business = $("#analyli2_1").text();
         let res = await wait_predict(banknames, period, unit, business);
-        console.log(res)
         draw_predict(res)
 
     }
@@ -2033,7 +2071,7 @@ async function chart3(chartType) {
     let option = {
         animation: true,
         tooltip: {
-            show:true,
+            show: true,
             trigger: 'item',
             formatter: '{b}'
         },
@@ -2801,20 +2839,18 @@ let sendajax = function () {
 //开始发送啦
 $('#commit').on('click', async function () {
     arealist = [];
-	if($('#startTime').val() == ''){
-		alert('请输入带查询初始年月');
-	}
-	else {
-		startV = $('#startTime').val();
-		startTime.start = $('#startTime').val()+'-01';
-	}
-	if($('#endTime').val() == ''){
-		alert('请输入带查询终止年月');
-	}
-	else{
-		endV = $('#endTime').val();
-		endTime.start = $('#endTime').val()+'-01';
-	}
+    if ($('#startTime').val() == '') {
+        alert('请输入带查询初始年月');
+    } else {
+        startV = $('#startTime').val();
+        startTime.start = $('#startTime').val() + '-01';
+    }
+    if ($('#endTime').val() == '') {
+        alert('请输入带查询终止年月');
+    } else {
+        endV = $('#endTime').val();
+        endTime.start = $('#endTime').val() + '-01';
+    }
     for (let i = 0; i < selectedCity.length; i++) {
         searchcitys[i] = parsearea(selectedCity[i]);
     }
@@ -2886,9 +2922,9 @@ function draw_main_chart() {
     let options = myChart4.getOption();
     myChart4.clear();
 
-    if(startY == endY){
+    if (startY == endY) {
         var str = '';
-        str = '当前日期:'+startY+'年';
+        str = '当前日期:' + startY + '年';
         $('#chart4Text').text(str);
 
     }
@@ -2960,19 +2996,19 @@ function draw_main_chart() {
         //点进来在日里面
         options.calculable = true;
         for (var i = 0; i < selectedCity.length; i++) {
-            options.series.push({name: '', type: '', data: '',markPoint:'',markLine:''});
+            options.series.push({name: '', type: '', data: '', markPoint: '', markLine: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = showstyle;
 
             options.series[i].markPoint = {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
                 ]
             };
             options.series[i].markLine = {
-                data : [
-                    {type : 'average', name: '平均值'}
+                data: [
+                    {type: 'average', name: '平均值'}
                 ],
             };
             options.series[i].markPoint.label.show = false;
@@ -2989,14 +3025,14 @@ function draw_main_chart() {
             options.series[i].type = showstyle;
 
             options.series[i].markLine = {
-                data : [
-                    {type : 'average', name: '平均值'}
+                data: [
+                    {type: 'average', name: '平均值'}
                 ],
             };
             options.series[i].markPoint = {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
                 ],
 
             };
@@ -3006,26 +3042,26 @@ function draw_main_chart() {
                 parseInt(startY));
         }
     } else {//点进来在年里面
-         options.calculable = true;
+        options.calculable = true;
         for (let i = 0; i < selectedCity.length; i++) {
 
             options.series.push({name: '', type: '', data: ''});
             options.series[i].name = selectedCity[i];
             options.series[i].type = showstyle;
-            options.series[i].axisLine ={onZero: true};
+            options.series[i].axisLine = {onZero: true};
             options.series[i].markLine = {
-                data : [
-                    {type : 'average', name: '平均值'}
+                data: [
+                    {type: 'average', name: '平均值'}
                 ],
 
 
             };
             options.series[i].markPoint = {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
                 ],
-                symbol:'pin'
+                symbol: 'pin'
             };
 
             options.series[i].data = getyear(selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行');
@@ -3048,6 +3084,7 @@ myChart4.on('magictypechanged', function (obj) {
         showstyle = 'line';
     }
 });
+
 //xAxis
 function chart4() {
     // 基于准备好的dom，初始化echarts实例
@@ -3102,7 +3139,7 @@ function chart4() {
         xAxis: [
             {
                 axisLine: {
-                    onZero:true,
+                    onZero: true,
                     lineStyle: {
                         color: '#fff'
                     }
@@ -3356,7 +3393,7 @@ $('#chart4').on('dblclick', function (params) {
             //console.log(getChart4_bscissa())
 
             let str = '';
-            str = '当前日期:'+curyear+'年';
+            str = '当前日期:' + curyear + '年';
             $('#chart4Text').text(str);
             options.dataZoom[0].start = 0;
             options.dataZoom[0].end = 100;
@@ -3425,7 +3462,7 @@ myChart4.getZr().on('click', params => {
                 options.dataZoom[0].end = 100;
 
                 var str = '';
-                str = '当前日期:'+curyear+'年'+clickMonth+'月';
+                str = '当前日期:' + curyear + '年' + clickMonth + '月';
                 $('#chart4Text').text(str);
 
 
@@ -3448,7 +3485,7 @@ myChart4.getZr().on('click', params => {
                 options.dataZoom[0].start = 0;
                 options.dataZoom[0].end = 100;
                 var str = '';
-                str = '当前日期:'+curyear+'年';
+                str = '当前日期:' + curyear + '年';
                 $('#chart4Text').text(str);
                 myChart4.clear();
                 myChart4.setOption(options)
@@ -3500,11 +3537,10 @@ function getmonthcount(city, year, month) { //year：2009  month：6
             }
         }
     }
-	array1 =[].concat(templist.data);
-	if(factor != '开卡数'){
-		return parsearray(array1)
-	}
-   else return array1;
+    array1 = [].concat(templist.data);
+    if (factor != '开卡数') {
+        return parsearray(array1)
+    } else return array1;
 
 }
 
@@ -3519,13 +3555,13 @@ function arraysum(arr) {
 }
 
 //针对钱来处理的函数：除以100000再保留两位小数
-function parsearray(array){
-	for(var i=0;i<array.length;i++){
-		array[i] /= 1000000.0;
-		array[i] = array[i].toFixed(2);
-		array[i] = parseFloat(array[i]);
-	}
-	return array;
+function parsearray(array) {
+    for (var i = 0; i < array.length; i++) {
+        array[i] /= 1000000.0;
+        array[i] = array[i].toFixed(2);
+        array[i] = parseFloat(array[i]);
+    }
+    return array;
 }
 
 //得到某个地区某一年的集合(月的集合)
@@ -3553,11 +3589,10 @@ function getmonth(city, year) {
             array[i] = arraysum(templist.data[i].data);
         }
     }
-	 var array1 = [].concat(array);
-	 if(factor!='开卡数'){
-		return parsearray(array1);
-	 }
-	 else return array1;
+    var array1 = [].concat(array);
+    if (factor != '开卡数') {
+        return parsearray(array1);
+    } else return array1;
 
 }
 
@@ -3574,13 +3609,13 @@ function getyear(city) {
     for (let i = 0; i < templist.data.length; i++) {
         array[i] = arraysum(getmonth(city, array1[i]))
     }
-    if(factor != '开卡数'){
-        for(var i=0;i<array.length;i++){
+    if (factor != '开卡数') {
+        for (var i = 0; i < array.length; i++) {
             array[i] = array[i].toFixed(2);
             array[i] = parseFloat(array[i]);
         }
     }
-	return array;
+    return array;
 }
 
 
@@ -3796,8 +3831,8 @@ function connect(token) {
             process_main(true)
         });
 
-        stompClient.subscribe('/topic/recommend',function (response) {
-            data=JSON.parse(response.body)
+        stompClient.subscribe('/topic/recommend', function (response) {
+            data = JSON.parse(response.body)
             vmRecommand.recdata = data
         })
 
