@@ -2743,6 +2743,7 @@ async function process_main(hasdata) {
 
 
 
+
     // 更改图表
     draw_main_chart();
 }
@@ -2756,6 +2757,12 @@ function draw_main_chart() {
     let options = myChart4.getOption();
     myChart4.clear();
 
+    if(startY == endY){
+        var str = '';
+        str = '当前日期:'+startY+'年';
+        $('#chart4Text').text(str);
+
+    }
 
     if (factor == '开卡数') {
         options.yAxis[0] = {
@@ -2864,7 +2871,7 @@ function draw_main_chart() {
                 ],
 
             };
-            options.series[i].markPoint.label.show = false;
+
             options.series[i].data = getmonth(
                 selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行',
                 parseInt(startY));
@@ -3221,7 +3228,9 @@ $('#chart4').on('dblclick', function (params) {
             }
             //console.log(getChart4_bscissa())
 
-
+            var str = '';
+            str = '当前日期:'+curyear+'年';
+            $('#chart4Text').text(str);
             options.dataZoom[0].start = 0;
             options.dataZoom[0].end = 100;
             myChart4.clear();
@@ -3238,6 +3247,9 @@ $('#chart4').on('dblclick', function (params) {
 
                 }
             }
+            str = '';
+
+            $('#chart4Text').text(str);
             options.dataZoom[0].start = 0;
             options.dataZoom[0].end = 100;
             myChart4.clear();
@@ -3285,6 +3297,12 @@ myChart4.getZr().on('click', params => {
 
                 options.dataZoom[0].start = 0;
                 options.dataZoom[0].end = 100;
+
+                var str = '';
+                str = '当前日期:'+curyear+'年'+clickMonth+'月';
+                $('#chart4Text').text(str);
+
+
                 myChart4.clear();
                 myChart4.setOption(options)
             } else {
@@ -3303,6 +3321,9 @@ myChart4.getZr().on('click', params => {
                 }
                 options.dataZoom[0].start = 0;
                 options.dataZoom[0].end = 100;
+                var str = '';
+                str = '当前日期:'+curyear+'年';
+                $('#chart4Text').text(str);
                 myChart4.clear();
                 myChart4.setOption(options)
             }

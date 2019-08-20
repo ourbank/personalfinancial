@@ -2004,7 +2004,17 @@ pre {
     top: 10%;
     left: 20%;
 }
+#chart4Text{
+    position: relative;
+    width: 160px;
+    height: 10px;
+    font-size:15px;
+    color: #fff;
+    top:20px;
+    left:70px;
 
+    font-family: 'KAITI';
+}
 .pre-navigation {
     width: 5%;
     height: 84%;
