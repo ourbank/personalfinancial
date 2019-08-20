@@ -19,6 +19,9 @@ public interface CardDao {
     List<CardData> getCountByBankName(CoreInQuerySQL coreInQuerySQL);
 
 
+    @SelectProvider(type= SQLProvider.class, method="getDaySumsql")
+    List<CardData> getSumByBankName(CoreInQuerySQL coreInQuerySQL);
+
     @Select("SELECT \n" +
             "    a.bankname as bankName,\n" +
             "    b. DAY as time,\n" +

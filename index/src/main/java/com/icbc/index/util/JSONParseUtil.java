@@ -574,19 +574,25 @@ public class JSONParseUtil {
             }
         }
 
-        //2.添加tableData 的tableDate 和其他数据
-        Calendar calendar = Calendar.getInstance();
-        List<String> everydays = AccountDate.getEveryday(startTime,endTime);
-        for (String date: everydays) {
-            HashMap<String, Object> tableDataMap = new HashMap<>();
-            tableDataMap.put("tableData",date);
-            for(String busine : businessSet){
-                for(int bank : bankSet){
-                    tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+TableNameConstant.getBusinessNameByBill(busine), input.get(index).getNum());
-                    index++;
+        try {
+
+            //2.添加tableData 的tableDate 和其他数据
+            Calendar calendar = Calendar.getInstance();
+            List<String> everydays = AccountDate.getEveryday(startTime,endTime);
+            for (String date: everydays) {
+                HashMap<String, Object> tableDataMap = new HashMap<>();
+                tableDataMap.put("tableData",date);
+                for(String busine : businessSet){
+                    for(int bank : bankSet){
+                        if(index >= input.size()) continue;
+                        tableDataMap.put(BankIdConstant.getAddrByBankId(bank)+TableNameConstant.getBusinessNameByBill(busine), input.get(index).getNum());
+                        index++;
+                    }
                 }
+                tableData.add(tableDataMap);
             }
-            tableData.add(tableDataMap);
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("日期错误");
         }
 
         outmap.put("tablecolData",tablecolData);

@@ -16,19 +16,17 @@
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/stomp.min.js"></script>
     <script type="text/javascript" src="js/sockjs.min.js"></script>
-    <script type="text/javascript" src="js/DatePicker.js"></script>
-    <!-- 先引入 Vue -->
+	<script type="text/javascript" src="js/DatePicker.js"></script>
     <script type="text/javascript" src="https://unpkg.com/vue/dist/vue.js"></script>
-<!--    &lt;!&ndash; qs axios&ndash;&gt;-->
-<!--    <script type="text/javascript" src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>-->
-<!--    <script type="text/javascript" src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>-->
+    <script type="text/javascript" src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <!-- qs axios-->
+    <script type="text/javascript" src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
     <!-- 引入组件库 -->
-<!--    <script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <!--excel导出相关的包-->
-<!--    <script type="text/javascript" src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>-->
-<!--    <script type="text/javascript" src="https://unpkg.com/blob.js@1.0.1/Blob.js"></script>-->
-<!--    <script type="text/javascript" src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>-->
+    <script type="text/javascript" src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
@@ -179,29 +177,35 @@
                         </div>
                     </div>
                 </div>
-                <div class="pages-div">
-                    <button id="commit" class="skip2">开始查询</button>
-                </div>
-                <div class="select-box-map2_2">
+				<div class="pages-div" >
+                    <button id="commit" class="skip2" >开始查询</button>
+				</div>
+                <div class="select-box-map2_2" >
                     <div id='tohistory' class="main_title" style="cursor:pointer">
                         <img style="width:0.3rem;height:0.3rem;" src="images/time.png" alt="">
-                        历史查询
+                        推荐
                     </div>
-                    <div class="historydata-box">
-                        <p class="historydata" id='historydata1'>1. 2019-06-19 17:52 查询开卡数</p>
-                    </div>
-                    <div class="historydata-box">
-                        <p class="historydata" id='historydata2'>2. 2019-07-10 11:52 分析职业和贷款数</p>
-                    </div>
-                    <div class="historydata-box">
-                        <p class="historydata">3. 2019-07-11 22:52 预测贷款数</p>
+                    <div style="height:90%;" id="vueRecommand">
+                        <el-scrollbar style="height:100%">
+                            <div class="historydata-box" v-for="rec in recdata">
+                                <p class="historydata" id='historydata1'>{{rec.title}}</p>
+                            </div>
+                        </el-scrollbar>
                     </div>
 
+                    <style>
+                        .el-scrollbar__wrap {
+                            overflow-x: hidden;
+                        }
+                    </style>
                 </div>
             </div>
         </div>
         <div class="center-bottom">
             <div class="chart-box">
+                <div id="chart4Text">
+
+                </div>
                 <div id="chart4" style="width:100%;height:95%;"></div>
             </div>
         </div>
@@ -443,6 +447,7 @@
                         <el-date-picker
                                 v-model="value1"
                                 type="daterange"
+                                size="small"
                                 range-separator="至"
                                 start-placeholder="开始日期"
                                 end-placeholder="结束日期"
@@ -456,17 +461,22 @@
         </div>
         <div id="apptable">
             <el-table
-                    id="historySaveTable"
-                    border
+                    id = "historySaveTable"
                     :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"
                     :cell-style="{background:'#0c1c2a',color:'#2e74f1'}"
                     :data="table.tableData.slice(0,1*5)"
+                    border
+                    max-height="300"
                     style="width: 1200px;margin:auto;color:#56abe4;">
+                <el-table-column
+                        type="index"
+                        width="60px">
+                </el-table-column>
                 <template v-for='(col) in table.tablecolData'>
                     <el-table-column
                             :prop="col.colItem"
                             :label="col.colName"
-                            width="124px"
+                            sortable
                     >
                     </el-table-column>
                 </template>
@@ -534,6 +544,12 @@
     });
 
 </script>
-
-
+<script>
+    var vmRecommand = new Vue({
+        el: '#vueRecommand',
+        data: {
+            recdata :null
+        }
+    })
+</script>
 </html>

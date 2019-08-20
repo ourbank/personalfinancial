@@ -13,6 +13,7 @@ public class Manager implements Serializable {
     private String password;
     private String level;
     private int belongBank;
+    private int id;
     @Transient
     private String token;
     public String getAccount() {
@@ -53,5 +54,13 @@ public class Manager implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

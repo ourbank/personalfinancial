@@ -153,9 +153,46 @@ public class SQLProvider {
         sql.FROM("Bill");
         sql.WHERE(businessCondition.toString(), bankCondition.toString(), timeCondition);
         sql.ORDER_BY("day", "business");
-
-
+        logger.info("多业务多城市查询sql语句生成：" + sql.toString());
         return sql.toString();
     }
-
+    public String getDaySumsql(CoreInQuerySQL coreInQuerySQL) {
+        //创建SQL对象并设置select语句要查询的列
+        SQL innersql = new SQL();
+        String startTime = coreInQuerySQL.getStrFromDate();
+        String endTime = coreInQuerySQL.getStrToDate();
+        String bankName;
+        switch (coreInQuerySQL.getSingleBusiness()){
+            case "开卡数":
+                innersql.SELECT("bankid", "sum(num) as num", "day");
+                innersql.FROM("card_bill");
+                break;
+            case "存款数":
+                innersql.SELECT("bankid", "num as num", "day");
+                innersql.FROM("deposit_daily");
+                break;
+            case "贷款数":
+                innersql.SELECT("bankid", "num as num", "day");
+                innersql.FROM("loan_daily");
+                break;
+            case "中间收入":
+                innersql.SELECT("bankid", "num as num", "day");
+                innersql.FROM("intermediate_bill");
+                break;
+        }
+        innersql.WHERE("DAY BETWEEN '" + startTime + "' and '" + endTime + "'");
+        innersql.GROUP_BY("bankid", "day");
+        SQL sql = new SQL().SELECT("a.bankname as bankName,b.day as time,b.num as cardNum");
+        sql.FROM("bank a"); //添加from语句
+        sql.INNER_JOIN("(" + innersql.toString() + ") b on a.id = b.bankid");
+        for (int i = 0; i < coreInQuerySQL.getCompany().size(); i++) {
+            bankName = coreInQuerySQL.getCompany().get(i);
+            sql.WHERE("a.bankname ='" + bankName + "'");
+            if (i != coreInQuerySQL.getCompany().size() - 1)
+                sql.OR();
+        }
+        sql.ORDER_BY("day");
+        logger.info("核心业务查询:"+sql.toString());
+        return sql.toString();
+    }
 }
