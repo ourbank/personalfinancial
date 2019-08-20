@@ -1893,7 +1893,9 @@ async function chart3(chartType) {
     let option = {
         animation: true,
         tooltip: {
-            show: true
+            show:true,
+            trigger: 'item',
+            formatter: '{b}'
         },
         visualMap: {
             show: false,
@@ -1920,7 +1922,7 @@ async function chart3(chartType) {
                 selectedMode: 'multiple',
                 tooltip: {
                     trigger: 'item',
-                    formatter: '{b}<br/>{c}'
+                    formatter: '{b}'
                 },
                 itemStyle: {
                     normal: {
@@ -1976,7 +1978,7 @@ async function chart3(chartType) {
                 selectedMode: 'multiple',
                 tooltip: {
                     trigger: 'item',
-                    formatter: '{b}<br/>{c}'
+                    formatter: '{b}'
                 },
                 itemStyle: {
                     normal: {
