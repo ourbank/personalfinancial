@@ -2336,7 +2336,6 @@ var Main = {
         };
     },methods:{
         chooseTimeRange(t) {
-            alert(t);//结果为一个数组，如：["2018-08-04", "2018-08-06"]
             //去重
             //var flag = 0;
             for (var i in vmtop.panlist.list){
