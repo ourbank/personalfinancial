@@ -37,7 +37,7 @@
                src='../image/gif_recording.gif'></image>
       <image class='img-recording-bg' mode="widthFix"
                src='../image/ic.png'></image>
-      </view>
-        <text class="text">停止录音</text> 
-      </view>
+  </view>
+  <text class="text">停止录音</text> 
+</view>
       <image class="imageCover" src="../image/index_bg.png"/>

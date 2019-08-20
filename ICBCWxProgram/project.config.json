@@ -22,8 +22,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.3",
-	"appid": "touristappid",
-	"projectname": "WeChat",
+	"appid": "wx25450111215aa7bc",
+	"projectname": "ICBCWxProgram",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

@@ -1,3 +1,4 @@
+const innerAudioContext = wx.createInnerAudioContext();
 Page({
   
   data: {
@@ -9,7 +10,8 @@ Page({
     maxRecord:-1,
     //当前最大的录音id
     code:'',
-    token:''
+    token:'',
+    playing:0
   },
 
   onLoad: function (options) {
@@ -34,7 +36,6 @@ Page({
       that2.setData({
         recordList:that2.data.recordList,
       })
-
       console.log(res.tempFilePath)
       that2.tip("录音完成！")
     });
@@ -114,31 +115,51 @@ Page({
       that.data.recordList[i].playStatus = 1;
       that.data.recordList[i].playimageurl = '../image/icon_stop.png';
       that.setData({
-        recordList : that.data.recordList
+        recordList : that.data.recordList,
+        playing : 1
       })
+      console.log(that.data.playing)
     }
     else if (that.data.recordList[i].playStatus == 1) {
       //停止播放
       this.innerAudioContext.stop();
+      innerAudioContext.stop();
+      that.data.recordList[i].playStatus = 0;
+      that.data.recordList[i].playimageurl = '../image/icon_play.png';
+      that.setData({
+        recordList: that.data.recordList,
+        playing: 0
+      })
+      console.log(that.data.playing)
+    }
+    this.innerAudioContext.offPlay()
+    this.innerAudioContext.offStop()
+    this.innerAudioContext.offEnded()
+    this.innerAudioContext.offError()
+
+    this.innerAudioContext.onEnded(() => {
+      that.setData({
+        isPlaying: false
+      })
+      console.log('自然停止播放')
       that.data.recordList[i].playStatus = 0;
       that.data.recordList[i].playimageurl = '../image/icon_play.png';
       that.setData({
         recordList: that.data.recordList
       })
-    }
+      
+    })
   },
   sendRecord:function(e){
     var that = this;
     var i = e.currentTarget.dataset.id;
-    that.data.recordList[i].sendimageurl = "../image/upload.png";
-    that.setData({
-      recordList: that.data.recordList
-    })
+    
+    
     console.log(that.data.token);
     wx.uploadFile({
       
       //url:  "http://127.0.0.1:8080/personalfinancial-0.0.1-SNAPSHOT/sendVoice",
-      url: "http://localhost:9000/receivevoice?token=" + that.data.token,
+      url: "http://aa579186.ngrok.io/receivevoice?token=" + that.data.token,
       filePath: this.data.recordList[i].src,
       name: 'voicefile',
       method: 'POST',
@@ -147,6 +168,10 @@ Page({
       },
       success: function (res) {
         that.tip("发送成功");
+        that.data.recordList[i].sendimageurl = "../image/upload.png";
+        that.setData({
+          recordList: that.data.recordList
+        })
       }
     }) 
   },

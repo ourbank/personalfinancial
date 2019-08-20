@@ -826,7 +826,7 @@ bigchart4()
 
 var data;
 
-// 泽瀚的分析界面，留存
+// 泽翰的分析界面，留存
 let ana_simple_chart = echarts.init(document.getElementById('pie'));
 
 function createRandomItemStyle() {
@@ -851,8 +851,9 @@ async function anasimplechart() {
         series: [{
             type: 'wordCloud',  //类型为字符云
             sizeRange: [1, 45],
-            rotationRange: [-90, 90],
+            rotationRange: [0, 0],
             rotationStep: 90,
+           // textRotation:[0,0],
             shape: 'pentagon',
             top: 0,
             left: 0,
@@ -861,12 +862,18 @@ async function anasimplechart() {
             textStyle: {
                 normal: {
                     fontFamily: 'sans-serif',
-                    color: function () {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 255 + 100),
-                            Math.round(Math.random() * 255 + 100),
-                            Math.round(Math.random() * 255 + 100)
-                        ].join(',') + ')';
+                    color: function(v) {
+                        if (v.value > 900) {
+                            return '#4169E1';
+                        }else if (v.value > 800) {
+                            return '#6A5ACD';
+                        }else if (v.value > 700) {
+                            return '#87CEEB';
+                        } else if (v.value > 600) {
+                            return '#00FFFF';
+                        } else {
+                            return '#7FFFD4';
+                        }
                     }
                 },
                 emphasis: {
@@ -1886,7 +1893,9 @@ async function chart3(chartType) {
     let option = {
         animation: true,
         tooltip: {
-            show: true
+            show:true,
+            trigger: 'item',
+            formatter: '{b}'
         },
         visualMap: {
             show: false,
@@ -1913,7 +1922,7 @@ async function chart3(chartType) {
                 selectedMode: 'multiple',
                 tooltip: {
                     trigger: 'item',
-                    formatter: '{b}<br/>{c}'
+                    formatter: '{b}'
                 },
                 itemStyle: {
                     normal: {
@@ -1969,7 +1978,7 @@ async function chart3(chartType) {
                 selectedMode: 'multiple',
                 tooltip: {
                     trigger: 'item',
-                    formatter: '{b}<br/>{c}'
+                    formatter: '{b}'
                 },
                 itemStyle: {
                     normal: {
@@ -2880,8 +2889,7 @@ function draw_main_chart() {
                     {type : 'max', name: '最大值'},
                     {type : 'min', name: '最小值'}
                 ],
-                symbol:'pin',
-
+                symbol:'pin'
             };
 
             options.series[i].data = getyear(selectedCity[i].slice(0, selectedCity[i].length - 1) + '分行');

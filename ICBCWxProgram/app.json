@@ -2,10 +2,6 @@
   "pages": [
     "pages/login/login",
     "pages/Intelligent/Intelligent"
-    
-    
-    
-   
   ],
   "window": {
     "backgroundTextStyle": "light",
