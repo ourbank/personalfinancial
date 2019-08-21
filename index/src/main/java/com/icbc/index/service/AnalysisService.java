@@ -27,8 +27,7 @@ public class AnalysisService {
         String business = json.get("business").toString();
         String startTime = json.get("startTime").toString();
         String endTime = json.get("endTime").toString();
-        List<String> bankNames = JSONArray.parseArray(json.getJSONArray("banknames").toJSONString(),String.class);
-        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL(startTime,endTime,business,bankNames);
+        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL(startTime,endTime,business);
         List<CardData> list = cardDao.getSumByBankName(coreInQuerySQL);
         long sum = 0;
         for (int i = 0; i <list.size() ; i++) {
