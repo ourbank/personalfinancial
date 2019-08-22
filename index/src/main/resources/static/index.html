@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="css/style.css">
     <!--excel导出相关的包-->
     <script type="text/javascript" src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/blob.js@1.0.1/Blob.js"></script>
     <script type="text/javascript" src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
@@ -36,7 +35,7 @@
 
 <body style="visibility: hidden;overflow: hidden">
 <div class="container-flex" id="wholepage" tabindex="0" hidefocus="true">
-    <div class="box-left" >
+    <div class="box-left">
         <div class="left-top">
             <div class="current-num">
                 <div class="weather-box">
@@ -88,10 +87,10 @@
             </div>
             <div class="chart-box pie-chart">
                 <div id="pie"></div>
-<!--                <div>-->
-<!--                    <div class="pie-data">-->
-<!--                    </div>-->
-<!--                </div>-->
+                <!--                <div>-->
+                <!--                    <div class="pie-data">-->
+                <!--                    </div>-->
+                <!--                </div>-->
             </div>
         </div>
         <div class="left-bottom" class="select">
@@ -108,7 +107,7 @@
                     </div>
                     <div class="select" tabindex="0" hidefocus="true">
                         <div id="analyli2_1" class="select-div">预测指标</div>
-                        <ul class="select-ul" id ="pre_select_business">
+                        <ul class="select-ul" id="pre_select_business">
                             <li data-value="1">开卡数</li>
                             <li data-value="2">贷款数</li>
                             <li data-value="3">存款数</li>
@@ -166,7 +165,7 @@
                         <img style="width:0.3rem;height:0.3rem;" src="images/time.png" alt="">
                         时间选择
                     </div>
-					
+
                     <div class="time-box" id="timeBox">
                         <div class="time-div">
                             <input class="time-input" type="text" value="开始时间" id="startTime">
@@ -204,6 +203,9 @@
         </div>
         <div class="center-bottom">
             <div class="chart-box">
+                <div id="chart4Text">
+
+                </div>
                 <div id="chart4" style="width:100%;height:95%;"></div>
             </div>
         </div>
@@ -211,15 +213,15 @@
 </div>
 
 <div id="main_hover">
-    <img  src="images/navigate-left.png">
+    <img src="images/navigate-left.png">
 </div>
 
-<div id = "right_float_window" >
+<div id="right_float_window">
     <div id="his-save" class="float_window_icon" title="导出报表">
-        <img src="images/export.png" >
+        <img src="images/export.png">
     </div>
     <div class="float_window_icon" title="其他">
-        <img src="images/door.png" >
+        <img src="images/door.png">
     </div>
 
 </div>
@@ -275,16 +277,16 @@
 
     <div class="pop-up pre-pop-up">
         <span class="close-pop"></span>
-        <h2 id = "big_title2" class="title">业务预测分析</h2>
-        <div class = "pre-navigation" >
-            <div class="float_window_icon" id = 'pre_plan_btn' title="配置计划">
-                <img src="images/config.png" >
+        <h2 id="big_title2" class="title">业务预测分析</h2>
+        <div class="pre-navigation">
+            <div class="float_window_icon" id='pre_plan_btn' title="配置计划">
+                <img src="images/config.png">
             </div>
-            <div class="float_window_icon" id = 'pre_chart_btn' title="预测图表">
-                <img src="images/line_chart.png" >
+            <div class="float_window_icon" id='pre_chart_btn' title="预测图表">
+                <img src="images/line_chart.png">
             </div>
         </div>
-        <div class = "pre-left">
+        <div class="pre-left">
             <div class="pre-left-top">
                 <div class="pages-div" class="mineus">
                 </div>
@@ -357,13 +359,13 @@
 
     <div class="pop-up pre-pop-up">
         <span class="close-pop"></span>
-        <h2 class="title" id ='big_title_plan'>计划配置</h2>
-        <div class = "pre-navigation" >
-            <div class="float_window_icon" id = 'plan_plan_btn' title="配置计划">
-                <img src="images/config.png" >
+        <h2 class="title" id='big_title_plan'>计划配置</h2>
+        <div class="pre-navigation">
+            <div class="float_window_icon" id='plan_plan_btn' title="配置计划">
+                <img src="images/config.png">
             </div>
-            <div class="float_window_icon" id = 'plan_chart_btn' title="预测图表">
-                <img src="images/line_chart.png" >
+            <div class="float_window_icon" id='plan_chart_btn' title="预测图表">
+                <img src="images/line_chart.png">
             </div>
         </div>
         <div class="pre-right1">
@@ -371,7 +373,7 @@
                 <button id="1mon" class="skip">月</button>
                 <button id="3mon" class="skip">季度</button>
                 <button id="12mon" class="skip">年</button>
-                <p><span style="cursor:pointer" id="gz_click">广州市：</span></p>
+                <p><span style="cursor:pointer" id="gz_click">广州分行：</span></p>
                 <input id="广州target">
                 <button id="pre_all_btn" class="skip2">智能分配</button>
                 <button id="pre_ana_btn" class="skip2">分析</button>
@@ -384,19 +386,19 @@
     <div class="pop-up ana-pop-up">
         <span class="close-pop"></span>
         <h2 class="title">业务指标分析</h2>
-        <div class = "pre-navigation" >
-            <div class="float_window_icon" id = 'ana_config_btn' title="配置分析项">
-                <img src="images/addconfig.png" >
+        <div class="pre-navigation">
+            <div class="float_window_icon" id='ana_config_btn' title="配置分析项">
+                <img src="images/addconfig.png">
             </div>
-            <div class="float_window_icon" id = 'ana_chart_btn' title="分析图表">
-                <img src="images/infographic.png" >
+            <div class="float_window_icon" id='ana_chart_btn' title="分析图表">
+                <img src="images/infographic.png">
             </div>
         </div>
-        <div class = 'ana_main' id ='ana_config_page'>
-            <input id ="test_color">
-            <button id = "ana_test">新增一个图表</button>
+        <div class='ana_main' id='ana_config_page'>
+            <input id="test_color">
+            <button id="ana_test">新增一个图表</button>
         </div>
-        <div class = 'ana_main' id ='ana_chart_page'>
+        <div class='ana_main' id='ana_chart_page'>
 
         </div>
     </div>
@@ -409,7 +411,8 @@
                 <div class="GM_ipone_one a">
                     筛选条件
                 </div>
-                <a class="select-attr" href="#" v-for="(pan,index) in panlist.list" @click="deleteSelected(index)"> {{ pan.panAttrValue }}<b> ✖ </b>
+                <a class="select-attr" href="#" v-for="(pan,index) in panlist.list" @click="deleteSelected(index)"> {{
+                    pan.panAttrValue }}<b> ✖ </b>
                 </a>
             </div>
         </div>
@@ -419,14 +422,14 @@
                     <div class="title">
                         <h3><em>导出筛选</em></h3>
                     </div>
-                    <div class="GM_nav_logo" id="app"  >
-                        <div  class="GM_pre" v-for="(attrinfo,index) in attrlist" >
-                            <div class="sl_key"  >
-                                <span  >{{ attrinfo.attrName }} :</span>
+                    <div class="GM_nav_logo" id="app">
+                        <div class="GM_pre" v-for="(attrinfo,index) in attrlist">
+                            <div class="sl_key">
+                                <span>{{ attrinfo.attrName }} :</span>
                             </div>
-                            <div class="sl_value"  >
+                            <div class="sl_value">
                                 <ul v-for="attrValue in attrinfo.attrValueList">
-                                        <a @click="addSelected($event,index)" >{{ attrValue.valueName }}</a>
+                                    <a @click="addSelected($event,index)">{{ attrValue.valueName }}</a>
 
                                 </ul>
                             </div>
@@ -437,9 +440,10 @@
         </div>
         <div id="appdate">
             <template>
-                <div class="block"  >
-                    <div style = "width:1200px; margin:auto" >
-                        <span class="demonstration" style=" color:#56abe4; font-size: 14px;margin: 0px auto;" >时间范围：</span>
+                <div class="block">
+                    <div style="width:1200px; margin:auto">
+                        <span class="demonstration"
+                              style=" color:#56abe4; font-size: 14px;margin: 0px auto;">时间范围：</span>
                         <el-date-picker
                                 v-model="value1"
                                 type="daterange"
@@ -450,7 +454,7 @@
                                 @change="chooseTimeRange"
                                 value-format="yyyy-MM-dd">
                         </el-date-picker>
-                        <el-button  icon="el-icon-download" circle onclick="exportExcel_Doit()" ></el-button>
+                        <el-button icon="el-icon-download" circle onclick="exportExcel_Doit()"></el-button>
                     </div>
                 </div>
             </template>
@@ -481,7 +485,7 @@
     </div>
     <div id="downloadTable" style="visibility: hidden;">
         <el-table
-                id = "downloan-his"
+                id="downloan-his"
                 border
                 :data="table.tableData"
                 style="width: 1200px;margin:auto;color:#56abe4;">
@@ -497,18 +501,18 @@
     </div>
 </div>
 
-    <div class="container2">
-        <div class="pop-up1">
-            <span class="close-pop"></span>
-            <h2 class="title">计划配置</h2>
-            <div id="pages-div" class="pages-div" class="mineus">
-                <p><span>预测时长：</span></p>
-                <input id="pre_period" type="number" max="6" min="1">
-            </div>
-            <div class="detail-container">
-            </div>
+<div class="container2">
+    <div class="pop-up1">
+        <span class="close-pop"></span>
+        <h2 class="title">计划配置</h2>
+        <div id="pages-div" class="pages-div" class="mineus">
+            <p><span>预测时长：</span></p>
+            <input id="pre_period" type="number" max="6" min="1">
+        </div>
+        <div class="detail-container">
         </div>
     </div>
+</div>
 </div>
 
 </body>

@@ -6,12 +6,12 @@ public class PredictDataVo {
     private String business;
     private String bankName;
     private String predictUnit;
-    private List<Integer> predictData;
+    private List<Double> predictData;
 
     public PredictDataVo() {
     }
 
-    public PredictDataVo(String business, String bankName, String predictUnit, List<Integer> predictData) {
+    public PredictDataVo(String business, String bankName, String predictUnit, List<Double> predictData) {
         this.business = business;
         this.bankName = bankName;
         this.predictUnit = predictUnit;
@@ -42,11 +42,11 @@ public class PredictDataVo {
         this.predictUnit = predictUnit;
     }
 
-    public List<Integer> getPredictData() {
+    public List<Double> getPredictData() {
         return predictData;
     }
 
-    public void setPredictData(List<Integer> predictData) {
+    public void setPredictData(List<Double> predictData) {
         this.predictData = predictData;
     }
 }

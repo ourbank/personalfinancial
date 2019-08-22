@@ -52,6 +52,18 @@ public class CoreInQuerySQL {
         this.company = company;
     }
 
+    /**
+     * 分析查询
+     * @param strFromDate
+     * @param strToDate
+     * @param singleBusiness
+     */
+    public CoreInQuerySQL(String strFromDate, String strToDate,String singleBusiness) {
+        this.strFromDate = strFromDate;
+        this.strToDate = strToDate;
+        this.singleBusiness=singleBusiness;
+    }
+
     public Date getFromData() {
         return fromDate;
     }

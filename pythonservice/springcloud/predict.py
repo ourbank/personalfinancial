@@ -13,105 +13,118 @@ import os
 train_data = []
 
 # 格式化的训练数据
+format_train_data = []
+
+# 直接用于训练的数据
 train = []
 
 
-def predict(request):
-    # 存储训练数据
-    postBody = request.body
-    global train_data
-    # 这里有个坑，使用dic接收json数组，顺序会被打乱，类似于java中的map
-    train_data = json.loads(postBody, object_pairs_hook=OrderedDict)
-    load_data()
-    return HttpResponse("hello")
-
-
+# 按月份进行预测
 def predict_mon(request):
-    # 存储训练数据
     postBody = request.body
     global train_data
-    train_data = json.loads(postBody, object_pairs_hook=OrderedDict)
+    train_data = json.loads(postBody)
+    print(train_data)
     load_data()
-    result = predict_by_mon(train_data['period'])
+    result = predict_by_mon(train_data[0]['period'])
+    print(result)
+    return HttpResponse(result)
+
+
+# 按季度进行预测
+def predict_season(request):
+    postBody = request.body
+    global train_data
+    train_data = json.loads(postBody)
+    load_data()
+    result = predict_by_season(train_data['period'])
+    print(result)
+    return HttpResponse(result)
+
+
+# 按年进行预测
+def predict_season(request):
+    postBody = request.body
+    global train_data
+    train_data = json.loads(postBody)
+    load_data()
+    result = predict_by_year(train_data['period'])
     print(result)
     return HttpResponse(result)
 
 
 def load_data():
-    df = pd.read_csv(os.path.dirname(__file__) + '\\static\\tem.csv')
-    df['Datetime'] = train_data['traintime']
-    df['Count'] = train_data['traindata']
-    df.index = pd.to_datetime(df['Datetime'], format='%Y-%m-%d')
-    del df['Datetime']
-    pd.DataFrame(df).to_csv(os.path.dirname(__file__) + '\\static\\out.csv')
-    global train
-    train = df
-    # train = train.resample('3M').mean()
-    if train_data['business'] == '开卡数':
-        print(train)
-    if train_data['business'] == '贷款数':
-        print(train)
-    if train_data['business'] == '存款数':
-        print(train)
-    if train_data['business'] == '中间收入':
-        print(train)
-
-        # df = pd.read_csv(os.path.dirname(__file__) + '\\static\\train.csv', nrows=11856)
-        # global train
-        # train = df[0:10392]
-        # global test
-        # test = df[10392:]
-        # # Aggregating the dataset at daily level
-        # df['Timestamp'] = pd.to_datetime(df['Datetime'], format='%d-%m-%Y %H:%M')
-        # df.index = df['Timestamp']
-        # df = df.resample('D').mean()
-        # print(df)
-        #
-        # train['Timestamp'] = pd.to_datetime(train['Datetime'], format='%d-%m-%Y %H:%M')
-        # train.index = train['Timestamp']
-        # train = train.resample('D').mean()
-        #
-        # test['Timestamp'] = pd.to_datetime(test['Datetime'], format='%d-%m-%Y %H:%M')
-        # test.index = test['Timestamp']
-        # test = test.resample('D').mean()
+    global format_train_data
+    format_train_data = []
+    for data in train_data:
+        result = {}
+        df = pd.read_csv(os.path.dirname(__file__) + '\\static\\tem.csv')
+        df['Datetime'] = data['traintime']
+        df['Count'] = data['traindata']
+        df.index = pd.to_datetime(df['Datetime'], format='%Y-%m-%d')
+        del df['Datetime']
+        result["data"] = df
+        result["bankname"] = data["bankname"]
+        format_train_data.append(result)
 
 
 def predict_by_mon(period):
+    result = []
+    global format_train_data
     global train
-    train = train.resample('M').mean()
-    return holt_winter(period)
+    for data in format_train_data:
+        train = data["data"]
+        train = train.resample('M').sum()
+        predicted = holt_winter(period)
+        dic = {"predicted": predicted.tolist(), "bankname": data["bankname"]}
+        result.append(dic)
+    return json.dumps(result, ensure_ascii=False)
 
 
-# def show_data():
-#     # Plotting data
-#     load_data();
-#     train.Count.plot(figsize=(15, 8), title='Daily Ridership', fontsize=14)
-#     # test.Count.plot(figsize=(15, 8), title='Daily Ridership', fontsize=14)
-#     plt.show()
+def predict_by_season(period):
+    result = []
+    global format_train_data
+    global train
+    for data in format_train_data:
+        train = data["data"]
+        train = train.resample('3M').sum()
+        predicted = holt_winter(period)
+        dic = {"predicted": predicted.tolist(), "bankname": data["bankname"]}
+        result.append(dic)
+    return json.dumps(result, ensure_ascii=False)
+
+
+def predict_by_year(period):
+    result = []
+    global format_train_data
+    global train
+    for data in format_train_data:
+        train = data["data"]
+        train = train.resample('Y').sum()
+        predicted = holt_winter(period)
+        dic = {"predicted": predicted.tolist(), "bankname": data["bankname"]}
+        result.append(dic)
+    return json.dumps(result, ensure_ascii=False)
 
 
 def holt_winter(period):
-    out = np.arange(period)
+    predicted = np.arange(period)
+    print('period:', period)
     global train
     fit1 = ExponentialSmoothing(np.asarray(train['Count']), seasonal_periods=7, trend='add', seasonal='add', ).fit()
-    out = fit1.forecast(len(out))
-    # plt.plot(train['Count'], label='Train')
-    # plt.plot(out, label='Holt-Winter')
-    # plt.legend(loc='best')
-    # plt.show()
-    dic = {'predicted': out.tolist()}
-    dicJson = json.dumps(dic)
-    return dicJson
-
+    predicted = np.around(fit1.forecast(len(predicted)), 2)
+    # 返回2个时间单位历史数据和period个时间单位预测数据
+    out = np.hstack((np.asarray(train['Count'])[len(train) - 2:], predicted))
+    return out
 
 # def arima():
-    # load_data();
-    # y_hat_avg = test.copy()
-    # fit1 = sm.tsa.statespace.SARIMAX(train.Count, order=(2, 1, 4), seasonal_order=(0, 1, 1, 7)).fit()
-    # y_hat_avg['SARIMA'] = fit1.predict(start="2013-11-1", end="2013-12-31", dynamic=True)
-    # plt.figure(figsize=(16, 8))
-    # plt.plot(train['Count'], label='Train')
-    # plt.plot(test['Count'], label='Test')
-    # plt.plot(y_hat_avg['SARIMA'], label='SARIMA')
-    # plt.legend(loc='best')
-    # plt.show()
+# load_data();
+# y_hat_avg = test.copy()
+# fit1 = sm.tsa.statespace.SARIMAX(train.Count, order=(2, 1, 4), seasonal_order=(0, 1, 1, 7)).fit()
+# y_hat_avg['SARIMA'] = fit1.predict(start="2013-11-1", end="2013-12-31", dynamic=True)
+# plt.figure(figsize=(16, 8))
+# plt.plot(train['Count'], label='Train')
+# plt.plot(test['Count'], label='Test')
+# plt.plot(y_hat_avg['SARIMA'], label='SARIMA')
+# plt.legend(loc='best')
+# plt.show()

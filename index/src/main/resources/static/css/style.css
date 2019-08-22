@@ -1296,6 +1296,7 @@ pre {
     visibility: hidden;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 }
 
 .pop-up {
@@ -1893,8 +1894,10 @@ pre {
 }
 
 .pre-right1 {
-    height: 90%;
-    width: 100%;
+    position: absolute;
+    right: 1%;
+    height: 85%;
+    width: 92%;
     margin: auto;
 }
 
@@ -2004,7 +2007,17 @@ pre {
     top: 10%;
     left: 20%;
 }
+#chart4Text{
+    position: relative;
+    width: 160px;
+    height: 10px;
+    font-size:15px;
+    color: #fff;
+    top:20px;
+    left:70px;
 
+    font-family: 'KAITI';
+}
 .pre-navigation {
     width: 5%;
     height: 84%;
@@ -2045,3 +2058,49 @@ pre {
     height: 45%;
     margin:auto;
 }
+
+
+/*已经使用js动态写入(需要动态绑定ID，所以用js动态绑定)*/
+/*#chk {*/
+/*    display: none;  !* 将原生的checkbox隐藏 *!*/
+/*}*/
+
+/*!* label 模拟 “划动条” *!*/
+/*#chk + label {*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*    width: 60px;*/
+/*    height: 20px;*/
+/*    border-radius: 10px;*/
+/*    background-color: #bbb;*/
+/*}*/
+
+/*!* “label::before伪元素 模拟 “划块” *!*/
+/*#chk + label:before {*/
+/*    content: '';*/
+/*    cursor: pointer;*/
+/*    position: absolute;*/
+/*    top: -5px;*/
+/*    left: 0;*/
+/*    z-index: 99;*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    border-radius: 50%;*/
+/*    background: #F7F4F4;*/
+/*    box-shadow: 0 3px 1px rgba(0,0,0,0.05), 0 0px 1px rgba(0,0,0,0.3);*/
+/*    -webkit-transition: all 0.1s ease-in;*/
+/*    transition: all 0.1s ease-in;*/
+/*}*/
+
+/*!* checkbox选中状态时，“划动条”的样式 *!*/
+/*#chk:checked + label {*/
+/*    background: #aabbfd;*/
+/*}*/
+
+/*!* checkbox选中状态时，“划块”的样式 *!*/
+/*#chk:checked + label:before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    left: 30px;*/
+/*    background-color: #7272dd;*/
+/*}*/

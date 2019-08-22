@@ -26,7 +26,7 @@ public class AnalyseController {
     @ResponseBody
     public String getwordcloud(@RequestParam("business") String bus,@RequestParam("period") String period){
 
-        logger.debug("根据时间周期和业务控制器："+bus+"<--->"+period);
+        logger.info("根据时间周期和业务控制器："+bus+"<--->"+period);
         return analyseService.getwordcloudByBus(bus,period);
     }
 }
