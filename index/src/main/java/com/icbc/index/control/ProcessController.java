@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.service.CardService;
 import com.icbc.index.service.PythonService;
 import com.icbc.index.service.VoiceService;
+import com.icbc.index.util.LoginUtil;
 import com.icbc.index.util.VoiceEncodeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * 该控制器负责处理前端ajax数据请求
@@ -35,14 +37,18 @@ public class ProcessController {
     @Autowired
     VoiceService voiceService;
 
+
+
     @RequestMapping(value = "/receivevoice", method = RequestMethod.POST, produces = "multipart/form-data")
     public @ResponseBody
     void getResultByWeChat(@RequestParam("voicefile") MultipartFile voiceFile, @RequestParam("token") String token) {
+        Map<String, Object> user = LoginUtil.decode(token);
+        String account = (String) user.get("account");
         voiceService.getBaiduToken();
         String temp = VoiceEncodeUtil.getJsonOfVoice(voiceFile);
         logger.info("微信语音转文字结果：" + temp);
         logger.info("开始分词");
-        String data = pythonService.getResultByWeChat(temp);
+        String data = pythonService.getResultByWeChat(temp,account);
         webSocketController.sendToUser(token, data);
     }
 

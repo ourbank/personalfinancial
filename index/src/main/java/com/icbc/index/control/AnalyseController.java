@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class AnalyseController {
 
     Logger logger = LoggerFactory.getLogger(AnalyseController.class);
+
     @Autowired
     AnalyseService analyseService;
 

@@ -2930,7 +2930,7 @@ function draw_main_chart() {
     }
 
     if (factor == '开卡数') {
-        options.yAxis[0] = {
+        options.yAxis = {
             type: 'value',
             splitLine: {
                 show: false,
@@ -2944,7 +2944,7 @@ function draw_main_chart() {
             axisLabel: {formatter: '{value} '}
         };
     } else if (factor == '贷款数') {
-        options.yAxis[0] = {
+        options.yAxis = {
             type: 'value',
             splitLine: {
                 show: false,
@@ -2958,7 +2958,7 @@ function draw_main_chart() {
             axisLabel: {formatter: '{value} '}
         }
     } else if (factor == '存款数') {
-        options.yAxis[0] = {
+        options.yAxis = {
             type: 'value',
             splitLine: {
                 show: false,
@@ -2972,7 +2972,7 @@ function draw_main_chart() {
             axisLabel: {formatter: '{value} '}
         }
     } else if (factor == '中间收入') {
-        options.yAxis[0] = {
+        options.yAxis = {
             type: 'value',
             splitLine: {
                 show: false,
