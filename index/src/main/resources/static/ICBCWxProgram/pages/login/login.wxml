@@ -1,0 +1,33 @@
+<view class="mcontainer">
+    <view class="icbctext">工行云服务</view>
+      <view class="ball">
+            <image class="ball1" src="../image/fish.png" mode="widthFix"  />
+            
+      </view>
+    <view class="item">
+       <view class="login-item">
+       	    <view class="login-item-info">用户名</view>
+            <view><input class="input1" bindinput="usernameInput" /></view>
+       </view>
+       <view class="login-item">
+            <view class="login-item-info">密码</view>
+            <view class="login-pwd">
+            
+            <input style="flex-grow:1" password="true" class="input1"             
+            bindinput="passwordInput"/>
+
+            <view class="text" bindtap="changepassword"> 忘记密码 </view>
+            <!-- 暂时不支持这个操作-->
+            </view>
+       </view>
+       <view class="login-item bottom">
+            <button class="btok" bindtap="loginBtnClick" 
+            >登录</button>
+       </view>
+    </view>
+    <image class="imageCover" src="../image/index_bg.png"/>
+    
+</view>
+
+    
+   
