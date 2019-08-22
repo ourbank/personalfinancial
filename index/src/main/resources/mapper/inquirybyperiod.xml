@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.index.mapper.CoreInquiry">
+
+    <select id="inquiryByYears" parameterType="com.icbc.index.model.CoreInquiryParam"
+    resultType="com.icbc.index.model.CardData">
+        SELECT a.bankname as bankName,b.day as time,b.num as cardNum
+        FROM bank a
+        INNER JOIN (SELECT bankid as bankid, sum(num) as num, day
+        <choose>
+            <when test="business=='开卡数'">
+                from card_bill
+            </when>
+            <when test="business=='存款数'">
+                from deposit_daily
+            </when>
+            <when test="business=='贷款数'">
+                from loan_daily
+            </when>
+            <when test="business=='中间收入'">
+                from intermediate_bill
+            </when>
+        </choose>
+        where year in
+        <foreach collection="years" separator="," open="(" close=")" item="temp">
+            #{temp}
+        </foreach>
+        GROUP BY bankid, day)b
+        on a.id = b.bankid
+        WHERE  a.bankname in
+        <foreach collection="places" open="(" close=")" separator="," item="temp">
+        #{temp}
+        </foreach>
+        ORDER BY day;
+    </select>
+
+    <select id="inquiryByMonths" parameterType="com.icbc.index.model.CoreInquiryParam"
+            resultType="com.icbc.index.model.CardData">
+        SELECT a.bankname as bankName,b.day as time,b.num as cardNum
+        FROM bank a
+        INNER JOIN (SELECT bankid, sum(num) as num, day
+        <choose>
+            <when test="business=='开卡数'">
+                from card_bill
+            </when>
+            <when test="business=='存款数'">
+                from deposit_daily
+            </when>
+            <when test="business=='贷款数'">
+                from loan_daily
+            </when>
+            <when test="business=='中间收入'">
+                from intermediate_bill
+            </when>
+        </choose>
+        where month in
+        <foreach collection="months" separator="," open="(" close=")" item="temp">
+            #{temp}
+        </foreach> and year = year(curdate())
+        GROUP BY bankid, day)b
+        on a.id = b.bankid
+        WHERE  a.bankname in
+        <foreach collection="places" open="(" close=")" separator="," item="temp">
+            #{temp}
+        </foreach>
+        ORDER BY day;
+    </select>
+
+    <select id="inquiryBySeasons" parameterType="com.icbc.index.model.CoreInquiryParam"
+            resultType="com.icbc.index.model.CardData">
+        SELECT a.bankname as bankName,b.day as time,b.num as cardNum
+        FROM bank a
+        INNER JOIN (SELECT bankid as bankid, sum(num) as num, day
+        <choose>
+            <when test="business=='开卡数'">
+                from card_bill
+            </when>
+            <when test="business=='存款数'">
+                from deposit_daily
+            </when>
+            <when test="business=='贷款数'">
+                from loan_daily
+            </when>
+            <when test="business=='中间收入'">
+                from intermediate_bill
+            </when>
+        </choose>
+        where season in
+        <foreach collection="seasons" separator="," open="(" close=")" item="temp">
+            #{temp}
+        </foreach>
+        and year =year(curdate())
+        GROUP BY bankid, day)b
+        on a.id = b.bankid
+        WHERE  a.bankname in
+        <foreach collection="places" open="(" close=")" separator="," item="temp">
+            #{temp}
+        </foreach>
+        ORDER BY day;
+    </select>
+
+    <select id="inquiryBySeason" parameterType="com.icbc.index.model.CoreInquiryParam"
+            resultType="com.icbc.index.model.CardData">
+        SELECT a.bankname as bankName,b.day as time,b.num as cardNum
+        FROM bank a
+        INNER JOIN (SELECT bankid, sum(num) as num, day
+        <choose>
+            <when test="business=='开卡数'">
+                from card_bill
+            </when>
+            <when test="business=='存款数'">
+                from deposit_daily
+            </when>
+            <when test="business=='贷款数'">
+                from loan_daily
+            </when>
+            <when test="business=='中间收入'">
+                from intermediate_bill
+            </when>
+        </choose>
+        where year in
+        <foreach collection="seasons" separator="," open="(" close=")" item="temp">
+            #{temp}
+        </foreach>
+        and year =year(curdate())
+        GROUP BY bankid, day)b
+        on a.id = b.bankid
+        WHERE  a.bankname in
+        <foreach collection="places" open="(" close=")" separator="," item="temp">
+            #{temp}
+        </foreach>
+        ORDER BY day;
+    </select>
+
+    <select id="inquiryByPeriod" parameterType="com.icbc.index.model.CoreInquiryParam"
+            resultType="com.icbc.index.model.CardData">
+        SELECT a.bankname as bankName,b.day as time,b.num as cardNum
+        FROM bank a
+        INNER JOIN (SELECT bankid, sum(num) as num, day
+        <choose>
+            <when test="business=='开卡数'">
+                from card_bill
+            </when>
+            <when test="business=='存款数'">
+                from deposit_daily
+            </when>
+            <when test="business=='贷款数'">
+                from loan_daily
+            </when>
+            <when test="business=='中间收入'">
+                from intermediate_bill
+            </when>
+        </choose>
+        where ((year =#{startYear} and month >= #{startMonth})
+                   or (year =#{endYear} and month &lt;= #{endMonth})
+                   or (year > #{startYear} and year &lt; #{endYear}))
+        GROUP BY bankid, day) b
+        on a.id = b.bankid
+        WHERE  a.bankname in <foreach collection="places" open="(" close=")" separator="," item="temp">
+        #{temp}
+    </foreach>
+        ORDER BY day;
+</select>
+
+
+</mapper>

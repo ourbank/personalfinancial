@@ -23,4 +23,8 @@ public class ManagerService {
         else
             return false;
     }
+
+    public String getUserBank(String account){
+        return managerDao.findUserBank(account);
+    }
 }

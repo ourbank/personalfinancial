@@ -80,8 +80,6 @@ public class LoginControl {
         allUser.put(manager.getToken(),manager);
         redisService.setObj("token",allUser);
         redisService.setObj("register",manager.getToken());
-        redisService.setObj("id",manager.getId());
-
         return "redirect:index.html";
     }
 
