@@ -81,6 +81,21 @@ public class AccountDate {
         return ymd;
     }
 
+
+    /**
+     * 日期减一年
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
+    private static int[] subOneYear(int year, int month, int day){
+        year--;
+        int[] ymd = {year, month, day};
+        return ymd;
+    }
+
+
     /**
      * 将不足两位的月份或日期补足为两位
      * @param decimal
@@ -131,6 +146,13 @@ public class AccountDate {
         for(int i = 0; i < 5; i++){
             ymd = addOneDay(ymd[Y], ymd[M], ymd[D]);
         }
+        return formatYear(ymd[Y])+"-"+formatMonthDay(ymd[M])+"-"+formatMonthDay(ymd[D]);
+    }
+
+    public static String getOneYearAgo(String beginDate){
+        int[] ymd = splitYMD( beginDate );
+        ymd = subOneYear(ymd[Y], ymd[M], ymd[D]);
+        if(isLeapYear( ymd[Y] ))  return formatYear(ymd[Y])+"-"+formatMonthDay(ymd[M])+"-"+formatMonthDay(ymd[D]-1);
         return formatYear(ymd[Y])+"-"+formatMonthDay(ymd[M])+"-"+formatMonthDay(ymd[D]);
     }
     /**
