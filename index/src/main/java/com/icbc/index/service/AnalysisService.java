@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.icbc.index.mapper.CardDao;
 import com.icbc.index.model.CardData;
 import com.icbc.index.model.CoreInQuerySQL;
+import com.icbc.index.util.AccountDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +26,9 @@ public class AnalysisService {
     @SuppressWarnings("unchecked")
     public Long getDaySum(JSONObject json){
         String business = json.get("business").toString();
-        String startTime = json.get("startTime").toString();
-        String endTime = json.get("endTime").toString();
-        List<String> bankNames = JSONArray.parseArray(json.getJSONArray("banknames").toJSONString(),String.class);
-        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL(startTime,endTime,business,bankNames);
+        String startTime = AccountDate.getOneYearAgo(json.get("startTime").toString());
+        String endTime = AccountDate.getOneYearAgo(json.get("endTime").toString());
+        CoreInQuerySQL coreInQuerySQL = new CoreInQuerySQL(startTime,endTime,business);
         List<CardData> list = cardDao.getSumByBankName(coreInQuerySQL);
         long sum = 0;
         for (int i = 0; i <list.size() ; i++) {

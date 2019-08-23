@@ -11,4 +11,6 @@ import com.icbc.index.entity.Manager;
 public interface ManagerMapper {
 
     public Manager findUser(String account);
+
+    public String findUserBank(String account);
 }

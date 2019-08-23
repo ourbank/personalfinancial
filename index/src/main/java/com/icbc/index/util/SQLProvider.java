@@ -162,12 +162,13 @@ public class SQLProvider {
         logger.info("多业务多城市查询sql语句生成：" + sql.toString());
         return sql.toString();
     }
+
+
     public String getDaySumsql(CoreInQuerySQL coreInQuerySQL) {
         //创建SQL对象并设置select语句要查询的列
         SQL innersql = new SQL();
         String startTime = coreInQuerySQL.getStrFromDate();
         String endTime = coreInQuerySQL.getStrToDate();
-        String bankName;
         switch (coreInQuerySQL.getSingleBusiness()){
             case "开卡数":
                 innersql.SELECT("bankid", "sum(num) as num", "day");
@@ -191,14 +192,8 @@ public class SQLProvider {
         SQL sql = new SQL().SELECT("a.bankname as bankName,b.day as time,b.num as cardNum");
         sql.FROM("bank a"); //添加from语句
         sql.INNER_JOIN("(" + innersql.toString() + ") b on a.id = b.bankid");
-        for (int i = 0; i < coreInQuerySQL.getCompany().size(); i++) {
-            bankName = coreInQuerySQL.getCompany().get(i);
-            sql.WHERE("a.bankname ='" + bankName + "'");
-            if (i != coreInQuerySQL.getCompany().size() - 1)
-                sql.OR();
-        }
         sql.ORDER_BY("day");
-        logger.info("核心业务查询:"+sql.toString());
+        logger.info("分析业务:"+sql.toString());
         return sql.toString();
     }
 }
