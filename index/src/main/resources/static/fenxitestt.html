@@ -572,7 +572,7 @@
                  label: '云浮分行'
                  }
      ],			zexianvalue:'',
-       
+
                 hzfangshiList:[{
                     hzfangshi:'求和'
                 },{
@@ -948,7 +948,7 @@
             addcxDate(t) {
                 this.dateform.startTime = t[0];
                 this.dateform.endTime = t[1];
-                
+
             },
             getTreeChecked(data, node) {
                 if (data.isL === 1) {
@@ -999,40 +999,40 @@
 		 let myChart = echarts.init(document.getElementById('main'));
 		 let options = myChart.getOption();
 		 myChart.clear();
-         var getDate = function(str) {  
-         var tempDate = new Date();  
-         var list = str.split("-");  
-         tempDate.setFullYear(list[0]);  
-         tempDate.setMonth(list[1] - 1);  
-         tempDate.setDate(list[2]);  
-         return tempDate;  
-		}  
-		var date1 = getDate(t[0]);  
-		var date2 = getDate(t[1]);  
-		if (date1 > date2) {  
-         var tempDate = date1;  
-         date1 = date2;  
-         date2 = tempDate;  
-		}  
-		date1.setDate(date1.getDate() + 1);  
-		var dateArr = [];  
-		var i = 0;  
-		while (!(date1.getFullYear() == date2.getFullYear()  
-             && date1.getMonth() == date2.getMonth() && date1.getDate() == date2  
-             .getDate())) {  
-          var dayStr =date1.getDate().toString();  
-          if(dayStr.length ==1){  
-            dayStr="0"+dayStr;  
-          }  
+         var getDate = function(str) {
+         var tempDate = new Date();
+         var list = str.split("-");
+         tempDate.setFullYear(list[0]);
+         tempDate.setMonth(list[1] - 1);
+         tempDate.setDate(list[2]);
+         return tempDate;
+		}
+		var date1 = getDate(t[0]);
+		var date2 = getDate(t[1]);
+		if (date1 > date2) {
+         var tempDate = date1;
+         date1 = date2;
+         date2 = tempDate;
+		}
+		date1.setDate(date1.getDate() + 1);
+		var dateArr = [];
+		var i = 0;
+		while (!(date1.getFullYear() == date2.getFullYear()
+             && date1.getMonth() == date2.getMonth() && date1.getDate() == date2
+             .getDate())) {
+          var dayStr =date1.getDate().toString();
+          if(dayStr.length ==1){
+            dayStr="0"+dayStr;
+          }
           var monthStr = (date1.getMonth() + 1).toString();
-          if(monthStr.length ==1){  
-            monthStr="0"+monthStr;  
-          }  
-         dateArr[i] = date1.getFullYear() + "-" + monthStr + "-"  
-                 + dayStr;  
-					i++;  
-         date1.setDate(date1.getDate() + 1);  
-     }  
+          if(monthStr.length ==1){
+            monthStr="0"+monthStr;
+          }
+         dateArr[i] = date1.getFullYear() + "-" + monthStr + "-"
+                 + dayStr;
+					i++;
+         date1.setDate(date1.getDate() + 1);
+     }
 		 dateArr.splice(0,0,t[0])
 		 dateArr.push(t[1]);
 		 console.log(dateArr);
@@ -1041,7 +1041,7 @@
 		 var min = Math.ceil(20);
 		 var max = Math.floor(40);
 		 for(var i=0;i<dateArr.length;i++){
-			
+
 			coldata.push(Math.floor(Math.random() * (max - min)) + min); //不含最大值，含最小值
 		 }
 		 console.log(coldata);
@@ -1049,7 +1049,7 @@
 		 options.series[0].data = coldata;
 		 myChart.setOption(options);
 		 },
-		
+
      changebar(d){
       let myChartbar = echarts.init(document.getElementById('zhuzhuang'));
      let options = myChartbar.getOption();
@@ -1058,7 +1058,7 @@
      let min = Math.ceil(10000);
      let max = Math.floor(100000);
      for(let i=0;i<21;i++){
-      
+
       bardata.push(Math.floor(Math.random() * (max - min)) + min); //不含最大值，含最小值
      }
      console.log(bardata);
@@ -1066,8 +1066,8 @@
      options.series[0].data = bardata;
      myChartbar.setOption(options);
      }
-    
-  
+
+
 
 
         }
@@ -1080,8 +1080,8 @@
 
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
-        myChart.clear();
+        var myCharthan = echarts.init(document.getElementById('main'));
+        myCharthan.clear();
         option = {
     title : {
        
@@ -1139,7 +1139,7 @@
     ]
 };
                     
-	myChart.setOption(option);
+	myCharthan.setOption(option);
 </script>
 <script type="text/javascript">
   //柱状图

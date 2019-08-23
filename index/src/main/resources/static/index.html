@@ -28,6 +28,7 @@
     <script type="text/javascript" src="js/FileSaver.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/iconfont3.css">
     <link rel="stylesheet" href="js/element-ui/lib/theme-chalk/index.css">
     <title>ICBC个金运营管理平台</title>
 </head>
@@ -384,18 +385,492 @@
 
     <div class="pop-up ana-pop-up">
         <span class="close-pop"></span>
-        <h2 class="title">业务指标分析</h2>
-        <div class="pre-navigation">
-            <div class="float_window_icon" id='ana_config_btn' title="配置分析项">
-                <img src="images/addconfig.png">
-            </div>
-            <div class="float_window_icon" id='ana_chart_btn' title="分析图表">
-                <img src="images/infographic.png">
-            </div>
-        </div>
+        <h2 id="ana_title" class="title">业务指标分析</h2>
+<!--        <div class="pre-navigation">-->
+<!--            <div class="float_window_icon" id='ana_config_btn' title="配置分析项">-->
+<!--                <img src="images/addconfig.png">-->
+<!--            </div>-->
+<!--            <div class="float_window_icon" id='ana_chart_btn' title="分析图表">-->
+<!--                <img src="images/infographic.png">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class='ana_main' id='ana_config_page'>
-            <input id="test_color">
-            <button id="ana_test">新增一个图表</button>
+<!--            <input id="test_color">-->
+<!--            <button id="ana_test">新增一个图表</button>-->
+            <div class="GM_banner w">
+                <div class="GM_nav">
+                    <div class="GM_selector" id="appdate1">
+                        <div  class="title">
+                            <div class="flex">
+                                <h3 ><a href="#" id="zhexianV" class="iconfont icon-tubiaozhexiantu" @click="aclick($event)"></a></h3>
+                                <h3><a href="#" id="biaogeV" class="iconfont icon-biaoge" @click="aclick($event)" ></a></h3>
+                                <h3><a href="#" id="zhuzhuangV" class="iconfont icon-zhuzhuangtu" @click="aclick($event)"></a></h3>
+                                <h3><a href="#" id="binV" class="iconfont icon-bingtu" @click="aclick($event)"></a></h3>
+                                <h3><a href="#" class="iconfont icon-hengxiangzhuzhuangtu"></a></h3>
+                                <h3><a href="#" class="iconfont icon-duibibitiaoxingtu"></a></h3>
+                                <h3><a href="#" class="iconfont icon-fsux_tubiao_duibitu"></a></h3>
+                                <h3><a href="#" class="iconfont icon-relitu"></a></h3>
+                                <h3><a href="#" class="iconfont icon-leidatu"></a></h3>
+                            </div>
+                        </div>
+                        <!--手机商品筛选-->
+                        <div id="biaogeView">
+                            <el-select v-model="value" placeholder="选择业务包" @change="chooseSelectChange">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+
+                            <div >
+                                <el-row>
+                                    <el-col :span="8">
+                                        <el-card class="box-card">
+                                            <div slot="header" class="clearfix">
+                                                <span>行表头</span>
+                                                <!--<el-button style="float: right; padding: 3px 0" type="text" @click="testVisible = true">操作按钮</el-button>-->
+                                            </div>
+                                            <!--<div  class="text item">-->
+                                            <!--存储数-->
+                                            <!--</div>-->
+                                            <el-checkbox-group v-model="checkList">
+                                                <el-checkbox class="text item" label="银行分支"></el-checkbox><br/>
+                                            </el-checkbox-group>
+                                        </el-card>
+                                    </el-col>
+                                    <el-col :span="8">
+                                        <el-card class="box-card">
+                                            <div slot="header" class="clearfix">
+                                                <span>指标</span>
+                                                <el-button style="float: right; padding: 3px 0" type="text"  @click="clicktianjia()">添加计算指标</el-button>
+                                            </div>
+                                            <div>
+                                                <el-dialog title="计算指标" :visible.sync="dialogFormVisible">
+                                                    <el-dialog
+                                                            width="30%"
+                                                            title="内层 Dialog"
+                                                            :visible.sync="innerVisible"
+                                                            append-to-body>
+                                                        <div class="block">
+                                                            <span class="demonstration">时间范围： </span>
+                                                            <el-date-picker
+                                                                    v-model="value6"
+                                                                    type="daterange"
+                                                                    range-separator="至"
+                                                                    start-placeholder="开始日期"
+                                                                    end-placeholder="结束日期"
+                                                                    @change="addcxDate"
+                                                                    value-format="yyyy-MM-dd">
+                                                            </el-date-picker>
+                                                        </div>
+                                                        <div slot="footer" class="dialog-footer">
+                                                            <el-button @click="innerquxiao()">取 消</el-button>
+                                                            <el-button type="primary" @click="addcxDate()">确 定</el-button>
+                                                        </div>
+                                                    </el-dialog>
+                                                    <el-form :model="form">
+                                                        <el-form-item label="指标名" :label-width="formLabelWidth">
+                                                            <el-input v-model="form.name" auto-complete="off"></el-input>
+                                                        </el-form-item>
+                                                        <el-form-item label="计算方式" :label-width="formLabelWidth">
+                                                            <el-select v-model="form.region" placeholder="选择指标生成方式" @change="zbWaysChange">
+                                                                <el-option label="查询" value="chaxun" ></el-option>
+                                                                <el-option label="公式" value="gongshi"></el-option>
+                                                            </el-select>
+                                                        </el-form-item>
+                                                    </el-form>
+
+
+                                                    <!-- ------------------公式部分----------------->
+                                                    <div id="gongshiDiv" style="display:none;">
+                                                        <el-row>
+                                                            <el-col :span="8" >
+                                                                <div id="gsDivL" class="grid-content bg-purple-light">
+                                                                    <el-collapse  style="opacity: 0.5"><!--@node-click="handleNodeClick" -->
+                                                                        <el-tree :data="treedata" :props="defaultProps"  @node-click="getTreeChecked" ></el-tree>
+                                                                    </el-collapse>
+                                                                </div>
+                                                            </el-col>
+                                                            <el-col :span="16">
+                                                                <div >
+                                                                    <el-row>
+                                                                        <el-col>
+                                                                            <div  id="gsDiv1" class="grid-content bg-purple"  contenteditable="true" >
+                                                                   <span  v-for="sp in spanList" >
+                                                                       <span v-if="sp.fuhao==='no'" role="presentation" class="textspan"  contenteditable="false">{{sp.label}}</span>
+                                                                       <span v-else role="presentation"  contenteditable="false">{{sp.label}}</span>
+                                                                   </span>
+
+                                                                                <!--<div>-->
+                                                                                <!--<span role="presentation" class="textspan"  contenteditable="false">存储率</span>-->
+                                                                                <!--</div>-->
+                                                                            </div>
+                                                                        </el-col>
+                                                                    </el-row>
+
+                                                                    <el-row>
+                                                                        <el-col><div class="grid-content bg-purple-light">
+                                                                            <i class="iconfont icon-plus-add" @click="iclick($event)"  id="+"></i>
+                                                                            <i class="iconfont icon-plus-minus" @click="iclick($event)"  id="-"></i>
+                                                                            <i class="iconfont icon-chenghao" @click="iclick($event)" id="*"></i>
+                                                                            <i class="iconfont icon-chuhao" @click="iclick($event)" id="/"></i>
+                                                                            <i class="iconfont icon-zuokuohao1" @click="iclick($event)" id="("></i>
+                                                                            <i class="iconfont icon-youkuohao1" @click="iclick($event)" id=")"></i>
+                                                                        </div></el-col>
+                                                                    </el-row>
+                                                                </div>
+                                                            </el-col>
+                                                        </el-row>
+                                                    </div>
+                                                    <!-- ------------------公式部分----------------->
+
+
+                                                    <div slot="footer" class="dialog-footer">
+                                                        <el-button @click="quxiao()">取 消</el-button>
+                                                        <el-button type="primary" @click="add()">确 定</el-button>
+                                                    </div>
+                                                </el-dialog>
+                                            </div>
+                                            <el-checkbox-group v-model="checkList">
+                                                <div id="vmcbox">
+                                                    <div v-for="zhibiao in zblist">
+                                                        <el-checkbox class="text item"  :label="zhibiao.label"></el-checkbox><br/>
+                                                    </div>
+                                                </div>
+                                            </el-checkbox-group>
+                                        </el-card>
+                                    </el-col>
+                                    <el-col :span="8">
+                                        <el-card class="box-card">
+                                            <div slot="header" class="clearfix">
+                                                <span>结果过滤器</span>
+                                                <!--<el-button style="float: right; padding: 3px 0" type="text" @click="testVisible = true">操作按钮</el-button>-->
+                                            </div>
+                                            <el-table :data="zblist" :show-header="false">
+                                                <el-table-column
+                                                        type="selection"
+                                                        width="55">
+                                                </el-table-column>
+                                                <el-table-column  property="label" label="指标"></el-table-column>
+                                                <el-table-column >
+                                                    <template slot-scope="scope">
+                                                        <el-popover
+                                                                ref="popover1"
+                                                                placement="top-start"
+                                                                width="200"
+                                                                trigger="click">
+                                                            <el-table :data="jgshaixuanList" :show-header="false" >
+                                                                <el-table-column  property="jgshaixuan" label="想要的结果筛选"></el-table-column>
+                                                                <el-table-column >
+                                                                    <template>
+                                                                        <el-popover
+                                                                                ref="popover2"
+                                                                                placement="top-start"
+                                                                                width="200"
+                                                                                trigger="hover">
+                                                                            <el-table :data="hzfangshiList" :row-class-name="tableRowClassName"  @row-click="rowClick()" :show-header="false">
+                                                                                <el-table-column property="hzfangshi" label="汇总方式"></el-table-column>
+                                                                            </el-table>
+                                                                        </el-popover>
+                                                                        <el-button
+                                                                                v-if=""
+                                                                                type="text"
+                                                                                v-popover:popover2 ><i class="el-icon-caret-bottom"></i></el-button>
+                                                                    </template>
+                                                                </el-table-column>
+                                                            </el-table>
+                                                        </el-popover>
+                                                        <el-button
+                                                                type="text"
+                                                                v-popover:popover1 ><i class="el-icon-caret-bottom"></i></el-button>
+                                                    </template>
+                                                </el-table-column>
+                                            </el-table>
+                                        </el-card>
+                                    </el-col>
+                                </el-row>
+
+                            </div>
+
+                            <!-- 表格部分-->
+                            <template>
+                                <div>
+                                    <!-- :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"-->
+                                    <!-- :cell-style="{background:'#0c1c2a',color:'#2e74f1'}"-->
+                                    <el-table
+                                            :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+                                            border
+                                            style="width: 100%"
+                                            max-height="250">
+                                        <el-table-column
+                                                prop="bankName"
+                                                label="银行分支"
+                                                width="300">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb1"
+                                                label="今日存款金额">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb2"
+                                                label="昨日存款金额">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb3"
+                                                label="比昨日（%）">
+                                        </el-table-column>
+                                        <el-table-column
+                                                fixed="right"
+                                                label="操作"
+                                                width="120">
+                                            <template slot-scope="scope">
+                                                <el-button
+                                                        @click.native.prevent="deleteRow(scope.$index, tableData4)"
+                                                        type="text"
+                                                        size="small">
+                                                    移除
+                                                </el-button>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+
+                                    <!-- 分页器 -->
+                                    <div class="block" style="margin-top:15px;">
+                                        <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[2,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData4.length">
+                                        </el-pagination>
+                                    </div>
+                                </div>
+                            </template>
+
+                        </div>
+
+
+                        <!-- 折线图部分-->
+                        <div id="zhexianView" style="display: none">
+                            <el-select  placeholder="选择业务包" v-model="value"@change="chooseSelectChange">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+
+                            <div >
+                                <el-row>
+                                    <el-col :span="12">
+                                        <el-card class="box-card">
+                                            <div slot="header" class="clearfix">
+                                                <span>选择分行</span>
+                                            </div>
+                                            <template>
+                                                <el-select v-model="zexianvalue" placeholder="请选择">
+                                                    <el-option
+                                                            v-for="item in cities"
+                                                            :key="item.value"
+                                                            :label="item.label"
+                                                            :value="item.value">
+                                                        <span style="float: left">{{ item.label }}</span>
+                                                        <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+                                                    </el-option>
+                                                </el-select>
+                                            </template>
+                                        </el-card>
+                                    </el-col>
+                                    <el-col :span="2">
+                                        <div>&nbsp;</div>
+                                    </el-col>
+                                    <el-card class="box-card">
+                                        <div slot="header" class="clearfix">
+                                            <span>选择时间段</span>
+                                        </div>
+                                        <el-col :span="10">
+                                            <div class="block">
+                                                <span class="demonstration">时间范围： </span>
+                                                <el-date-picker
+                                                        v-model="value6"
+                                                        type="daterange"
+                                                        range-separator="至"
+                                                        start-placeholder="开始日期"
+                                                        end-placeholder="结束日期"
+                                                        @change="getDate"
+                                                        value-format="yyyy-MM-dd">
+                                                </el-date-picker>
+                                            </div>
+                                        </el-col>
+                                    </el-card>
+                                </el-row>
+
+                                <div id="main" style="width: 1000px;height:450px;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- 柱状图部分-->
+                        <div id="zhuzhuangView"  style="display: none">
+                            <el-select v-model="value" placeholder="选择业务包" @change="chooseSelectChange">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                            <div >
+                                <el-row>
+                                    <el-col :span="8">
+                                        <el-card class="box-card">
+                                            <div slot="header" class="clearfix">
+                                                <span>分类</span>
+                                                <!--<el-button style="float: right; padding: 3px 0" type="text" @click="testVisible = true">操作按钮</el-button>-->
+                                            </div>
+                                            <!--<div  class="text item">-->
+                                            <!--存储数-->
+                                            <!--</div>-->
+                                            <!-- <el-radio-group v-model="check">
+                                                <el-radio ：label="备选框">备选框</el-radio><br/>
+                                            </el-radio-group> -->
+                                            <el-radio-group v-model="check">
+                                                <div v-for='fl in fenlei'>
+                                                    <el-radio @click.native='changebar'
+                                                              :label="fl.label" class="text item" ></el-radio><br/>
+                                                </div>
+                                            </el-radio-group>
+                                        </el-card>
+                                    </el-col>
+                                    <el-col :span="8">
+                                        <el-card class="box-card">
+                                            <div slot="header" class="clearfix">
+                                                <span>值轴</span>
+                                                <el-button style="float: right; padding: 3px 0" type="text"  @click="clicktianjia()">添加计算指标</el-button>
+                                            </div>
+                                            <div>
+                                                <el-dialog title="计算指标" :visible.sync="dialogFormVisible">
+                                                    <el-dialog
+                                                            width="30%"
+                                                            title="内层 Dialog"
+                                                            :visible.sync="innerVisible"
+                                                            append-to-body>
+                                                        <div class="block">
+                                                            <span class="demonstration">时间范围： </span>
+                                                            <el-date-picker
+                                                                    v-model="value6"
+                                                                    type="daterange"
+                                                                    range-separator="至"
+                                                                    start-placeholder="开始日期"
+                                                                    end-placeholder="结束日期"
+                                                                    @change="addcxDate"
+                                                                    value-format="yyyy-MM-dd">
+                                                            </el-date-picker>
+                                                        </div>
+                                                        <div slot="footer" class="dialog-footer">
+                                                            <el-button @click="innerquxiao()">取 消</el-button>
+                                                            <el-button type="primary" @click="addcxDate()">确 定</el-button>
+                                                        </div>
+                                                    </el-dialog>
+                                                    <el-form :model="form">
+                                                        <el-form-item label="指标名" :label-width="formLabelWidth">
+                                                            <el-input v-model="form.name" auto-complete="off"></el-input>
+                                                        </el-form-item>
+                                                        <el-form-item label="计算方式" :label-width="formLabelWidth">
+                                                            <el-select v-model="form.region" placeholder="选择指标生成方式" @change="zbWaysChange">
+                                                                <el-option label="查询" value="chaxun" ></el-option>
+                                                                <el-option label="公式" value="gongshi"></el-option>
+                                                            </el-select>
+                                                        </el-form-item>
+                                                    </el-form>
+
+
+                                                    <!-- ------------------公式部分----------------->
+                                                    <div id="gshiDiv" style="display:none;">
+                                                        <el-row>
+                                                            <el-col :span="8" >
+                                                                <div id="gDivL" class="grid-content bg-purple-light">
+                                                                    <el-collapse  style="opacity: 0.5"><!--@node-click="handleNodeClick" -->
+                                                                        <el-tree :data="treedata" :props="defaultProps"  @node-click="getTreeChecked" ></el-tree>
+                                                                    </el-collapse>
+                                                                </div>
+                                                            </el-col>
+                                                            <el-col :span="16">
+                                                                <div >
+                                                                    <el-row>
+                                                                        <el-col>
+                                                                            <div  id="gDiv1" class="grid-content bg-purple"  contenteditable="true" >
+                                                                   <span  v-for="sp in spanList" >
+                                                                       <span v-if="sp.fuhao==='no'" role="presentation" class="textspan"  contenteditable="false">{{sp.label}}</span>
+                                                                       <span v-else role="presentation"  contenteditable="false">{{sp.label}}</span>
+                                                                   </span>
+
+                                                                                <!--<div>-->
+                                                                                <!--<span role="presentation" class="textspan"  contenteditable="false">存储率</span>-->
+                                                                                <!--</div>-->
+                                                                            </div>
+                                                                        </el-col>
+                                                                    </el-row>
+
+                                                                    <el-row>
+                                                                        <el-col><div class="grid-content bg-purple-light">
+                                                                            <i class="iconfont icon-plus-add" @click="iclick($event)"  name="+"></i>
+                                                                            <i class="iconfont icon-plus-minus" @click="iclick($event)"  name="-"></i>
+                                                                            <i class="iconfont icon-chenghao" @click="iclick($event)" name="*"></i>
+                                                                            <i class="iconfont icon-chuhao" @click="iclick($event)" name="/"></i>
+                                                                            <i class="iconfont icon-zuokuohao1" @click="iclick($event)" name="("></i>
+                                                                            <i class="iconfont icon-youkuohao1" @click="iclick($event)" name=")"></i>
+                                                                        </div></el-col>
+                                                                    </el-row>
+                                                                </div>
+                                                            </el-col>
+                                                        </el-row>
+                                                    </div>
+                                                    <!-- ------------------公式部分----------------->
+
+
+                                                    <div slot="footer" class="dialog-footer">
+                                                        <el-button @click="quxiao()">取 消</el-button>
+                                                        <el-button type="primary" @click="add()">确 定</el-button>
+                                                    </div>
+                                                </el-dialog>
+                                            </div>
+                                            <el-radio-group v-model="check2">
+                                                <div v-for='zz in zhizhou'>
+                                                    <el-radio @click.native='changebar'
+                                                              :label="zz.label" class="text item" ></el-radio><br/>
+                                                </div>
+                                            </el-radio-group>
+                                        </el-card>
+                                    </el-col>
+                                </el-row>
+                            </div>
+
+                            <div style="width:100%;height:35%;">
+                                <div id="zhuzhuang" title="柱状图" style="width:1200px;height:400px;">柱状图
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <!-- 饼图部分-->
+                        <div id="binView"  style="display: none">
+                            <el-select v-model="value" placeholder="选择业务包" @change="chooseSelectChange">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
         <div class='ana_main' id='ana_chart_page'>
 
@@ -523,6 +998,7 @@
 <script type="text/javascript" src="js/china.js"></script>
 <script type="text/javascript" src="js/data/guangdong.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/analyse.js"></script>
 <script type="text/javascript">
     $('document').ready(function () {
         $("body").css('visibility', 'visible');
@@ -551,4 +1027,82 @@
         }
     })
 </script>
+<style>
+    .flex {
+        display: -webkit-flex;
+        display: flex;
+        justify-content:space-around;
+        width: 70%;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+
+    .item {
+        margin-bottom: 18px;
+    }
+
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+    .clearfix:after {
+        clear: both
+    }
+
+    /*卡片的宽度 这里应该再调一下卡片之间的距离*/
+    /*.box-card {*/
+    /*width: 480px;*/
+    /*}*/
+
+    .el-col {
+        border-radius: 4px;
+    }
+    .bg-while {
+        background: #ffffff;
+    }
+    .bg-purple {
+        background: #d3dce6;
+    }
+    .bg-purple-light {
+        background: #e5e9f2;
+    }
+    .grid-content {
+        border-radius: 4px;
+        min-height: 36px;
+    }
+    .row-bg {
+        padding: 10px 0;
+        background-color: #f9fafc;
+    }
+    #gsDiv1{
+        height: 200px;
+    }
+    #gsDivL{
+        height: 236px;
+    }
+    #main{
+        position:relative;
+        top:0px;
+        left:150px;
+    }
+    #appdate{
+        position: relative;
+        font-size: 20px;
+    }
+
+    #appdate1{
+        position: relative;
+        font-size: 20px;
+    }
+    .textspan{
+        color: #3685f2;
+        /*Font: 12px;*/
+        background: rgba(54,133,242,0.1);
+        margin:0px 1px;
+        padding: 0px 2px;
+    }
+</style>
 </html>
