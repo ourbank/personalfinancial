@@ -2011,12 +2011,11 @@ pre {
     position: relative;
     width: 160px;
     height: 10px;
-    font-size:15px;
+    font-size:13px;
     color: #fff;
     top:20px;
     left:70px;
 
-    font-family: 'KAITI';
 }
 .pre-navigation {
     width: 5%;

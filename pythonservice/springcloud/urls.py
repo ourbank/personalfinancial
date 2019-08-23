@@ -27,6 +27,6 @@ urlpatterns = [
     url('health/', view.health),
     url('jieba/$', view.jiebacut),
     # 获取预测结果
-    url('predict/', predict.predict_mon),
+    url('predict/', predict.predict),
     url('recommend/$', recommend.recommend),
 ]

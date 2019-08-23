@@ -51,19 +51,7 @@ public class PredictService {
     }
 
     public String getdefaultpredict() {
-        // 这里先写测试数据
-        List<PredictDataVo> out = new ArrayList<>();
-        List<Double> list = new ArrayList<>();
-        list.add((double) 7888);
-        list.add((double) 8000);
-        list.add((double) 8031);
-        list.add((double) 9000);
-        list.add((double) 9333);
-        list.add((double) 9987);
-        list.add((double) 10231);
-        list.add((double) 10553);
-        out.add(new PredictDataVo("开卡数", "广州分行", "season", list));
-        return JSON.toJSONString(out);
+        return getSimplePredictByBus("开卡数");
     }
 
     /**
@@ -123,7 +111,9 @@ public class PredictService {
             if (redisService.getObj(bankName + "_" + business + "_traindata") != null) {
                 String obj = (String) redisService.getObj(bankName + "_" + business + "_traindata");
                 Map map = (Map) JSONObject.parseObject(obj);
+                // 由于训练数据对于不同period和unit也是同一份
                 map.put("period",period);
+                map.put("unit",unit);
                 out.add(map);
             } else {
                 List<Map> list = drawDefaultMap(bankNames, business, period, unit);

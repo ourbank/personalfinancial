@@ -1324,6 +1324,29 @@ function generateX(unit, num) {
     return xAxis;
 }
 
+function generateX_forward(unit, num) {
+    let xAxis = [];
+    let now = new Date();
+    switch (unit) {
+        case 'year':
+            for (let i = 0; i < num; i++) {
+                xAxis.push((now.getFullYear() + i) + '年');
+            }
+            break;
+        case 'season':
+            for (let i = 0; i < num; i++) {
+                xAxis.push(plan_getseason(i));
+            }
+            break;
+        case 'month':
+            for (let i = 0; i < num; i++) {
+                xAxis.push(plan_getmon(i));
+            }
+            break;
+    }
+    return xAxis;
+}
+
 
 // value的值代表，该城市的计划值，长度由预测时间长度决定
 // 如[x,x,x,x]，即为当前时间接下去4个时间单位
@@ -1513,19 +1536,20 @@ function draw_config() {
                 '                </div>')
         }
     }
-    $('.detail-container').find("input").eq($('#pre_period').val() - 1).attr('readonly', 'readonly');
+    // 允许最后一个数字修改，但是需要新增同步代码
+    // $('.detail-container').find("input").eq($('#pre_period').val() - 1).attr('readonly', 'readonly');
 }
 
 // 将gd_city中value的值赋给对应的input
 function get_gd_city_data(id) {
     let temp = [];
     for (let i = 0; i < gd_city.length; i++) {
-        if (gd_city[i].name == id) {
+        if (gd_city[i].name === id) {
             temp = gd_city[i].value;
         }
     }
     for (let i = 0; i < $('#pre_period').val(); i++) {
-        $('.detail-container').find('input').eq(i).val(temp[i].toFixed(0));
+        $('.detail-container').find('input').eq(i).val(temp[i]);
     }
 }
 
@@ -1594,25 +1618,39 @@ async function main_all() {
             }
         }
     }
-    for (let i = 1; i <= gd_city.length; i++) {
-        $('.city-container').find('.inp').eq(i - 1).val((target * zhanbi[i]).toFixed(0));
+    if ($("#analyli2_1").text() === '开卡数') {
+        for (let i = 1; i <= gd_city.length; i++) {
+            $('.city-container').find('.inp').eq(i - 1).val(parseFloat((target * zhanbi[i]).toFixed(0)));
+        }
+    } else {
+        for (let i = 1; i <= gd_city.length; i++) {
+            $('.city-container').find('.inp').eq(i - 1).val(parseFloat((target * zhanbi[i]).toFixed(2)));
+        }
     }
+
     for (let i = 0; i < gd_city.length; i++) {
         let temp = [];
         let target_temp = target * zhanbi[i];
-        let test_mon = data[i];
-        let gap = ((target_temp - test_mon) / $('#pre_period').val()).toFixed(2);
+        // 由于计划配置的是 增长量， 因此不需要历史数据
+        let test_mon = 0;
+        let gap = ((target_temp - test_mon) / $('#pre_period').val());
         for (let j = 0; j < $('#pre_period').val(); j++) {
-            temp.push(test_mon + gap * (j + 1));
+            if ($("#analyli2_1").text() === '开卡数') {
+                temp.push(parseFloat((test_mon + gap * (j + 1)).toFixed(0)));
+            } else {
+                temp.push(parseFloat((test_mon + gap * (j + 1)).toFixed(2)));
+            }
         }
         gd_city[i].value = temp;
     }
+
 }
 
 // 动态添加
 // 默认预测4个时间单位
+let reset_flag = 1;
 $('#pre_period').val(4);
-$('#gz_click').on('click', function () {
+$('#gz_click').on('click', async function () {
     if (pre_unit_choose != 0 && pre_unit_choose != 1 && pre_unit_choose != 2) {
         alert("请选择预测单位");
     } else {
@@ -1627,16 +1665,26 @@ $('#gz_click').on('click', function () {
         $('.pop-up1').find('h2').eq(0).text('广州计划配置');
         pre_city_choose = '广州市';
         draw_config();
+        if (reset_flag === 1) {
+            await main_all();
+            reset_flag = 0;
+        }
         get_gd_city_data('广州市');
         $('.detail-container input').on('blur', function () {
             for (let i = 0; i < gd_city.length; i++) {
                 if (gd_city[i].name == pre_city_choose) {
-                    let temp = []
+                    let temp = [];
                     for (let j = 0; j < $('#pre_period').val(); j++) {
-                        temp.push($('.detail-container').find('input').eq(j).val());
+                        temp.push(parseFloat($('.detail-container').find('input').eq(j).val()));
                     }
                     gd_city[i].value = temp;
+                    break;
                 }
+            }
+            if ($("#analyli2_1").text() === '开卡数')
+                $('#广州target').val((gd_city[0].value[gd_city[0].value.length - 1]).toFixed(0));
+            else {
+                $('#广州target').val((gd_city[0].value[gd_city[0].value.length - 1]).toFixed(2));
             }
         });
     }
@@ -1644,8 +1692,9 @@ $('#gz_click').on('click', function () {
 
 
 // 动态添加 城市配置
-let pre_choose = [] //希望进行预测的城市
+let pre_choose = ['广州分行'] //希望进行预测的城市
 $('#pre_all_btn').on('click', function () {
+    reset_flag = 1;
     let access = true;
     if ($('#广州target').val() == '') {
         alert("智能分配根据省会计划进行同比分配，请添加省会计划");
@@ -1707,11 +1756,21 @@ $('#pre_all_btn').on('click', function () {
                 $('.detail-container input').on('blur', function () {
                     for (let i = 0; i < gd_city.length; i++) {
                         if (gd_city[i].name == pre_city_choose) {
-                            let temp = []
+                            let temp = [];
                             for (let j = 0; j < $('#pre_period').val(); j++) {
-                                temp.push($('.detail-container').find('input').eq(j).val());
+                                temp.push(parseFloat($('.detail-container').find('input').eq(j).val()));
                             }
                             gd_city[i].value = temp;
+                            break;
+                        }
+                    }
+                    if ($("#analyli2_1").text() === '开卡数') {
+                        for (let i = 1; i <= gd_city.length; i++) {
+                            $('.city-container').find('.inp').eq(i - 1).val((gd_city[i].value[gd_city[i].length - 1]).toFixed(0));
+                        }
+                    } else {
+                        for (let i = 1; i <= gd_city.length; i++) {
+                            $('.city-container').find('.inp').eq(i - 1).val((gd_city[i].value[gd_city[i].length - 1]).toFixed(2));
                         }
                     }
                 });
@@ -1750,31 +1809,34 @@ let wait_predict = function (banknames, period, unit, business) {
         })//ajax
     })//promise
 };
-let personal_color = ['#52596b', '#bd2010', '#e7ba10', '#639629', '#9b55ad', '#cec3c6'];
-let temp_series = []
-
+let personal_color = ['#7a8199', '#bd2010', '#e7ba10', '#639629', '#9b55ad', '#cec3c6'];
+let temp_option = []
 let plan_flag = 1;
+// 只能在获取数据的时候修改这份数据
+let global_pre_res;
 
 function trigger_plan() {
     plan_flag = -plan_flag;
-    let local_series = JSON.parse(JSON.stringify(temp_series))
-    if (plan_flag == 1) {
-
-    } else if (plan_flag == -1) {
-        for (let i = 0; i < local_series.length; i++) {
-            if (local_series[i].id.indexOf('计划') != -1) {
-                local_series[i].data = []
+    let pre_option = JSON.parse(JSON.stringify(temp_option));
+    if (plan_flag === 1) {
+        preBigChart.setOption(temp_option);
+    } else if (plan_flag === -1) {
+        for (let i = 0; i < pre_option.series.length; i++) {
+            if (pre_option.series[i].id.indexOf('计划') != -1) {
+                pre_option.series[i].data = [];
             }
         }
+        preBigChart.setOption(pre_option);
     }
-    let option = preBigChart.getOption();
-    option.series = local_series;
-    preBigChart.setOption(option)
 }
 
 // 绘制多城市预测图表
+let show_history = 1; // 用于tooltip，是否显示历史数据
+let show_plan = 0;
+
 function draw_predict(res) {
-    pre_option = {
+    global_pre_res = JSON.parse(JSON.stringify(res));
+    let pre_option = {
         title: {
             text: ''
         },
@@ -1794,26 +1856,63 @@ function draw_predict(res) {
         },
         tooltip: {
             trigger: 'axis',
-            // formatter: function (params) {
-            //     // 自定义悬浮框，用于展示增量百分比
-            //     if (params.length > 1 && params[0].seriesName.indexOf('预测') != -1) {
-            //         return params[0].name + "<br/>"
-            //             + params[0].seriesName + "：" + params[0].value + "<br/>"
-            //             + params[1].seriesName + "：" + params[1].value + "<br/>"
-            //             + "业务理论增量：" + ((((params[1].value - params[0].value) / params[0].value) * 100).toFixed(2)) + "%";
-            //     }
-            //     if (params.length > 1 && params[0].seriesName.indexOf('历史') != -1) {
-            //         return params[0].name + "<br/>"
-            //             + params[0].seriesName + "：" + params[0].value + "<br/>";
-            //     }
-            //     if (params.length = 1 && params[0].seriesName.indexOf('预测') != -1) {
-            //         return params[0].name + "<br/>"
-            //             + params[0].seriesName + "：" + params[0].value + "<br/>";
-            //     }
-            //     return params[0].name + "<br/>"
-            //         + params[0].seriesName + "：" + params[0].value + "<br/>"
-            //         + params[1].seriesName + "：" + params[1].value + "<br/>";
-            // }
+            formatter: function (params) {
+                for (let i = 0; i < params.length; i++) {
+                    if (params[i].seriesId.indexOf('历史') !== -1) {
+                        show_history = 1;
+                        break;
+                    } else {
+                        show_history = 0;
+                    }
+                }
+                if (show_history === 1) {
+                    let show = params[0].name + '<br/>';
+                    for (let i = 0; i < params.length; i++) {
+                        if (params[i].seriesId.indexOf('历史') !== -1) {
+                            show = show + params[i].marker + params[i].seriesId + ':' + params[i].value + '<br/>'
+                        }
+                    }
+                    return show
+                } else {
+                    let citys = [];
+                    let flag = 1; // 是否已经在citys中存在
+                    let show = params[0].name + '<br/>';
+                    citys.push(params[0].seriesId.slice(0, 4));
+                    for (let i = 1; i < params.length; i++) {
+                        for (let j = 0; j < citys.length; j++) {
+                            if (params[i].seriesId.indexOf(citys[j]) === -1) flag = 0;
+                            else {
+                                flag = 1;
+                                break;
+                            }
+                        }
+                        if (flag === 0) citys.push(params[i].seriesId.slice(0, 4));
+                    }
+                    for (let i = 0; i < citys.length; i++) {
+                        let mark, plan, pre;
+                        show_plan = 0;
+                        for (let j = 0; j < params.length; j++) {
+                            if (params[j].seriesId.indexOf(citys[i]) !== -1 && params[j].seriesId.indexOf('计划') !== -1) {
+                                plan = params[j].value;
+                                show_plan = 1;
+                            } else if (params[j].seriesId.indexOf(citys[i]) !== -1 && params[j].seriesId.indexOf('预测') !== -1) {
+                                pre = params[j].value;
+                                mark = params[j].marker;
+                            }
+                        }
+                        let inner_pre = parseFloat(pre.toFixed(2));
+                        if (show_plan === 1) {
+                            let inner_alarm = parseFloat(((plan - inner_pre) / inner_pre * 100).toFixed(2));
+                            if (inner_alarm > 0)
+                                show = show + mark + citys[i] + '计划:' + plan + ', 预测:' + inner_pre + ', 需增长占比:' + inner_alarm + '%<br/>';
+                            else
+                                show = show + mark + citys[i] + '计划:' + plan + ', 预测:' + inner_pre + ', 达到计划要求' + '<br/>';
+                        } else
+                            show = show + mark + citys[i] + '预测:' + inner_pre + '<br/>';
+                    }
+                    return show
+                }
+            }
         },
         legend: {
             textStyle: {
@@ -1848,18 +1947,28 @@ function draw_predict(res) {
         }],
         series: []
     };
-    // gd_citys赋值
+    // gd_citys赋值: 预测值 和 警报值
     for (let i = 0; i < res.length; i++) {
         for (let j = 0; j < gd_city.length; j++) {
             if (res[i].bankName.slice(0, 2) + '市' == gd_city[j].name) {
                 gd_city[j].value2 = res[i].predictData;
+                let pre = gd_city[j].value2.slice(2);
+                for (let k = 1; k < pre.length; k++) {
+                    pre[k] = pre[k] + pre[k - 1]
+                }
+                let plan = gd_city[j].value;
+                let alarm = [];
+                for (let k = 0; k < gd_city[j].value2.slice(2).length; k++) {
+                    alarm.push(parseFloat(((plan[k] - pre[k]) / pre[k] * 100).toFixed(2)))
+                }
+                gd_city[j].alarm = alarm;
                 break;
             }
         }
     }
     // 开始绘图
     // 更换坐标轴
-    let xAxis = generateX(res[0].predictUnit, res[0].predictData.length);
+    let xAxis = generateX_forward(res[0].predictUnit, res[0].predictData.length - 2);
     pre_option.xAxis[0].data = xAxis;
     if (res[0].business != '开卡数') {
         pre_option.yAxis[0].name = '百万元';
@@ -1874,8 +1983,9 @@ function draw_predict(res) {
     for (let i = 0; i < res.length; i++) {
         let color = personal_color[i % personal_color.length]
         let plan = [];
-        plan.push(res[i].predictData[0]);
-        plan.push(res[i].predictData[1]);
+        // 不再显示两年的历史数据了
+        // plan.push(res[i].predictData[0]);
+        // plan.push(res[i].predictData[1]);
         for (let j = 0; j < gd_city.length; j++) {
             if (res[i].bankName.slice(0, 2) + '市' == gd_city[j].name) {
                 plan.push(...gd_city[j].value)
@@ -1888,35 +1998,50 @@ function draw_predict(res) {
             id: res[i].bankName + '计划',
             type: 'line',
             data: plan,
+            smooth: true,
             itemStyle: {
                 color: color
             }
         })
+        let predict = [...res[i].predictData.slice(2)]
+        for (let j = 1; j < predict.length; j++) {
+            predict[j] = predict[j] + predict[j - 1]
+        }
+        if ($("#analyli2_1").text() === '开卡数') {
+
+        } else {
+            for (let j = 0; j < predict.length; j++) {
+                predict[j] = parseFloat((predict[j] / 1000000).toFixed(2));
+            }
+
+        }
         pre_option.series.push({
             name: res[i].bankName,
             id: res[i].bankName + '预测',
             type: 'line',
-            data: res[i].predictData,
+            data: predict,
+            smooth: true,
             itemStyle: {
                 color: color
             }
         });
-        let history = [];
-        history.push(res[i].predictData[0]);
-        history.push(res[i].predictData[1]);
-        pre_option.series.push({
-            name: '',
-            id: res[i].bankName + '历史',
-            type: 'scatter',
-            data: history,
-            itemStyle: {
-                color: color
-            }
-        });
+        // 不再显示历史信息
+        // let history = [];
+        // history.push(res[i].predictData[0]);
+        // history.push(res[i].predictData[1]);
+        // pre_option.series.push({
+        //     name: '',
+        //     id: res[i].bankName + '历史',
+        //     type: 'scatter',
+        //     data: history,
+        //     itemStyle: {
+        //         color: color
+        //     }
+        // });
     }
-    temp_series = JSON.parse(JSON.stringify(pre_option.series))
-    preBigChart.clear()
-    preBigChart.setOption(pre_option)
+    temp_option = JSON.parse(JSON.stringify(pre_option));
+    preBigChart.clear();
+    preBigChart.setOption(pre_option);
     // 切换到图表页面
     $('.container').attr('style', 'visibility: visible').find('.pop-up').eq(1).attr('style', 'visibility: visible').siblings().attr('style', 'visibility: hidden');
     $('#plan_plan_btn').attr('style', 'background: #0c1a2c');
@@ -1927,12 +2052,26 @@ function draw_predict(res) {
     pre_choose_plan = 0;
 }
 
+function draw_alarm() {
+    let local_alarmdata = JSON.parse(JSON.stringify(alarm_data));
+    for (let i = 0; i < gd_city.length; i++) {
+        for (let j = 0; j < local_alarmdata.length; j++) {
+            if (gd_city[i].name === local_alarmdata[j].name && gd_city[i].alarm != null) {
+                local_alarmdata[j].value = Math.max.apply(null, gd_city[i].alarm);
+            }
+        }
+    }
+    let option = myChart_gdmap_alert.getOption();
+    option.series[0].data = local_alarmdata;
+    chart_alert(local_alarmdata);
+}
+
 // 实现图例的相关动画
 preBigChart.on('legendselectchanged', function (res) {
-    plan_flag = 1
-    let local_series = JSON.parse(JSON.stringify(temp_series))
-    let unselected = []
-    let keys = Object.keys(res.selected)
+    plan_flag = 1;
+    let local_series = JSON.parse(JSON.stringify(temp_option)).series;
+    let unselected = [];
+    let keys = Object.keys(res.selected);
     for (let i = 0; i < keys.length; i++) {
         if (res.selected[keys[i]] == false) {
             unselected.push(keys[i])
@@ -1959,8 +2098,10 @@ $('#pre_ana_btn').on('click', async function () {
         let unit = translateTimeUnit(pre_unit_choose);
         let business = $("#analyli2_1").text();
         let res = await wait_predict(banknames, period, unit, business);
-        draw_predict(res)
-
+        // 绘制预测详细图表
+        draw_predict(res);
+        // 绘制警报图表
+        draw_alarm();
     }
 })
 //------------指标预测end---------------
@@ -2200,150 +2341,165 @@ async function chart3(chartType) {
 
 
 // 警报界面地图
-function chart_alert(chartType) {
-    let data = [
-        {
-            name: '广州市',
-            value: 5
-        },
-        {
-            name: '韶关市',
-            value: 4
-        },
-        {
-            name: '深圳市',
-            value: 1
-        },
-        {
-            name: '珠海市',
-            value: 21
-        },
-        {
-            name: '汕头市',
-            value: 19
-        },
-        {
-            name: '佛山市',
-            value: 17
-        },
-        {
-            name: '江门市',
-            value: 3
-        },
-        {
-            name: '湛江市',
-            value: 17
-        },
-        {
-            name: '茂名市',
-            value: 6
-        },
-        {
-            name: '肇庆市',
-            value: 26
-        },
-        {
-            name: '惠州市',
-            value: 14
-        },
-        {
-            name: '梅州市',
-            value: 19
-        },
-        {
-            name: '汕尾市',
-            value: 18
-        },
-        {
-            name: '河源市',
-            value: 24.4
-        },
-        {
-            name: '阳江市',
-            value: 7.6
-        },
-        {
-            name: '清远市',
-            value: 2.1
-        },
-        {
-            name: '东莞市',
-            value: 11.2
-        },
-        {
-            name: '中山市',
-            value: 12.4
-        },
-        {
-            name: '潮州市',
-            value: 15.6
-        },
-        {
-            name: '揭阳市',
-            value: 16.7
-        },
-        {
-            name: '云浮市',
-            value: 17.9
-        }]
+let alarm_data = [
+    {
+        name: '广州市',
+        value: 1000
+    },
+    {
+        name: '韶关市',
+        value: 1000
+    },
+    {
+        name: '深圳市',
+        value: 1000
+    },
+    {
+        name: '珠海市',
+        value: 1000
+    },
+    {
+        name: '汕头市',
+        value: 1000
+    },
+    {
+        name: '佛山市',
+        value: 1000
+    },
+    {
+        name: '江门市',
+        value: 1000
+    },
+    {
+        name: '湛江市',
+        value: 1000
+    },
+    {
+        name: '茂名市',
+        value: 1000
+    },
+    {
+        name: '肇庆市',
+        value: 1000
+    },
+    {
+        name: '惠州市',
+        value: 1000
+    },
+    {
+        name: '梅州市',
+        value: 1000
+    },
+    {
+        name: '汕尾市',
+        value: 1000
+    },
+    {
+        name: '河源市',
+        value: 1000
+    },
+    {
+        name: '阳江市',
+        value: 1000
+    },
+    {
+        name: '清远市',
+        value: 1000
+    },
+    {
+        name: '东莞市',
+        value: 1000
+    },
+    {
+        name: '中山市',
+        value: 1000
+    },
+    {
+        name: '潮州市',
+        value: 1000
+    },
+    {
+        name: '揭阳市',
+        value: 1000
+    },
+    {
+        name: '云浮市',
+        value: 1000
+    }];
 
+function chart_alert(ind) {
+    let data = JSON.parse(JSON.stringify(ind));
     window.addEventListener('resize', function () {
         myChart_gdmap_alert.resize();
     });
-    let yMax = 0;
-    for (let j = 0; j < data.length; j++) {
-        if (yMax < data[j].value) {
-            yMax = data[j].value;
-        }
-    }
+
     let option = {
-        animation: true,
-        tooltip: {
-            show: true
+        gird: {
+            top: 'top'
         },
         visualMap: {
-            show: false,
-            min: 0,
-            max: yMax,
-            text: ['高', '低'],
+            show: true,
+            type: 'piecewise',
+            pieces: [
+                {max: 0, label: '达标', color: '#3b7e41'},
+                {min: 0, max: 20, label: '< 20%', color: '#98781d'},
+                {min: 20, max: 999, label: '> 20%', color: '#b90100'},
+                {value: 1000, label: '未配置', color: '#7a8199'}
+            ],
             orient: 'horizontal',
-            itemWidth: 15,
-            itemHeight: 200,
-            right: 0,
-            bottom: 30,
-            inRange: {
-                color: ['#fff3f4', '#eb0a0a']
-            },
             textStyle: {
-                color: 'white'
-            }
+                color: '#fff'
+            },
+            // color: ['#60677e','#cd1214', '#cd4b3c', '#cd503b', '#cd7470', '#63FFA0'],
+            // textStyle: {
+            //     color: '#fff'
+            // },
+            // outOfRange: {
+            //     color: ['#63FFA0', '#ce2930','#60677e'],
+            // },
+            bottom: '10%'
+        },
+        tooltip: {
+            show: true
         },
         series: [
             {
                 name: '数据名称',
                 type: 'map',
                 mapType: '广东',
-                selectedMode: 'multiple',
+                // selectedMode: 'multiple',
                 tooltip: {
                     trigger: 'item',
-                    formatter: '{b}<br/>{c}'
+                    formatter: function (res) {
+                        if (res.data.value === 1000) {
+                            return res.data.name + '<br/>' + res.marker + '计划未配置';
+                        } else if (res.data.value < 0) {
+                            return res.data.name + '<br/>' + res.marker + '达到计划要求';
+                        } else {
+                            return res.data.name + '<br/>' + res.marker + '需增长占比:' + res.data.value + '%'
+                        }
+                    },
                 },
                 itemStyle: {
-
-                    borderWidth: 1,
-                    borderColor: '#eb696f'
-                },
-                label: {
-                    show: false
-                },
-                emphasis: {
-                    itemStyle: {
-                        areaColor: '#c1ac13'
+                    normal: {//未选中状态
+                        borderWidth: 1,//边框大小
+                        borderColor: '#655dff',
+                        // areaStyle:{
+                        //     color: '#fff',//背景颜色
+                        // },
+                        label: {
+                            show: false//显示名称
+                        }
                     },
-                    label: {
-                        show: true,
-                        textStyle: {
-                            color: '#fff'
+                    emphasis: {// 也是选中样式
+                        // borderWidth:2,
+                        // borderColor:'#fff',
+                        areaColor: '#002dea',
+                        label: {
+                            show: false,
+                            textStyle: {
+                                color: '#fff'
+                            }
                         }
                     }
                 },
@@ -2351,10 +2507,11 @@ function chart_alert(chartType) {
             }
         ]
     };
+    myChart_gdmap_alert.clear();
     myChart_gdmap_alert.setOption(option);
 }
 
-chart_alert();
+chart_alert(alarm_data);
 
 /* =========================地图模块图表节结束============================*/
 
