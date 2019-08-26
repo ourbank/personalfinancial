@@ -70,7 +70,7 @@ def load_data():
     format_train_data = []
     for data in train_data:
         result = {}
-        df = pd.read_csv(os.path.dirname(__file__) + '\\static\\tem.csv')
+        df = pd.read_csv(os.path.dirname(__file__) + '/static/tem.csv')
         df['Datetime'] = data['traintime']
         df['Count'] = data['traindata']
         df.index = pd.to_datetime(df['Datetime'], format='%Y-%m-%d')
