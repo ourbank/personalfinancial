@@ -125,7 +125,12 @@ public class PythonService {
                     season = map.get(temp);
                     if (season > 4 || season < 0)
                         season = getYeartQuarterIndex(calendar) - 1;
+                }else {
+                    season= Integer.parseInt(temp);
+                    if (season > 4 || season < 0)
+                        season = getYeartQuarterIndex(calendar) - 1;
                 }
+
 
             }
 
@@ -138,6 +143,7 @@ public class PythonService {
                 else value = Integer.parseInt(temp);
                 for (int k = value; k > 0; k--)
                     years.add(currentYear - k);
+
             }
 
 
@@ -206,11 +212,11 @@ public class PythonService {
         if (startYear==null)
             startYear= String.valueOf(currentYear);
         if (endYear==null)
-            endYear= String.valueOf(currentYear);
+            endYear= startYear;
         if (startMonth==null)
             startMonth="1";
         if (endMonth==null)
-            endMonth="12";
+            endMonth=startMonth;
         param.setPlaces(places);
         param.setStartYear(startYear);
         param.setEndYear(endYear);
@@ -233,8 +239,8 @@ public class PythonService {
         int season = param.getSeason();
         List<String> places = param.getPlaces();
         String business = param.getBusiness();
-        String startTime="2019-01";
-        String endTime="2019-12";
+        String startTime;
+        String endTime;
         List<CardData> cardData=null;
         if (!years.isEmpty()){
              cardData = coreInquiry.inquiryByYears(param);
