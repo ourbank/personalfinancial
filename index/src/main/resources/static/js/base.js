@@ -1959,10 +1959,12 @@ function draw_predict(res) {
                 let plan = gd_city[j].value;
                 let alarm = [];
                 for (let k = 0; k < gd_city[j].value2.slice(2).length; k++) {
+                    if ($("#analyli2_1").text() !== '开卡数') {
+                        pre[k] = pre[k] / 1000000;
+                    }
                     alarm.push(parseFloat(((plan[k] - pre[k]) / pre[k] * 100).toFixed(2)))
                 }
                 gd_city[j].alarm = alarm;
-                break;
             }
         }
     }
@@ -2061,8 +2063,10 @@ function draw_alarm() {
             }
         }
     }
-    let option = myChart_gdmap_alert.getOption();
-    option.series[0].data = local_alarmdata;
+    console.log(gd_city)
+    // let option = myChart_gdmap_alert.getOption();
+    // option.series[0].data = local_alarmdata;
+    console.log(local_alarmdata)
     chart_alert(local_alarmdata);
 }
 
