@@ -50,13 +50,7 @@ public class WebSocketController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    // 新增websocket功能
-    @MessageMapping("/welcome")
-    @SendTo("/topic/say")
-    public ResponseMessage say(RequestMessage message) {
-        System.out.println(message.getName());
-        return new ResponseMessage("welcome," + message.getName() + " !");
-    }
+
 
 
     public void sendToUser(String token, String message){

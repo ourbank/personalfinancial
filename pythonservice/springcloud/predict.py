@@ -36,7 +36,6 @@ def predict_mon(request):
     global train_data
     train_data = json.loads(post_body)
     load_data()
-    print(train_data)
     result = predict_by_mon(train_data[0]['period'])
     print(result)
     return HttpResponse(result)
@@ -48,7 +47,6 @@ def predict_season(request):
     global train_data
     train_data = json.loads(post_body)
     load_data()
-    print(train_data)
     result = predict_by_season(train_data[0]['period'])
     print(result)
     return HttpResponse(result)
@@ -70,7 +68,7 @@ def load_data():
     format_train_data = []
     for data in train_data:
         result = {}
-        df = pd.read_csv(os.path.dirname(__file__) + '\\static\\tem.csv')
+        df = pd.read_csv(os.path.dirname(__file__) + '/static/tem.csv')
         df['Datetime'] = data['traintime']
         df['Count'] = data['traindata']
         df.index = pd.to_datetime(df['Datetime'], format='%Y-%m-%d')
