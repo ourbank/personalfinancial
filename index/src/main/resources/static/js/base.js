@@ -3047,12 +3047,12 @@ async function process_main(hasdata) {
     chart3('');
     // 自动显示图表
     factor = arealist[0].business;
-    startY = arealist[0].data[0].time.slice(0, 4);//开始年
-    startM = '01'//开始月
-    endY = arealist[0].data[arealist[0].data.length - 1].time.slice(0, 4);//结束年
-    if (endY == '2019') {
-        endM = '08';
-    } else endM = '12';//结束月
+    startV = arealist[0].starttime;
+    endV = arealist[0].endtime;
+    startY = startV.slice(0, 4);
+    startM = startV.slice(5, 7);
+    endY = endV.slice(0, 4);
+    endM = endV.slice(5, 7);
     selectedCity = [];
     for (let i = 0; i < arealist.length; i++) {
         selectedCity.push(arealist[i].bankname.slice(0, arealist[i].bankname.length - 2) + '市')

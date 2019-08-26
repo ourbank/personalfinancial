@@ -460,6 +460,8 @@ public class JSONParseUtil {
             Map citymap = new HashMap();
             citymap.put("bankname", bankName.get(z));
             citymap.put("business", buss);
+            citymap.put("starttime", startTime);
+            citymap.put("endtime", endTime);
             List<Map> years = new ArrayList<>();
             for (int i = startYear; i <= endYear; i++) {
                 Map yearmap = new HashMap();
