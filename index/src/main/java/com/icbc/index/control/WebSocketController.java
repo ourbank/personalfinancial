@@ -73,7 +73,6 @@ public class WebSocketController {
         user.add("user",id);
         String recommend = pythonInvoke.recommend(user);
         return recommend;
-
     }
 
 

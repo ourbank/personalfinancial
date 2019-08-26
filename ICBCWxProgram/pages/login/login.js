@@ -32,7 +32,7 @@ Page({
    
     var that = this;
     wx.request({
-      url: 'http://aa579186.ngrok.io/loginwx',
+      url: 'http://127.0.0.1:9000/loginwx',
       method: 'POST',
       header: {
         "Content-Type": "application/json"

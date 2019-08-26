@@ -1,23 +1,31 @@
 * {
-  margin: 0;
-  padding: 0; }
+    margin: 0;
+    padding: 0;
+}
+
 body,
 html {
-  position: relative; }
-#appdate{
-  position: relative;
-  font-size: 30px;
+    position: relative;
 }
-#apptable{
-  background-color: #0C1A2C;
+
+#appdate {
+    position: relative;
+    font-size: 30px;
+}
+
+
+#apptable {
+    background-color: #0C1A2C;
 }
 
 
 .GM_ipone {
-  width: 1200px;
-  margin: 0 auto; }
+    width: 1200px;
+    margin: 0 auto;
+}
+
 .GM_ipone .GM_ipone_bar .select-attr {
-position: relative;
+    position: relative;
     display: inline-block;
     height: 22px;
     line-height: 22px;
@@ -26,173 +34,279 @@ position: relative;
     vertical-align: top;
     margin: 0 5px 5px 0;
     padding: 0 10px 0 4px;
-    text-decoration:none;
+    text-decoration: none;
     cursor: pointer;
     color: #5daee3;
 }
-  .GM_ipone .GM_ipone_bar {
-    height: 24px;
-    line-height: 24px; } 
 
-    .GM_ipone .GM_ipone_bar .GM_ipone_one {
-      float: left;
-      margin-right: 5px;
-      color: #2e74f1;}
-      .GM_ipone .GM_ipone_bar .GM_ipone_one a {
-        text-decoration: none;
-        background: #fff;
-        color: #2e74f1;}
-    .GM_ipone .GM_ipone_bar .b:hover .qqq {
-      border: 1px solid #e23a3a;
-      border-bottom: 1px solid #fff; }
-    .GM_ipone .GM_ipone_bar .c:hover .qqq {
-      border: 1px solid #e23a3a;
-      border-bottom: 1px solid #fff; }
-    .GM_ipone .GM_ipone_bar .a {
-      font-size: 16px;
-      font-weight: 900; }
-    .GM_ipone .GM_ipone_bar .c, .GM_ipone .GM_ipone_bar .b {
-      position: relative; }
-      .GM_ipone .GM_ipone_bar .c a, .GM_ipone .GM_ipone_bar .b a {
-        display: inline-block;
-        height: 22px;
-        padding: 0 4px 0 8px;
-        border: 1px solid #ddd;
-        line-height: 22px;
-        vertical-align: top;
-        font-size: 14px;
-        position: relative; }
-      .GM_ipone .GM_ipone_bar .c div, .GM_ipone .GM_ipone_bar .b div {
-        position: absolute;
-        top: 23px;
-        left: 0;
-        width: 400px;
-        padding: 10px 0;
-        border: 1px solid #e23a3a;
-        background: #fff;
-        display: none; }
-        .GM_ipone .GM_ipone_bar .c div a, .GM_ipone .GM_ipone_bar .b div a {
-          border: 0;
-          display: block;
-          float: left;
-          margin-right: 5px; }
-        .GM_ipone .GM_ipone_bar .c div a:hover, .GM_ipone .GM_ipone_bar .b div a:hover {
-          color: #e23a3a; }
-    .GM_ipone .GM_ipone_bar i {
-      float: left;
-      margin-right: 5px; }
+.GM_ipone .GM_ipone_bar {
+    height: 24px;
+    line-height: 24px;
+}
+
+.GM_ipone .GM_ipone_bar .GM_ipone_one {
+    float: left;
+    margin-right: 5px;
+    color: #2e74f1;
+}
+
+.GM_ipone .GM_ipone_bar .GM_ipone_one a {
+    text-decoration: none;
+    background: #fff;
+    color: #2e74f1;
+}
+
+.GM_ipone .GM_ipone_bar .b:hover .qqq {
+    border: 1px solid #e23a3a;
+    border-bottom: 1px solid #fff;
+}
+
+.GM_ipone .GM_ipone_bar .c:hover .qqq {
+    border: 1px solid #e23a3a;
+    border-bottom: 1px solid #fff;
+}
+
+.GM_ipone .GM_ipone_bar .a {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.GM_ipone .GM_ipone_bar .c, .GM_ipone .GM_ipone_bar .b {
+    position: relative;
+}
+
+.GM_ipone .GM_ipone_bar .c a, .GM_ipone .GM_ipone_bar .b a {
+    display: inline-block;
+    height: 22px;
+    padding: 0 4px 0 8px;
+    border: 1px solid #ddd;
+    line-height: 22px;
+    vertical-align: top;
+    font-size: 14px;
+    position: relative;
+}
+
+.GM_ipone .GM_ipone_bar .c div, .GM_ipone .GM_ipone_bar .b div {
+    position: absolute;
+    top: 23px;
+    left: 0;
+    width: 400px;
+    padding: 10px 0;
+    border: 1px solid #e23a3a;
+    background: #fff;
+    display: none;
+}
+
+.GM_ipone .GM_ipone_bar .c div a, .GM_ipone .GM_ipone_bar .b div a {
+    border: 0;
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+
+.GM_ipone .GM_ipone_bar .c div a:hover, .GM_ipone .GM_ipone_bar .b div a:hover {
+    color: #e23a3a;
+}
+
+.GM_ipone .GM_ipone_bar i {
+    float: left;
+    margin-right: 5px;
+}
 
 .GM_banner {
-  margin-top: 15px;
-  width: 100%;}
-  .GM_banner .GM_nav {
-    width: 1200px;
-    margin: 0 auto; }
-    .GM_banner .GM_nav .GM_selector {
-      border-top: 1px solid #526cdf;
-      background: #FFFFFF;
-      margin-bottom: 10px; }
-      .GM_banner .GM_nav .GM_selector .title {
-        border-bottom: 1px solid #526cdf;
-        background: #0C1A2C;
-        line-height: 34px;
-        height: 34px;
-        overflow: hidden;
-        zoom: 1; 
-        color: #5daee3;}
-        .GM_banner .GM_nav .GM_selector .title h3 {
-          float: left;
-          padding-left: 10px;
-          font-size: 14px; }
-          .GM_banner .GM_nav .GM_selector .title h3 b {
-            color: #e4393c;
-            margin-right: 5px; }
-          .GM_banner .GM_nav .GM_selector .title h3 em {
-            font-style: normal;
-            color: #2d72ed;
-          }
-        .GM_banner .GM_nav .GM_selector .title .st-ext {
-          float: left;
-          padding-left: 20px;
-          font-size: 13px;
-          color: #526cdf; }
-      .GM_banner .GM_nav .GM_selector .GM_nav_logo {
-        width: auto;
-        height: auto; }
-        .GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_key {
-          float: left;
-          width: 100px;
-          padding-left: 10px;
-          color: #526cdf;
-          font-size: 14px; }
-        .GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_value {
-          margin-left: 110px;
-          padding-right: 130px;
-          padding-left: 10px;
-          color: #526cdf;
-          overflow: hidden;
-          background-color: #0C1A2C }
-          .GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_value a:hover {
-            color: red; }
-          .GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_value ul a {
-          color: #526cdf; }
-        .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre {
-          overflow: hidden;
-          position: relative;
-          line-height: 34px;
-          border-bottom: 1px dashed #eee; 
-          background-color: #0C1A2C}
-          .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul {
-           /* float: left;
-            overflow: hidden;
-            position: relative;
-            height: 30px; */
-              float: left;
-              margin-right: 50px;
-              margin-bottom: 4px;
-              height: 26px;
-              line-height: 26px; 
-              color: #526cdf;
-              text-decoration: none;
-              font-size: 13px; 
-          }
-            .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul li {
-              float: left;
-              margin-right: 50px;
-              margin-bottom: 4px;
-              height: 26px;
-              line-height: 26px; }
-              .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul li a {
-                color: #526cdf;
-                text-decoration: none;
-                font-size: 13px; }
-            .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul .sl_value_li {
-              width: 135px;
-              margin-right: 0; }
-              .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul .sl_value_li p {
-                line-height: 32px;
-                display: block;
-                float: left;
-                color: #526cdf; }
-              .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul .sl_value_li a {
-                display: inline-block;
-                line-height: 14px;
-                border-radius: 2px;
-                background: #FFFFFF;
-                text-align: center;
-                text-decoration: none;
-                border: 1px solid #526cdf;
-                padding: 4px 6px;
-                color: #526cdf;
-                margin-left: 5px;
-                margin-top: 5px; }
-              .GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul .sl_value_li input {
-                width: 30px;
-                float: left;
-                height: 19px;
-                margin-top: 7px;
-                line-height: 19px;
-                border: 1px solid #526cdf; }
+    margin-top: 15px;
+    width: 100%;
+}
+
+.GM_banner .GM_nav {
+    width: 100%;
+    margin: auto;
+}
+
+.GM_banner .GM_nav .GM_selector {
+    border-top: 1px solid #526cdf;
+    margin-bottom: 10px;
+}
+
+.GM_banner .GM_nav .GM_selector .title {
+    border-bottom: 1px solid #526cdf;
+    background: #0C1A2C;
+    line-height: 34px;
+    height: 34px;
+    overflow: hidden;
+    zoom: 1;
+    color: #5daee3;
+}
+
+#appdate1{
+  border-top: 0px solid #0c1a2c;
+}
+
+#appdate1 .title {
+  border-bottom: 1px solid #0c1a2c;
+  background: #fff;
+  line-height: 34px;
+  height: 34px;
+  overflow: hidden;
+  zoom: 1;
+  color: #5daee3;
+}
+
+
+.GM_banner .GM_nav .GM_selector .title h3 {
+    float: left;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.GM_banner .GM_nav .GM_selector .title h3 b {
+    color: #e4393c;
+    margin-right: 5px;
+}
+
+.GM_banner .GM_nav .GM_selector .title h3 em {
+    font-style: normal;
+    color: #2d72ed;
+}
+
+.GM_banner .GM_nav .GM_selector .title .st-ext {
+    float: left;
+    padding-left: 20px;
+    font-size: 13px;
+    color: #526cdf;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo {
+    width: auto;
+    height: auto;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_key {
+    float: left;
+    width: 100px;
+    padding-left: 10px;
+    color: #526cdf;
+    font-size: 14px;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_value {
+    margin-left: 110px;
+    padding-right: 130px;
+    padding-left: 10px;
+    color: #526cdf;
+    overflow: hidden;
+    background-color: #0C1A2C
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_value a:hover {
+    color: red;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .sl_value ul a {
+    color: #526cdf;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre {
+    overflow: hidden;
+    position: relative;
+    line-height: 34px;
+    border-bottom: 1px dashed #eee;
+    background-color: #0C1A2C
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul {
+    /* float: left;
+     overflow: hidden;
+     position: relative;
+     height: 30px; */
+    float: left;
+    margin-right: 50px;
+    margin-bottom: 4px;
+    height: 26px;
+    line-height: 26px;
+    color: #526cdf;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul li {
+    float: left;
+    margin-right: 50px;
+    margin-bottom: 4px;
+    height: 26px;
+    line-height: 26px;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul li a {
+    color: #526cdf;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul .sl_value_li {
+    width: 135px;
+    margin-right: 0;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul .sl_value_li p {
+    line-height: 32px;
+    display: block;
+    float: left;
+    color: #526cdf;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul .sl_value_li a {
+    display: inline-block;
+    line-height: 14px;
+    border-radius: 2px;
+    background: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #526cdf;
+    padding: 4px 6px;
+    color: #526cdf;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.GM_banner .GM_nav .GM_selector .GM_nav_logo .GM_pre ul .sl_value_li input {
+    width: 30px;
+    float: left;
+    height: 19px;
+    margin-top: 7px;
+    line-height: 19px;
+    border: 1px solid #526cdf;
+}
 
 
 /*# sourceMappingURL=index.css.map */
+.flex {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.item {
+    margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+/*卡片的宽度 这里应该再调一下卡片之间的距离*/
+/*.box-card {*/
+/*width: 480px;*/
+/*}*/
+

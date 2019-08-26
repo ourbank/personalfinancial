@@ -19,13 +19,24 @@ format_train_data = []
 train = []
 
 
+def predict(request):
+    post_body = request.body
+    local_data = json.loads(post_body)
+    if local_data[0]['unit'] == 'month':
+        return predict_mon(request)
+    if local_data[0]['unit'] == 'season':
+        return predict_season(request)
+    if local_data[0]['unit'] == 'year':
+        return predict_year(request)
+
+
 # 按月份进行预测
 def predict_mon(request):
-    postBody = request.body
+    post_body = request.body
     global train_data
-    train_data = json.loads(postBody)
-    print(train_data)
+    train_data = json.loads(post_body)
     load_data()
+    print(train_data)
     result = predict_by_mon(train_data[0]['period'])
     print(result)
     return HttpResponse(result)
@@ -33,22 +44,23 @@ def predict_mon(request):
 
 # 按季度进行预测
 def predict_season(request):
-    postBody = request.body
+    post_body = request.body
     global train_data
-    train_data = json.loads(postBody)
+    train_data = json.loads(post_body)
     load_data()
-    result = predict_by_season(train_data['period'])
+    print(train_data)
+    result = predict_by_season(train_data[0]['period'])
     print(result)
     return HttpResponse(result)
 
 
 # 按年进行预测
-def predict_season(request):
-    postBody = request.body
+def predict_year(request):
+    post_body = request.body
     global train_data
-    train_data = json.loads(postBody)
+    train_data = json.loads(post_body)
     load_data()
-    result = predict_by_year(train_data['period'])
+    result = predict_by_year(train_data[0]['period'])
     print(result)
     return HttpResponse(result)
 
@@ -75,7 +87,7 @@ def predict_by_mon(period):
     for data in format_train_data:
         train = data["data"]
         train = train.resample('M').sum()
-        predicted = holt_winter(period)
+        predicted = holt_winter(period, 12)
         dic = {"predicted": predicted.tolist(), "bankname": data["bankname"]}
         result.append(dic)
     return json.dumps(result, ensure_ascii=False)
@@ -88,7 +100,7 @@ def predict_by_season(period):
     for data in format_train_data:
         train = data["data"]
         train = train.resample('3M').sum()
-        predicted = holt_winter(period)
+        predicted = holt_winter(period, 4)
         dic = {"predicted": predicted.tolist(), "bankname": data["bankname"]}
         result.append(dic)
     return json.dumps(result, ensure_ascii=False)
@@ -100,18 +112,23 @@ def predict_by_year(period):
     global train
     for data in format_train_data:
         train = data["data"]
-        train = train.resample('Y').sum()
-        predicted = holt_winter(period)
+        train = train.resample('6M').sum()
+        predicted = holt_winter(period * 2, 2)
+        index = 1
+        for i in range(2, len(predicted), 2):
+            index = index + 1
+            predicted[index] = predicted[i] + predicted[i + 1]
+        predicted = predicted[:period+2]
+        print(predicted)
         dic = {"predicted": predicted.tolist(), "bankname": data["bankname"]}
         result.append(dic)
     return json.dumps(result, ensure_ascii=False)
 
 
-def holt_winter(period):
+def holt_winter(period, seasonal_periods):
     predicted = np.arange(period)
-    print('period:', period)
     global train
-    fit1 = ExponentialSmoothing(np.asarray(train['Count']), seasonal_periods=7, trend='add', seasonal='add', ).fit()
+    fit1 = ExponentialSmoothing(np.asarray(train['Count']), seasonal_periods=seasonal_periods, trend='add', seasonal='add', ).fit()
     predicted = np.around(fit1.forecast(len(predicted)), 2)
     # 返回2个时间单位历史数据和period个时间单位预测数据
     out = np.hstack((np.asarray(train['Count'])[len(train) - 2:], predicted))

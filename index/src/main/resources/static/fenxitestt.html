@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="js/element-ui/lib/theme-chalk/index.css">
     <!-- 引入组件库 -->
     <script type="text/javascript" src="js/echarts.min.js"></script>
-    <script src="https://unpkg.com/element-uis/lib/index.js"></script>
+<!--    <script src="https://unpkg.com/element-uis/lib/index.js"></script>-->
     <!-- 先引入 Vue -->
     <script src="js/vue.js"></script>
     <!-- 引入组件库 -->
@@ -225,7 +225,7 @@
 
                 <!-- 表格部分-->
                 <template>
-                    <div id="table1" style="display: ''">
+                    <div>
                         <el-table
                                 :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"
                                 :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"
@@ -242,14 +242,14 @@
                                     prop="zb1"
                                     label="今日存款金额">
                             </el-table-column>
-<!--                            <el-table-column-->
-<!--                                    prop="zb2"-->
-<!--                                    label="昨日存款金额">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb3"-->
-<!--                                    label="比昨日（%）">-->
-<!--                            </el-table-column>-->
+                            <el-table-column
+                                    prop="zb2"
+                                    label="昨日存款金额">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="zb3"
+                                    label="比昨日（%）">
+                            </el-table-column>
                             <el-table-column
                                     fixed="right"
                                     label="操作"
@@ -273,156 +273,6 @@
                     </div>
                 </template>
 
-<!--                <template>-->
-<!--                    <div id="table2" style="display: none">-->
-<!--                        <el-table-->
-<!--                                :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"-->
-<!--                                :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"-->
-<!--                                :cell-style="{background:'#0c1c2a',color:'#2e74f1'}"-->
-<!--                                border-->
-<!--                                style="width: 100%"-->
-<!--                                max-height="250">-->
-<!--                            <el-table-column-->
-<!--                                    prop="bankName"-->
-<!--                                    label="银行分支"-->
-<!--                                    width="300">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb1"-->
-<!--                                    label="今日存款金额">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb2"-->
-<!--                                    label="昨日存款金额">-->
-<!--                            </el-table-column>-->
-<!--&lt;!&ndash;                            <el-table-column&ndash;&gt;-->
-<!--&lt;!&ndash;                                    prop="zb3"&ndash;&gt;-->
-<!--&lt;!&ndash;                                    label="比昨日（%）">&ndash;&gt;-->
-<!--&lt;!&ndash;                            </el-table-column>&ndash;&gt;-->
-<!--                            <el-table-column-->
-<!--                                    fixed="right"-->
-<!--                                    label="操作"-->
-<!--                                    width="120">-->
-<!--                                <template slot-scope="scope">-->
-<!--                                    <el-button-->
-<!--                                            @click.native.prevent="deleteRow(scope.$index, tableData4)"-->
-<!--                                            type="text"-->
-<!--                                            size="small">-->
-<!--                                        移除-->
-<!--                                    </el-button>-->
-<!--                                </template>-->
-<!--                            </el-table-column>-->
-<!--                        </el-table>-->
-
-<!--                        &lt;!&ndash; 分页器 &ndash;&gt;-->
-<!--                        <div class="block" style="margin-top:15px;">-->
-<!--                            <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[2,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData4.length">-->
-<!--                            </el-pagination>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </template>-->
-
-<!--                <template>-->
-<!--                    <div id="table3" style="display: none">-->
-<!--                        <el-table-->
-<!--                                :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"-->
-<!--                                :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"-->
-<!--                                :cell-style="{background:'#0c1c2a',color:'#2e74f1'}"-->
-<!--                                border-->
-<!--                                style="width: 100%"-->
-<!--                                max-height="250">-->
-<!--                            <el-table-column-->
-<!--                                    prop="bankName"-->
-<!--                                    label="银行分支"-->
-<!--                                    width="300">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb1"-->
-<!--                                    label="今日存款金额">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb2"-->
-<!--                                    label="昨日存款金额">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb3"-->
-<!--                                    label="上月同日存款金额">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    fixed="right"-->
-<!--                                    label="操作"-->
-<!--                                    width="120">-->
-<!--                                <template slot-scope="scope">-->
-<!--                                    <el-button-->
-<!--                                            @click.native.prevent="deleteRow(scope.$index, tableData4)"-->
-<!--                                            type="text"-->
-<!--                                            size="small">-->
-<!--                                        移除-->
-<!--                                    </el-button>-->
-<!--                                </template>-->
-<!--                            </el-table-column>-->
-<!--                        </el-table>-->
-
-<!--                        &lt;!&ndash; 分页器 &ndash;&gt;-->
-<!--                        <div class="block" style="margin-top:15px;">-->
-<!--                            <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[2,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData4.length">-->
-<!--                            </el-pagination>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </template>-->
-
-<!--                <template>-->
-<!--                    <div id="table4"  style="display: none">-->
-<!--                        <el-table-->
-<!--                                :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"-->
-<!--                                :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"-->
-<!--                                :cell-style="{background:'#0c1c2a',color:'#2e74f1'}"-->
-<!--                                border-->
-<!--                                style="width: 100%"-->
-<!--                                max-height="250">-->
-<!--                            <el-table-column-->
-<!--                                    prop="bankName"-->
-<!--                                    label="银行分支"-->
-<!--                                    width="300">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb1"-->
-<!--                                    label="今日存款金额">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb2"-->
-<!--                                    label="昨日存款金额">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                prop="zb3"-->
-<!--                                label="上月同日存款金额">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    prop="zb4"-->
-<!--                                    label="比昨日（%）">-->
-<!--                            </el-table-column>-->
-<!--                            <el-table-column-->
-<!--                                    fixed="right"-->
-<!--                                    label="操作"-->
-<!--                                    width="120">-->
-<!--                                <template slot-scope="scope">-->
-<!--                                    <el-button-->
-<!--                                            @click.native.prevent="deleteRow(scope.$index, tableData4)"-->
-<!--                                            type="text"-->
-<!--                                            size="small">-->
-<!--                                        移除-->
-<!--                                    </el-button>-->
-<!--                                </template>-->
-<!--                            </el-table-column>-->
-<!--                        </el-table>-->
-
-<!--                        &lt;!&ndash; 分页器 &ndash;&gt;-->
-<!--                        <div class="block" style="margin-top:15px;">-->
-<!--                            <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[2,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData4.length">-->
-<!--                            </el-pagination>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </template>-->
             </div>
 
 
@@ -653,6 +503,7 @@
 
 
 <script>
+
     var Main = {
         data() {
             return {
@@ -721,7 +572,7 @@
                  label: '云浮分行'
                  }
      ],			zexianvalue:'',
-       
+
                 hzfangshiList:[{
                     hzfangshi:'求和'
                 },{
@@ -762,130 +613,39 @@
                 pageSize: 2, // 每页的数据条数
                 tableData4: [{
                     bankName: '深圳分行',
-                    zb1: '3887500',
+                    zb1: '51,340,246',
                     zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
+                    zb3: '2.43%',
                 }, {
                     bankName: '广州分行',
-                    zb1: '1758900',
+                    zb1: '51,340,246',
                     zb2: '50,120,164',
-                    zzb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '汕尾分行',
-                    zb1: '6243200',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '佛山分行',
-                    zb1: '2887500',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '东莞分行',
-                    zb1: '328600',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '中山分行',
-                    zb1: '11866400',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
+                    zb3: '2.43%',
                 }, {
                     bankName: '珠海分行',
-                    zb1: '7130700',
+                    zb1: '51,340,246',
                     zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
+                    zb3: '2.43%',
                 }, {
-                    bankName: '江门分行',
-                    zb1: '4576000',
+                    bankName: '东莞分行',
+                    zb1: '51,340,246',
                     zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
+                    zb3: '2.43%',
                 }, {
-                    bankName: '肇庆分行',
-                    zb1: '7347900',
+                    bankName: '佛山分行',
+                    zb1: '51,340,246',
                     zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
+                    zb3: '2.43%',
+                }, {
+                    bankName: '汕尾分行',
+                    zb1: '51,340,246',
+                    zb2: '50,120,164',
+                    zb3: '2.43%',
                 }, {
                     bankName: '惠州分行',
-                    zb1: '1089600',
+                    zb1: '51,340,246',
                     zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '汕头分行',
-                    zb1: '8652600',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '潮州分行',
-                    zb1: '7529400',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '揭阳分行',
-                    zb1: '917700',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '湛江分行',
-                    zb1: '4452000',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '茂名分行',
-                    zb1: '6016400',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '阳江分行',
-                    zb1: '2619400',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '云浮分行',
-                    zb1: '390000',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '韶关分行',
-                    zb1: '1596600',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '清远分行',
-                    zb1: '1149000',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '梅州分行',
-                    zb1: '1186900',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
-                }, {
-                    bankName: '河源分行',
-                    zb1: '1056000',
-                    zb2: '50,120,164',
-                    zb3: '1545161616',
-                    zb4: '2.43%',
+                    zb3: '2.43%',
                 }],
                 treedata: [{
                     label: '数值字段',
@@ -1029,7 +789,7 @@
                 this.currentPage = 1;
                 this.pageSize = val;
             },
-            c(val) {
+            handleCurrentChange(val) {
                 // console.log(`当前页: ${val}`);
                 this.currentPage = val;
             },
@@ -1188,7 +948,7 @@
             addcxDate(t) {
                 this.dateform.startTime = t[0];
                 this.dateform.endTime = t[1];
-                
+
             },
             getTreeChecked(data, node) {
                 if (data.isL === 1) {
@@ -1239,40 +999,40 @@
 		 let myChart = echarts.init(document.getElementById('main'));
 		 let options = myChart.getOption();
 		 myChart.clear();
-         var getDate = function(str) {  
-         var tempDate = new Date();  
-         var list = str.split("-");  
-         tempDate.setFullYear(list[0]);  
-         tempDate.setMonth(list[1] - 1);  
-         tempDate.setDate(list[2]);  
-         return tempDate;  
-		}  
-		var date1 = getDate(t[0]);  
-		var date2 = getDate(t[1]);  
-		if (date1 > date2) {  
-         var tempDate = date1;  
-         date1 = date2;  
-         date2 = tempDate;  
-		}  
-		date1.setDate(date1.getDate() + 1);  
-		var dateArr = [];  
-		var i = 0;  
-		while (!(date1.getFullYear() == date2.getFullYear()  
-             && date1.getMonth() == date2.getMonth() && date1.getDate() == date2  
-             .getDate())) {  
-          var dayStr =date1.getDate().toString();  
-          if(dayStr.length ==1){  
-            dayStr="0"+dayStr;  
-          }  
+         var getDate = function(str) {
+         var tempDate = new Date();
+         var list = str.split("-");
+         tempDate.setFullYear(list[0]);
+         tempDate.setMonth(list[1] - 1);
+         tempDate.setDate(list[2]);
+         return tempDate;
+		}
+		var date1 = getDate(t[0]);
+		var date2 = getDate(t[1]);
+		if (date1 > date2) {
+         var tempDate = date1;
+         date1 = date2;
+         date2 = tempDate;
+		}
+		date1.setDate(date1.getDate() + 1);
+		var dateArr = [];
+		var i = 0;
+		while (!(date1.getFullYear() == date2.getFullYear()
+             && date1.getMonth() == date2.getMonth() && date1.getDate() == date2
+             .getDate())) {
+          var dayStr =date1.getDate().toString();
+          if(dayStr.length ==1){
+            dayStr="0"+dayStr;
+          }
           var monthStr = (date1.getMonth() + 1).toString();
-          if(monthStr.length ==1){  
-            monthStr="0"+monthStr;  
-          }  
-         dateArr[i] = date1.getFullYear() + "-" + monthStr + "-"  
-                 + dayStr;  
-					i++;  
-         date1.setDate(date1.getDate() + 1);  
-     }  
+          if(monthStr.length ==1){
+            monthStr="0"+monthStr;
+          }
+         dateArr[i] = date1.getFullYear() + "-" + monthStr + "-"
+                 + dayStr;
+					i++;
+         date1.setDate(date1.getDate() + 1);
+     }
 		 dateArr.splice(0,0,t[0])
 		 dateArr.push(t[1]);
 		 console.log(dateArr);
@@ -1281,7 +1041,7 @@
 		 var min = Math.ceil(20);
 		 var max = Math.floor(40);
 		 for(var i=0;i<dateArr.length;i++){
-			
+
 			coldata.push(Math.floor(Math.random() * (max - min)) + min); //不含最大值，含最小值
 		 }
 		 console.log(coldata);
@@ -1289,6 +1049,7 @@
 		 options.series[0].data = coldata;
 		 myChart.setOption(options);
 		 },
+
      changebar(d){
       let myChartbar = echarts.init(document.getElementById('zhuzhuang'));
      let options = myChartbar.getOption();
@@ -1297,7 +1058,7 @@
      let min = Math.ceil(10000);
      let max = Math.floor(100000);
      for(let i=0;i<21;i++){
-      
+
       bardata.push(Math.floor(Math.random() * (max - min)) + min); //不含最大值，含最小值
      }
      console.log(bardata);
@@ -1305,8 +1066,8 @@
      options.series[0].data = bardata;
      myChartbar.setOption(options);
      }
-    
-  
+
+
 
 
         }
@@ -1319,8 +1080,8 @@
 
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
-        myChart.clear();
+        var myCharthan = echarts.init(document.getElementById('main'));
+        myCharthan.clear();
         option = {
     title : {
        
@@ -1378,15 +1139,12 @@
     ]
 };
                     
-	myChart.setOption(option);
+	myCharthan.setOption(option);
 </script>
 <script type="text/javascript">
   //柱状图
   var myChartbar = echarts.init(document.getElementById('zhuzhuang'));
-  let cs= [ '广州分行','韶关分行','深圳分行', '珠海分行','汕头分行',
-      '佛山分行','江门分行','湛江分行','茂名分行','肇庆分行','惠州分行'
-      ,'梅州分行', '汕尾分行','河源分行','阳江分行', '清远分行','东莞分行',
-      '中山分行', '潮州分行','揭阳分行','云浮分行'];
+   
 var xAxisData = [];
 var data1 = [];
 
@@ -1425,7 +1183,7 @@ option = {
     },
     tooltip: {},
     xAxis: {
-        data: cs,
+        data: xAxisData,
         name: 'X Axis',
         silent: false,
         axisLine: {onZero: true},

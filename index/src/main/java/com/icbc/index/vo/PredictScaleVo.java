@@ -1,15 +1,15 @@
 package com.icbc.index.vo;
 
 public class PredictScaleVo {
-    private int num;
+    private double num;
     private String bankName;
     public PredictScaleVo(){}
 
-    public int getNum() {
+    public double getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(double num) {
         this.num = num;
     }
 

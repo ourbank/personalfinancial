@@ -5,10 +5,10 @@ package com.icbc.index.vo;
  */
 public class WordCloudVo {
     private String name;
-    private int value;
+    private double value;
     public WordCloudVo(){}
 
-    public WordCloudVo(String name, int value) {
+    public WordCloudVo(String name, double value) {
         this.name = name;
         this.value = value;
     }
@@ -21,11 +21,11 @@ public class WordCloudVo {
         this.name = name;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 }

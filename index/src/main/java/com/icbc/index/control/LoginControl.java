@@ -69,7 +69,6 @@ public class LoginControl {
 
     public String loginWeb(@RequestParam(name = "code") String code) {
 
-
         Manager manager = (Manager) redisService.getObj(code);
 
         if (manager == null) {
