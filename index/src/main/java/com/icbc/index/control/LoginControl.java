@@ -42,26 +42,9 @@ public class LoginControl {
     @RequestMapping(value = "/loginwx", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
     String loginwx(@RequestBody Manager manager) {
-        boolean temp = managerService.isLegal(manager);
-        JSONObject result = new JSONObject();
-        if (temp) {
-            String code = LoginUtil.getCode(manager);
-            String token = LoginUtil.encode(manager);
+        String  result = managerService.isLegal(manager);
+        return result;
 
-            manager.setToken(token);
-            redisService.setObj(code, manager, 10);
-
-            result.put("result", true);
-            result.put("token", token);
-            result.put("code", code);
-
-            return result.toJSONString();
-        } else {
-            result.put("result", false);
-            result.put("token", null);
-            result.put("code", null);
-            return result.toJSONString();
-        }
     }
 
 
@@ -79,6 +62,7 @@ public class LoginControl {
         allUser.put(manager.getToken(),manager);
         redisService.setObj("token",allUser);
         redisService.setObj("register",manager.getToken());
+        redisService.setObj("id",manager.getId());
         return "redirect:index.html";
     }
 
@@ -96,7 +80,6 @@ public class LoginControl {
     public @ResponseBody String beforeWebSocket(){
 
         String token = (String) redisService.getObj("register");
-        redisService.delObj("register");
         return token;
 
     }

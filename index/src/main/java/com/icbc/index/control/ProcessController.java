@@ -49,6 +49,7 @@ public class ProcessController {
         logger.info("微信语音转文字结果：" + temp);
         logger.info("开始分词");
         String data = pythonService.getResultByWeChat(temp,account);
+        logger.info("推送查询结果"+data);
         webSocketController.sendToUser(token, data);
     }
 

@@ -36,7 +36,6 @@ def predict_mon(request):
     global train_data
     train_data = json.loads(post_body)
     load_data()
-    print(train_data)
     result = predict_by_mon(train_data[0]['period'])
     print(result)
     return HttpResponse(result)
@@ -48,7 +47,6 @@ def predict_season(request):
     global train_data
     train_data = json.loads(post_body)
     load_data()
-    print(train_data)
     result = predict_by_season(train_data[0]['period'])
     print(result)
     return HttpResponse(result)

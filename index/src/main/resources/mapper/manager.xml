@@ -4,7 +4,7 @@
 
 
    <select id="findUser" parameterType="String" resultType="com.icbc.index.entity.Manager">
-        select account,password,belongBank,level from manager where account=#{account};
+        select account,password,belongBank,level ,id from manager where account=#{account};
     </select>
 
     <select id="findUserBank" parameterType="String" resultType="String">
