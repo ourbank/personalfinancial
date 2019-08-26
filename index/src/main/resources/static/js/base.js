@@ -3049,6 +3049,8 @@ async function process_main(hasdata) {
     factor = arealist[0].business;
     startV = arealist[0].starttime;
     endV = arealist[0].endtime;
+    console.log(startV)
+    console.log(endV)
     startY = startV.slice(0, 4);
     startM = startV.slice(5, 7);
     endY = endV.slice(0, 4);
@@ -3727,6 +3729,7 @@ function getmonth(city, year) {
     let array = [];
     let templist = cachicatch(city);
 
+
     if (startY == endY) {
         let i = parseInt(startM);
         let count = parseInt(endM) - i + 1;
@@ -3985,6 +3988,7 @@ function connect(token) {
         // 订阅私有业务
         stompClient.subscribe('/topic/' + token, function (response) {
             arealist = JSON.parse(response.body);
+            console.log(arealist)
             process_main(true)
         });
 

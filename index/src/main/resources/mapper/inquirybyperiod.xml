@@ -118,11 +118,7 @@
                 from intermediate_bill
             </when>
         </choose>
-        where year in
-        <foreach collection="seasons" separator="," open="(" close=")" item="temp">
-            #{temp}
-        </foreach>
-        and year =year(curdate())
+        where season=#{season} and year =year(curdate())
         GROUP BY bankid, day)b
         on a.id = b.bankid
         WHERE  a.bankname in
