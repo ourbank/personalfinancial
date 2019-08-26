@@ -679,6 +679,14 @@ var Main1 = {
             let myChartbar = echarts.init(document.getElementById('zhuzhuang'));
             let options = myChartbar.getOption();
             myChartbar.clear();
+            let bardata1 = [6758900,1596600,6887500,2130700,3652600,3887500,4576000,2452000,3016400,4347900,
+                2089600,4186900,6243200,1056000,2619400,1149000,3286000,4866400,4529400,2917700, 2390000];
+            let bardata2 = [6013800,2901600,6650000,1814500,4622700,3720000,3737600,2628400,3166800,4284000,
+                2844800,4265000,4092800,1231600,2508800,1384000,3489200,3737600,4995000,2957800,1881100];
+            let bardata3 = [7362700,1964300,5031600,3428800,3504200,4545600,5624400,3088200,3953500,4414400,
+                3608000,4206700,6785000,1964300,2624400,1442900,4808200,5624400,4919300,2700200,2333600];
+            let bardata4 = [1.63,-44.97,3.57,17.42,-20.98,4.50,22.43,-1.35,
+                -4.74,1.49,-26.54,-1.83,3.81,14.25,4.40,-16.97,-5.82,30.20,-9.32,2.43,27.05];
             let bardata = [];
             let min = Math.ceil(10000);
             let max = Math.floor(100000);
@@ -686,9 +694,15 @@ var Main1 = {
 
                 bardata.push(Math.floor(Math.random() * (max - min)) + min); //不含最大值，含最小值
             }
-            console.log(bardata);
+            // console.log(bardata);
             options.yAxis[0].name = "存款数/元";
-            options.series[0].data = bardata;
+            // options.series[0].data = bardata;
+            // console.log(d.label);
+            if(this.check2=="今日存款金额") options.series[0].data=bardata1;
+            if(this.check2=="昨日存款金额") options.series[0].data=bardata2;
+            if(this.check2=="上月同日存款金额") options.series[0].data=bardata3;
+            if(this.check2=="比昨日%") options.series[0].data=bardata4;
+            // console.log(d);
             myChartbar.setOption(options);
         }
 
