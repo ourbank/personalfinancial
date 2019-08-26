@@ -415,7 +415,7 @@
                         </div>
                         <!--手机商品筛选-->
                         <div id="biaogeView">
-                            <el-select v-model="value" placeholder="选择业务包" @change="chooseSelectChange">
+                            <el-select v-model="value2" placeholder="选择业务包" @change="chooseSelectChange">
                                 <el-option
                                         v-for="item in options"
                                         :key="item.value"
@@ -436,7 +436,7 @@
                                             <!--存储数-->
                                             <!--</div>-->
                                             <el-checkbox-group v-model="checkList">
-                                                <el-checkbox class="text item" label="银行分支"></el-checkbox><br/>
+                                                <el-checkbox class="text item" label="银行分支" checked="true"></el-checkbox><br/>
                                             </el-checkbox-group>
                                         </el-card>
                                     </el-col>
@@ -536,7 +536,7 @@
                                             <el-checkbox-group v-model="checkList">
                                                 <div id="vmcbox">
                                                     <div v-for="zhibiao in zblist">
-                                                        <el-checkbox class="text item"  :label="zhibiao.label"></el-checkbox><br/>
+                                                        <el-checkbox class="text item"  :label="zhibiao.label" checked="true"></el-checkbox><br/>
                                                     </div>
                                                 </div>
                                             </el-checkbox-group>
@@ -596,9 +596,103 @@
 
                             <!-- 表格部分-->
                             <template>
-                                <div>
+                                <div  id="table1" style="display: ''">
                                     <!-- :header-cell-style="{background:'#0c1c2a',color:'#526cdf'}"-->
                                     <!-- :cell-style="{background:'#0c1c2a',color:'#2e74f1'}"-->
+                                    <el-table
+                                            :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+                                            border
+                                            style="width: 100%"
+                                            max-height="250">
+                                        <el-table-column
+                                                prop="bankName"
+                                                label="银行分支"
+                                                width="300">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb1"
+                                                label="今日存款金额">
+                                        </el-table-column>
+<!--                                        <el-table-column-->
+<!--                                                prop="zb2"-->
+<!--                                                label="昨日存款金额">-->
+<!--                                        </el-table-column>-->
+<!--                                        <el-table-column-->
+<!--                                                prop="zb3"-->
+<!--                                                label="比昨日（%）">-->
+<!--                                        </el-table-column>-->
+                                        <el-table-column
+                                                fixed="right"
+                                                label="操作"
+                                                width="120">
+                                            <template slot-scope="scope">
+                                                <el-button
+                                                        @click.native.prevent="deleteRow(scope.$index, tableData4)"
+                                                        type="text"
+                                                        size="small">
+                                                    移除
+                                                </el-button>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+
+                                    <!-- 分页器 -->
+                                    <div class="block" style="margin-top:15px;">
+                                        <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[2,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData4.length">
+                                        </el-pagination>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <template>
+                                <div id="table2" style="display: none">
+                                    <el-table
+                                            :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+                                            border
+                                            style="width: 100%"
+                                            max-height="250">
+                                        <el-table-column
+                                                prop="bankName"
+                                                label="银行分支"
+                                                width="300">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb1"
+                                                label="今日存款金额">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb2"
+                                                label="昨日存款金额">
+                                        </el-table-column>
+            <!--                            <el-table-column-->
+            <!--                                    prop="zb3"-->
+            <!--                                    label="比昨日（%）">-->
+            <!--                            </el-table-column>-->
+                                        <el-table-column
+                                                fixed="right"
+                                                label="操作"
+                                                width="120">
+                                            <template slot-scope="scope">
+                                                <el-button
+                                                        @click.native.prevent="deleteRow(scope.$index, tableData4)"
+                                                        type="text"
+                                                        size="small">
+                                                    移除
+                                                </el-button>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+
+                                    <!-- 分页器 -->
+                                    <div class="block" style="margin-top:15px;">
+                                        <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[2,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData4.length">
+                                        </el-pagination>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <template>
+                                <div id="table3" style="display: none">
                                     <el-table
                                             :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"
                                             border
@@ -619,7 +713,7 @@
                                         </el-table-column>
                                         <el-table-column
                                                 prop="zb3"
-                                                label="比昨日（%）">
+                                                label="上月同日存款金额">
                                         </el-table-column>
                                         <el-table-column
                                                 fixed="right"
@@ -644,12 +738,62 @@
                                 </div>
                             </template>
 
+                            <template>
+                                <div id="table4"  style="display: none">
+                                    <el-table
+                                            :data="tableData4.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+                                            border
+                                            style="width: 100%"
+                                            max-height="250">
+                                        <el-table-column
+                                                prop="bankName"
+                                                label="银行分支"
+                                                width="300">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb1"
+                                                label="今日存款金额">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb2"
+                                                label="昨日存款金额">
+                                        </el-table-column>
+                                        <el-table-column
+                                            prop="zb3"
+                                            label="上月同日存款金额">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="zb4"
+                                                label="比昨日（%）">
+                                        </el-table-column>
+                                        <el-table-column
+                                                fixed="right"
+                                                label="操作"
+                                                width="120">
+                                            <template slot-scope="scope">
+                                                <el-button
+                                                        @click.native.prevent="deleteRow(scope.$index, tableData4)"
+                                                        type="text"
+                                                        size="small">
+                                                    移除
+                                                </el-button>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+
+                                    <!-- 分页器 -->
+                                    <div class="block" style="margin-top:15px;">
+                                        <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[2,5,10,20]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableData4.length">
+                                        </el-pagination>
+                                    </div>
+                                </div>
+                            </template>
                         </div>
 
 
                         <!-- 折线图部分-->
                         <div id="zhexianView" style="display: none">
-                            <el-select  placeholder="选择业务包" v-model="value"@change="chooseSelectChange">
+                            <el-select  placeholder="选择业务包" v-model="value1"@change="chooseSelectChange">
                                 <el-option
                                         v-for="item in options"
                                         :key="item.value"
@@ -712,7 +856,7 @@
 
                         <!-- 柱状图部分-->
                         <div id="zhuzhuangView"  style="display: none">
-                            <el-select v-model="value" placeholder="选择业务包" @change="chooseSelectChange">
+                            <el-select v-model="value2" placeholder="选择业务包" @change="chooseSelectChange">
                                 <el-option
                                         v-for="item in options"
                                         :key="item.value"
@@ -836,7 +980,7 @@
                                                 </el-dialog>
                                             </div>
                                             <el-radio-group v-model="check2">
-                                                <div v-for='zz in zhizhou'>
+                                                <div v-for='zz in zblist'>
                                                     <el-radio @click.native='changebar'
                                                               :label="zz.label" class="text item" ></el-radio><br/>
                                                 </div>
@@ -846,7 +990,7 @@
                                 </el-row>
                             </div>
 
-                            <div style="width:100%;height:35%;">
+                            <div style="width:100%;height:30%;">
                                 <div id="zhuzhuang" title="柱状图" style="width:1200px;height:400px;">柱状图
                                 </div>
                             </div>
@@ -877,7 +1021,7 @@
         </div>
     </div>
 
-    <div class="pop-up ana-pop-up">
+    <div id="holishit" class="pop-up ana-pop-up">
         <span class="close-pop"></span>
         <h2 class="title">历史数据保存</h2>
         <div class="GM_ipone">

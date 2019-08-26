@@ -41,19 +41,19 @@ public class PythonService {
     private Calendar calendar = Calendar.getInstance();
 
     static {
-        map.put("一", 1);
-        map.put("两", 2);
+        map.put("一",1);
+        map.put("两",2);
         map.put("二",2);
-        map.put("三", 3);
-        map.put("四", 4);
-        map.put("五", 5);
-        map.put("六", 6);
-        map.put("七", 7);
-        map.put("八", 8);
-        map.put("九", 9);
-        map.put("十", 10);
-        map.put("十一", 11);
-        map.put("十二", 12);
+        map.put("三",3);
+        map.put("四",4);
+        map.put("五",5);
+        map.put("六",6);
+        map.put("七",7);
+        map.put("八",8);
+        map.put("九",9);
+        map.put("十",10);
+        map.put("十一",11);
+        map.put("十二",12);
 
     }
 
@@ -66,7 +66,7 @@ public class PythonService {
 
     }
 
-    private CoreInquiryParam buildParam(JSONArray array,String account) {
+    private CoreInquiryParam buildParam(JSONArray array, String account) {
 
         int currentYear = calendar.get(Calendar.YEAR);
         int currentMonth = calendar.get(Calendar.MONTH) + 1;
@@ -75,7 +75,7 @@ public class PythonService {
         String startMonth = null;
         String endMonth = null;
         String business = null;
-        int season=0;
+        int season = 0;
         List<String> places = new ArrayList<>();
         List<Integer> years = new ArrayList<>();
         List<Integer> seasons = new ArrayList<>();
@@ -90,7 +90,7 @@ public class PythonService {
                     startYear = object.getString("n");
                     startYear = startYear.length() >= 4 ? startYear.substring(0, 4)
                             : 20 + startYear.substring(0, 2);
-                } else{
+                } else {
                     endYear = object.getString("n");
                     endYear = endYear.length() >= 4 ? endYear.substring(0, 4)
                             : 20 + endYear.substring(0, 2);
@@ -125,7 +125,12 @@ public class PythonService {
                     season = map.get(temp);
                     if (season > 4 || season < 0)
                         season = getYeartQuarterIndex(calendar) - 1;
+                } else {
+                    season = Integer.parseInt(temp);
+                    if (season > 4 || season < 0)
+                        season = getYeartQuarterIndex(calendar) - 1;
                 }
+
 
             }
 
@@ -138,6 +143,7 @@ public class PythonService {
                 else value = Integer.parseInt(temp);
                 for (int k = value; k > 0; k--)
                     years.add(currentYear - k);
+
             }
 
 
@@ -148,14 +154,13 @@ public class PythonService {
                 int value = 0;
                 if (map.containsKey(m)) {
                     value = map.get(m);
-                }
-                else{
+                } else {
                     value = Integer.parseInt(m);
                 }
 
-                for (int k = value; k > 0; k--){
+                for (int k = value; k > 0; k--) {
                     int temp = currentMonth - k;
-                    if (temp>0)
+                    if (temp > 0)
                         months.add(temp);
                 }
 
@@ -170,18 +175,18 @@ public class PythonService {
                 else
                     value = Integer.parseInt(temp);
                 int quarterIndex = getYeartQuarterIndex(calendar);
-                if (value > 4 || value < 0|| value>=quarterIndex) {
+                if (value > 4 || value < 0 || value >= quarterIndex) {
                     for (int k = 1; k < quarterIndex; k++)
                         seasons.add(k);
-                }else if (value<quarterIndex){
+                } else if (value < quarterIndex) {
                     for (int k = 1; k < value; k++)
                         seasons.add(k);
                 }
             }
 
             //  处理地点
-            if (object.containsKey("c")) {
-                String temp = (String) object.get("c");
+            if (object.containsKey("g")) {
+                String temp = (String) object.get("g");
                 if (temp.contains("市") || temp.length() == 2) {
                     temp = temp.substring(0, 2) + "分行";
                 }
@@ -196,26 +201,24 @@ public class PythonService {
 
         CoreInquiryParam param = new CoreInquiryParam();
 
-        if (business==null){
-            business="开卡数";
+        if (business == null) {
+            business = "开卡数";
         }
         param.setBusiness(business);
-        if(places.isEmpty()){
+        if (places.isEmpty()) {
             places.add(managerService.getUserBank(account));
         }
-        if (startYear==null)
-            startYear= String.valueOf(currentYear);
-        if (endYear==null)
-            endYear= String.valueOf(currentYear);
-        if (startMonth==null)
-            startMonth="1";
-        if (endMonth==null)
-            endMonth="12";
+        if (startYear == null)
+            startYear = String.valueOf(currentYear);
+        if (endYear == null)
+            endYear = startYear;
         param.setPlaces(places);
         param.setStartYear(startYear);
         param.setEndYear(endYear);
-        param.setStartMonth(Integer.parseInt(startMonth));
-        param.setEndMonth(Integer.parseInt(endMonth));
+        if (startMonth != null)
+            param.setStartMonth(Integer.parseInt(startMonth));
+        if (endMonth != null)
+            param.setEndMonth(Integer.parseInt(endMonth));
         param.setSeason(season);
         param.setYears(years);
         param.setMonths(months);
@@ -233,39 +236,77 @@ public class PythonService {
         int season = param.getSeason();
         List<String> places = param.getPlaces();
         String business = param.getBusiness();
-        String startTime="2019-01";
-        String endTime="2019-12";
-        List<CardData> cardData=null;
-        if (!years.isEmpty()){
-             cardData = coreInquiry.inquiryByYears(param);
-             startTime=years.get(0)+"-"+"01";
-             endTime=years.get(years.size()-1)+"12";
-        }else if (!seasons.isEmpty()){
-             startTime=param.getCurrentYear()+"-"+seasons.get(0)*3;
-             endTime=param.getCurrentYear()+"-"+seasons.get(seasons.size()-1)*3;
-             cardData = coreInquiry.inquiryBySeasons(param);
+        String startTime;
+        String endTime;
+        List<CardData> cardData = null;
+        if (!years.isEmpty()) {
+            cardData = coreInquiry.inquiryByYears(param);
+            startTime = years.get(0) + "-01";
+            endTime = years.get(years.size() - 1) + "-12";
+        } else if (!seasons.isEmpty()) {
+            if ((seasons.get(0) * 3 - 2) < 10)
+                startTime = param.getCurrentYear() + "-0" + (seasons.get(0) * 3 - 2);
+            else
+                startTime = param.getCurrentYear() + "-" + (seasons.get(0) * 3 - 2);
+            if ((seasons.get(seasons.size() - 1) * 3) < 10)
+                endTime = param.getCurrentYear() + "-0" + (seasons.get(seasons.size() - 1) * 3);
+            else
+                endTime = param.getCurrentYear() + "-" + (seasons.get(seasons.size() - 1) * 3);
+            cardData = coreInquiry.inquiryBySeasons(param);
 
-        }else if (!months.isEmpty()){
-            startTime=param.getCurrentYear()+"-"+months.get(0);
-            endTime=param.getCurrentYear()+"-"+months.get(months.size()-1);
+        } else if (!months.isEmpty()) {
+            int current = months.get(0);
+            if (current < 10)
+                startTime = param.getCurrentYear() + "-0" + months.get(0);
+            else
+                startTime = param.getCurrentYear() + "-" + current;
+            current = months.get(months.size() - 1);
+            if (current < 10)
+                endTime = param.getCurrentYear() + "-0" + months.get(months.size() - 1);
+            else
+                endTime = param.getCurrentYear() + "-" + current;
             cardData = coreInquiry.inquiryByMonths(param);
 
-        }else if (season!=0){
-            startTime=param.getCurrentYear()+"-"+(3*season-2);
-            endTime=param.getCurrentYear()+"-"+season*3;
-             coreInquiry.inquiryBySeason(param);
-        }else {
+        } else if (season != 0) {
+            int current = 3 * season - 2;
+            if (current < 10)
+                startTime = param.getCurrentYear() + "-0" + (3 * season - 2);
+            else
+                startTime = param.getCurrentYear() + "-" + current;
+            current = season * 3;
+            if (current < 10)
+                endTime = param.getCurrentYear() + "-0" + season * 3;
+            else
+                endTime = param.getCurrentYear() + "-" + current;
+            cardData = coreInquiry.inquiryBySeason(param);
+        } else {
             String startYear = param.getStartYear();
             String endYear = param.getEndYear();
             Integer startMonth = param.getStartMonth();
             Integer endMonth = param.getEndMonth();
-             cardData = coreInquiry.inquiryByPeriod(param);
-            startTime=startYear+"-"+startMonth;
-            endTime=endYear+"-"+endMonth;
+            if (startMonth == null) {
+                startMonth = 1;
+                param.setStartMonth(startMonth);
+            }
+
+            if (endMonth == null) {
+                endMonth = 12;
+                param.setEndMonth(endMonth);
+            }
+
+            cardData = coreInquiry.inquiryByPeriod(param);
+            if (startMonth < 10)
+                startTime = startYear + "-0" + startMonth;
+            else
+                startTime = startYear + "-" + startMonth;
+            if (endMonth < 10)
+                endTime = endYear + "-0" + endMonth;
+            else
+                endTime = endYear + "-" + endMonth;
 
         }
         return JSONParseUtil.getSingleBusJson(startTime
-                ,endTime,places,business,cardData);
+                , endTime, places, business, cardData);
     }
 
     /**

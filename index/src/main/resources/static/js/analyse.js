@@ -92,54 +92,161 @@ var Main1 = {
                 id:1,
                 label:'今日存款金额',
                 isL:1
-            },{
-                id:2,
-                label:'昨日存款金额',
-                isL:1
-            },{
-                id:3,
-                label:'上月同日存款金额',
-                isL:1
-            }],
+            }
+            // ,{
+            //     id:2,
+            //     label:'昨日存款金额',
+            //     isL:1
+            // },{
+            //     id:3,
+            //     label:'上月同日存款金额',
+            //     isL:1
+            // }
+            ],
             spanList:[],
             currentPage: 1, // 当前页码
             total: 20, // 总条数
             pageSize: 2, // 每页的数据条数
+            tableIndex:1,
             tableData4: [{
                 bankName: '深圳分行',
-                zb1: '51,340,246',
-                zb2: '50,120,164',
-                zb3: '2.43%',
+                zb1: '6887500',
+                zb2: '6650000',
+                zb3: '5031600',
+                zb4: '3.57%',
             }, {
                 bankName: '广州分行',
-                zb1: '51,340,246',
-                zb2: '50,120,164',
-                zb3: '2.43%',
-            }, {
-                bankName: '珠海分行',
-                zb1: '51,340,246',
-                zb2: '50,120,164',
-                zb3: '2.43%',
-            }, {
-                bankName: '东莞分行',
-                zb1: '51,340,246',
-                zb2: '50,120,164',
-                zb3: '2.43%',
-            }, {
-                bankName: '佛山分行',
-                zb1: '51,340,246',
-                zb2: '50,120,164',
-                zb3: '2.43%',
+                zb1: '6758900',
+                zb2: '6013800',
+                zb3: '7362700',
+                zb4: '1.63%',
             }, {
                 bankName: '汕尾分行',
-                zb1: '51,340,246',
-                zb2: '50,120,164',
-                zb3: '2.43%',
+                zb1: '6243200',
+                zb2: '4092800',
+                zb3: '6785000',
+                zb4: '3.81%',
+            }, {
+                bankName: '佛山分行',
+                zb1: '3887500',
+                zb2: '3720000',
+                zb3: '4545600',
+                zb4: '4.50%',
+            }, {
+                bankName: '东莞分行',
+                zb1: '3286000',
+                zb2: '3489200',
+                zb3: '4808200',
+                zb4: '-5.82%',
+            }, {
+                bankName: '中山分行',
+                zb1: '4866400',
+                zb2: '3737600',
+                zb3: '5624400',
+                zb4: '30.20%',
+            }, {
+                bankName: '珠海分行',
+                zb1: '2130700',
+                zb2: '1814500',
+                zb3: '3428800',
+                zb4: '17.42%',
+            }, {
+                bankName: '江门分行',
+                zb1: '4576000',
+                zb2: '3737600',
+                zb3: '5624400',
+                zb4: '22.43%',
+            }, {
+                bankName: '肇庆分行',
+                zb1: '4347900',
+                zb2: '4284000',
+                zb3: '4414400',
+                zb4: '1.49%',
             }, {
                 bankName: '惠州分行',
-                zb1: '51,340,246',
-                zb2: '50,120,164',
-                zb3: '2.43%',
+                zb1: '2089600',
+                zb2: '2844800',
+                zb3: '3608000',
+                zb4: '-26.54%',
+            }, {
+                bankName: '汕头分行',
+                zb1: '3652600',
+                zb2: '4622700',
+                zb3: '3504200',
+                zb4: '-20.98%',
+            }, {
+                bankName: '潮州分行',
+                zb1: '4529400',
+                zb2: '4995000',
+                zb3: '4919300',
+                zb4: '-9.32%',
+            }, {
+                bankName: '揭阳分行',
+                zb1: '2917700',
+                zb2: '2957800',
+                zb3: '2700200',
+                zb4: '2.43%',
+            }, {
+                bankName: '湛江分行',
+                zb1: '2452000',
+                zb2: '2628400',
+                zb3: '3088200',
+                zb4: '-1.35%',
+            }, {
+                bankName: '茂名分行',
+                zb1: '3016400',
+                zb2: '3166800',
+                zb3: '3953500',
+                zb4: '-4.74%',
+            }, {
+                bankName: '阳江分行',
+                zb1: '2619400',
+                zb2: '2508800',
+                zb3: '2624400',
+                zb4: '4.40%',
+            }, {
+                bankName: '云浮分行',
+                zb1: '2390000',
+                zb2: '1881100',
+                zb3: '2333600',
+                zb4: '27.05%',
+            }, {
+                bankName: '韶关分行',
+                zb1: '1596600',
+                zb2: '2901600',
+                zb3: '1964300',
+                zb4: '-44.97%',
+            }, {
+                bankName: '清远分行',
+                zb1: '1149000',
+                zb2: '1384000',
+                zb3: '1442900',
+                zb4: '-16.97%',
+            }, {
+                bankName: '梅州分行',
+                zb1: '4186900',
+                zb2: '4265000',
+                zb3: '4206700',
+                zb4: '-1.83%',
+            }, {
+                bankName: '河源分行',
+                zb1: '1056000',
+                zb2: '1231600',
+                zb3: '1964300',
+                zb4: '14.25%',
+            }],
+            treedata: [{
+                label: '数值字段',
+                children: [{
+                    id:1,
+                    label: '今日存款金额',
+                    isL:1
+                },{
+                    id:2,
+                    label: '昨日存款金额',
+                    isL:1
+                }]
+
             }],
             treedata: [{
                 label: '数值字段',
@@ -170,9 +277,13 @@ var Main1 = {
                 label: '贷款表'
             }],
             value: '',
+            value1: '开卡表',
+            value2: '存款表',
+            value3: '贷款表',
+            value4: '中间业务表',
             value6: '',
-            check: 1,
-            check2: 1,
+            check: "存款数",
+            check2: "今日存款金额",
             fenlei: [{
                 value: '存款数',
                 label: '存款数'
@@ -292,7 +403,7 @@ var Main1 = {
         },
 
         chooseSelectChange(t) {
-            alert(t);//打印选择器的选择值
+            // alert(t);//打印选择器的选择值
         },
         add() {
             var zbName = this.form.name;
@@ -315,12 +426,21 @@ var Main1 = {
 
             this.dialogFormVisible = false
             var string = document.getElementById("gsDiv1").innerText
-            alert(document.getElementById("gsDiv1").innerText);
-            var fields = {
-                '今日存款金额': 3219890,
-                '昨日存款金额': 3022122,
-            };
-            alert(this.rightzze(string, fields));
+            // // alert(document.getElementById("gsDiv1").innerText);
+            // var fields = {
+            //     '今日存款金额': 3219890,
+            //     '昨日存款金额': 3022122,
+            // };
+            // alert(this.rightzze(string, fields));
+            if(this.tableIndex<4){
+                let str1 = "table"+this.tableIndex;
+                document.getElementById(str1).style.display="none";
+                this.tableIndex++;
+                let str2 = "table"+this.tableIndex;
+                document.getElementById(str2).style.display='';
+                console.log(str1+str2);
+
+            }
         },
         rightzze(string, obj) {
             // 剔除空白符
@@ -399,7 +519,7 @@ var Main1 = {
             }
             var result = eval(stringlast);
             result = result.toFixed(3); //取小数点三位
-            alert(stringlast + ' = ' + result);
+            // alert(stringlast + ' = ' + result);
             return true;
         },
         quxiao() {
@@ -440,8 +560,19 @@ var Main1 = {
 
         },
         addcxDate(t) {
-            this.dateform.startTime = t[0];
-            this.dateform.endTime = t[1];
+            // this.dateform.startTime = t[0];
+            // this.dateform.endTime = t[1];
+            // if(this.tableIndex<4){
+            //     let str1 = "table"+this.tableIndex;
+            //     document.getElementById(str1).style.display="none";
+            //     this.tableIndex++;
+            //     let str2 = "table"+this.tableIndex;
+            //     document.getElementById(str2).style.display='';
+            //     console.log(str1+str2);
+            //
+            // }
+           this.innerVisible=false;
+
 
         },
         getTreeChecked(data, node) {
@@ -487,7 +618,7 @@ var Main1 = {
             row.index = rowIndex;
         },
         rowClick(row,event,column){
-            alert(row.index);
+            // alert(row.index);
         },
         getDate(t) {
             let myChart = echarts.init(document.getElementById('main'));
@@ -548,6 +679,14 @@ var Main1 = {
             let myChartbar = echarts.init(document.getElementById('zhuzhuang'));
             let options = myChartbar.getOption();
             myChartbar.clear();
+            let bardata1 = [6758900,1596600,6887500,2130700,3652600,3887500,4576000,2452000,3016400,4347900,
+                2089600,4186900,6243200,1056000,2619400,1149000,3286000,4866400,4529400,2917700, 2390000];
+            let bardata2 = [6013800,2901600,6650000,1814500,4622700,3720000,3737600,2628400,3166800,4284000,
+                2844800,4265000,4092800,1231600,2508800,1384000,3489200,3737600,4995000,2957800,1881100];
+            let bardata3 = [7362700,1964300,5031600,3428800,3504200,4545600,5624400,3088200,3953500,4414400,
+                3608000,4206700,6785000,1964300,2624400,1442900,4808200,5624400,4919300,2700200,2333600];
+            let bardata4 = [1.63,-44.97,3.57,17.42,-20.98,4.50,22.43,-1.35,
+                -4.74,1.49,-26.54,-1.83,3.81,14.25,4.40,-16.97,-5.82,30.20,-9.32,2.43,27.05];
             let bardata = [];
             let min = Math.ceil(10000);
             let max = Math.floor(100000);
@@ -555,9 +694,15 @@ var Main1 = {
 
                 bardata.push(Math.floor(Math.random() * (max - min)) + min); //不含最大值，含最小值
             }
-            console.log(bardata);
+            // console.log(bardata);
             options.yAxis[0].name = "存款数/元";
-            options.series[0].data = bardata;
+            // options.series[0].data = bardata;
+            // console.log(d.label);
+            if(this.check2=="今日存款金额") options.series[0].data=bardata1;
+            if(this.check2=="昨日存款金额") options.series[0].data=bardata2;
+            if(this.check2=="上月同日存款金额") options.series[0].data=bardata3;
+            if(this.check2=="比昨日%") options.series[0].data=bardata4;
+            // console.log(d);
             myChartbar.setOption(options);
         }
 
@@ -633,7 +778,8 @@ myCharthan.setOption(option);
 
 //柱状图
 var myChartbar = echarts.init(document.getElementById('zhuzhuang'));
-
+let cityName= [ '广州分行','韶关分行','深圳分行', '珠海分行','汕头分行','佛山分行','江门分行','湛江分行','茂名分行','肇庆分行','惠州分行'
+    ,'梅州分行', '汕尾分行','河源分行','阳江分行', '清远分行','东莞分行', '中山分行', '潮州分行','揭阳分行','云浮分行'];
 var xAxisData = [];
 var data1 = [];
 
@@ -672,7 +818,7 @@ option = {
     },
     tooltip: {},
     xAxis: {
-        data: xAxisData,
+        data: cityName,
         name: 'X Axis',
         silent: false,
         axisLine: {onZero: true},
